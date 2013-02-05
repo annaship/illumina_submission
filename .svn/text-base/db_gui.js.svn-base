@@ -1,0 +1,86 @@
+function addEvent(obj, evType, fn){ 
+ if (obj.addEventListener){ 
+   obj.addEventListener(evType, fn, false); 
+   return true; 
+ } else if (obj.attachEvent){ 
+   var r = obj.attachEvent("on"+evType, fn); 
+   return r; 
+ } else { 
+   return false; 
+ } 
+}
+
+addEvent(window, 'load', pageinit);
+//addEvent(window, 'load', get_popup_class);
+//addEvent(window, 'load', my_click_alert);
+
+//addEvent(window, 'load', query_chosen);
+
+function show_alert()
+{
+	//alert("I am an alert box!");
+}
+
+var ray={
+ajax:function(st)
+	{
+		this.show('load');
+	},
+show:function(el)
+	{
+		this.getID(el).style.display='';
+	},
+getID:function(el)
+	{
+		return document.getElementById(el);
+	}
+}
+
+function pageinit()
+{
+    if (document.getElementById)
+    {
+        var df = document.getElementById('dform');
+        	df.onsubmit=function(){return ray.ajax()};        
+    }
+}
+
+//document.getElementById('dform').style.display = 'none';}
+	$("#dform").change(function () {
+	var query_text = {
+	  "q1" : "SELECT lane, count(rawseq_id) as seqcnt FROM rawseq JOIN env454.run using(run_id) WHERE run='rundate' group by lane",
+	  'q2' : "SELECT COUNT(distinct read_id) FROM gast_rundate_dna_region",
+	  'q3' : "SELECT COUNT(DISTINCT sequence_comp) FROM trimseq  JOIN run using(run_id)  JOIN dna_region using(dna_region_id)  WHERE run = 'rundate' AND dna_region = 'dna_region'",
+	  'q4' : "SELECT count(read_id) from tagtax  JOIN trimseq using(read_id)  JOIN run using(run_id)  WHERE run='rundate'",
+	  'q5' : "SELECT taxonomy, count(read_id) as count_all from tagtax JOIN taxonomy USING(taxonomy_id)  JOIN trimseq using(read_id)  JOIN run using(run_id)  WHERE run='rundate' group by taxonomy",
+	  'q6' : "SELECT project, dataset, taxonomy, count(read_id) from tagtax  JOIN taxonomy USING(taxonomy_id)  JOIN trimseq using(read_id)  JOIN project using(project_id)  JOIN dna_region using(dna_region_id)  JOIN dataset using(dataset_id)  JOIN run using (run_id)  WHERE run=rundate group by project, dataset, taxonomy;",
+	  'q7' : "SELECT delete_reason, project, dataset, count(read_id)  FROM env454.trimming  JOIN env454.trimseq_deleted using(read_id, run_id)  JOIN env454.delete_reason using(delete_reason_id)  JOIN env454.project using(project_id)  JOIN env454.dataset using(dataset_id)  WHERE run_id = 'run_id'  GROUP BY delete_reason, project, dataset;", 
+	  'q8' : "SELECT DISTINCT rundate, project_name, group_concat(dataset_name), count(dataset_name), concat(\"'\",funding), first_name, last_name, email FROM vamps.vamps_submissions JOIN vamps.vamps_submissions_tubes USING(submit_code) WHERE rundate = 'rundate' GROUP BY rundate, project_name;",
+	  'q9' : "SELECT runkey AS runkey, lane AS lane, project_name AS project_name, dataset_name AS dataset_name, rundate AS rundate from vamps.vamps_submissions_tubes WHERE rundate = 'rundate' AND dna_region = 'dna_region'",
+	  'q10': "SELECT project, dataset, rundate FROM vamps_projects_datasets LEFT JOIN vamps_submissions_tubes ON (project_name = project AND dataset_name = dataset) WHERE rundate LIKE 'rundate'"
+	
+	//    "q1" : "SELECT lane, count(rawseq_id) as seqcnt FROM rawseq JOIN env454.run using(run_id) WHERE run='rundate' group by lane order by lane",
+	//    "q2" : "first text.",
+	//    "q3" : "second text.",
+	//    "q4" : "third text.",
+	//    "q5" : "forth text."
+	};
+
+  	var str = "";
+  	$.each(query_text, function(val, text) {
+      $("#dform").find("select option:selected").each(function () {
+		if (val == $(this).val())
+		{
+            //str += $(this).text() + " ";
+            str += text + " ";
+            
+	      	//alert($(this).text())	
+	        $("div.show_query").text(str);
+		}      
+      });
+		
+	//	alert(val)
+	
+    //options[options.length] = new Option(text, val);
+	});
+}).change();

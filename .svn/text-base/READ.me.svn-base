@@ -1,0 +1,15 @@
+1) Add a new query: 
+	a) Actual query: into table1.php
+	b) Description for drop down menu: into db_gui_beginning.php
+	c) Query with "rundate" instead of real date - to show in grey under drop down menu: into db_gui.js	(var query_text)
+	
+2) Sql connection
+    a)
+    $result = mysql_query($q0, $vampsprod_connection)    
+  	or
+    $result = mysql_query($q0, $newbpc2_connection)
+	b) Put database name in query!
+	FROM env454.tagtax
+	or 
+	FROM vamps.vamps_submissions
+	

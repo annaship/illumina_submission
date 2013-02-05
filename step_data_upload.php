@@ -1,0 +1,46 @@
+<?php include_once("ill_subm_beginning.php"); ?>
+       
+      <h1>Illumina files processing</h1>
+      <?php include_once("ill_subm_menu.php"); ?>
+
+      <div class="queries_form">
+        <div id="load" style="display:none;">Loading... Please wait</div>       
+        <form action="query_result.php" method="post" id="dform">
+          <table>
+            <tr>
+              <td><label for="rundate">Rundate:</label></td> <td><input class="text_inp" type="text" name="rundate" value="<?php echo $rundate;?>"></td>
+             
+            </tr>
+            <tr>
+              <td><label for="rundate">Dna_region:</label></td><td><input class="text_inp" type="text" name="dna_region"></td>
+            </tr>
+
+            <tr>
+            <td><label for="chosen_query">Select query:</label> </td>
+            <td><select name="chosen_query">
+            <?php 
+              foreach ($queries_by_name as $key => $value)
+              {
+                echo '<option value="'.$key.'"';
+                if ($chosen_query_n == $key)
+                {
+                  echo ' selected="selected"';
+                } 
+                echo ">";
+                print_r($value);
+                echo "</option>";
+              } 
+            
+            ?>
+                </select>
+              </td>
+            </tr>
+            <tr><td></td><td><div class="show_query">Query text:</div></td></tr>
+            </table>
+          <input type="Submit">
+        </form>
+        
+      </div>
+      
+      <!-- end of content -->    
+<?php include_once("ill_subm_end.php"); ?>     

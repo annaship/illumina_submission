@@ -1,0 +1,26 @@
+1) Add a new query: 
+    a) Actual query: into table1.php
+    b) Description for drop down menu: into db_gui_beginning.php
+    c) Query with "rundate" instead of real date - to show in grey under drop down menu: into db_gui.js	(var query_text)
+	
+2) Sql connection
+    a)
+    $result = mysql_query($q0, $vampsprod_connection)    
+  	or
+    $result = mysql_query($q0, $newbpc2_connection)
+    b) Put database name in a query!
+	FROM env454.tagtax
+       or 
+	FROM vamps.vamps_submissions
+
+3) Code 
+    The code for db gui is on vampsdev: /usr/local/www/vampsdev/docs/db_gui
+        
+    a) db_gui_index.php has a form with drop-down menu of queries. It includes
+    b) db_gui_beginning.php which includes header, db connections and the array of queries for the drop-down menu.
+       A submit button calls
+    c) query_result.php which has the same form and includes
+    d) table1.php which runs a query and shows a result from the previous call.
+        
+   Other files contain header, footer, left menu, connection info, common php functions, java scripts, css and other additional stuff, should be obvious by the name of a file.
+

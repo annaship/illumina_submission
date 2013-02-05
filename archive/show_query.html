@@ -1,0 +1,3 @@
+<p>
+SELECT lane, count(rawseq_id) as seqcnt FROM env454.rawseq JOIN env454.run using(run_id) WHERE run='20111214' GROUP BY lane ORDER by lane
+</p>

@@ -1,0 +1,112 @@
+<?php
+
+  include_once("table_functions.php");
+
+  $queries_to_run = array(
+      'q1' => "SELECT lane, count(rawseq_id) as seqcnt FROM env454.rawseq WHERE run_id='".$run_id."' GROUP BY lane", 
+      'q2' => "SELECT COUNT(distinct read_id) FROM env454.gast_".$rundate."_"."$dna_region",
+      'q3' => "SELECT COUNT(DISTINCT sequence_comp) FROM env454.trimseq
+                  JOIN env454.dna_region using(dna_region_id)
+                  WHERE run_id = '".$run_id."' AND dna_region = '".$dna_region."'",
+      'q4' => "SELECT count(read_id) FROM env454.tagtax
+                  JOIN env454.trimseq using(read_id)
+                  WHERE run_id='".$run_id."'",
+      'q5' => "SELECT taxonomy, count(read_id) as count_all FROM env454.tagtax JOIN env454.taxonomy USING(taxonomy_id)
+                  JOIN env454.trimseq using(read_id)
+                  WHERE run_id='".$run_id."' group by taxonomy", 
+      'q6' => "SELECT project, dataset, taxonomy, count(read_id) FROM env454.tagtax
+                  JOIN env454.taxonomy USING(taxonomy_id)
+                  JOIN env454.trimseq using(read_id)
+                  JOIN env454.project using(project_id)
+                  JOIN env454.dna_region using(dna_region_id)
+                  JOIN env454.dataset using(dataset_id)
+                  WHERE run_id='".$run_id."' group by project, dataset, taxonomy;",   
+      'q7' => "select delete_reason, project, dataset, count(read_id)
+                  FROM env454.trimming
+                  JOIN env454.trimseq_deleted using(read_id, run_id)
+                  JOIN env454.delete_reason using(delete_reason_id)
+                  JOIN env454.project using(project_id)
+                  JOIN env454.dataset using(dataset_id)
+                  WHERE run_id = '".$run_id."'
+                  GROUP BY delete_reason, project, dataset;",
+      'q8' => "SELECT DISTINCT rundate, project_name, group_concat(dataset_name), count(dataset_name), concat(\"'\",funding), first_name, last_name, email 
+                  FROM vamps.vamps_submissions JOIN vamps.vamps_submissions_tubes USING(submit_code)
+                  WHERE rundate = '".$rundate."'
+                  GROUP BY rundate, project_name;",
+      'q9' => "select
+                  runkey AS runkey,
+                  lane AS lane,
+                  project_name AS project_name,
+                  dataset_name AS dataset_name,
+                  rundate AS rundate 
+                  from vamps.vamps_submissions_tubes  WHERE rundate = '".$rundate."' AND dna_region = '".$dna_region."'",    
+      'q10'=> "SELECT project, dataset, rundate 
+                  FROM vamps.vamps_projects_datasets 
+                  LEFT JOIN vamps.vamps_submissions_tubes ON (project_name = project AND dataset_name = dataset) 
+                  WHERE rundate like '".$rundate."'",
+      );
+  
+  $chosen_query = $queries_to_run{$chosen_query_n};
+  
+  if ($chosen_query != "")
+  {
+//     echo "<h3>Selected Query is: $chosen_query</h3>";
+    $q0 = $chosen_query;
+  }
+  
+  if ($chosen_query_n == "q2" || $chosen_query_n == "q3" || $chosen_query_n == "q9")
+  {
+    if ($dna_region == "") {echo "<p class = 'error_message'>Please provide dna region (e.g. v6)</p>";}    
+  }
+  
+//   if ($dna_region == "")
+  
+  
+  $my_title = $queries_by_name{$chosen_query_n};
+  echo "<h3>$my_title</h3>";
+//   echo "<h4>Query: $q0</h4>";
+  
+  if ($chosen_query_n == "q8" || $chosen_query_n == "q9" || $chosen_query_n == "q10")
+  {
+    $result = mysql_query($q0, $vampsprod_connection) or die("SELECT Error $q0: ".mysql_error());    
+  }
+  else
+  {
+    $result = mysql_query($q0, $newbpc2_connection) or die("SELECT Error $q0: ".mysql_error());
+  }
+
+  /* get column metadata */
+  $i = 0;
+  $num_field = mysql_num_fields($result);
+  $num_rows  = mysql_numrows($result);
+  
+  echo "<div #query_rendering>
+  <table id='submission_tubes_table' class='sortable'>
+  <thead>
+  <tr>";
+    $table_headers = print_table_headers($result, $num_field);
+  echo "</tr>
+  </thead>
+  <tbody>
+  ";     
+  
+  //print csv file
+  $data_all = print_table_body_all($result);
+  array_unshift($data_all, $table_headers);
+  $csv_data = array_to_scv($data_all, false);
+  
+  $dir = dirname(__FILE__);
+ 
+  $myFile = "/usr/local/tmp/table_result.csv";
+  
+  $fh = fopen($myFile, 'w') or die("Can't open file");
+  fwrite($fh, $csv_data);
+  fclose($fh);
+  
+    
+  mysql_free_result($result);
+  echo "</tbody>
+     </table>
+    </div>";
+
+?>
