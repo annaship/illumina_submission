@@ -21,9 +21,9 @@
         ?>
         </select></td>
       
-        <td>NNNN<input class="text_inp" type="text" name="run_key_0" id="form_run_key_0" value="" size="10"/></td>
+        <td>NNNN<input class="text_inp" type="text" name="run_key_0" id="form_run_key_0" value="<?php echo $selected_run_key ?>" size="10"/></td>
           
-        <td><input class="text_inp" type="text" name="barcode_index_0" id="form_barcode_index_0" value="" size="6"/></td>
+        <td><input class="text_inp" type="text" name="barcode_index_0" id="form_barcode_index_0" value="<?php echo $selected_barcode_index ?>" size="6"/></td>
       
         <td>
         <select name="project_0" id="form_project_0">
@@ -33,8 +33,8 @@
         ?>  
         </select></td>
       
-        <td><input class="text_inp" type="text" name="dataset_0" id="form_dataset_0" value="" size="30"/></td>
-        <td><input class="text_inp" type="text" name="dataset_description_0" id="form_dataset_description_0" value="" size="30"/></td>
+        <td><input class="text_inp" type="text" name="dataset_0" id="form_dataset_0" value="<?php echo $selected_dataset ?>" size="30"/></td>
+        <td><input class="text_inp" type="text" name="dataset_description_0" id="form_dataset_description_0" value="<?php echo $selected_dataset_description ?>" size="30"/></td>
       
         <td>
         <select name="env_source_name_0" id="form_env_source_name_0">
@@ -46,6 +46,7 @@
         
       <?php 
       # _0 - number of row
+//       TODO add value="<?php echo $selected_dataset " to each
       foreach ($arr_fields_add as &$value) {
         echo '
         <td><input class="text_inp" type="text" name="'.$value.'_0" id="'.$value.'_0" value="" size="10"/></td>

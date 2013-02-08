@@ -12,13 +12,13 @@
     print_r($_POST); /* Array ( 
                         [domain_0] => Bacteria 
                         [lane_0] => 1 
-                        [data_owner_0] => contact 
+                        [data_owner_0] => contact ???
                         [run_key_0] => atct 
                         [barcode_index_0] => aaaaa 
                         [project_0] => project 
                         [dataset_0] => aa1 
                         [dataset_description_0] => asdas 
-                        [env_source_name_0] => env_source_name 
+                        [env_source_name_0] => env_source_name ???
                         [tubelabel_0] => aa1 
                         [barcode_0] => 
                         [adaptor_0] => 
