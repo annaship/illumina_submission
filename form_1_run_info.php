@@ -39,10 +39,7 @@ include_once 'filled_variables.php';
   <td>
   <select name="overlap_0" id="form_overlap_0">
    <?php 
-    while($row = mysql_fetch_row($result_overlap))
-    {
-      echo '<option value="">'.$row[0].'</option>';
-    }
+    print_options($overlaps, "overlap");    
     ?>
       <option value="None"></option>
     </select>

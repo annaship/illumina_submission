@@ -25,7 +25,7 @@
         <?php
             include("ill_submit_rows.php");
             for ($i = 0; $i < $repeat_subm_row; $i++) {
-              include("ill_submit_rows_rep.php");
+              include("ill_submit_rows.php");
               echo "<br/>";
           } 
         ?>     

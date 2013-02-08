@@ -26,11 +26,25 @@ while($row = mysql_fetch_row($result_project))
 $arr_fields_add = array("tubelabel", "barcode", "adaptor", "amp_operator");
 
 $arr_fields_run = array("seq_operator", "insert_size", "read_length");
+// ---
 
 $query = "SELECT DISTINCT env_source_name FROM env454.env_sample_source ORDER BY env_source_name";
 $result_env_source_name = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_env_source_name: ".mysql_error());
+$i = 0;
+while($row = mysql_fetch_row($result_env_source_name))
+{
+  $i += 1;
+  $env_source_names[$i] = $row[0];
+}
+// ---
+
 
 $query = "SELECT DISTINCT overlap FROM env454.run_info_ill";
 $result_overlap = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_overlap: ".mysql_error());
-
+$i = 0;
+while($row = mysql_fetch_row($result_overlap))
+{
+  $i += 1;
+  $overlaps[$i] = $row[0];
+}
 ?>
