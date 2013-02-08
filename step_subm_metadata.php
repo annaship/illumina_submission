@@ -1,7 +1,5 @@
 <?php include("ill_subm_beginning.php"); ?>
-<!-- <link type="text/css" rel="stylesheet" href="style_table_form.css" title="Style"/> -->
-
-       
+     
       <h1>Illumina files processing</h1>
       <?php include_once("ill_subm_menu.php"); ?>
 

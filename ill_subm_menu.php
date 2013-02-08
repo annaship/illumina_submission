@@ -12,6 +12,10 @@
     <li><a href="step_overlap.php">overlap</a></li>
     <li><a href="step_uniqueing.php">uniqueing</a></li>
     <li><a href="step_clear_db.php">clear db</a></li>
+    <li><a href="step_check_fa_counts.php">check counts in fa files</a></li>
+    <li><a href="step_check_db_counts.php">check counts in db</a></li>
+    <li><a href="step_gzip_all.php">gzip all</a></li>
+    <li><a href="step_ungzip_all.php">ungzip all</a></li>
     </ul>  
   </li>      
   </ul> 

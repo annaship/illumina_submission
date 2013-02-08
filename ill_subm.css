@@ -531,3 +531,7 @@ th
     padding-top: 0.7ex;
     padding-bottom: 1ex;
 }
+
+.emph {
+	font-weight:bold;
+}
