@@ -1,5 +1,6 @@
 <?php include("ill_subm_beginning.php"); ?>
-     
+<?php include_once 'filled_variables.php'; ?>
+
       <h1>Illumina files processing</h1>
       <?php include_once("ill_subm_menu.php"); ?>
 
