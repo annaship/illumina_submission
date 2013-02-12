@@ -56,14 +56,8 @@ unset($value); // break the reference with the last element
     <td>
     <select name="project_0" id="form_project_0">
    <?php 
-    $query = "SELECT DISTINCT last_name, first_name, email, institution FROM env454.contact WHERE last_name <> '' ORDER BY last_name";
-    $result = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $rundate_result: ".mysql_error());
-    
-    while($row = mysql_fetch_row($result))
-    {
-      echo '<option value="contact">'.$row[0].', '.$row[1].', '.$row[2].', '.$row[3].'</option>';
-    }
-  ?>
+     print_options($contact_full, $selected_contact_full);  
+   ?>
     </select></td>
   </tr>
 

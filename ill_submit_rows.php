@@ -12,16 +12,18 @@
         <!-- Show Suite by dna_region plus domain -->
       
         <td>
-      
+
         <select name="data_owner_0" id="form_data_owner_0">
          <?php 
       //   TODO: how to chose if 2 the same name?
-        print_options($contact, "contact", $selected_data_owner);
+//          $selected_data_owner = "Anderson, Rika";
+          
+         print_options($contact, $selected_data_owner);
         
         ?>
         </select></td>
       
-        <td>NNNN<input class="text_inp" type="text" name="run_key_0" id="form_run_key_0" value="<?php echo $selected_run_key ?>" size="10"/></td>
+        <td><div  class="wide">NNNN<input class="text_inp" type="text" name="run_key_0" id="form_run_key_0" value="<?php echo $selected_run_key ?>" size="10"/></div></td>
           
         <td><input class="text_inp" type="text" name="barcode_index_0" id="form_barcode_index_0" value="<?php echo $selected_barcode_index ?>" size="6"/></td>
       
@@ -29,7 +31,7 @@
         <select name="project_0" id="form_project_0">
       
        <?php 
-        print_options($project, "project");        
+        print_options($project, $selected_project);        
         ?>  
         </select></td>
       
@@ -40,7 +42,7 @@
         <select name="env_source_name_0" id="form_env_source_name_0">
       
        <?php 
-         print_options($env_source_names, "env_source_name", $selected_env_source_name);        
+         print_options($env_source_names, $selected_env_source_name);        
          ?>  
         </select></td>
         

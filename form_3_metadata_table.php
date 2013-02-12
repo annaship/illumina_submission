@@ -30,7 +30,7 @@
           } 
         ?>     
         <tr>
-          <td colspan = 2>Copy the row above <input class="text_inp" type="text" name="copy_row" value="96" size="3"/> times </td>
+          <td colspan = 2>Copy the row above <input class="text_inp" type="text" name="copy_row" value="2" size="3"/> times </td>
           <td><input type="submit" value="Go!" id="add_new_rows" name="copy_row_go"/></td>
         </tr>
         </tbody>

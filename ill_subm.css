@@ -535,3 +535,7 @@ th
 .emph {
 	font-weight:bold;
 }
+
+.wide {
+	width: 18ex;
+}

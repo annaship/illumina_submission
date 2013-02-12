@@ -39,7 +39,7 @@ include_once 'filled_variables.php';
   <td>
   <select name="overlap_0" id="form_overlap_0">
    <?php 
-    print_options($overlaps, "overlap");    
+    print_options($overlaps, $selected_overlap);    
     ?>
       <option value="None"></option>
     </select>

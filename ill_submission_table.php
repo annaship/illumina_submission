@@ -1,11 +1,12 @@
 <?php 
   if (isset($_POST['cancel'])) 
   { 
+    include("step_subm_metadata.php");
     print_r($_POST);  /* ...clear and reset stuff... */ 
   }
-  else if (isset($_POST['submit'])) 
+  else if (isset($_POST['update'])) 
   { 
-    print_r($_POST); /* ...submit stuff... */ 
+    include("step_subm_metadata_update.php");        
   }
   else if (isset($_POST['copy_row'])) 
   { 
