@@ -35,7 +35,7 @@
     $selected_barcode_index		= $_POST[barcode_index_0];
     $selected_project			= $_POST[project_0];
     $selected_dataset			= $_POST[dataset_0];
-    $selected_dataset_descr		= $_POST[dataset_description_0];
+    $selected_dataset_description = $_POST[dataset_description_0];
     $selected_env_source_name	= $_POST[env_source_name_0];
     $selected_tubelabel			= $_POST[tubelabel_0];
     $selected_barcode			= $_POST[barcode_0];

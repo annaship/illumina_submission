@@ -49,9 +49,9 @@
       <?php 
       # _0 - number of row
 //       TODO add value="<?php echo $selected_dataset " to each
-      foreach ($arr_fields_add as &$value) {
+      foreach ($arr_fields_add as &$value) {        
         echo '
-        <td><input class="text_inp" type="text" name="'.$value.'_0" id="'.$value.'_0" value="" size="10"/></td>
+        <td><input class="text_inp" type="text" name="'.$value.'_0" id="'.$value.'_0" value="'.${'selected_'.$value}.'" size="10"/></td>
         ';  
       }
       unset($value); // break the reference with the last element
