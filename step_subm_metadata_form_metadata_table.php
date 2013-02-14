@@ -10,7 +10,7 @@
           
           foreach ($arr_fields_headers as &$value) {
             echo '
-            <th class="sortable"><a href="step_subm_metadata.php?actionLink=table-controlLink&amp;page=0&amp;column='.$value.'">'.$value.'</a></th>
+            <th>'.$value.'</th>
             ';  
           
           }
@@ -22,14 +22,10 @@
         <tbody>   
           <?php
               include("ill_submit_rows.php");
-//               for ($i = 0; $i < $repeat_subm_row; $i++) {
-//                 include("ill_submit_rows.php");
-//                 echo "<br/>";
-//             } 
           ?>     
-          <tr>
-            <td colspan = 2>Copy the row above <input class="text_inp" type="text" name="copy_row" value="2" size="3"/> times </td>
-            <td><input type="button" value="Go!" id="add_new_rows" name="copy_row_go"/></td>
+          <tr class="repeat_row_tr">
+            <td colspan = 3>Copy the row above <input class="text_inp size_abbr" type="text" id="copy_row_times" value="2"/> times </td>
+            <td><input type="button" value="Go!" id="add_new_rows"/></td>
           </tr>
         </tbody>
     </table>

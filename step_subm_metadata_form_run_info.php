@@ -17,12 +17,12 @@ include_once 'filled_variables.php';
   <tr class="fields">
   <?php $today = date("Ymd");?>
   <td class="fields" align="left"><label for="run_infoForm_rundate">rundate</label></td>
-  <td align="left"><input class="text_inp" type="text" name="rundate" id="run_infoForm_rundate" value="<?php PRINT "$today";?>" size="30"/></td>
+  <td align="left"><input class="text_inp size_long_input" type="text" name="rundate" id="run_infoForm_rundate" value="<?php PRINT "$today";?>"/></td>
   </tr>
   
   <tr class="fields">
   <td class="fields" align="left"><label for="run_infoForm_Path to raw data">Path to raw data</label></td>
-  <td align="left"><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp" type="text" name="Path to raw data" id="run_infoForm_Path to raw data" value="" size="30"/></td>
+  <td align="left"><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp size_long_input" type="text" name="Path to raw data" id="run_infoForm_Path to raw data" value=""/></td>
   </tr>
 
   <tr class="fields">
@@ -51,7 +51,7 @@ include_once 'filled_variables.php';
       echo '
         <tr class="fields">
           <td class="fields" align="left"><label for="run_infoForm_'.$value.'">'.$value.'</label></td>
-          <td align="left"><input class="text_inp" type="text" name="'.$value.'" id="run_infoForm_'.$value.'" value="" size="10"/></td>
+          <td align="left"><input class="text_inp size_abbr" type="text" name="'.$value.'" id="run_infoForm_'.$value.'" value=""/></td>
         </tr>      
       ';  
     }

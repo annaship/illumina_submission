@@ -7,7 +7,7 @@
         <option value="Fungi">Fungi</option>
         </select></td>
       
-        <td><input class="text_inp" type="text" name="lane_0" id="form_lane_0" value="<?php echo $selected_lane ?>" size="1"/></td>
+        <td><input class="text_inp size_lane" type="text" name="lane_0" id="form_lane_0" value="<?php echo $selected_lane ?>"/></td>
         
         <!-- Show Suite by dna_region plus domain -->
       
@@ -23,9 +23,9 @@
         ?>
         </select></td>
       
-        <td><div  class="wide">NNNN<input class="text_inp" type="text" name="run_key_0" id="form_run_key_0" value="<?php echo $selected_run_key ?>" size="10"/></div></td>
+        <td><div  class="wide">NNNN<input class="text_inp size_run_key" type="text" name="run_key_0" id="form_run_key_0" value="<?php echo $selected_run_key ?>"/></div></td>
           
-        <td><input class="text_inp" type="text" name="barcode_index_0" id="form_barcode_index_0" value="<?php echo $selected_barcode_index ?>" size="6"/></td>
+        <td><input class="text_inp size_barcode_index" type="text" name="barcode_index_0" id="form_barcode_index_0" value="<?php echo $selected_barcode_index ?>"/></td>
       
         <td>
         <select name="project_0" id="form_project_0">
@@ -35,8 +35,8 @@
         ?>  
         </select></td>
       
-        <td><input class="text_inp" type="text" name="dataset_0" id="form_dataset_0" value="<?php echo $selected_dataset ?>" size="30"/></td>
-        <td><input class="text_inp" type="text" name="dataset_description_0" id="form_dataset_description_0" value="<?php echo $selected_dataset_description ?>" size="30"/></td>
+        <td><input class="text_inp size_dataset" type="text" name="dataset_0" id="form_dataset_0" value="<?php echo $selected_dataset ?>"/></td>
+        <td><input class="text_inp size_dataset" type="text" name="dataset_description_0" id="form_dataset_description_0" value="<?php echo $selected_dataset_description ?>"/></td>
       
         <td>
         <select name="env_source_name_0" id="form_env_source_name_0">
@@ -51,7 +51,7 @@
 //       TODO add value="<?php echo $selected_dataset " to each
       foreach ($arr_fields_add as &$value) {        
         echo '
-        <td><input class="text_inp" type="text" name="'.$value.'_0" id="'.$value.'_0" value="'.${'selected_'.$value}.'" size="10"/></td>
+        <td><input class="text_inp size_tubelabel" type="text" name="'.$value.'_0" id="form_'.$value.'_0" value="'.${'selected_'.$value}.'"/></td>
         ';  
       }
       unset($value); // break the reference with the last element

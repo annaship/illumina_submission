@@ -9,22 +9,34 @@ $('.hide_project').click(function() {
   });
 
 
-$('.hide_owner').click(function() {
-	$('tr.hide_owner').toggle();
+$('button.hide_owner').click(function() {
+	$('tr.hide_owner_tr').toggle();
   });
 
 jQuery(function(){
     var counter = 1;
     jQuery('#add_new_rows').click(function(event){
         event.preventDefault();
-        counter++;
-        var newRow = jQuery('<tr><td><input class="text_inp" type="text" value="'+$('#form_domain_0').val()+'" name="domain' + 
-                counter + '"/></td> <td><input class="text_inp" type="text" value="'+$('#form_lane_0').val()+'" name="lane' + 
-                counter + '"size="1"/></td> <td><input class="text_inp" type="text" name="first_name' +
-            counter + '"/></td><td><input class="text_inp" type="text" value="'+$('#form_env_source_name_0').val()+'" name="last_name' +
-            counter + '"/></td></tr>');
-        jQuery('table#submission_metadata-fields').append(newRow);
-//    	alert($('#form_env_source_name_0').val());
+        var copy_row_times = $('#copy_row_times').val();
+        for (var i = 0; i < copy_row_times; ++i){		
+		    counter++;
+		    var newRow = jQuery('<tr><td><input class="text_inp" type="text" value="'+$('#form_domain_0').val()+'" name="domain' + 
+		            counter + '"/></td> <td><input class="text_inp size_lane" type="text" value="'+$('#form_lane_0').val()+'" name="lane' + 
+		            counter + '"/></td> <td><input class="text_inp size_data_owner" type="text" value="'+$('#form_data_owner_0').val()+'" name="data_owner' + 
+		            counter + '"/></td> <td><div class="wide">NNNN<input class="text_inp size_run_key" type="text" value="'+$('#form_run_key_0').val()+'" name="run_key' + 
+		            counter + '"/></td> <td><input class="text_inp size_barcode_index" type="text" value="'+$('#form_barcode_index_0').val()+'" name="barcode_index' + 
+		            counter + '"/></td> <td><input class="text_inp size_project" type="text" value="'+$('#form_project_0').val()+'" name="project' + 
+		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_0').val()+'" name="dataset' + 
+		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_description_0').val()+'" name="dataset_description' + 
+		            counter + '"/></td> <td><input class="text_inp size_env_source_name" type="text" value="'+$('#form_env_source_name_0').val()+'" name="env_source_name' + 
+		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_tubelabel_0').val()+'" name="tubelabel' + 
+		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_barcode_0').val()+'" name="barcode' + 
+		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_adaptor_0').val()+'" name="adaptor' + 
+		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_amp_operator_0').val()+'" name="amp_operator' + 
+		            counter + '"/></td> </tr>');
+		    jQuery('table#submission_metadata-fields').append(newRow);
+//    	alert();
+        }
     });
 });
 
@@ -72,48 +84,6 @@ jQuery(function(){
 //	    }
 //	  );
 //
-//function add_new_row()
-//{
-//	
-////	  alert("Thanks for clicking me");
-//	  var newRow = document.all("table_subm").insertRow(-1);
-//	  var oCell = newRow.insertCell();
-//	  oCell.innerHTML = "<select name='dna_region_0' id='form_dna_region_0'> <option selected='selected' value='v6'>v6</option> <option value='v4v5'>v4v5</option> </select>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<select name='domain_0' id='form_domain_0'> <option selected='selected' value='Bacteria'>Bacteria</option> <option value='Archaea'>Archaea</option> <option value='Eukarya'>Eukarya</option> <option value='Fungi'>Fungi</option>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name='lane_0' id='form_lane_0' value='' size='1'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = " <select name='data_owner_0' id='form_data_owner_0'> <?php while($row = mysql_fetch_row($result_contact)) { echo '<option value='contact'>'.$row[1].', '.$row[0].'</option>'; } ?> </select> ";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "NNNN<input class='text_inp' type='text' name='run_key_0' id='form_run_key_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name='barcode_index_0' id='form_barcode_index_0' value='' size='6'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<select name='project_0' id='form_project_0'> <?php while($row = mysql_fetch_row($result_project)) { echo '<option value='project'>'.$row[0].'</option>'; } ?> </select> ";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name='dataset_0' id='form_dataset_0' value='' size='30'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name='dataset_description_0' id='form_dataset_description_0' value='' size='30'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  var oCell = newRow.insertCell(-1);
-//	  oCell.innerHTML = "<input class='text_inp' type='text' name=''.$value.'_0' id=''.$value.'_0' value='' size='10'/>";
-//	  
-//	  return false;
-//}
 
 /*
 function addRow()

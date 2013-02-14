@@ -16,7 +16,7 @@ foreach ($arr_fields as &$value) {
   echo '
     <tr class="fields">
     <td class="fields" align="left"><label for="ownerForm_'.$value.'">'.$value.'</label></td>
-    <td align="left"><input class="text_inp" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value="" size="30"/></td>
+    <td align="left"><input class="text_inp size_long_input" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value=""/></td>
     </tr>
   ';  
 

@@ -56,7 +56,7 @@ dataset_description
     <br />
     <input type="button" value="Add new owner" class="hide_owner" />
     <table>
-         <tr style="display:none;" class="hide_owner">
+         <tr style="display:none;" class="hide_owner_tr">
            <td colspan="3">
              <?php include("step_subm_metadata_form_owner.php"); ?>                 
         </td>

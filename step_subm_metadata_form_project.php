@@ -14,8 +14,8 @@
 
 <tr class="fields">
 <td class="fields" ><label for="projectForm_project">project</label></td>
-<td ><input class="text_inp" type="text" name="project_name1" id="projectForm_project_name1" value="" size="4"/>
-_ <input class="text_inp" type="text" name="project_name3" id="projectForm_project_name2" value="" size="4"/>
+<td ><input class="text_inp size_abbr" type="text" name="project_name1" id="projectForm_project_name1" value=""/>
+_ <input class="text_inp size_abbr" type="text" name="project_name3" id="projectForm_project_name2" value=""/>
 _
   <select name="domain" id="form_domain">
   <option selected="selected" value="B">Bacteria (B)</option>
@@ -44,7 +44,7 @@ foreach ($arr_fields as &$value) {
   echo '
     <tr class="fields">
     <td class="fields" ><label for="projectForm_'.$value.'">'.$value.'</label></td>
-    <td><input class="text_inp" type="text" name="'.$value.'" id="projectForm_'.$value.'" value="" size="30"/></td>
+    <td><input class="text_inp size_long_input" type="text" name="'.$value.'" id="projectForm_'.$value.'" value=""/></td>
     </tr>
   ';  
 
@@ -54,7 +54,7 @@ unset($value); // break the reference with the last element
   <tr class="fields">
     <td class="fields" ><label for="projectForm_contact">contact</label></td>
     <td>
-    <select name="project_0" id="form_project_0">
+    <select name="projectForm_contact_0" id="form_projectForm_contact_0">
    <?php 
      print_options($contact_full, $selected_contact_full);  
    ?>
