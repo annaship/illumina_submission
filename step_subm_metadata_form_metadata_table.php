@@ -21,7 +21,7 @@
         </thead>
         <tbody>   
           <?php
-              include("ill_submit_rows.php");
+              include("step_subm_metadata_form_metadata_table_rows.php");
           ?>     
           <tr class="repeat_row_tr">
             <td colspan = 3>Copy the row above <input class="text_inp size_abbr" type="text" id="copy_row_times" value="2"/> times </td>
