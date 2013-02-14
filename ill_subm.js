@@ -13,6 +13,19 @@ $('.hide_owner').click(function() {
 	$('tr.hide_owner').toggle();
   });
 
+jQuery(function(){
+    var counter = 1;
+    jQuery('#add_new_rows').click(function(event){
+        event.preventDefault();
+        counter++;
+        var newRow = jQuery('<tr><td><input type="text" name="first_name' +
+            counter + '"/></td><td><input type="text" name="last_name' +
+            counter + '"/></td></tr>');
+        jQuery('table#submission_metadata-fields > tbody:last').append(newRow);
+    	alert(counter);
+    });
+});
+
 //$('#date').value = (new Date()).format("m/dd/yy");
 
 
