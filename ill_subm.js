@@ -13,6 +13,13 @@ $('button.hide_owner').click(function() {
 	$('tr.hide_owner_tr').toggle();
   });
 
+$('#submission_metadata-fields').delegate('#delete_row', 'click', function(){
+    $(this).closest('tr').remove();
+});
+//.delegate('.add', 'click', function(){
+//    $(this).closest('tr').clone().appendTo( $(this).closest('tbody') );
+//});
+
 jQuery(function(){
     var counter = 1;
     jQuery('#add_new_rows').click(function(event){
@@ -20,8 +27,9 @@ jQuery(function(){
         var copy_row_times = $('#copy_row_times').val();
         for (var i = 0; i < copy_row_times; ++i){		
 		    counter++;
-		    var newRow = jQuery('<tr><td><input class="text_inp" type="text" value="'+$('#form_domain_0').val()+'" name="domain' + 
-		            counter + '"/></td> <td><input class="text_inp size_lane" type="text" value="'+$('#form_lane_0').val()+'" name="lane' + 
+		    var newRow = jQuery('<tr id="delete_row' + 
+		            counter + '"><td><input class="text_inp" type="text" value="'+$('#form_domain_0').val()+'" name="domain' + 
+		            counter + '"/></td> <td><input class="text_inp size_number" type="text" value="'+$('#form_lane_0').val()+'" name="lane' + 
 		            counter + '"/></td> <td><input class="text_inp size_data_owner" type="text" value="'+$('#form_data_owner_0').val()+'" name="data_owner' + 
 		            counter + '"/></td> <td><div class="wide">NNNN<input class="text_inp size_run_key" type="text" value="'+$('#form_run_key_0').val()+'" name="run_key' + 
 		            counter + '"/></td> <td><input class="text_inp size_barcode_index" type="text" value="'+$('#form_barcode_index_0').val()+'" name="barcode_index' + 
@@ -33,17 +41,16 @@ jQuery(function(){
 		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_barcode_0').val()+'" name="barcode' + 
 		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_adaptor_0').val()+'" name="adaptor' + 
 		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_amp_operator_0').val()+'" name="amp_operator' + 
-		            counter + '"/></td> </tr>');
+		            counter + '"/></td> <td><input type="button" value="Delete" id="delete_row" /></td> </tr>');
 		    jQuery('table#submission_metadata-fields').append(newRow);
-//    	alert();
+//    	alert();  onclick="return window.confirm('Please confirm delete');"
         }
+        return false;
     });
 });
 
-//$('#date').value = (new Date()).format("m/dd/yy");
-//var newRow = "<tr><td>"+$('#building').val()+"</td><td>"+$('#floor').val()+"</td><td></td></tr>";
-//$('#building-table').append(newRow);
 
+//$('#date').value = (new Date()).format("m/dd/yy");
 
 //function addEvent(obj, evType, fn){ 
 // if (obj.addEventListener){ 

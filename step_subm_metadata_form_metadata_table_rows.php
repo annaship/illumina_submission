@@ -7,7 +7,7 @@
         <option value="Fungi">Fungi</option>
         </select></td>
       
-        <td><input class="text_inp size_lane" type="text" name="lane_0" id="form_lane_0" value="<?php echo $selected_lane ?>"/></td>
+        <td><input class="text_inp size_number" type="text" name="lane_0" id="form_lane_0" value="<?php echo $selected_lane ?>"/></td>
         
         <!-- Show Suite by dna_region plus domain -->
       

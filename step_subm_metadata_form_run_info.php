@@ -66,7 +66,7 @@ include_once 'filled_variables.php';
 </td></tr>
 <tr><td align="left">
 <table class="buttons" id="run_infoForm-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="run_infoForm_add" value="Add Run info"/></td></tr>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="run_infoForm_add" value="Submit Run info"/></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>

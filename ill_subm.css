@@ -540,7 +540,7 @@ th
 	width: 17ex;
 }
 
-input[type="text"].size_lane {
+input[type="text"].size_number {
 	width: 4.5ex;
 }
 
@@ -552,7 +552,7 @@ input[type="text"].size_run_key, input[type="text"].size_tubelabel {
 	width: 10ex;
 }
 
-input[type="text"].size_project {
+input[type="text"].size_project, input[type="text"].size_data_owner {
 	width: 25ex;
 }
 

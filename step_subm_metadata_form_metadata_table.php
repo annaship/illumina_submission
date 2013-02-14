@@ -24,8 +24,7 @@
               include("step_subm_metadata_form_metadata_table_rows.php");
           ?>     
           <tr class="repeat_row_tr">
-            <td colspan = 3>Copy the row above <input class="text_inp size_abbr" type="text" id="copy_row_times" value="2"/> times </td>
-            <td><input type="button" value="Go!" id="add_new_rows"/></td>
+            <td colspan = 3>Copy the row above <input class="text_inp size_number" type="text" id="copy_row_times" value="2"/> times <input type="button" value="Go!" id="add_new_rows"/></td>
           </tr>
         </tbody>
     </table>
