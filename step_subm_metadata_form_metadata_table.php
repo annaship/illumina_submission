@@ -1,5 +1,5 @@
 
-<form action='ill_submission_table.php' method='post'>
+<form action='ill_submission_metadata_table.php' method='post'>
 <div id="submission_metadata">
   <fieldset id="form_subm_metadata">
       <legend id="form_subm_metadata-legend">Submition metadata</legend>
@@ -19,6 +19,15 @@
           
           ?>      
           </tr>
+          <tr><td>
+          <?php 
+          print '$total_subm_rows = '.$total_subm_rows;
+          $total_subm_rows = $total_subm_rows + $repeat_subm_row;
+          print '$repeat_subm_row = '.$repeat_subm_row;
+          print '$total_subm_rows = '.$total_subm_rows;
+          ?>
+          
+          </td></tr>
         </thead>
         <tbody>
         

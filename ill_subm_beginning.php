@@ -2,6 +2,7 @@
 // Include the web application configuration file.
 include("vamps_virtual_setup.php");
 include("ill_subm_functions.php");
+$total_subm_rows = 0;
 
 // Enable or disable debugging...
 $application_data['modules']['logger']->debug = false;

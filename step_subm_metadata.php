@@ -1,5 +1,5 @@
 <?php include("ill_subm_beginning.php"); ?>
-<?php include('filled_variables.php'); ?>
+<?php include('ill_subm_filled_variables.php'); ?>
 
       <h1>Illumina files processing</h1>
       <?php include_once("ill_subm_menu.php"); ?>
@@ -37,7 +37,7 @@ dataset_description
       
       ?>
       
-    <?php include("form_1_run_info.php"); ?>      
+    <?php include("step_subm_metadata_form_run_info.php"); ?>      
     <!-- TODO: mv onclick to unobtrusive js-->
     <br />
     <input type="button" value="Add new project" class="hide_project" />
@@ -48,7 +48,7 @@ dataset_description
           -->
          <tr style="display:none;" class="hide_project">
            <td colspan="3">
-             <?php include("form_4_project.php"); ?>                 
+             <?php include("step_subm_metadata_form_project.php"); ?>                 
         </td>
       </tr>
     </table>
@@ -58,13 +58,13 @@ dataset_description
     <table>
          <tr style="display:none;" class="hide_owner">
            <td colspan="3">
-             <?php include("form_2_owner.php"); ?>                 
+             <?php include("step_subm_metadata_form_owner.php"); ?>                 
         </td>
       </tr>
     </table>        
     <br />
     
-      <?php include("form_3_metadata_table.php"); ?>      
+      <?php include("step_subm_metadata_form_metadata_table.php"); ?>      
       
       
       <!-- end of content -->    

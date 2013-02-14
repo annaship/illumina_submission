@@ -1,4 +1,7 @@
 <?php 
+
+// alert(document.getElementById("form_subm_metadata-fields").rows.length);
+
   if (isset($_POST['cancel'])) 
   { 
     include("step_subm_metadata.php");
@@ -43,8 +46,6 @@
     $selected_amp_operator		= $_POST[amp_operator_0];    
 
     $repeat_subm_row = intval($_POST[copy_row]);
-    print "HERE\n";
-    print $selected_env_source_name;
     include("step_subm_metadata.php");        
   }
 
