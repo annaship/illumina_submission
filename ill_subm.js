@@ -18,16 +18,19 @@ jQuery(function(){
     jQuery('#add_new_rows').click(function(event){
         event.preventDefault();
         counter++;
-        var newRow = jQuery('<tr><td><input type="text" name="first_name' +
-            counter + '"/></td><td><input type="text" name="last_name' +
+        var newRow = jQuery('<tr><td><input class="text_inp" type="text" value="'+$('#form_domain_0').val()+'" name="domain' + 
+                counter + '"/></td> <td><input class="text_inp" type="text" value="'+$('#form_lane_0').val()+'" name="lane' + 
+                counter + '"size="1"/></td> <td><input class="text_inp" type="text" name="first_name' +
+            counter + '"/></td><td><input class="text_inp" type="text" value="'+$('#form_env_source_name_0').val()+'" name="last_name' +
             counter + '"/></td></tr>');
-        jQuery('table#submission_metadata-fields > tbody:last').append(newRow);
-    	alert(counter);
+        jQuery('table#submission_metadata-fields').append(newRow);
+//    	alert($('#form_env_source_name_0').val());
     });
 });
 
 //$('#date').value = (new Date()).format("m/dd/yy");
-
+//var newRow = "<tr><td>"+$('#building').val()+"</td><td>"+$('#floor').val()+"</td><td></td></tr>";
+//$('#building-table').append(newRow);
 
 
 //function addEvent(obj, evType, fn){ 
