@@ -5,12 +5,12 @@ $("#add_new_row").click(function() {
 });
 
 $('.hide_project').click(function() {
-	$('tr.hide_project').toggle();
+	$('tr.hide_project_tr').toggle();
   });
 
 
-$('hide_owner').click(function() {
-	$('tr.hide_owner').toggle();
+$('.hide_owner').click(function() {
+	$('tr.hide_owner_tr').toggle();
   });
 
 $('#submission_metadata-fields').delegate('#delete_row', 'click', function(){

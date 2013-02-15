@@ -9,10 +9,7 @@
     <input type="button" value="Add new project" class="hide_project" />
     
     <table>
-         <!-- mv to css 
-                  <tr style="display:none;" class="hide">
-          -->
-         <tr style="display:none;" class="hide_project">
+         <tr style="display:none;" class="hide_project_tr">
            <td colspan="3">
              <?php include("step_subm_metadata_form_project.php"); ?>                 
         </td>
@@ -21,6 +18,7 @@
     
     <br />
     <input type="button" value="Add new owner" class="hide_owner" />
+    
     <table>
          <tr style="display:none;" class="hide_owner_tr">
            <td colspan="3">
