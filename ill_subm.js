@@ -9,8 +9,8 @@ $('.hide_project').click(function() {
   });
 
 
-$('button.hide_owner').click(function() {
-	$('tr.hide_owner_tr').toggle();
+$('hide_owner').click(function() {
+	$('tr.hide_owner').toggle();
   });
 
 $('#submission_metadata-fields').delegate('#delete_row', 'click', function(){
@@ -21,26 +21,21 @@ $('#submission_metadata-fields').delegate('#delete_row', 'click', function(){
 //});
 
 jQuery(function(){
-    var counter = 1;
+    var counter = 0;
     jQuery('#add_new_rows').click(function(event){
         event.preventDefault();
         var copy_row_times = $('#copy_row_times').val();
         for (var i = 0; i < copy_row_times; ++i){		
 		    counter++;
-		    var newRow = jQuery('<tr id="delete_row' + 
-		            counter + '"><td><input class="text_inp" type="text" value="'+$('#form_domain_0').val()+'" name="domain' + 
-		            counter + '"/></td> <td><input class="text_inp size_number" type="text" value="'+$('#form_lane_0').val()+'" name="lane' + 
-		            counter + '"/></td> <td><input class="text_inp size_data_owner" type="text" value="'+$('#form_data_owner_0').val()+'" name="data_owner' + 
-		            counter + '"/></td> <td><div class="wide">NNNN<input class="text_inp size_run_key" type="text" value="'+$('#form_run_key_0').val()+'" name="run_key' + 
-		            counter + '"/></td> <td><input class="text_inp size_barcode_index" type="text" value="'+$('#form_barcode_index_0').val()+'" name="barcode_index' + 
-		            counter + '"/></td> <td><input class="text_inp size_project" type="text" value="'+$('#form_project_0').val()+'" name="project' + 
-		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_0').val()+'" name="dataset' + 
-		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_description_0').val()+'" name="dataset_description' + 
-		            counter + '"/></td> <td><input class="text_inp size_env_source_name" type="text" value="'+$('#form_env_source_name_0').val()+'" name="env_source_name' + 
-		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_tubelabel_0').val()+'" name="tubelabel' + 
-		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_barcode_0').val()+'" name="barcode' + 
-		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_adaptor_0').val()+'" name="adaptor' + 
-		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_amp_operator_0').val()+'" name="amp_operator' + 
+		    var newRow = jQuery('<tr class="repeated_row" id="delete_row_' + 
+		            counter + '"><td>'+$('#form_domain_0').val()+'</td> <td>'+$('#form_lane_0').val()+'</td> <td>'+$('#form_data_owner_0').val()+'</td> <td><div class="wide" id="form_run_key_' + 
+		            counter + '">NNNN</td> <td><div id="barcode_index_' + 
+                counter + '"</td> <td>'+$('#form_project_0').val()+'</td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_0').val()+'" name="dataset_' + 
+		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_description_0').val()+'" name="dataset_description_' + 
+		            counter + '"/></td> <td>'+$('#form_env_source_name_0').val()+'</td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_tubelabel_0').val()+'" name="tubelabel_' + 
+		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_barcode_0').val()+'" name="barcode_' + 
+		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_adaptor_0').val()+'" name="adaptor_' + 
+		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_amp_operator_0').val()+'" name="amp_operator_' + 
 		            counter + '"/></td> <td><input type="button" value="Delete" id="delete_row" /></td> </tr>');
 		    jQuery('table#submission_metadata-fields').append(newRow);
 //    	alert();  onclick="return window.confirm('Please confirm delete');"
@@ -48,6 +43,35 @@ jQuery(function(){
         return false;
     });
 });
+
+//jQuery(function(){
+//    var counter = 0;
+//    jQuery('#add_new_rows').click(function(event){
+//        event.preventDefault();
+//        var copy_row_times = $('#copy_row_times').val();
+//        for (var i = 0; i < copy_row_times; ++i){		
+//		    counter++;
+//		    var newRow = jQuery('<tr id="delete_row_' + 
+//		            counter + '"><td><input class="text_inp" type="text" value="'+$('#form_domain_0').val()+'" name="domain_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_number" type="text" value="'+$('#form_lane_0').val()+'" name="lane_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_data_owner" type="text" value="'+$('#form_data_owner_0').val()+'" name="data_owner_' + 
+//		            counter + '"/></td> <td><div class="wide">NNNN<input class="text_inp size_run_key" type="text" value="'+$('#form_run_key_0').val()+'" name="run_key_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_barcode_index" type="text" value="'+$('#form_barcode_index_0').val()+'" name="barcode_index_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_project" type="text" value="'+$('#form_project_0').val()+'" name="project_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_0').val()+'" name="dataset_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_description_0').val()+'" name="dataset_description_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_env_source_name" type="text" value="'+$('#form_env_source_name_0').val()+'" name="env_source_name_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_tubelabel_0').val()+'" name="tubelabel_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_barcode_0').val()+'" name="barcode_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_adaptor_0').val()+'" name="adaptor_' + 
+//		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_amp_operator_0').val()+'" name="amp_operator_' + 
+//		            counter + '"/></td> <td><input type="button" value="Delete" id="delete_row" /></td> </tr>');
+//		    jQuery('table#submission_metadata-fields').append(newRow);
+////    	alert();  onclick="return window.confirm('Please confirm delete');"
+//        }
+//        return false;
+//    });
+//});
 
 
 //$('#date').value = (new Date()).format("m/dd/yy");

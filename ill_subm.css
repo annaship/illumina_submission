@@ -438,7 +438,8 @@ table#submission_tubes_table, table#submission_tubes_table th, table#submission_
 td .text_inp {	
 	border: 1.7px inset;	
 	border-collapse: separate;
-	border-color: rgb(238, 238, 238); 
+	border-color: rgb(238, 238, 238);
+	background-color: #eee; 
 }
 
 .where_form {
@@ -567,4 +568,8 @@ input[type="text"].size_env_source_name {
 .repeat_row_tr {
 	/*border: 1px solid green;*/
 	color: green;	
+}
+
+table#submission_metadata-fields tr.repeated_row td {
+	border: 1px solid grey;
 }

@@ -23,9 +23,9 @@
         ?>
         </select></td>
       
-        <td><div  class="wide">NNNN<input class="text_inp size_run_key" type="text" name="run_key_0" id="form_run_key_0" value="<?php echo $selected_run_key ?>"/></div></td>
+        <td><div class="wide">NNNN<?php echo $selected_run_key ?></div></td>
           
-        <td><input class="text_inp size_barcode_index" type="text" name="barcode_index_0" id="form_barcode_index_0" value="<?php echo $selected_barcode_index ?>"/></td>
+        <td><div class="size_barcode_index" <?php echo $selected_barcode_index ?>/></div></td>
       
         <td>
         <select name="project_0" id="form_project_0">
