@@ -15,7 +15,7 @@
 <tr class="fields">
 <td class="fields" ><label for="projectForm_project">project</label></td>
 <td ><input class="text_inp size_abbr" type="text" name="project_name1" id="projectForm_project_name1" value=""/>
-_ <input class="text_inp size_abbr" type="text" name="project_name3" id="projectForm_project_name2" value=""/>
+_ <input class="text_inp size_abbr" type="text" name="project_name2" id="projectForm_project_name2" value=""/>
 _
   <select name="domain" id="form_domain">
   <option selected="selected" value="B">Bacteria (B)</option>
@@ -69,7 +69,7 @@ unset($value); // break the reference with the last element
 </td></tr>
 <tr><td >
 <table class="buttons" id="projectForm-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="projectForm_add"/></td></tr>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="projectForm_add" value="Submit New Project"/></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>

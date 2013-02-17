@@ -35,7 +35,7 @@ unset($value); // break the reference with the last element
 </td></tr>
 <tr><td align="left">
 <table class="buttons" id="ownerForm-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="ownerForm_add"/></td></tr>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="ownerForm_add" value="Submit New Owner"/></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>
