@@ -1,7 +1,3 @@
-<?php 
-include_once 'filled_variables.php';
-?>
-
 <form method="post" name="run_infoForm" id="run_infoForm" action="/click-examples/table/edit-form-table.htm">
 <input type="hidden" name="form_name" id="run_infoForm_form_name" value="run_infoForm"/>
 <table class="form" id="run_infoForm-form"><tbody>
