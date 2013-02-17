@@ -1,7 +1,13 @@
+<?php
+if(!isset($_SESSION)) { session_start(); } 
+if ($_SESSION['is_local'])
+{  
+    $docroot = $_SESSION['docroot'];
+}
+?>
     </div>
     <!-- end of content -->
     <?php include("$docroot/templates/includes/footer.php"); 
-    echo $docroot
     ?>		
     <!-- end of main table -->
     </div> <!-- End contentwrapper -->
