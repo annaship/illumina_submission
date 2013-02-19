@@ -1,5 +1,6 @@
-<form method="post" name="data_ownerForm" id="data_ownerForm" action="data_owner_submit.php">
-<input type="hidden" name="form_name" id="data_ownerForm_form_name" value="data_ownerForm"/>
+<!-- <form method="post" name="data_ownerForm" id="data_ownerForm" action="data_owner_submit.php"> -->
+<form method="post" name="data_ownerForm" id="data_ownerForm" action="step_subm_metadata.php">
+<?php print "$message";?>
 <table class="form" id="data_ownerForm-form"><tbody>
 <tr><td>
 <table class="fields" id="data_ownerForm-fields"><tbody>
@@ -16,7 +17,7 @@ foreach ($arr_fields as &$value) {
   echo '
     <tr class="fields">
     <td class="fields" align="left"><label for="ownerForm_'.$value.'">'.$value.'</label></td>
-    <td align="left"><input class="text_inp size_long_input" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value=""/></td>
+    <td align="left"><input class="text_inp size_long_input '.$emailclass.'" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value="'.$_POST["$value"].'"/></td>
     </tr>
   ';  
 
@@ -35,7 +36,8 @@ unset($value); // break the reference with the last element
 </td></tr>
 <tr><td align="left">
 <table class="buttons" id="ownerForm-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="ownerForm_add" value="Submit New Owner"/></td></tr>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="ownerForm_add" value="Submit New Owner"/><input type="hidden" name="owner_process" value="1">
+</td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>

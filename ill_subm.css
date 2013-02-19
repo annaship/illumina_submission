@@ -574,3 +574,12 @@ table#submission_metadata-fields tr.repeated_row td {
 	border: 1px solid grey;
 }
 
+.basictext {
+    font-family: Arial, Helvetica, Sans Serif;
+    color:#000066;
+}
+
+.errortext {
+    font-family: Arial, Helvetica, sans-serif; 
+    color:#C00000; font-weight: bold;
+}

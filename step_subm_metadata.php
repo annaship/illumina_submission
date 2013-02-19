@@ -24,6 +24,29 @@ else
       </tr>
     </table>
     
+<?php
+    $message    = "";
+    $emailclass = "basictext";
+    $username   = "";
+
+    if ($_POST['owner_process'] == 1) {
+
+        $pattern = '/.*@.*\..*/';
+        $email   = $_POST['email'];
+        $urlname = urlencode($$_POST['data_owner']);
+
+        if (preg_match($pattern, $_POST['email']) > 0) {
+            // Here's where you would store 
+            // the data in a database...
+            header(
+              "location: thankyou.php?&username=$urlname");
+        }
+        $message    = "Please enter a valid email address.";
+        $username   = $_POST['data_owner'];
+        $emailclass = "errortext";
+    }
+?>
+    
     <br />
     <input type="button" value="Add new owner" class="hide_owner" />
     

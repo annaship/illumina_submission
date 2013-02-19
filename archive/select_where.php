@@ -1,4 +1,4 @@
-<?
+<?php
 // $username="username";
 // $password="password";
 // $database="your_database";

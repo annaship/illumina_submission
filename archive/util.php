@@ -23,7 +23,7 @@ function query_chosen()
 }
 
 <SELECT>
-<?
+<?php
 @ $db = mysql_connect("localhost", "smth", "smth");
 mysql_select_db("database_name");
 $strSQL = "SELECT * FROM select1options ORDER BY name";

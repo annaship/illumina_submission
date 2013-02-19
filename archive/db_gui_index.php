@@ -56,7 +56,7 @@ and proper updating of the state variable to the heatmap and crosstabs windows
 <div id='content' class='db_gui'>
 My awesome content!
 
-<?
+<?php
 $application_data['config'] = $config;
 $password_w = $application_data['config']['databases']['vamps']['users']['readwrite']['password'];
 $username_w = $application_data['config']['databases']['vamps']['users']['readwrite']['username'];

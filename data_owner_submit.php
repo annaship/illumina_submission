@@ -4,7 +4,6 @@ include_once("ill_subm_functions.php");
 // define variables and initialize with empty values
 $data_owner = $first_name = $last_name = $email = $institution = "";
 $data_owner_err = $first_name_err = $last_name_err = $email_err = $institution_err = "";
-$favFruit = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

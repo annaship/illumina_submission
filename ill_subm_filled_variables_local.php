@@ -1,6 +1,6 @@
 <?php
 $docroot = $_SESSION['docroot'];
-$csvroot = "../../$docroot/data/";
+$csvroot = "../$docroot/data/";
 $selected_overlap = $selected_contact_full = $selected_domain = $selected_lane = $selected_data_owner = $selected_run_key = $selected_barcode_index = $selected_project = $selected_dataset = $selected_dataset_description = $selected_env_source_name = $selected_tubelabel = $selected_barcode = $selected_adaptor = $selected_amp_operator = "";
 
 $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "project", "dataset", "dataset_description", "env_source_name",
