@@ -1,10 +1,9 @@
 <?php
 if(!isset($_SESSION)) { session_start(); } 
-// print_r($_SESSION);
 if ($_SESSION['is_local'])
 {  
     $docroot = $_SESSION['docroot'];
-    include("ill_subm_functions.php");
+    include_once("ill_subm_functions.php");
   ?>
 
   <link rel='stylesheet'  type='text/css' href="ill_subm.css"/>
@@ -30,7 +29,7 @@ else
 {
 // Include the web application configuration file.
 include("vamps_virtual_setup.php");
-include("ill_subm_functions.php");
+include_once("ill_subm_functions.php");
 $total_subm_rows = 0;
 
 // Enable or disable debugging...

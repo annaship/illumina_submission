@@ -1,4 +1,4 @@
-<form method="post" name="data_ownerForm" id="data_ownerForm" action="/click-examples/table/edit-form-table.htm">
+<form method="post" name="data_ownerForm" id="data_ownerForm" action="data_owner_submit.php">
 <input type="hidden" name="form_name" id="data_ownerForm_form_name" value="data_ownerForm"/>
 <table class="form" id="data_ownerForm-form"><tbody>
 <tr><td>

@@ -3,7 +3,6 @@
 if(!isset($_SESSION)) { session_start(); } 
 if ($_SESSION['is_local'])
 {  
-    // $docroot = $_SESSION['docroot'];
     include('ill_subm_filled_variables_local.php');
 }
 else
