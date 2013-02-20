@@ -12,14 +12,15 @@
 <table class="fields" id="data_ownerForm_data_owner-fields"><tbody>
 
 <?php 
-$arr_fields = array("data_owner", "first_name", "last_name", "email", "institution");
-
+// "data_owner", ask Sharon and Joe if how they do that, in which order. Or just take it from vamps_submissions
+$arr_fields = array("first_name", "last_name", "email", "institution");
+// TODO: data_owner from vamps - usename
 foreach ($arr_fields as &$value) {
   $error_message = $errors[$value];
   echo '
     <tr class="fields">
     <td class="fields" align="left"><label for="ownerForm_'.$value.'" class="'.$is_error.'">'.$value.'</label></td>
-    <td align="left"><input class="text_inp size_long_input" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value="'.$$value.'"/></td>
+    <td align="left"><input class="text_inp size_long_input" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value="'.$owner_results[$value].'"/></td>
     <td class="message">'.$error_message.'</td>
     </tr>
   ';  

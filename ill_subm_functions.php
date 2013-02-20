@@ -83,6 +83,39 @@ function validEmail($email)
    return $isValid;
 }
 
+// -----
+function populate_post_vars($post_array, $required_fields)
+{
+  $result_post = array();
+  // Loop through the $_POST array, which comes from the form...
+  foreach($post_array AS $key => $value)
+  {
+//     // first need to make sure this is an allowed field
+//     if(in_array($key, $allowed_fields))
+//     {
+      $$key = $value;  
+      $result_post[$key] = $value;
+//     }
+  }
+  return $result_post;
+}
 
+function check_required_fields($post_array, $required_fields)
+{
+  $errors = array();
+  foreach($post_array AS $key => $value)
+  {
+    // is this a required field?
+    if(in_array($key, $required_fields) && $value == '')
+    {
+      $errors[$key] = "The field $key is required.";
+      print "in function: $key => $value; $errors[$key]<br/>";
+    }    
+  }
+  print "<br/>errors from functions<br/>";
+  
+  print_r($errors);
+  return $errors;
+}
 
 ?>

@@ -1,20 +1,5 @@
 <?php
 include_once("ill_subm_functions.php");
-// print "HERE in step_subm_metadata_form_owner_validation";
- 
-// $pattern = "/.*@.*\..*/";
-// $email   = $_POST["email"];
-// $urlname = urlencode($$_POST["data_owner"]);
-
-// if (preg_match($pattern, $_POST["email"]) > 0) {
-//   // Here's where you would store
-//   // the data in a database...
-//   header(
-//           "location: thankyou.php?&username=$urlname");
-// }
-// $message    = "Please enter a valid email address.";
-// $username   = $_POST["data_owner"];
-// $emailclass = "errortext";
 
 // define variables and initialize with empty values
 $data_owner = $first_name = $last_name = $email = $institution = "";
@@ -33,28 +18,33 @@ $required_fields = array(
 $allowed_fields = $required_fields;
 
 // Loop through the $_POST array, which comes from the form...
-$errors = array();
-foreach($_POST AS $key => $value)
-{
-    // first need to make sure this is an allowed field
-    if(in_array($key, $allowed_fields))
-    {
-        $$key = $value;
+$owner_post_array = $_POST;
+$owner_results    = populate_post_vars($owner_post_array, $required_fields);
+$errors           = check_required_fields($owner_post_array, $required_fields);
+print_r($errors);
 
-        // is this a required field?
-        if(in_array($key, $required_fields) && $value == '')
-        {
-            $errors[$key] = "The field $key is required.";
-        }
-    }  
-}
+// $errors = array();
+// foreach($_POST AS $key => $value)
+// {
+//     // first need to make sure this is an allowed field
+//     if(in_array($key, $allowed_fields))
+//     {
+//         $$key = $value;
+
+//         // is this a required field?
+//         if(in_array($key, $required_fields) && $value == '')
+//         {
+//             $errors[$key] = "The field $key is required.";
+//         }
+//     }  
+// }
 // were there any errors?
 if(count($errors) > 0)
 {
-  foreach ($errors as $key => $value)
-  {
-    $error_class_name = $key . "_error";
-  }
+//   foreach ($errors as $key => $value)
+//   {
+//     $error_class_name = $key . "_error";
+//   }
 //     $errorString = '<p>There was an error processing the form.</p>';
 //     $errorString .= '<ul>';
 //     foreach($errors as $error)
@@ -71,11 +61,20 @@ if(count($errors) > 0)
 }
 else
 {
-  print "data_owner = $data_owner</br>
-         first_name = $first_name</br>
-         last_name  = $last_name</br>
-         email = $email</br>
-         institution = $institution</br>";
+//   put data into the db and clean the table
+//   clean_the_table()
+//   foreach ($required_fields as $field_name)
+//   {
+//     $$field_name = "";
+//   }
+//   $errors = array();
+  
+  
+//   print "data_owner = $data_owner</br>
+//          first_name = $first_name</br>
+//          last_name  = $last_name</br>
+//          email = $email</br>
+//          institution = $institution</br>";
   
     // At this point you can send out an email or do whatever you want
     // with the data...
@@ -85,13 +84,20 @@ else
     // display the thank you page
     // header("Location: thanks.html");
 }
+print "<br/>errors<br/>";
+print_r($errors);
+print "<br/>\$owner_results[\"email\"]<br/>";
+print $owner_results["email"];
+print "<br/>\$errors[\"email\"]<br/>";
+print $errors["email"];
 
-if( validEmail( $email ) ) {
-  print $email;
-  print "<br/>valid</br>";
+if( validEmail( $owner_results["email"] ) ) {
+//   print $email;
+//   print "<br/>valid</br>";
   // print your success message here
 } else {
-  print $email;
-  print "<br/>not valid</br>";
+  $errors["email"] = "Please provide a valid email address.";
+//   print $email;
+//   print "<br/>not valid</br>";
   // print your fail message here
 }
