@@ -8,9 +8,10 @@ $('.hide_project').click(function() {
 	$('tr.hide_project_tr').toggle();
   });
 
-
 $('.hide_owner').click(function() {
+//	$('tr.hide_owner_tr').show();
 	$('tr.hide_owner_tr').toggle();
+//	$('tr.hide_owner_tr').css("display","block");
   });
 
 $('#submission_metadata-fields').delegate('#delete_row', 'click', function(){

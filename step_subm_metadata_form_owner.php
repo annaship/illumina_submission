@@ -13,11 +13,14 @@
 
 <?php 
 $arr_fields = array("data_owner", "first_name", "last_name", "email", "institution");
+
 foreach ($arr_fields as &$value) {
+  $error_message = $errors[$value];
   echo '
     <tr class="fields">
-    <td class="fields" align="left"><label for="ownerForm_'.$value.'">'.$value.'</label></td>
-    <td align="left"><input class="text_inp size_long_input '.$emailclass.'" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value="'.$_POST["$value"].'"/></td>
+    <td class="fields" align="left"><label for="ownerForm_'.$value.'" class="'.$is_error.'">'.$value.'</label></td>
+    <td align="left"><input class="text_inp size_long_input" type="text" name="'.$value.'" id="ownerForm_'.$value.'" value="'.$$value.'"/></td>
+    <td class="message">'.$error_message.'</td>
     </tr>
   ';  
 
