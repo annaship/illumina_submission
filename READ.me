@@ -1,9 +1,4 @@
-1) Add a new query: 
-    a) Actual query: into table1.php
-    b) Description for drop down menu: into db_gui_beginning.php
-    c) Query with "rundate" instead of real date - to show in grey under drop down menu: into db_gui.js	(var query_text)
-	
-2) Sql connection
+1) Sql connection
     a)
     $result = mysql_query($q0, $vampsprod_connection)    
   	or
@@ -14,13 +9,30 @@
 	FROM vamps.vamps_submissions
 
 3) Code 
-    The code for db gui is on vampsdev: /usr/local/www/vampsdev/docs/db_gui
+    The code for illumina submission is on vampsdev: /usr/local/www/vampsdev/docs/illumina_submission and on github: annaship/illumina_submission.git
         
-    a) db_gui_index.php has a form with drop-down menu of queries. It includes
-    b) db_gui_beginning.php which includes header, db connections and the array of queries for the drop-down menu.
-       A submit button calls
-    c) query_result.php which has the same form and includes
-    d) table1.php which runs a query and shows a result from the previous call.
+    *) index.php starts differently for localhost and vampsdev, another. For localhost ill_subm_filled_variables_local.php and ill_subm_index_local.php are used.      
+    *) vamps theme (images, left menu etc) included by ill_subm_beginning.php, ill_subm_end.php, left_menu.php
+    * common and repeated includes are ill_subm_functions.php, ill_subm_filled_variables(_local).php, ill_subm_menu.php
+    *) ill_subm_beginning.php includes header, db connections and the array of queries for the drop-down menu.
+	*) Other files contain header, footer, left menu, connection info, common php functions, java scripts, css and other additional stuff, should be obvious by the name of a file.
+	
+Includes:
+  index 
+	ill_subm_index_local.php | ill_subm_index.php
+		ill_subm_menu.php (submission pipeline steps)
+			step_subm_metadata.php
+				step_subm_metadata_form_run_info.php
+				step_subm_metadata_form_project.php
+				step_subm_metadata_form_owner.php
+				step_subm_metadata_form_owner_validation.php
+				step_subm_metadata_form_metadata_table.php
+					step_subm_metadata_form_metadata_table_rows.php
+				
+Forms:
+	step_subm_metadata_form_metadata_table.php: <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'>
+	step_subm_metadata_form_owner.php:          <form method="post" name="data_ownerForm" id="data_ownerForm" action="step_subm_metadata.php">
+	step_subm_metadata_form_project.php:        <form method="post" name="projectForm" id="projectForm" action="">
+	step_subm_metadata_form_run_info.php:       <form method="post" name="run_infoForm" id="run_infoForm" action="">
         
-   Other files contain header, footer, left menu, connection info, common php functions, java scripts, css and other additional stuff, should be obvious by the name of a file.
 
