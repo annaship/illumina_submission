@@ -6,6 +6,11 @@ $selected_overlap = $selected_contact_full = $selected_domain = $selected_lane =
 $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "project", "dataset", "dataset_description", "env_source_name",
     "tubelabel", "barcode", "adaptor", "amp_operator");
 
+$project_form_fields = array(
+    "project_name1" => "required", "project_name2" => "required", "domain" => "select",
+    "dna_region" => "select", "project_title" => "optional", "project_description" => "optional",
+    "funding" => "optional", "project_form_contact" => "select"
+);
 // ---
 $i = 0;
 if (($handle = fopen("$csvroot/contact.csv", "r")) !== FALSE) {

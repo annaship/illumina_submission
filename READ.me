@@ -24,6 +24,9 @@ Includes:
 			step_subm_metadata.php
 				step_subm_metadata_form_run_info.php
 				step_subm_metadata_form_project.php
+				step_subm_metadata_form_project_validation.php
+					insert_project.php
+						ill_subm_conn_local.php
 				step_subm_metadata_form_owner.php
 				step_subm_metadata_form_owner_validation.php
 					insert_owner.php
@@ -34,7 +37,7 @@ Includes:
 Forms:
 	step_subm_metadata_form_metadata_table.php: <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'>
 	step_subm_metadata_form_owner.php:          <form method="post" name="data_ownerForm" id="data_ownerForm" action="step_subm_metadata.php">
-	step_subm_metadata_form_project.php:        <form method="post" name="projectForm" id="projectForm" action="">
+	step_subm_metadata_form_project.php:        <form method="post" name="project_form" id="project_form" action="step_subm_metadata.php">
 	step_subm_metadata_form_run_info.php:       <form method="post" name="run_infoForm" id="run_infoForm" action="">
         
 

@@ -1,5 +1,5 @@
 <?php
-print_r($_POST);
+// print_r($_POST);
 // $con = mysql_connect("localhost","","abc123");
 // if (!$con)
 //   {

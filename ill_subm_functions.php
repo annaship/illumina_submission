@@ -82,20 +82,46 @@ function validEmail($email)
    }
    return $isValid;
 }
+// -----
+function valid_project_part1($project_name1)
+{
+  $isValid = true;
+  $len_project_name1 = strlen($project_name1);
+  if ($len_project_name1 < 1 || $len_project_name1 > 4)
+  {
+    $isValid = false;    
+  }
+  if (! ctype_alpha($project_name1)) 
+  {
+    $isValid = false;    
+  }
+  return $isValid;
+}
+
+function valid_project_part2($project_name2)
+{
+  $isValid = true;
+  $len_project_name2 = strlen($project_name2);
+  if ($len_project_name2 < 1 || $len_project_name2 > 6)
+  {
+    $isValid = false;
+  }
+  if (! ctype_alnum ($project_name2))
+  {
+    $isValid = false;
+  }
+  return $isValid;
+}
 
 // -----
-function populate_post_vars($post_array, $required_fields)
+function populate_post_vars($post_array)
 {
   $result_post = array();
   // Loop through the $_POST array, which comes from the form...
   foreach($post_array AS $key => $value)
   {
-//     // first need to make sure this is an allowed field
-//     if(in_array($key, $allowed_fields))
-//     {
       $$key = $value;  
-      $result_post[$key] = $value;
-//     }
+      $result_post[$key] = htmlspecialchars($value);
   }
   return $result_post;
 }

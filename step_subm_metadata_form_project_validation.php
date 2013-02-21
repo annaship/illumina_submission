@@ -2,48 +2,56 @@
 include_once("ill_subm_functions.php");
 
 // define variables and initialize with empty values
-$data_owner = $first_name = $last_name = $email = $institution = "";
-$data_owner_err = $first_name_err = $last_name_err = $email_err = $institution_err = "";
 $error_class_name = "";
 
 // Specify the field names that you want to require...
-$required_fields = array(
-    'data_owner',
-    'first_name',
-    'last_name',
-    'email',
-    'institution',
-);
-
-$allowed_fields = $required_fields;
-
-// Loop through the $_POST array, which comes from the form...
-$owner_post_array = $_POST;
-$owner_results    = populate_post_vars($owner_post_array, $required_fields);
-$errors           = check_required_fields($owner_post_array, $required_fields);
-if( !validEmail( $owner_results["email"] ) ) {
-  $errors["email"] = "Please provide a valid email address.";
+// $project_form_fields = array(
+//     "project_name1" => "required", "project_name2" => "required", "domain" => "select",
+//     "dna_region" => "select", "project_title" => "optional", "project_description" => "optional",
+//     "funding" => "optional", "project_form_contact" => "select"
+// );
+$required_fields = array();
+$i = 0;
+foreach ($project_form_fields as $field_name => $requirement)
+{
+  if ($requirement == 'required')
+  {
+    $required_fields[$i] = $field_name;
+    $i += 1;
+  }
 }
 
-// print "<br/><br/>step_subm_metadata_form_owner_validation.php: count(\$errors): ";
-// print_r(count($errors));
+$project_results    = populate_post_vars($_POST);
+$selected_domain       = $_POST['domain'];
+$selected_dna_region   = $_POST['dna_region'];
+$selected_contact_full = $_POST['project_form_contact'];
+$project_errors        = check_required_fields($_POST, $required_fields);
+
+
+if( !valid_project_part1( $project_results["project_name1"] ) ) {
+  $project_errors["project_name1"] = "Project name could have only letters and no more then 4.";
+}
+
+if( !valid_project_part2( $project_results["project_name2"] ) ) {
+  $project_errors["project_name2"] = "Project name could have only letters and numbers and no more then 6";
+}
 
 // were there any errors?
 if(count($errors) == 0)
 {
 //   put data into the db and clean the table
-  include_once 'insert_owner.php';
-  success_message('Data_owner');
+  include_once 'insert_project.php';
+  success_message('Project');
 //   include_once 'success_message.php';
   //   clean_the_table();
-  foreach ($required_fields as $field_name)
-  {
-    $owner_results[$field_name] = "";
-  }
+//   foreach ($required_fields as $field_name)
+//   {
+//     $project_results[$field_name] = "";
+//   }
   $errors = array();
   
   
-//   print "data_owner = $data_owner</br>
+//   print "data_project = $data_project</br>
 //          first_name = $first_name</br>
 //          last_name  = $last_name</br>
 //          email = $email</br>
