@@ -42,13 +42,14 @@ _
 
 $arr_fields = array("project_title", "project_description", "funding");
 foreach ($arr_fields as &$value) {
+  $error_message = $project_errors[$value];
   echo '
     <tr class="fields">
     <td class="fields" ><label for="projectForm_'.$value.'">'.$value.'</label></td>
-    <td><input class="text_inp size_long_input" type="text" name="'.$value.'" id="projectForm_'.$value.'" value=""/></td>
+    <td><input class="text_inp size_long_input" type="text" name="'.$value.'" id="projectForm_'.$value.'" value="'.$project_results[$value].'"/></td>
     </tr>
   ';  
-
+  
 }
 unset($value); // break the reference with the last element
 ?>
@@ -70,7 +71,7 @@ unset($value); // break the reference with the last element
 </td></tr>
 <tr><td >
 <table class="buttons" id="projectForm-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="projectForm_add" value="Submit New Project"/></td></tr>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="projectForm_add" value="Submit New Project"/><input type="hidden" name="owner_process" value="1"></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>

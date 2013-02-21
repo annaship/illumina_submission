@@ -15,10 +15,6 @@ while($row = mysql_fetch_row($result_vamps_user))
   $contact[$i]      = $row[2].', '.$row[1];
   $contact_full[$i] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6]; 
 }
-print "<br/>contact: <br/>";
-print_r($contact); 
-print "<br/>contact: <br/>";
-print_r($contact_full);
 
 // ---
 $query = "SELECT DISTINCT project FROM env454.project WHERE project <> '' ORDER BY project";
@@ -45,7 +41,6 @@ while($row = mysql_fetch_row($result_env_source_name))
   $env_source_names[$i] = $row[0];
 }
 // ---
-
 
 $query = "SELECT DISTINCT overlap FROM env454.run_info_ill";
 $result_overlap = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_overlap: ".mysql_error());

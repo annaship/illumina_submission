@@ -16,6 +16,7 @@ else
     
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["project_process"] == 1) {
+      print "HERE";
       include_once 'step_subm_metadata_form_project_validation.php';
     }
 ?>
