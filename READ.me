@@ -16,7 +16,7 @@
     * common and repeated includes are ill_subm_functions.php, ill_subm_filled_variables(_local).php, ill_subm_menu.php
     *) ill_subm_beginning.php includes header, db connections and the array of queries for the drop-down menu.
 	*) Other files contain header, footer, left menu, connection info, common php functions, java scripts, css and other additional stuff, should be obvious by the name of a file.
-	
+	*) local mysql connection is in ill_subm_conn_local.php
 Includes:
   index 
 	ill_subm_index_local.php | ill_subm_index.php
@@ -26,6 +26,8 @@ Includes:
 				step_subm_metadata_form_project.php
 				step_subm_metadata_form_owner.php
 				step_subm_metadata_form_owner_validation.php
+					insert_owner.php
+						ill_subm_conn_local.php
 				step_subm_metadata_form_metadata_table.php
 					step_subm_metadata_form_metadata_table_rows.php
 				
