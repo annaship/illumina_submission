@@ -1,4 +1,4 @@
-<form method="post" name="projectForm" id="projectForm" action="insert_project.php">
+<form method="post" name="projectForm" id="projectForm" action="step_subm_metadata.php">
 <input type="hidden" name="form_name" id="projectForm_form_name" value="projectForm"/>
 <table class="form" id="projectForm-form"><tbody>
 <tr><td>
@@ -9,8 +9,6 @@
 <fieldset id="projectForm_project">
 <legend id="projectForm_project-legend">Add new project</legend>
 <table class="fields" id="projectForm_project-fields"><tbody>
-
-
 
 <tr class="fields">
 <td class="fields" ><label for="projectForm_project">project</label></td>
@@ -38,7 +36,7 @@ _
  * 
  * TODO: Add project name validation
  * 
- * */
+*/
 
 $arr_fields = array("project_title", "project_description", "funding");
 foreach ($arr_fields as &$value) {
@@ -71,7 +69,7 @@ unset($value); // break the reference with the last element
 </td></tr>
 <tr><td >
 <table class="buttons" id="projectForm-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="projectForm_add" value="Submit New Project"/><input type="hidden" name="owner_process" value="1"></td></tr>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="projectForm_add" value="Submit New Project"/><input type="hidden" name="project_process" value="1"></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>

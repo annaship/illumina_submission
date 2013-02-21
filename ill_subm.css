@@ -587,3 +587,7 @@ table#submission_metadata-fields tr.repeated_row td {
 .success_message {
 	color: #FF00FF; 
 }
+
+.show_block {
+	display: block !important;	
+}

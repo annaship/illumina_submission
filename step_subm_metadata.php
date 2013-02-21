@@ -15,8 +15,11 @@ else
     <?php include("step_subm_metadata_form_run_info.php"); ?>
     
     <?php
+//     $show_class = "hide_block";
+    $show_class = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["project_process"] == 1) {
-      print "HERE";
+      $show_class = "show_block";
+      
       include_once 'step_subm_metadata_form_project_validation.php';
     }
 ?>
@@ -25,7 +28,7 @@ else
     <input type="button" value="Add new project" class="hide_project" />
     
     <table>
-         <tr style="display:none;" class="hide_project_tr">
+         <tr style="display:none;" class="hide_project_tr <?php echo $show_class; ?>">
            <td colspan="3">
              <?php include("step_subm_metadata_form_project.php"); ?>                 
         </td>
