@@ -112,10 +112,20 @@ function check_required_fields($post_array, $required_fields)
       print "in function: $key => $value; $errors[$key]<br/>";
     }    
   }
-  print "<br/>errors from functions<br/>";
+//   print "<br/>errors from functions<br/>";
   
-  print_r($errors);
+//   print_r($errors);
   return $errors;
+}
+
+function success_message($data_name)
+{
+  if ($data_name)
+  {
+    //   print "<br/>in functions<br/>$data_name<br/>";
+    $success_message = "<div class = \"success_message\"> $data_name information was sucessfully uploaded to the db</div>";
+    print $success_message;    
+  }
 }
 
 ?>

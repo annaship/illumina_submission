@@ -25,20 +25,22 @@ if( !validEmail( $owner_results["email"] ) ) {
   $errors["email"] = "Please provide a valid email address.";
 }
 
-print "<br/><br/>validation: count(\$errors): ";
-print_r(count($errors));
+// print "<br/><br/>step_subm_metadata_form_owner_validation.php: count(\$errors): ";
+// print_r(count($errors));
 
 // were there any errors?
 if(count($errors) == 0)
 {
 //   put data into the db and clean the table
   include_once 'insert_owner.php';
-//   clean_the_table()
-//   foreach ($required_fields as $field_name)
-//   {
-//     $$field_name = "";
-//   }
-//   $errors = array();
+  success_message('Data_owner');
+//   include_once 'success_message.php';
+  //   clean_the_table();
+  foreach ($required_fields as $field_name)
+  {
+    $owner_results[$field_name] = "";
+  }
+  $errors = array();
   
   
 //   print "data_owner = $data_owner</br>
