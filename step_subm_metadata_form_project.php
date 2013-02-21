@@ -34,6 +34,7 @@ _
 <?php
 /*
  * project, title, project_description, rev_project_name, funding, contact_id
+ * project1 project2 project_title project_description funding contact
  * 
  * TODO: Add project name validation
  * 

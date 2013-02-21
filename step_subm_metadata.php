@@ -12,7 +12,14 @@ else
     <h1>Illumina files processing</h1>
     <?php include_once("ill_subm_menu.php"); ?>
 
-    <?php include("step_subm_metadata_form_run_info.php"); ?>      
+    <?php include("step_subm_metadata_form_run_info.php"); ?>
+    
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["project_process"] == 1) {
+      include_once 'step_subm_metadata_form_project_validation.php';
+    }
+?>
+          
     <br />
     <input type="button" value="Add new project" class="hide_project" />
     
@@ -25,22 +32,22 @@ else
     </table>
     
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["owner_process"] == 1) {
-      include_once 'step_subm_metadata_form_owner_validation.php';
-    }
+//     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["owner_process"] == 1) {
+//       include_once 'step_subm_metadata_form_owner_validation.php';
+//     }
 ?>
     
-    <br />
-    <input type="button" value="Add new owner" class="hide_owner" />
+<!--     <br /> -->
+<!--     <input type="button" value="Add new owner" class="hide_owner" /> -->
     
-    <table>
-         <tr class="hide_owner_tr">
-           <td colspan="3">
-             <?php include("step_subm_metadata_form_owner.php"); 
+<!--     <table> -->
+<!--          <tr class="hide_owner_tr"> -->
+<!--            <td colspan="3"> -->
+             <?php #include("step_subm_metadata_form_owner.php"); 
              ?>                 
-        </td>
-      </tr>
-    </table>        
+<!--         </td> -->
+<!--       </tr> -->
+<!--     </table>         -->
     <br />
     
       <?php include("step_subm_metadata_form_metadata_table.php"); ?>      

@@ -109,7 +109,7 @@ function check_required_fields($post_array, $required_fields)
     if(in_array($key, $required_fields) && $value == '')
     {
       $errors[$key] = "The field $key is required.";
-      print "in function: $key => $value; $errors[$key]<br/>";
+//       print "in function: $key => $value; $errors[$key]<br/>";
     }    
   }
 //   print "<br/>errors from functions<br/>";
