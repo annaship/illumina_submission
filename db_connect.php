@@ -11,7 +11,6 @@ $username_v = $config['databases']['vamps_production']['users']['readonly']['use
 $password_v = $config['databases']['vamps_production']['users']['readonly']['password'];
 $application_data['modules']['logger']->debug(__FILE__.":".__LINE__.":".__FUNCTION__, "USERNAME: $username_v, PASSWORD: $password_v, HOSTNAME: $hostname, DATABASE: $database.");
 $vampsprod_connection = mysql_connect($hostname, $username_v, $password_v) or die('Not connected: ' . mysql_error());
-print "<br/>USERNAME: $username_v, PASSWORD: $password_v, HOSTNAME: $hostname, DATABASE: $database<br/>";
 
 // $db_vamps = mysql_select_db('vamps', $vampsdev_connection);
 

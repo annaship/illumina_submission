@@ -28,22 +28,6 @@ if (($handle = fopen("$csvroot/contact_full.csv", "r")) !== FALSE) {
     fclose($handle);
 }
 
-// --- temp ---
-$query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
-FROM vamps.vamps_auth ORDER BY last_name";
-$result_vamps_user = mysql_query($query, $vampsprod_connection) or die("SELECT Error: $result_vamps_user: ".mysql_error());
-$i = 0;
-while($row = mysql_fetch_row($result_vamps_user))
-{
-  $i += 1;
-  $contact[$i]      = $row[2].', '.$row[1];
-  $contact_full[$i] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6];
-}
-print "<br/>contact: <br/>";
-print_r($contact);
-print "<br/>contact: <br/>";
-print_r($contact_full);
-
 // ---
 $i = 0;
 if (($handle = fopen("$csvroot/project.csv", "r")) !== FALSE) {
