@@ -7,15 +7,18 @@ $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_
 
 $query = "SELECT DISTINCT user, passwd, first_name, last_name, active, security_level, email, institution, id, date_added
             FROM vamps.vamps_auth ORDER BY last_name";
-$result_vamps_user = mysql_query($query, $vampsprod_connection) or die("SELECT Error: $result_contact: ".mysql_error());
+$result_vamps_user = mysql_query($query, $vampsprod_connection) or die("SELECT Error: $result_vamps_user: ".mysql_error());
 $i = 0;
-while($row = mysql_fetch_row($result_contact))
+while($row = mysql_fetch_row($result_vamps_user))
 {
   $i += 1;
   $contact[$i]      = $row[3].', '.$row[2];
   $contact_full[$i] = $row[3].', '.$row[2].', '.$row[6].', '.$row[7]; 
 }
-
+print "<br/>contact: <br/>";
+print_r($contact); 
+print "<br/>contact: <br/>";
+print_r($contact_full);
 
 // ---
 // $query = "SELECT DISTINCT first_name, last_name FROM env454.contact WHERE last_name <> '' ORDER BY last_name";
