@@ -72,4 +72,15 @@ if (($handle = fopen("$csvroot/overlap.csv", "r")) !== FALSE) {
     fclose($handle);
 }
 
+// ---
+if (!isset($project_errors))
+{
+	$project_errors = array();
+}
+if (!isset($project_results))
+{
+	$project_results = array();
+}
+
+
 ?>
