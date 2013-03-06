@@ -154,4 +154,13 @@ function success_message($data_name)
   }
 }
 
+function check_var($variable)
+{
+	if (isset($project_results['project_name1']))
+	{
+		$project_name1 = $project_results['project_name1'];
+	}
+	else $project_name1 = "";	
+}
+
 ?>
