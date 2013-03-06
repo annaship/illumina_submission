@@ -1,14 +1,48 @@
 <?php
-// print_r($_POST);
-// $con = mysql_connect("localhost","","abc123");
-// if (!$con)
-//   {
-//   die('Could not connect: ' . mysql_error());
-//   }
+// if(!isset($_SESSION)) {
+//   session_start();
+// }
+if ($_SESSION['is_local'])
+{
+  print_r($_POST);
+  $con = mysql_connect("localhost", "root", "");
+  if (!$con)
+    {
+    die('Could not connect: ' . mysql_error());
+    }
+  
+  mysql_select_db("test", $con);
+  // print "<br>/";
+  // print_r($con);
+  // print "<br>/";
+  
+  // print ('$_POST[project_name1], $_POST[project_name2], $_POST[project_title], $_POST[project_description], $_POST[funding], $_POST[age], $_POST[age], $_POST[contact]');
+  // print "$_POST[project_name1], $_POST[project_name2], $_POST[project_title], $_POST[project_description], $_POST[funding], $_POST[age], $_POST[age], $_POST[contact]";
+  
+  $project    = $_POST[project_name1] . "_" . $_POST[project_name2] . "_" . $_POST[domain] . $_POST[dna_region];
+  $title      = $_POST[project_title];
+  // $env_sample_source_id = get_env_source_id($_POST[$env_sample_source]);
+  // $contact_id = get_contact_id($_POST[project_form_contact]);
+  // , project_description, rev_project_name, funding, env_sample_source_id, contact_id
+  $env_sample_source_id = $contact_id = "";
+  $project_sql = "INSERT INTO project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id) 
+                    VALUES (\"$project\", \"$title\", \"$_POST[project_description]\", REVERSE($project), \"$_POST[funding]\", $env_sample_source_id, $contact_id";
+  
+  print "<br>/";
+  print($project_sql);
+  print "<br>/";
+}
+// $sql="INSERT INTO Persons (FirstName, LastName, Age) VALUES ('1', '2', '3')";
+// try {
+//   if (!mysql_query($sql,$con))
+//       {
+//       die('Error: ' . mysql_error());
+//       }
+//     echo "1 record added";
+// } catch (Exception $e) {
+//   print_r($e);
+// }
 
-// mysql_select_db("my_db", $con);
-
-// $sql="INSERT INTO Persons (FirstName, LastName, Age)
 // VALUES
 // ('$_POST[project_name1]', '$_POST[project_name2]', '$_POST[project_title]', '$_POST[project_description]', '$_POST[funding]', '$_POST[age]', '$_POST[age]', '$_POST[contact]')";
 
