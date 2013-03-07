@@ -150,7 +150,7 @@ function success_message($data_name)
   {
     //   print "<br/>in functions<br/>$data_name<br/>";
     $success_message = "<div class = \"success_message\"> $data_name information was sucessfully uploaded to the db</div>";
-    print $success_message;    
+//     print $success_message;    
   }
 }
 
