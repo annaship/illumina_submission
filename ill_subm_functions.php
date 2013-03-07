@@ -176,10 +176,8 @@ function get_contact_id($contact_full)
   first_name like \"" . trim($first_name) . "%\" AND
   last_name = \"" . trim($last_name) . "\"";
 
-  $local_mysqli = new mysqli("localhost", "root", "", "test");
-  if ($local_mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: (" . $local_mysqli->connect_errno . ") " . $local_mysqli->connect_error;
-  }  
+  require 'ill_subm_conn_local.php';
+  
   $res = $local_mysqli->query($query);
   
   for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -192,13 +190,12 @@ function get_contact_id($contact_full)
 function get_env_sample_source_id($env_source_name)
 {
   require 'ill_subm_conn_local.php';
+  
   $query = "SELECT env_sample_source_id FROM env_sample_source WHERE env_source_name = \"" . $env_source_name . "\"";
   $res = $local_mysqli->query($query);
   
-  for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-    $res->data_seek($row_no);
-    $row = $res->fetch_assoc();
-  }
+  $row = $res->fetch_assoc();
+//   print_r($row);
   return $row['env_sample_source_id']; 
 }
 
