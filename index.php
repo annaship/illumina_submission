@@ -1,4 +1,22 @@
 <?php
+// $local_mysqli = new mysqli("localhost", "root", "", "test");
+// if ($local_mysqli->connect_errno) {
+//   echo "Failed to connect to MySQL: (" . $local_mysqli->connect_errno . ") " . $local_mysqli->connect_error;
+// }
+// $query = "Select * from contact limit 5";
+
+
+// $res = $local_mysqli->query("Select * from contact limit 5");
+
+// echo "Reverse order...\n";
+// for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+//   $res->data_seek($row_no);
+//   $row = $res->fetch_assoc();
+//   print_r($row);
+//   echo " contact = " . $row['contact'] . "<br/>";
+// }
+
+
 session_start();
 if ($_SERVER['SERVER_NAME'] == "localhost")
 {
