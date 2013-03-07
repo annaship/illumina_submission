@@ -210,7 +210,8 @@ function get_env_sample_source_id($env_source_name)
 
 function add_new_contact($post_res, $vamps_name) {
 //   print_r($post_res);
-  list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res)); 
+  $contact_info = array_map('trim', explode(',', $post_res));
+  list($last_name, $first_name, $email, $institution) =  $contact_info;
   $contact = $first_name. " " . $last_name;
   $query = "INSERT INTO contact (contact, email, institution, vamps_name, first_name, last_name)
             VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
@@ -220,11 +221,45 @@ function add_new_contact($post_res, $vamps_name) {
   print $query;
   print "<br/>";
   
-  validate_new_contact();
+  $a = validate_new_contact($contact_info, $vamps_name);
+  
+  if(validate_new_contact($contact_info, $vamps_name) == 0)
+  {
+    print "<br/>---<br/>URRA<br/>---<br/>";
+    print_r($a);
+    
+//     printf ("New Record has id %d.\n", $mysqli->insert_id);
+    
+//     call db
+  }
+//   return $contact_id;
 }
 
-function validate_new_contact() {
-  ;
-//   return $contact_id;
+function validate_new_contact($contact_info, $vamps_name) {
+  $contact_valid_err = 0;
+  $field_names = array("contact", "email", "institution", "vamps_name", "first_name", "last_name");
+  $contact_info[] = $vamps_name;
+//   print_r($contact_info);
+  foreach ($contact_info as $i => $value)
+  {
+    if (!$value)
+    {
+      print "</br>";
+      $n = $i - 1;
+      print "<br>Please provide all contact info; <strong>$field_names[$n]</strong> cannot be empty!<br/>";
+      $contact_valid_err = 1;
+    }
+  }
+  if( !validEmail( $contact_info[2] ) ) {
+    print "<br/>---<br/>Please provide a valid email address instead of \"<strong>" . $contact_info[2] . "</strong>\".";
+    $contact_valid_err = 1;
+  }
+  
+  if ($contact_valid_err)
+  {
+  //   TODO: link to form to submit contact
+    ;
+  }
+  return $contact_valid_err;
 }
 ?>
