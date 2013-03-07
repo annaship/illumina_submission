@@ -216,23 +216,20 @@ function add_new_contact($post_res, $vamps_name) {
   $query = "INSERT INTO contact (contact, email, institution, vamps_name, first_name, last_name)
             VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
               . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
-  print "<br/>";
-  print "<br/>";
-  print $query;
-  print "<br/>";
-  
-  $a = validate_new_contact($contact_info, $vamps_name);
+//   print "<br/>";
+//   print "<br/>";
+//   print $query;
+//   print "<br/>";
   
   if(validate_new_contact($contact_info, $vamps_name) == 0)
   {
-    print "<br/>---<br/>URRA<br/>---<br/>";
-    print_r($a);
+    require 'ill_subm_conn_local.php';
+    $res = $local_mysqli->query($query);
+    $contact_id = $local_mysqli->insert_id;
+    printf ("New Contact record has id %d.\n", $local_mysqli->insert_id);
     
-//     printf ("New Record has id %d.\n", $mysqli->insert_id);
-    
-//     call db
   }
-//   return $contact_id;
+  return $contact_id;
 }
 
 function validate_new_contact($contact_info, $vamps_name) {
