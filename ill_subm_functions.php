@@ -163,4 +163,30 @@ function check_var($variable)
 	else $project_name1 = "";	
 }
 
+function get_contact_id($contact_full)
+{
+  $post_res = $_POST[project_form_contact];
+  list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
+  
+  $vamps_name = array_search($post_res, $contact_full);
+
+  $query = "SELECT contact_id FROM contact WHERE email = \"" . trim($email) . "\" AND
+  institution = \"" . trim($institution) . "\" AND
+  vamps_name = \"" . trim($vamps_name) . "\" AND
+  first_name like \"" . trim($first_name) . "%\" AND
+  last_name = \"" . trim($last_name) . "\"";
+
+  $local_mysqli = new mysqli("localhost", "root", "", "test");
+  if ($local_mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $local_mysqli->connect_errno . ") " . $local_mysqli->connect_error;
+  }  
+  $res = $local_mysqli->query($query);
+  
+  for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+    $res->data_seek($row_no);
+    $row = $res->fetch_assoc();
+  }
+  return $row['contact_id'];
+}
+
 ?>

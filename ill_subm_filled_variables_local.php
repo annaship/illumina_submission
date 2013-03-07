@@ -62,20 +62,19 @@ $res = $local_mysqli->query($query);
 
 echo "From filled_ver_loc...<br/>";
 $i = 0;
-$contact_env454 = array();
+// $contact_env454 = array();
 for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
   $i += 1;
   $res->data_seek($row_no);
   $row = $res->fetch_assoc();
 //   print_r($row);
-//   echo " contact = " . $row['contact'] . "<br/>";
-  $contact[$i]      = $row[2].', '.$row[1];
-  $contact_full[$i] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6];
-  $contact_env454[] = $row;
-//   array_push($contact_env454, $row);
+//   echo " first_name = " . $row['first_name'] . "<br/>";
+  $contact[$i]      = $row['last_name'].', '.$row['first_name'];
+  $contact_full[$row['user']] = $row['last_name'].', '.$row['first_name'].', '.$row['email'].', '.$row['institution'];
+//   $contact_env454[] = $row;
 }
 
-print_r($contact_env454);
+// print_r($contact_env454);
 // print $contact_env454[0][user];
 
 
@@ -105,28 +104,28 @@ print_r($contact_env454);
 
 // ---
 // Get contact_id from env454 or local.test
-$email       = "kjvenkat@jpl.nasa.gov";
-$institution = "JPL";
-$vamps_name  = "jpl";
-$first_name  = "Kasthuri";
-$last_name   = "Venkateswaran";
-$query = "SELECT * FROM contact WHERE email = \"" . $email . "\" AND
-institution = \"" . $institution . "\" AND
-vamps_name = \"" . $vamps_name . "\" AND
-first_name = \"" . $first_name . "\" AND
-last_name = \"" . $last_name . "\"";
-print $query;
-print "<br/>";
-$res = $local_mysqli->query($query);
+// $email       = "kjvenkat@jpl.nasa.gov";
+// $institution = "JPL";
+// $vamps_name  = "jpl";
+// $first_name  = "Kasthuri";
+// $last_name   = "Venkateswaran";
+// $query = "SELECT * FROM contact WHERE email = \"" . $email . "\" AND
+// institution = \"" . $institution . "\" AND
+// vamps_name = \"" . $vamps_name . "\" AND
+// first_name = \"" . $first_name . "\" AND
+// last_name = \"" . $last_name . "\"";
+// print $query;
+// print "<br/>";
+// $res = $local_mysqli->query($query);
 
-echo "From filled_ver_loc...<br/>";
-for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-  $res->data_seek($row_no);
-  $row = $res->fetch_assoc();
-  print_r($row);
-  echo " contact = " . $row['contact'] . "<br/>";
-  echo " contact_id = " . $row['contact_id'] . "<br/>";
-}
+// echo "From filled_ver_loc...<br/>";
+// for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+//   $res->data_seek($row_no);
+//   $row = $res->fetch_assoc();
+//   print_r($row);
+//   echo " contact = " . $row['contact'] . "<br/>";
+//   echo " contact_id = " . $row['contact_id'] . "<br/>";
+// }
 
 // ---
 
