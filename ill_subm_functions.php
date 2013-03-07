@@ -184,7 +184,14 @@ function get_contact_id($contact_full)
     $res->data_seek($row_no);
     $row = $res->fetch_assoc();
   }
-  return $row['contact_id'];
+  if (isset($row['contact_id'])) 
+  {
+    return $row['contact_id'];
+  }
+  else
+  {
+    add_new_contact($post_res, $vamps_name);
+  }
 }
 
 function get_env_sample_source_id($env_source_name)
@@ -197,6 +204,18 @@ function get_env_sample_source_id($env_source_name)
   $row = $res->fetch_assoc();
 //   print_r($row);
   return $row['env_sample_source_id']; 
+}
+
+function add_new_contact($post_res, $vamps_name) {
+  print_r($post_res);
+  list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
+  $contact = $first_name . " " . $last_name;
+  $query = "INSERT INTO contact (contact, email, institution, vamps_name, first_name, last_name)
+            VALUES (\"" . $contact . "\", \"" . $email . "\", \"" . $institution . "\", \"" . $vamps_name . "\", \"" . $first_name . "\", \"" . $last_name . "\")";
+  print "<br/>";
+  print "<br/>";
+  print $query;
+  print "<br/>";
 }
 
 ?>
