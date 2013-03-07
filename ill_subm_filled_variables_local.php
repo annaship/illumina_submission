@@ -47,7 +47,7 @@ if (($handle = fopen("$csvroot/project.csv", "r")) !== FALSE) {
 }
 // ---
 $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
-FROM vamps.vamps_auth ORDER BY last_name";
+FROM vamps_auth ORDER BY last_name";
 // $result_vamps_user = mysql_query($query, $vampsprod_connection) or die("SELECT Error: $result_vamps_user: ".mysql_error());
 // $i = 0;
 // while($row = mysql_fetch_row($result_vamps_user))
@@ -58,7 +58,7 @@ FROM vamps.vamps_auth ORDER BY last_name";
 // }
 
 
-$res = $vamps_mysqli->query($query);
+$res = $local_mysqli->query($query);
 
 echo "From filled_ver_loc...<br/>";
 $i = 0;
@@ -75,8 +75,8 @@ for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
 //   array_push($contact_env454, $row);
 }
 
-// print_r($contact_env454);
-print $contact_env454[0][user];
+print_r($contact_env454);
+// print $contact_env454[0][user];
 
 
 // $query = "Select * from contact limit 5";
@@ -92,6 +92,7 @@ print $contact_env454[0][user];
 //   print_r($row);
 //   echo " contact = " . $row['contact'] . "<br/>";
 // }
+
 // $res = $local_mysqli->query($query);
 
 // echo "From filled_ver_loc...<br/>";
@@ -102,6 +103,30 @@ print $contact_env454[0][user];
 //   echo " contact = " . $row['contact'] . "<br/>";
 // }
 
+// ---
+// Get contact_id from env454 or local.test
+$email       = "kjvenkat@jpl.nasa.gov";
+$institution = "JPL";
+$vamps_name  = "jpl";
+$first_name  = "Kasthuri";
+$last_name   = "Venkateswaran";
+$query = "SELECT * FROM contact WHERE email = \"" . $email . "\" AND
+institution = \"" . $institution . "\" AND
+vamps_name = \"" . $vamps_name . "\" AND
+first_name = \"" . $first_name . "\" AND
+last_name = \"" . $last_name . "\"";
+print $query;
+print "<br/>";
+$res = $local_mysqli->query($query);
+
+echo "From filled_ver_loc...<br/>";
+for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+  $res->data_seek($row_no);
+  $row = $res->fetch_assoc();
+  print_r($row);
+  echo " contact = " . $row['contact'] . "<br/>";
+  echo " contact_id = " . $row['contact_id'] . "<br/>";
+}
 
 // ---
 
