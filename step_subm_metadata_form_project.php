@@ -77,6 +77,16 @@ foreach ($arr_fields_to_show as $field_name) {
 unset($value); // break the reference with the last element
 ?>
   <tr class="fields">
+    <td class="fields" ><label for="project_form_env_source">env_source_name</label></td>
+    <td colspan=5>
+    <select name="project_form_env_source" id="form_project_form_env_source">
+   <?php 
+     print_options($env_source_names, $selected_env_source_name);        
+   ?>
+    </select></td>
+  </tr>
+
+  <tr class="fields">
     <td class="fields" ><label for="project_form_contact">contact</label></td>
     <td colspan=5>
     <select name="project_form_contact" id="form_project_form_contact">

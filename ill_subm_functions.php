@@ -189,4 +189,17 @@ function get_contact_id($contact_full)
   return $row['contact_id'];
 }
 
+function get_env_sample_source_id($env_source_name)
+{
+  require 'ill_subm_conn_local.php';
+  $query = "SELECT env_sample_source_id FROM env_sample_source WHERE env_source_name = \"" . $env_source_name . "\"";
+  $res = $local_mysqli->query($query);
+  
+  for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+    $res->data_seek($row_no);
+    $row = $res->fetch_assoc();
+  }
+  return $row['env_sample_source_id']; 
+}
+
 ?>
