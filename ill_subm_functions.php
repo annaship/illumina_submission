@@ -166,15 +166,16 @@ function check_var($variable)
 function get_contact_id($contact_full)
 {
   $post_res = $_POST[project_form_contact];
-  list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
+//   list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
+  list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
   
   $vamps_name = array_search($post_res, $contact_full);
 
-  $query = "SELECT contact_id FROM contact WHERE email = \"" . trim($email) . "\" AND
-  institution = \"" . trim($institution) . "\" AND
-  vamps_name = \"" . trim($vamps_name) . "\" AND
-  first_name like \"" . trim($first_name) . "%\" AND
-  last_name = \"" . trim($last_name) . "\"";
+  $query = "SELECT contact_id FROM contact WHERE email = \"" . $email. "\" AND
+  institution = \"" . $institution. "\" AND
+  vamps_name = \"" . $vamps_name. "\" AND
+  first_name like \"" . $first_name. "%\" AND
+  last_name = \"" . $last_name. "\"";
 
   require 'ill_subm_conn_local.php';
   
@@ -186,12 +187,13 @@ function get_contact_id($contact_full)
   }
   if (isset($row['contact_id'])) 
   {
-    return $row['contact_id'];
+    $contact_id = $row['contact_id'];
   }
   else
   {
-    add_new_contact($post_res, $vamps_name);
+    $contact_id = add_new_contact($post_res, $vamps_name);
   }
+  return $contact_id;
 }
 
 function get_env_sample_source_id($env_source_name)
@@ -207,15 +209,22 @@ function get_env_sample_source_id($env_source_name)
 }
 
 function add_new_contact($post_res, $vamps_name) {
-  print_r($post_res);
-  list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
-  $contact = $first_name . " " . $last_name;
+//   print_r($post_res);
+  list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res)); 
+  $contact = $first_name. " " . $last_name;
   $query = "INSERT INTO contact (contact, email, institution, vamps_name, first_name, last_name)
-            VALUES (\"" . $contact . "\", \"" . $email . "\", \"" . $institution . "\", \"" . $vamps_name . "\", \"" . $first_name . "\", \"" . $last_name . "\")";
+            VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
+              . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
   print "<br/>";
   print "<br/>";
   print $query;
   print "<br/>";
+  
+  validate_new_contact();
 }
 
+function validate_new_contact() {
+  ;
+//   return $contact_id;
+}
 ?>
