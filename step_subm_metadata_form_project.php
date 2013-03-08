@@ -61,7 +61,13 @@ _
   </select>
   <?php 
 //   	list($project_errors, $project_results) = init_project_var($arr_to_initialize);
-   ?>
+// 	print "<br/>UUU -";
+// 	print_r($arr_to_initialize); 
+// 	print " --<br/>";
+	if (check_var($project_errors) == 0) {
+		$project_errors = init_arr($project_errors, $arr_to_initialize);
+	}
+	?>
 </td>    <td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
 </tr>
 <?php

@@ -120,7 +120,6 @@ function populate_post_vars($post_array)
   // Loop through the $_POST array, which comes from the form...
   foreach($post_array AS $key => $value)
   {
-  	print "<br/>from populate_post_vars<br/> - \$key = $key; \$value = $value - <br/>";
       $$key = $value;  
       $result_post[$key] = htmlspecialchars($value);
   }
@@ -153,15 +152,6 @@ function success_message($data_name)
     $success_message = "<div class = \"success_message\"> $data_name information was sucessfully uploaded to the db</div>";
 //     print $success_message;    
   }
-}
-
-function check_var($variable)
-{
-	if (isset($project_results['project_name1']))
-	{
-		$project_name1 = $project_results['project_name1'];
-	}
-	else $project_name1 = "";	
 }
 
 function get_contact_id($contact_full)
@@ -259,6 +249,28 @@ function validate_new_contact($contact_info, $vamps_name) {
     ;
   }
   return $contact_valid_err;
+}
+
+function check_var($variable)
+{
+	if (! isset($variable) OR empty($variable))
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+function init_arr($arr_name, $key_names) {
+	foreach ($key_names as $field_name) {
+		if (!isset($arr_name[$field_name]))
+		{
+			$arr_name[$field_name]  = "";
+		}
+	}
+	return $arr_name;
 }
 
 function init_project_var($arr_to_initialize) {
