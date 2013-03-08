@@ -30,8 +30,8 @@
         <td>
         <select name="project_0" id="form_project_0">
       
-       <?php 
-	       print_options($project, $selected_project);        
+       <?php
+			print_options($project, $selected_project);        
         ?>  
         </select></td>
       

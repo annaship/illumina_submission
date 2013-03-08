@@ -1,12 +1,3 @@
-<?php 
-print "<br/>from form_project<br/>";
-print_r($project_results);
-print "<br/>";
-print_r($project_errors);
-print "<br/>---<br/>";
-
-?>
-
 <form method="post" name="project_form" id="project_form" action="step_subm_metadata.php">
 <input type="hidden" name="form_name" id="project_form_form_name" value="project_form"/>
 <table class="form" id="project_form-form"><tbody>
@@ -67,6 +58,10 @@ _
 	if (check_var($project_errors) == 0) {
 		$project_errors = init_arr($project_errors, $arr_to_initialize);
 	}
+	if ((check_var($project_errors) == 1) AND (!isset($project_errors["project_name2"])))
+	{
+		$project_errors["project_name2"] = "";
+	}
 	?>
 </td>    <td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
 </tr>
@@ -79,7 +74,11 @@ _
  * 
 */
 foreach ($arr_fields_to_show as $field_name) {  
-  $error_message = $project_errors[$field_name];
+	if ((check_var($project_errors) == 1) AND (!isset($project_errors[$field_name])))
+	{
+		$project_errors[$field_name] = "";
+	}
+	$error_message = $project_errors[$field_name];
   echo '
     <tr class="fields">
     <td class="fields"><label for="project_form_'.$field_name.'">'.$field_name.'</label></td>

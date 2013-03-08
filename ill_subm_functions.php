@@ -289,4 +289,28 @@ function init_project_var($arr_to_initialize) {
 	$my_arr = array($project_errors, $project_results);
 	return $my_arr;
 }
+
+function print_out($array_name)
+{
+	print "<br/>UUU -";
+	print_r($array_name);
+	print " --<br/>";
+}
+
+function get_all_projects()
+{
+	require 'ill_subm_conn_local.php';
+	$query = "SELECT DISTINCT project FROM project WHERE project <> '' ORDER BY project";
+	$res = $local_mysqli->query($query);
+
+	$i = 0;
+	for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+		$i += 1;
+		$res->data_seek($row_no);
+		$row = $res->fetch_assoc();
+		$project[] = $row["project"];
+	}
+	return $project;
+}
+
 ?>
