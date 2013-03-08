@@ -13,21 +13,24 @@ $project_form_fields = array(
     "dna_region" => "select", "project_title" => "optional", "project_description" => "optional",
     "funding" => "optional", "project_form_contact" => "select"
 );
+// ---
 
 $arr_fields_to_show = array("project_title", "project_description", "funding");
 $arr_project_fields = array("project_name1", "project_name2");
 $arr_to_initialize = array_merge($arr_fields_to_show, $arr_project_fields);
-foreach ($arr_to_initialize as $field_name) {
-	if (!isset($project_errors[$field_name]) AND !isset($project_results[$field_name]))
-	{
-		$project_errors[$field_name]  = "";
-		$project_results[$field_name] = "";
-	}
-}
+
+list($project_errors, $project_results) = init_project_var($arr_to_initialize);
+
 if (!isset($selected_dna_region))
 {
 	$selected_dna_region = "";
 }
+
+if (!isset($errors))
+{
+	$errors = array();
+}
+
 
 // ---
 $i = 0;
@@ -81,16 +84,6 @@ if (($handle = fopen("$csvroot/overlap.csv", "r")) !== FALSE) {
     }
     // print_r($contact);
     fclose($handle);
-}
-
-// ---
-if (!isset($project_errors))
-{
-	$project_errors = array();
-}
-if (!isset($project_results))
-{
-	$project_results = array();
 }
 
 

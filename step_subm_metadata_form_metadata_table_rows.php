@@ -31,7 +31,10 @@
         <select name="project_0" id="form_project_0">
       
        <?php 
-        print_options($project, $selected_project);        
+       print "<br/>URA<br/>--";
+       print_r($project);
+       print "---<br/>";
+       print_options($project, $selected_project);        
         ?>  
         </select></td>
       

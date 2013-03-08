@@ -165,7 +165,7 @@ function check_var($variable)
 
 function get_contact_id($contact_full)
 {
-  $post_res = $_POST[project_form_contact];
+  $post_res = $_POST['project_form_contact'];
 //   list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
   
@@ -258,5 +258,22 @@ function validate_new_contact($contact_info, $vamps_name) {
     ;
   }
   return $contact_valid_err;
+}
+
+function init_project_var($arr_to_initialize) {
+	foreach ($arr_to_initialize as $field_name) {
+		if (!isset($project_errors[$field_name]))
+		{
+			$project_errors[$field_name]  = "";
+		}
+	}
+	foreach ($arr_to_initialize as $field_name) {
+		if (!isset($project_results[$field_name]))
+		{
+			$project_results[$field_name]  = "";
+		}
+	}
+	$my_arr = array($project_errors, $project_results);
+	return $my_arr;
 }
 ?>

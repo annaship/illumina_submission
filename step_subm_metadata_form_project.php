@@ -50,6 +50,9 @@ _
     }
    ?>  
   </select>
+  <?php 
+  	list($project_errors, $project_results) = init_project_var($arr_to_initialize);
+   ?>
 </td>    <td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
 </tr>
 <?php
