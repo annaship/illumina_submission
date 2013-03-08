@@ -61,18 +61,15 @@ _
  * 
 */
 
-$arr_fields_to_show = array("project_title", "project_description", "funding");
-foreach ($arr_fields_to_show as $field_name) {
-  
+foreach ($arr_fields_to_show as $field_name) {  
   $error_message = $project_errors[$field_name];
   echo '
     <tr class="fields">
-    <td class="fields" ><label for="project_form_'.$field_name.'">'.$field_name.'</label></td>
-    <td><input class="text_inp size_long_input" type="text" name="'.$field_name.'" id="project_form_'.$field_name.'" value="'.$project_results[$field_name].'"/></td>
+    <td class="fields"><label for="project_form_'.$field_name.'">'.$field_name.'</label></td>
+    <td class="fields"><input class="text_inp size_long_input" type="text" name="'.$field_name.'" id="project_form_'.$field_name.'" value="'.$project_results[$field_name].'"/></td>
     <td class="message">'.$error_message.'</td>
     </tr>
   ';  
-  
 }
 unset($value); // break the reference with the last element
 ?>

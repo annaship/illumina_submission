@@ -14,6 +14,21 @@ $project_form_fields = array(
     "funding" => "optional", "project_form_contact" => "select"
 );
 
+$arr_fields_to_show = array("project_title", "project_description", "funding");
+$arr_project_fields = array("project_name1", "project_name2");
+$arr_to_initialize = array_merge($arr_fields_to_show, $arr_project_fields);
+foreach ($arr_to_initialize as $field_name) {
+	if (!isset($project_errors[$field_name]) AND !isset($project_results[$field_name]))
+	{
+		$project_errors[$field_name]  = "";
+		$project_results[$field_name] = "";
+	}
+}
+if (!isset($selected_dna_region))
+{
+	$selected_dna_region = "";
+}
+
 // ---
 $i = 0;
 if (($handle = fopen("$csvroot/project.csv", "r")) !== FALSE) {
