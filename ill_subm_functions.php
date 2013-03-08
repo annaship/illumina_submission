@@ -120,6 +120,7 @@ function populate_post_vars($post_array)
   // Loop through the $_POST array, which comes from the form...
   foreach($post_array AS $key => $value)
   {
+  	print "<br/>from populate_post_vars<br/> - \$key = $key; \$value = $value - <br/>";
       $$key = $value;  
       $result_post[$key] = htmlspecialchars($value);
   }

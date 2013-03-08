@@ -1,3 +1,12 @@
+<?php 
+print "<br/>from form_project<br/>";
+print_r($project_results);
+print "<br/>";
+print_r($project_errors);
+print "<br/>---<br/>";
+
+?>
+
 <form method="post" name="project_form" id="project_form" action="step_subm_metadata.php">
 <input type="hidden" name="form_name" id="project_form_form_name" value="project_form"/>
 <table class="form" id="project_form-form"><tbody>
@@ -51,7 +60,7 @@ _
    ?>  
   </select>
   <?php 
-  	list($project_errors, $project_results) = init_project_var($arr_to_initialize);
+//   	list($project_errors, $project_results) = init_project_var($arr_to_initialize);
    ?>
 </td>    <td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
 </tr>
@@ -63,7 +72,6 @@ _
  * TODO: Add project name validation
  * 
 */
-
 foreach ($arr_fields_to_show as $field_name) {  
   $error_message = $project_errors[$field_name];
   echo '
@@ -74,7 +82,8 @@ foreach ($arr_fields_to_show as $field_name) {
     </tr>
   ';  
 }
-unset($value); // break the reference with the last element
+// unset($value); // break the reference with the last element
+// todo: Button "add new project - clear the project form"
 ?>
   <tr class="fields">
     <td class="fields" ><label for="project_form_env_source">env_source_name</label></td>
