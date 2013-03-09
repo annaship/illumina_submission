@@ -17,12 +17,12 @@ $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_
 $project_form_fields = array(
     "project_name1" => "required", "project_name2" => "required", "domain" => "select",
     "dna_region" => "select", "project_title" => "optional", "project_description" => "optional",
-    "funding" => "optional", "project_form_contact" => "select"
+    "funding" => "optional", "env_source_name" => "required", "project_form_contact" => "select"
 );
 // ---
 
 $arr_fields_to_show = array("project_title", "project_description", "funding");
-$arr_project_fields = array("project_name1", "project_name2");
+$arr_project_fields = array("project_name1", "project_name2", "env_source_name");
 $arr_to_initialize = array_merge($arr_fields_to_show, $arr_project_fields);
 
 list($project_errors, $project_results) = init_project_var($arr_to_initialize);
@@ -39,9 +39,10 @@ if (!isset($errors))
 
 // ---
 $project = get_all_projects();
+
 // ---
 $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
-FROM vamps_auth ORDER BY last_name ASC";
+FROM vamps_auth where last_name <> \"\" ORDER BY last_name ASC ";
 
 $res = $local_mysqli->query($query);
 
@@ -54,6 +55,9 @@ for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
   $contact[$i]      = $row['last_name'].', '.$row['first_name'];
   $contact_full[$row['user']] = $row['last_name'].', '.$row['first_name'].', '.$row['email'].', '.$row['institution'];
 }
+
+sort($contact);
+sort($contact_full);
 
 // ---
 

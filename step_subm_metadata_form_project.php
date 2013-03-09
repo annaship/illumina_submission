@@ -58,11 +58,14 @@ _
 	if (check_var($project_errors) == 0) {
 		$project_errors = init_arr($project_errors, $arr_to_initialize);
 	}
-	if ((check_var($project_errors) == 1) AND (!isset($project_errors["project_name2"])))
-	{
-		$project_errors["project_name2"] = "";
-	}
-	?>
+	foreach ($arr_project_fields as $field_name) {
+		if ((check_var($project_errors) == 1) AND (!isset($project_errors[$field_name])))
+		{
+			$project_errors[$field_name] = "";
+		}
+		$error_message = $project_errors[$field_name];
+	}	
+  ?>
 </td>    <td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
 </tr>
 <?php
@@ -92,12 +95,21 @@ foreach ($arr_fields_to_show as $field_name) {
 ?>
   <tr class="fields">
     <td class="fields" ><label for="project_form_env_source">env_source_name</label></td>
-    <td colspan=5>
+    <td colspan=2>
     <select name="project_form_env_source" id="form_project_form_env_source">
    <?php 
-     print_options($env_source_names, $selected_env_source_name);        
+   print "HERE";
+   print_out($project_errors);
+     print_options($env_source_names, $selected_env_source_name);
+     if ((check_var($project_errors) == 1) AND (!isset($project_errors["env_source_name"])))
+     {
+     	$project_errors["env_source_name"] = "";
+     }
+     $error_message = $project_errors["env_source_name"];
+      
    ?>
     </select></td>
+    <td class="message"><?php print $project_errors["env_source_name"];?></td>
   </tr>
 
   <tr class="fields">

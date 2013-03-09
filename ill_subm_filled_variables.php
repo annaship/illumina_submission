@@ -12,7 +12,7 @@ $project_form_fields = array(
 
 
 $arr_fields_to_show = array("project_title", "project_description", "funding");
-$arr_project_fields = array("project_name1", "project_name2");
+$arr_project_fields = array("project_name1", "project_name2", "env_source_name");
 $arr_to_initialize = array_merge($arr_fields_to_show, $arr_project_fields);
 
 list($project_errors, $project_results) = init_project_var($arr_to_initialize);

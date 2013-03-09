@@ -253,7 +253,7 @@ function validate_new_contact($contact_info, $vamps_name) {
 
 function check_var($variable)
 {
-	if (! isset($variable) OR empty($variable))
+	if (!isset($variable) OR empty($variable))
 	{
 		return 0;
 	}
@@ -310,6 +310,7 @@ function get_all_projects()
 		$row = $res->fetch_assoc();
 		$project[] = $row["project"];
 	}
+	sort($project);	
 	return $project;
 }
 
