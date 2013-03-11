@@ -21,9 +21,7 @@
       
         <td><input class="text_inp size_number" type="text" name="lane_0" id="form_lane_0" value="<?php echo $selected_lane ?>"/></td>
         
-        <!-- Show Suite by dna_region plus domain -->
-          <?php print_out($_POST);?>
-      
+        <!-- Show Suite by dna_region plus domain -->     
         <td>
 
         <select name="data_owner_0" id="form_data_owner_0">
