@@ -95,7 +95,7 @@ foreach ($arr_fields_to_show as $field_name) {
 ?>
   <tr class="fields">
     <td class="fields" ><label for="env_source_name">env_source_name</label></td>
-    <td colspan=2>
+    <td colspan=1>
     <select name="env_source_name" id="form_env_source_name">
    <?php 
    print "HERE";

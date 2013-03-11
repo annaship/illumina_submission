@@ -118,7 +118,7 @@ function valid_env_source_name($env_source_name)
 {
   $isValid = true;
   $len_env_source_name = strlen($env_source_name);
-  if ($len_env_source_name < 1 or $env_source_name = " ")
+  if ($len_env_source_name < 1 or $env_source_name = "env_source_name")
   {
     $isValid = false;
   }
