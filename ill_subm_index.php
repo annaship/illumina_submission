@@ -27,7 +27,7 @@
                   echo ' selected="selected"';
                 } 
                 echo ">";
-                print_r($value);
+//                 print_r($value);
                 echo "</option>";
               } 
             
