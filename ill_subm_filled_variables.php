@@ -106,27 +106,27 @@ else
 {
   $env_sample_source_table = "env454.env_sample_source";  
 }
-$query = "SELECT DISTINCT env_source_name FROM " . $env_sample_source_table . " ORDER BY env_source_name";
+
+$query = "SELECT DISTINCT env_sample_source_id, env_source_name FROM " . $env_sample_source_table;
+print_out($query);
 if ($_SESSION['is_local'])
 {
   $res_env = $local_mysqli->query($query);
 	for ($row_no = $res_env->num_rows - 1; $row_no >= 0; $row_no--) {
 		$res_env->data_seek($row_no);
 		$row = $res_env->fetch_assoc();
-		$env_source_names[] = $row["env_source_name"];
+		$env_source_names[$row["env_sample_source_id"]] = $row["env_source_name"];
 	}
-	sort($env_source_names);
 }
 else
 {
   $result_env_source_name = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_env_source_name: ".mysql_error());
-  $i = 0;
   while($row = mysql_fetch_row($result_env_source_name))
   {
-    $i += 1;
-    $env_source_names[$i] = $row[0];
+    $env_source_names[$row[0]] = $row[1];
   }
 }
+asort($env_source_names);
 
 // ---
 if ($_SESSION['is_local'])
