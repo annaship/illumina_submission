@@ -201,6 +201,7 @@ function get_contact_id($contact_full)
 
 function get_env_sample_source_id($env_source_name, $env_source_names)
 {
+  print "In here!";
   $env_source_name_id = array_search($env_source_name, $env_source_names);
   return $env_source_name_id;
 }

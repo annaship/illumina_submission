@@ -1,8 +1,14 @@
 <?php
+print "HERE in insert project<br/>";
+//   print_r($_POST);
+$env_source_name = $_POST['env_source_name'];
+print_out($env_source_name);
+print_out($env_source_names);
+print_r($_POST);
+$env_sample_source_id = get_env_sample_source_id($env_source_name, $env_source_names);
+
 if ($_SESSION['is_local'])
 {
-  print_r($_POST);
-  $env_sample_source_id = get_env_sample_source_id($_POST['env_source_name']);
   $contact_id = get_contact_id($contact_full);
   
   $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
@@ -26,13 +32,6 @@ if ($_SESSION['is_local'])
 }
 else
 {
-  print "HERE in insert project<br/>";
-//   print_r($_POST);
-  $a = $_POST['env_source_name'];
-  print_out($a);
-  print_out($env_source_names);
-  
-  $env_sample_source_id = get_env_sample_source_id($a, $env_source_names);
   $contact_id = get_contact_id($contact_full);
   
   $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
