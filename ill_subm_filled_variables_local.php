@@ -45,20 +45,20 @@ $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, e
 FROM vamps_auth where last_name <> \"\" ORDER BY last_name ASC ";
 
 $res = $local_mysqli->query($query);
-
+// $contact = $contact_full = array();
 // echo "From filled_ver_loc...<br/>";
 $i = 0;
 for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
   $i += 1;
   $res->data_seek($row_no);
   $row = $res->fetch_assoc();
-  $contact[$i]      = $row['last_name'].', '.$row['first_name'];
+  
+  $contact[$row['user']]      = $row['last_name'].', '.$row['first_name'];
   $contact_full[$row['user']] = $row['last_name'].', '.$row['first_name'].', '.$row['email'].', '.$row['institution'];
 }
 
-sort($contact);
-sort($contact_full);
-
+asort($contact);
+asort($contact_full);
 // ---
 
 $arr_fields_add = array("tubelabel", "barcode", "adaptor", "amp_operator");

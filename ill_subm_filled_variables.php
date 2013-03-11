@@ -37,7 +37,8 @@ while($row = mysql_fetch_row($result_vamps_user))
 {
   $i += 1;
   $contact[$i]      = $row[2].', '.$row[1];
-  $contact_full[$i] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6]; 
+  $contact_full[$row['user']] = $row['last_name'].', '.$row['first_name'].', '.$row['email'].', '.$row['institution'];
+//   $contact_full[$i] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6]; 
 }
 
 // ---

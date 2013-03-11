@@ -173,6 +173,8 @@ function get_contact_id($contact_full)
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
   
   $vamps_name = array_search($post_res, $contact_full);
+print_out($vamps_name);
+print_out($post_res);
 
   $query = "SELECT contact_id FROM contact WHERE email = \"" . $email. "\" AND
   institution = \"" . $institution. "\" AND
