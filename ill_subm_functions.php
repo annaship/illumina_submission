@@ -154,18 +154,9 @@ function success_message($data_name)
   }
 }
 
-function check_var($variable)
-{
-	if (isset($project_results['project_name1']))
-	{
-		$project_name1 = $project_results['project_name1'];
-	}
-	else $project_name1 = "";	
-}
-
 function get_contact_id($contact_full)
 {
-  $post_res = $_POST[project_form_contact];
+  $post_res = $_POST['project_form_contact'];
 //   list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
   
@@ -259,4 +250,68 @@ function validate_new_contact($contact_info, $vamps_name) {
   }
   return $contact_valid_err;
 }
+
+function check_var($variable)
+{
+	if (!isset($variable) OR empty($variable))
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+function init_arr($arr_name, $key_names) {
+	foreach ($key_names as $field_name) {
+		if (!isset($arr_name[$field_name]))
+		{
+			$arr_name[$field_name]  = "";
+		}
+	}
+	return $arr_name;
+}
+
+function init_project_var($arr_to_initialize) {
+	foreach ($arr_to_initialize as $field_name) {
+		if (!isset($project_errors[$field_name]))
+		{
+			$project_errors[$field_name]  = "";
+		}
+	}
+	foreach ($arr_to_initialize as $field_name) {
+		if (!isset($project_results[$field_name]))
+		{
+			$project_results[$field_name]  = "";
+		}
+	}
+	$my_arr = array($project_errors, $project_results);
+	return $my_arr;
+}
+
+function print_out($array_name)
+{
+	print "<br/>UUU -";
+	print_r($array_name);
+	print " --<br/>";
+}
+
+function get_all_projects()
+{
+	require 'ill_subm_conn_local.php';
+	$query = "SELECT DISTINCT project FROM project WHERE project <> '' ORDER BY project";
+	$res = $local_mysqli->query($query);
+
+	$i = 0;
+	for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+		$i += 1;
+		$res->data_seek($row_no);
+		$row = $res->fetch_assoc();
+		$project[] = $row["project"];
+	}
+	sort($project);	
+	return $project;
+}
+
 ?>

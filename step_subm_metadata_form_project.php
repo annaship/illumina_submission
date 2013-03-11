@@ -50,6 +50,22 @@ _
     }
    ?>  
   </select>
+  <?php 
+//   	list($project_errors, $project_results) = init_project_var($arr_to_initialize);
+// 	print "<br/>UUU -";
+// 	print_r($arr_to_initialize); 
+// 	print " --<br/>";
+	if (check_var($project_errors) == 0) {
+		$project_errors = init_arr($project_errors, $arr_to_initialize);
+	}
+	foreach ($arr_project_fields as $field_name) {
+		if ((check_var($project_errors) == 1) AND (!isset($project_errors[$field_name])))
+		{
+			$project_errors[$field_name] = "";
+		}
+		$error_message = $project_errors[$field_name];
+	}	
+  ?>
 </td>    <td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
 </tr>
 <?php
@@ -60,30 +76,40 @@ _
  * TODO: Add project name validation
  * 
 */
-
-$arr_fields_to_show = array("project_title", "project_description", "funding");
-foreach ($arr_fields_to_show as $field_name) {
-  
-  $error_message = $project_errors[$field_name];
+foreach ($arr_fields_to_show as $field_name) {  
+	if ((check_var($project_errors) == 1) AND (!isset($project_errors[$field_name])))
+	{
+		$project_errors[$field_name] = "";
+	}
+	$error_message = $project_errors[$field_name];
   echo '
     <tr class="fields">
-    <td class="fields" ><label for="project_form_'.$field_name.'">'.$field_name.'</label></td>
-    <td><input class="text_inp size_long_input" type="text" name="'.$field_name.'" id="project_form_'.$field_name.'" value="'.$project_results[$field_name].'"/></td>
+    <td class="fields"><label for="project_form_'.$field_name.'">'.$field_name.'</label></td>
+    <td class="fields"><input class="text_inp size_long_input" type="text" name="'.$field_name.'" id="project_form_'.$field_name.'" value="'.$project_results[$field_name].'"/></td>
     <td class="message">'.$error_message.'</td>
     </tr>
   ';  
-  
 }
-unset($value); // break the reference with the last element
+// unset($value); // break the reference with the last element
+// todo: Button "add new project - clear the project form"
 ?>
   <tr class="fields">
     <td class="fields" ><label for="project_form_env_source">env_source_name</label></td>
-    <td colspan=5>
+    <td colspan=2>
     <select name="project_form_env_source" id="form_project_form_env_source">
    <?php 
-     print_options($env_source_names, $selected_env_source_name);        
+   print "HERE";
+   print_out($project_errors);
+     print_options($env_source_names, $selected_env_source_name);
+     if ((check_var($project_errors) == 1) AND (!isset($project_errors["env_source_name"])))
+     {
+     	$project_errors["env_source_name"] = "";
+     }
+     $error_message = $project_errors["env_source_name"];
+      
    ?>
     </select></td>
+    <td class="message"><?php print $project_errors["env_source_name"];?></td>
   </tr>
 
   <tr class="fields">
