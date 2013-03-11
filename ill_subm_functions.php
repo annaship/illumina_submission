@@ -114,6 +114,18 @@ function valid_project_part2($project_name2)
 }
 
 // -----
+function valid_env_source_name($env_source_name)
+{
+  $isValid = true;
+  $len_env_source_name = strlen($env_source_name);
+  if ($len_env_source_name < 1 or $env_source_name = " ")
+  {
+    $isValid = false;
+  }
+  return $isValid;
+}
+
+// -----
 function populate_post_vars($post_array)
 {
   $result_post = array();
