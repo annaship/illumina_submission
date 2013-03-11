@@ -1,15 +1,27 @@
       <tr class="odd">
         <td>
-        <select name="domain_0" id="form_domain_0">
-        <option selected="selected" value="Bacteria">Bacteria</option>
-        <option value="Archaea">Archaea</option>
-        <option value="Eukarya">Eukarya</option>
-        <option value="Fungi">Fungi</option>
-        </select></td>
+          <select name="domain_0" id="form_domain_0">
+           <?php 
+              $domain_wo_abbr = array("Bacteria" => "B", "Archaea" => "A", "Eukarya" => "E", "Fungi" => "F");
+              foreach ($domain_wo_abbr as $full_name => $abbr)
+              {
+                if ($selected_domain == $abbr)
+                {
+                  echo '<option value="'.$abbr.'" selected="selected">'.$full_name.'</option>';
+                }
+                else 
+                {
+                  echo '<option value="'.$abbr.'">'.$full_name.'</option>';
+                }
+              }
+            ?>
+          </select>                
+        </td>
       
         <td><input class="text_inp size_number" type="text" name="lane_0" id="form_lane_0" value="<?php echo $selected_lane ?>"/></td>
         
         <!-- Show Suite by dna_region plus domain -->
+          <?php print_out($_POST);?>
       
         <td>
 

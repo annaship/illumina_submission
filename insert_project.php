@@ -17,7 +17,9 @@ if ($_SESSION['is_local'])
   	$project_id = $local_mysqli->insert_id;
   	printf ("<br/>New project record has id %d.<br/>", $local_mysqli->insert_id);
   	$project = get_all_projects();  	
-  	$selected_project = $project_name;  	 
+  	$selected_project    = $project_name;  
+//   	$selected_data_owner = ;
+  	$selected_domain     = $_POST['domain'];
 //  TODO: add 	$selected_data_owner to use in subm table;  	 
   }
 }

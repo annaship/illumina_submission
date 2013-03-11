@@ -53,7 +53,6 @@ else
 <!--       </tr> -->
 <!--     </table>         -->
     <br />
-    
       <?php include("step_subm_metadata_form_metadata_table.php"); ?>      
       
       
