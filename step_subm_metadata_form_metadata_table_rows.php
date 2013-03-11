@@ -1,3 +1,4 @@
+
       <tr class="odd">
         <td>
           <select name="domain_0" id="form_domain_0">
@@ -29,9 +30,14 @@
          <?php 
       //   TODO: how to chose if 2 the same name?
 //          $selected_data_owner = "Anderson, Rika";
-          
+         if (!isset($selected_data_owner) or $selected_data_owner == "")
+         {
+           $contact_full_selected = $_POST['project_form_contact'];
+           $vamps_name = array_search($contact_full_selected, $contact_full);
+           $selected_data_owner = $contact[$vamps_name];
+         }
          print_options($contact, $selected_data_owner);
-        
+          
         ?>
         </select></td>
       
