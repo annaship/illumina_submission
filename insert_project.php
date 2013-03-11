@@ -24,5 +24,19 @@ if ($_SESSION['is_local'])
 //  TODO: add 	$selected_data_owner to use in subm table;  	 
   }
 }
+else
+{
+  print_r($_POST);
+  $env_sample_source_id = get_env_sample_source_id($_POST['env_source_name']);
+  $contact_id = get_contact_id($contact_full);
+  
+  $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
+  $title      = $_POST['project_title'];
+  $project_query = "INSERT INTO project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
+  VALUES (\"$project_name\", \"$title\", \"$_POST[project_description]\", REVERSE(\"$project_name\"), \"$_POST[funding]\",
+          $env_sample_source_id, $contact_id)";
+  
+  print_out($project_query);
+}
 
 ?>
