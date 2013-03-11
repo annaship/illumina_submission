@@ -66,13 +66,10 @@ if ($_SESSION['is_local'])
 else
 {
   $result_vamps_user = mysql_query($query, $vampsprod_connection) or die("SELECT Error: $result_vamps_user: ".mysql_error());
-  $i = 0;
   while($row = mysql_fetch_row($result_vamps_user))
   {
-    $i += 1;
-    $contact[$i]      = $row[2].', '.$row[1];
-    $contact_full[$row['user']] = $row['last_name'].', '.$row['first_name'].', '.$row['email'].', '.$row['institution'];
-  //   $contact_full[$i] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6]; 
+    $contact[$row[0]]      = $row[2].', '.$row[1];
+    $contact_full[$row[0]] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6]; 
   }
 }
 asort($contact);
