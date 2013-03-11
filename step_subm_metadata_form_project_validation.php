@@ -38,17 +38,9 @@ if( !valid_project_part2( $project_results["project_name2"] ) ) {
   $project_errors["project_name2"] = "The second part of a project name could have only letters and numbers and no more then 6 of them";
 }
 
-
-valid_env_source_name($selected_env_source_name);
-//   print "---$selected_env_source_name---";
-// if (valid_env_source_name($selected_env_source_name))
-// {
-//   print "URRRA";
-// }
-// else 
-// {
-//   print "UVY!";
-// }
+if( !valid_env_source_name( $selected_env_source_name ) ) {
+  $project_errors["env_source_name"] = "Please choose a valid env_source_name";
+}
 
 // were there any errors?
 if(count($errors) == 0)
