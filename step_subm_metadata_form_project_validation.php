@@ -24,6 +24,10 @@ foreach ($project_form_fields as $field_name => $requirement)
 $project_results        = populate_post_vars($_POST);
 $selected_env_source_name = $_POST['project_form_env_source'];
 $selected_contact_full  = $_POST['project_form_contact'];
+$selected_domain        = $_POST['domain'];
+$selected_dna_region    = $_POST['dna_region'];
+
+
 $project_errors         = check_required_fields($_POST, $required_fields);
 
 if( !valid_project_part1( $project_results["project_name1"] ) ) {
