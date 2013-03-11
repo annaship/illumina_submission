@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>new_project_wrong_env_source</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">new_project_wrong_env_source</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/illumina_submission/step_subm_metadata.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.hide_project</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=project_form_project_name1</td>
+	<td>AAA</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=project_form_project_name2</td>
+	<td>AAAA</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_domain</td>
+	<td>label=Archaea (A)</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>document.project_form.dna_region</td>
+	<td>label=v4v5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_project_form_contact</td>
+	<td>label=Ackermann, Gail, gail.ackerman@colorado.edu, CU-Boulder</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=project_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>New project record has id</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

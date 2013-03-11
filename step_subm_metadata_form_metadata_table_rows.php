@@ -39,7 +39,7 @@
         <td><input class="text_inp size_dataset" type="text" name="dataset_description_0" id="form_dataset_description_0" value="<?php echo $selected_dataset_description ?>"/></td>
       
         <td>
-        <select name="env_source_name_0" id="form_env_source_name_0">
+        <select name="env_source_name" id="form_env_source_name_0">
       
        <?php 
          print_options($env_source_names, $selected_env_source_name);        

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>new_project_all_wrong</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">new_project_all_wrong</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/illumina_submission/step_subm_metadata.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.hide_project</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=project_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please provide all contact info; vamps_name cannot be empty!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>New project record has id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=td.message</td>
+	<td>The first part of a project name could have only letters and no more then 4 of them. The second part of a project name could have only letters and numbers and no more then 6 of them</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='project_form_project-fields']/tbody/tr[5]/td[3]</td>
+	<td>Please select env_source_name</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -94,9 +94,9 @@ foreach ($arr_fields_to_show as $field_name) {
 // todo: Button "add new project - clear the project form"
 ?>
   <tr class="fields">
-    <td class="fields" ><label for="project_form_env_source">env_source_name</label></td>
+    <td class="fields" ><label for="env_source_name">env_source_name</label></td>
     <td colspan=2>
-    <select name="project_form_env_source" id="form_project_form_env_source">
+    <select name="env_source_name" id="form_env_source_name">
    <?php 
    print "HERE";
    print_out($project_errors);
