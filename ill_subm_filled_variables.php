@@ -131,14 +131,16 @@ asort($env_source_names);
 if ($_SESSION['is_local'])
 {
   $db_name = "test";
+  $connection = $local_mysqli;
 }
 else 
 {
   $db_name = "env454";
+  $connection = $newbpc2_connection;
 }
 $query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
 
-$overlaps = run_select_one($query);
+$overlaps = run_select_one($query, $connection);
 
 // if ($_SESSION['is_local'])
 // {

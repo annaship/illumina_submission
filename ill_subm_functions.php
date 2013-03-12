@@ -320,10 +320,10 @@ function get_all_projects()
 	return $project;
 }
 
-function run_select_one($query) {
-  print_out($query);
+function run_select_one($query, $connection) {
   if ($_SESSION['is_local'])
   {
+    $local_mysqli = $connection;
 	require 'ill_subm_conn_local.php';
     $results = $local_mysqli->query($query);
     for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -334,6 +334,7 @@ function run_select_one($query) {
   }
   else
   {
+    $newbpc2_connection = $connection;    
     $results = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $results: ".mysql_error());
     while($row = mysql_fetch_row($results))
     {
