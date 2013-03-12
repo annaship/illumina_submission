@@ -4,7 +4,7 @@ $env_source_name = $_POST['env_source_name'];
 $env_sample_source_id = get_env_sample_source_id($env_source_name, $env_source_names);
 if (!$_SESSION['is_local'])
 {
-  $connection = $newbpc2_mysqli;
+  $connection = $newbpc2_connection;
 }
 else
 {

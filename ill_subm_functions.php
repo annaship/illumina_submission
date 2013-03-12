@@ -174,19 +174,36 @@ function get_contact_id($contact_full, $connection)
   
   $vamps_name = array_search($post_res, $contact_full);
   
-  $query = "SELECT contact_id FROM contact WHERE email = \"" . $email. "\" AND
+  if ($_SESSION['is_local'])
+  {
+    $db_name = "test";
+  }
+  else
+  {
+    $db_name = "env454";
+  }
+    
+  $query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
   institution = \"" . $institution. "\" AND
   vamps_name = \"" . $vamps_name. "\" AND
   first_name like \"" . $first_name. "%\" AND
   last_name = \"" . $last_name. "\"";
-  
-  $res = $connection->query($query);
-  
-  for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-    $res->data_seek($row_no);
-    $row = $res->fetch_assoc();
+
+  if ($_SESSION['is_local'])
+  {
+    $res = $connection->query($query);
+    
+    for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+      $res->data_seek($row_no);
+      $row = $res->fetch_assoc();
+    }
   }
-  if (isset($row[key($row)])) 
+  else
+  {
+    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+    $row = mysql_fetch_assoc($results);    
+  }
+  if (isset($row[key($row)]))
   {
     $contact_id = $row[key($row)];
   }
@@ -194,7 +211,6 @@ function get_contact_id($contact_full, $connection)
   {
     $contact_id = add_new_contact($post_res, $vamps_name);
   }
-  print_out($contact_id);
   return $contact_id;
 }
 
