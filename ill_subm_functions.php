@@ -201,7 +201,7 @@ function get_contact_id($contact_full, $connection)
   else
   {
     $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
-    $row = mysql_fetch_assoc($results);    
+    $row     = mysql_fetch_assoc($results);    
   }
   if (isset($row[key($row)]))
   {
@@ -209,7 +209,7 @@ function get_contact_id($contact_full, $connection)
   }
   else
   {
-    $contact_id = add_new_contact($post_res, $vamps_name);
+    $contact_id = add_new_contact($post_res, $vamps_name, $connection);
   }
   return $contact_id;
 }
@@ -220,25 +220,30 @@ function get_env_sample_source_id($env_source_name, $env_source_names)
   return $env_source_name_id;
 }
 
-function add_new_contact($post_res, $vamps_name) {
+function add_new_contact($post_res, $vamps_name, $connection) {
 //   print_r($post_res);
   $contact_info = array_map('trim', explode(',', $post_res));
   list($last_name, $first_name, $email, $institution) =  $contact_info;
   $contact = $first_name. " " . $last_name;
+  print_out($contact);
   $query = "INSERT INTO contact (contact, email, institution, vamps_name, first_name, last_name)
             VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
               . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
-//   print "<br/>";
-//   print "<br/>";
-//   print $query;
-//   print "<br/>";
+  print_out($query);
   
   if(validate_new_contact($contact_info, $vamps_name) == 0)
   {
-    require 'ill_subm_conn_local.php';
-    $res = $local_mysqli->query($query);
-    $contact_id = $local_mysqli->insert_id;
-    printf ("New Contact record has id %d.\n", $local_mysqli->insert_id);
+    if ($_SESSION['is_local'])
+    {
+      $res = $local_mysqli->query($query);
+      $contact_id = $local_mysqli->insert_id;
+      printf ("New Contact record has id %d.\n", $local_mysqli->insert_id);      
+    }
+    else 
+    {     
+      mysql_query($query);
+      printf("Last inserted record has id %d\n", mysql_insert_id());
+    }
     
   }
   return $contact_id;
