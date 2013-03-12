@@ -151,30 +151,50 @@ $query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
 
 $overlaps = run_select_one_field($query, $connection);
 
-// if ($_SESSION['is_local'])
-// {
-//   $query = "SELECT DISTINCT overlap FROM run_info_ill";
-//   $res_overlap = $local_mysqli->query($query);
-// 	for ($row_no = $res_overlap->num_rows - 1; $row_no >= 0; $row_no--) {
-// 		$res_overlap->data_seek($row_no);
-// 		$row = $res_overlap->fetch_assoc();
-// 		$overlaps[] = $row["overlap"];
-// 	}
-// 	sort($overlaps);
-// }
-// else
-// {
-//   $query = "SELECT DISTINCT overlap FROM env454.run_info_ill";
-//   $result_overlap = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_overlap: ".mysql_error());
-//   $i = 0;
-//   while($row = mysql_fetch_row($result_overlap))
-//   {
-//     $i += 1;
-//     $overlaps[$i] = $row[0];
-//   }
-// }
-
 // ---
 
-
+// $illumina_adaptor_ref 
+$query = "select
+illumina_adaptor, illumina_index, illumina_run_key, dna_region, domain, illumina_adaptor_id, illumina_index_id, illumina_run_key_id, dna_region_id
+FROM " . $db_name . ".illumina_adaptor_ref
+JOIN " . $db_name . ".illumina_adaptor USING(illumina_adaptor_id)
+JOIN " . $db_name . ".illumina_index USING(illumina_index_id)
+JOIN " . $db_name . ".illumina_run_key USING(illumina_run_key_id)
+JOIN " . $db_name . ".dna_region USING(dna_region_id)
+";
+if ($_SESSION['is_local'])
+{
+  $res_adaptor = $local_mysqli->query($query);
+  for ($row_no = $res_adaptor->num_rows - 1; $row_no >= 0; $row_no--) 
+  {
+    $res_adaptor->data_seek($row_no);
+    $row = $res_adaptor->fetch_assoc();
+//     print_out($row);
+    $adaptors[] = array(
+        "illumina_adaptor" => $row["illumina_adaptor"],
+        "illumina_index" => $row["illumina_index"],
+        "illumina_run_key" => $row["illumina_run_key"],
+        "dna_region" => $row["dna_region"],
+        "domain" => $row["domain"],
+        "illumina_adaptor_id" => $row["illumina_adaptor_id"],
+        "illumina_index_id" => $row["illumina_index_id"],
+        "illumina_run_key_id" => $row["illumina_run_key_id"],
+        "dna_region_id" => $row["dna_region_id"]
+    ); 
+    
+//     $row["illumina_index"].", ".$row["illumina_run_key"].", 
+//       ".$row["dna_region"].", ".$row["domain"].", ".$row["illumina_adaptor_id"].", ".$row["illumina_index_id"].", 
+//       ".$row["illumina_run_key_id"].", ".$row["dna_region_id"];    
+//     //     $env_source_names[$row["env_sample_source_id"]] = $row["env_source_name"];
+  }
+  print_out($adaptors[0]);
+}
+else
+{
+  $res_adaptor = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $res_adaptor: ".mysql_error());
+  while($row = mysql_fetch_row($res_adaptor))
+  {
+    $adaptors[$row[0]] = $row[1];
+  }
+}
 ?>
