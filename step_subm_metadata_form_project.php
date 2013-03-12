@@ -98,8 +98,6 @@ foreach ($arr_fields_to_show as $field_name) {
     <td colspan=1>
     <select name="env_source_name" id="form_env_source_name">
    <?php 
-   print "HERE";
-   print_out($project_errors);
      print_options($env_source_names, $selected_env_source_name);
      if ((check_var($project_errors) == 1) AND (!isset($project_errors["env_source_name"])))
      {

@@ -108,7 +108,6 @@ else
 }
 
 $query = "SELECT DISTINCT env_sample_source_id, env_source_name FROM " . $env_sample_source_table;
-print_out($query);
 if ($_SESSION['is_local'])
 {
   $res_env = $local_mysqli->query($query);
