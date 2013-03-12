@@ -1,10 +1,13 @@
 <?php
 if(!isset($_SESSION)) { session_start(); } 
+
 if ($_SESSION['is_local'])
 {
-  include_once 'ill_subm_conn_local.php';
-  
+  include_once 'ill_subm_conn_local.php';  
+  $db_name = "test";
+  $connection = $local_mysqli;
 }
+
 $selected_overlap = $selected_contact_full = $selected_domain = 
 	$selected_lane = $selected_data_owner = $selected_run_key = 
 	$selected_barcode_index = $selected_project = $selected_dataset = 
@@ -41,16 +44,12 @@ if (!isset($errors))
 }
 
 // ---
-if ($_SESSION['is_local'])
+if (!$_SESSION['is_local'])
 {
-  $vamps_auth_table_name = "vamps_auth";
-}
-else
-{
-  $vamps_auth_table_name = "vamps.vamps_auth";
+  $db_name = "vamps";
 }
 $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
-            FROM ". $vamps_auth_table_name . "  WHERE last_name <> \"\"";
+            FROM ". $db_name . ".vamps_auth WHERE last_name <> \"\"";
             
 if ($_SESSION['is_local'])
 {
@@ -76,22 +75,37 @@ asort($contact);
 asort($contact_full);
 
 // ---
-if ($_SESSION['is_local'])
+// if (!$_SESSION['is_local'])
+// {
+//   $db_name = "env454";
+//   $connection = $newbpc2_connection;
+// }
+// $query = "SELECT DISTINCT project FROM " . $db_name . ".project WHERE project <> '' ORDER BY project";
+// print_out($db_name);
+// print_out($query);
+// $project = run_select_one_field($query, $connection);
+// asort($project);
+// if ($_SESSION['is_local'])
+// {
+if (!$_SESSION['is_local'])
 {
-  $project = get_all_projects();
+  $connection = $newbpc2_connection;
+}
+
+  $project = get_all_projects($connection);
   
-}
-else
-{
-  $query = "SELECT DISTINCT project FROM env454.project WHERE project <> '' ORDER BY project";
-  $result_project = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_project: ".mysql_error());
-  $i = 0;
-  while($row = mysql_fetch_row($result_project))
-  {
-    $i += 1;
-    $project[$i] = $row[0];
-  }  
-}
+// }
+// else
+// {
+//   $query = "SELECT DISTINCT project FROM env454.project WHERE project <> '' ORDER BY project";
+//   $result_project = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_project: ".mysql_error());
+//   $i = 0;
+//   while($row = mysql_fetch_row($result_project))
+//   {
+//     $i += 1;
+//     $project[$i] = $row[0];
+//   }  
+// }
 // ---
 
 $arr_fields_add = array("tubelabel", "barcode", "adaptor", "amp_operator");
@@ -128,19 +142,14 @@ else
 asort($env_source_names);
 
 // ---
-if ($_SESSION['is_local'])
-{
-  $db_name = "test";
-  $connection = $local_mysqli;
-}
-else 
+if (!$_SESSION['is_local'])
 {
   $db_name = "env454";
   $connection = $newbpc2_connection;
 }
 $query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
 
-$overlaps = run_select_one($query, $connection);
+$overlaps = run_select_one_field($query, $connection);
 
 // if ($_SESSION['is_local'])
 // {

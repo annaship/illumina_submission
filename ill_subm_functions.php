@@ -303,39 +303,21 @@ function print_out($array_name)
 	print " --<br/>";
 }
 
-function get_all_projects()
-{
-	require 'ill_subm_conn_local.php';
-	$query = "SELECT DISTINCT project FROM project WHERE project <> '' ORDER BY project";
-	$res = $local_mysqli->query($query);
+function run_select_one_field($query, $connection) {
 
-	$i = 0;
-	for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-		$i += 1;
-		$res->data_seek($row_no);
-		$row = $res->fetch_assoc();
-		$project[] = $row["project"];
-	}
-	sort($project);	
-	return $project;
-}
-
-function run_select_one($query, $connection) {
   if ($_SESSION['is_local'])
   {
     $local_mysqli = $connection;
-	require 'ill_subm_conn_local.php';
     $results = $local_mysqli->query($query);
     for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) {
       $results->data_seek($row_no);
       $row = $results->fetch_assoc();
-      $result_arr[] = $row['overlap'];
+      $result_arr[] = $row[key($row)];
     }
   }
   else
   {
-    $newbpc2_connection = $connection;    
-    $results = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $results: ".mysql_error());
+    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
     while($row = mysql_fetch_row($results))
     {
       $result_arr[] = $row[0];
@@ -344,4 +326,38 @@ function run_select_one($query, $connection) {
   asort($result_arr);
   return $result_arr;
 }
+
+function get_all_projects($connection)
+{
+  if (!$_SESSION['is_local'])
+  {
+    $db_name = "env454";
+  }
+  else
+  {
+    $db_name = "test";
+  }
+
+  $query = "SELECT DISTINCT project FROM " . $db_name . ".project WHERE project <> ''";
+  $project = run_select_one_field($query, $connection);
+  return $project;
+
+}
+
+// 	require 'ill_subm_conn_local.php';
+// 	$query = "SELECT DISTINCT project FROM project WHERE project <> '' ORDER BY project";
+// 	$res = $local_mysqli->query($query);
+
+// 	$i = 0;
+// 	for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+// 		$i += 1;
+// 		$res->data_seek($row_no);
+// 		$row = $res->fetch_assoc();
+// 		$project[] = $row["project"];
+// 	}
+// 	sort($project);
+// 	return $project;
+// }
+
+
 ?>

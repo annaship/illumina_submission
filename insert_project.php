@@ -19,7 +19,16 @@ if ($_SESSION['is_local'])
   	$res = $local_mysqli->query($project_query);
   	$project_id = $local_mysqli->insert_id;
   	printf ("<br/>New project record has id %d.<br/>", $local_mysqli->insert_id);
-  	$project = get_all_projects();  	
+  	if (!$_SESSION['is_local'])
+  	{
+  	  $connection = $newbpc2_connection;
+  	}
+  	else
+  	{
+  	  $connection = $local_mysqli;
+  	}
+  	
+  	$project = get_all_projects($connection);
   	$selected_project    = $project_name;  
 //   	print_out($contact_full);
 //   	$selected_data_owner = ;
