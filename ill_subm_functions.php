@@ -166,36 +166,35 @@ function success_message($data_name)
   }
 }
 
-function get_contact_id($contact_full)
+function get_contact_id($contact_full, $connection)
 {
   $post_res = $_POST['project_form_contact'];
-//   list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
+  //   list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
   
   $vamps_name = array_search($post_res, $contact_full);
-
+  
   $query = "SELECT contact_id FROM contact WHERE email = \"" . $email. "\" AND
   institution = \"" . $institution. "\" AND
   vamps_name = \"" . $vamps_name. "\" AND
   first_name like \"" . $first_name. "%\" AND
   last_name = \"" . $last_name. "\"";
-
-  require 'ill_subm_conn_local.php';
   
-  $res = $local_mysqli->query($query);
+  $res = $connection->query($query);
   
   for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
     $res->data_seek($row_no);
     $row = $res->fetch_assoc();
   }
-  if (isset($row['contact_id'])) 
+  if (isset($row[key($row)])) 
   {
-    $contact_id = $row['contact_id'];
+    $contact_id = $row[key($row)];
   }
   else
   {
     $contact_id = add_new_contact($post_res, $vamps_name);
   }
+  print_out($contact_id);
   return $contact_id;
 }
 

@@ -2,10 +2,18 @@
 //   print_r($_POST);
 $env_source_name = $_POST['env_source_name'];
 $env_sample_source_id = get_env_sample_source_id($env_source_name, $env_source_names);
+if (!$_SESSION['is_local'])
+{
+  $connection = $newbpc2_connection;
+}
+else
+{
+  $connection = $local_mysqli;
+}
 
 if ($_SESSION['is_local'])
 {
-  $contact_id = get_contact_id($contact_full);
+  $contact_id = get_contact_id($contact_full, $connection);
   
   $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
   $title      = $_POST['project_title'];
@@ -19,14 +27,7 @@ if ($_SESSION['is_local'])
   	$res = $local_mysqli->query($project_query);
   	$project_id = $local_mysqli->insert_id;
   	printf ("<br/>New project record has id %d.<br/>", $local_mysqli->insert_id);
-  	if (!$_SESSION['is_local'])
-  	{
-  	  $connection = $newbpc2_connection;
-  	}
-  	else
-  	{
-  	  $connection = $local_mysqli;
-  	}
+
   	
   	$project = get_all_projects($connection);
   	$selected_project    = $project_name;  
@@ -38,7 +39,7 @@ if ($_SESSION['is_local'])
 }
 else
 {
-  $contact_id = get_contact_id($contact_full);
+  $contact_id = get_contact_id($contact_full, $connection);
   
   $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
   $title      = $_POST['project_title'];
