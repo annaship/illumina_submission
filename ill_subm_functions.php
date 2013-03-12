@@ -242,7 +242,8 @@ function add_new_contact($post_res, $vamps_name, $connection) {
     else 
     {     
       mysql_query($query);
-      printf("Last inserted record has id %d\n", mysql_insert_id());
+      $contact_id = mysql_insert_id();
+      printf("Last inserted record has id %d\n", $contact_id);
     }
     
   }
