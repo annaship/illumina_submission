@@ -320,4 +320,27 @@ function get_all_projects()
 	return $project;
 }
 
+function run_select_one($query) {
+  print_out($query);
+  if ($_SESSION['is_local'])
+  {
+	require 'ill_subm_conn_local.php';
+    $results = $local_mysqli->query($query);
+    for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) {
+      $results->data_seek($row_no);
+      $row = $results->fetch_assoc();
+      $result_arr[] = $row['overlap'];
+    }
+  }
+  else
+  {
+    $results = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $results: ".mysql_error());
+    while($row = mysql_fetch_row($results))
+    {
+      $result_arr[] = $row[0];
+    }
+  }
+  asort($result_arr);
+  return $result_arr;
+}
 ?>

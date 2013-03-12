@@ -130,25 +130,40 @@ asort($env_source_names);
 // ---
 if ($_SESSION['is_local'])
 {
-  $query = "SELECT DISTINCT overlap FROM run_info_ill";
-  $res_overlap = $local_mysqli->query($query);
-	for ($row_no = $res_overlap->num_rows - 1; $row_no >= 0; $row_no--) {
-		$res_overlap->data_seek($row_no);
-		$row = $res_overlap->fetch_assoc();
-		$overlaps[] = $row["overlap"];
-	}
-	sort($overlaps);
+  $db_name = "test";
 }
-else
+else 
 {
-  $query = "SELECT DISTINCT overlap FROM env454.run_info_ill";
-  $result_overlap = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_overlap: ".mysql_error());
-  $i = 0;
-  while($row = mysql_fetch_row($result_overlap))
-  {
-    $i += 1;
-    $overlaps[$i] = $row[0];
-  }
+  $db_name = "env454";
 }
+$query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
+
+$overlaps = run_select_one($query);
+
+// if ($_SESSION['is_local'])
+// {
+//   $query = "SELECT DISTINCT overlap FROM run_info_ill";
+//   $res_overlap = $local_mysqli->query($query);
+// 	for ($row_no = $res_overlap->num_rows - 1; $row_no >= 0; $row_no--) {
+// 		$res_overlap->data_seek($row_no);
+// 		$row = $res_overlap->fetch_assoc();
+// 		$overlaps[] = $row["overlap"];
+// 	}
+// 	sort($overlaps);
+// }
+// else
+// {
+//   $query = "SELECT DISTINCT overlap FROM env454.run_info_ill";
+//   $result_overlap = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_overlap: ".mysql_error());
+//   $i = 0;
+//   while($row = mysql_fetch_row($result_overlap))
+//   {
+//     $i += 1;
+//     $overlaps[$i] = $row[0];
+//   }
+// }
+
+// ---
+
 
 ?>
