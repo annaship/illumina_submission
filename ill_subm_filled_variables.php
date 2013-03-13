@@ -16,16 +16,19 @@ $selected_overlap = $selected_contact_full = $selected_domain =
 	$selected_amp_operator = $selected_project_title = 
 	$selected_project_description = $selected_funding = "";
 
-$arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "project", "dataset", "dataset_description", "env_source_name",
-    "tubelabel", "barcode", "adaptor", "amp_operator");
+$arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
+    "tubelabel", "barcode", "amp_operator");
 
 $project_form_fields = array(
     "project_name1" => "required", "project_name2" => "required", "domain" => "select",
     "dna_region" => "select", "project_title" => "optional", "project_description" => "optional",
     "funding" => "optional", "env_source_name" => "required", "project_form_contact" => "select"
 );
-// ---
 
+$run_info_form_fields = array("seq_operator" => "required", "insert_size" => "required",  "read_length" => "required");
+// ---
+$dna_regions = array("v6", "v4v5");
+// ---
 
 $arr_fields_to_show = array("project_title", "project_description", "funding");
 $arr_project_fields = array("project_name1", "project_name2", "env_source_name");
@@ -108,7 +111,7 @@ if (!$_SESSION['is_local'])
 // }
 // ---
 
-$arr_fields_add = array("tubelabel", "barcode", "adaptor", "amp_operator");
+$arr_fields_add = array("tubelabel", "barcode", "amp_operator");
 
 $arr_fields_run = array("seq_operator", "insert_size", "read_length");
 // ---
@@ -170,24 +173,27 @@ if ($_SESSION['is_local'])
     $res_adaptor->data_seek($row_no);
     $row = $res_adaptor->fetch_assoc();
 //     print_out($row);
-    $adaptors[] = array(
-        "illumina_adaptor" => $row["illumina_adaptor"],
-        "illumina_index" => $row["illumina_index"],
-        "illumina_run_key" => $row["illumina_run_key"],
-        "dna_region" => $row["dna_region"],
-        "domain" => $row["domain"],
+    $adaptors_full[] = array(
+        "illumina_adaptor"    => $row["illumina_adaptor"],
+        "illumina_index"      => $row["illumina_index"],
+        "illumina_run_key"    => $row["illumina_run_key"],
+        "dna_region"          => $row["dna_region"],
+        "domain"              => $row["domain"],
         "illumina_adaptor_id" => $row["illumina_adaptor_id"],
-        "illumina_index_id" => $row["illumina_index_id"],
+        "illumina_index_id"   => $row["illumina_index_id"],
         "illumina_run_key_id" => $row["illumina_run_key_id"],
-        "dna_region_id" => $row["dna_region_id"]
+        "dna_region_id"       => $row["dna_region_id"]
     ); 
+    $adaptors_all[] = $row["illumina_adaptor"];
     
 //     $row["illumina_index"].", ".$row["illumina_run_key"].", 
 //       ".$row["dna_region"].", ".$row["domain"].", ".$row["illumina_adaptor_id"].", ".$row["illumina_index_id"].", 
 //       ".$row["illumina_run_key_id"].", ".$row["dna_region_id"];    
 //     //     $env_source_names[$row["env_sample_source_id"]] = $row["env_source_name"];
   }
-  print_out($adaptors[0]);
+  $adaptors = array_unique($adaptors_all);
+  asort($adaptors);
+  print_out($adaptors_full[0]);
 }
 else
 {

@@ -13,7 +13,12 @@ include_once "ill_subm_filled_variables.php";
     <h1>Illumina files processing</h1>
     <?php include_once("ill_subm_menu.php"); ?>
 
-    <?php include("step_subm_metadata_form_run_info.php"); ?>
+    <?php 
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {   
+      include_once 'step_subm_metadata_form_run_info_validation.php';
+    }
+    print_out($run_info_results);
+    include("step_subm_metadata_form_run_info.php"); ?>
     
     <?php
 //     $show_class = "hide_block";

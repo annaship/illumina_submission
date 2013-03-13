@@ -1,4 +1,9 @@
+<?php 
+print_out($selected_dna_region);
+print_out(array_values($adaptors));
+print_out($selected_adaptor);
 
+?>
       <tr class="odd">
         <td>
           <select name="domain_0" id="form_domain_0">
@@ -43,6 +48,13 @@
           
         <td><div class="size_barcode_index" <?php echo $selected_barcode_index ?>/></div></td>
       
+        <td>
+        <select name="adaptor_0" id="form_adaptor_0">
+      
+       <?php
+  		 print_options(array_values($adaptors), $selected_adaptor);        
+        ?>  
+        </select></td>
         <td>
         <select name="project_0" id="form_project_0">
       

@@ -1,14 +1,14 @@
-<form method="post" name="run_infoForm" id="run_infoForm" action="/click-examples/table/edit-form-table.htm">
-<input type="hidden" name="form_name" id="run_infoForm_form_name" value="run_infoForm"/>
-<table class="form" id="run_infoForm-form"><tbody>
+<form method="post" name="run_info_form" id="run_info_form" action="step_subm_metadata.php">
+<input type="hidden" name="form_name" id="run_info_form_form_name" value="run_info_form"/>
+<table class="form" id="run_info_form-form"><tbody>
 <tr><td>
-<table class="fields" id="run_infoForm-fields"><tbody>
+<table class="fields" id="run_info_form-fields"><tbody>
 
 <tr class="fields">
 <td class="fields" colspan="2">
-<fieldset id="run_infoForm_run_info">
-<legend id="run_infoForm_run_info-legend">Run info</legend>
-<table class="fields" id="run_infoForm_run_info-fields"><tbody>
+<fieldset id="run_info_form_run_info">
+<legend id="run_info_form_run_info-legend">Run info</legend>
+<table class="fields" id="run_info_form_run_info-fields"><tbody>
 
   <tr class="fields">
   <?php $today = date("Ymd");?>
@@ -17,25 +17,36 @@
   </tr>
   
   <tr class="fields">
-  <td class="fields" align="left"><label for="run_infoForm_Path to raw data">Path to raw data</label></td>
-  <td align="left"><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp size_long_input" type="text" name="Path to raw data" id="run_infoForm_Path to raw data" value=""/></td>
+  <td class="fields" align="left"><label for="run_infoForm_path to raw data">path to raw data</label></td>
+  <td align="left"><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp size_long_input" type="text" 
+      name="path to raw data" id="run_infoForm_path to raw data" value="<?php echo $selected_path_to_raw_data;?>"/></td>
   </tr>
 
   <tr class="fields">
   <td class="fields" align="left"><label for="run_infoForm_dna_region">dna_region</label></td>
   <td>
-  <select name="dna_region" id="form_dna_region">
-  <option selected="selected" value="v6">v6</option>
-  <option value="v4v5">v4v5</option>
-  </select></td>
+  <select name="dna_region_0" id="form_dna_region_0">
+   <?php 
+       print_options($dna_regions, $selected_dna_region_0);    
+    ?>
+    </select>
+    </td>
   </tr>
+  
   
   <tr class="fields">
   <td class="fields" align="left"><label for="run_infoForm_overlap">overlap</label></td>
   <td>
-  <select name="overlap_0" id="form_overlap_0">
+  <select name="overlap" id="form_overlap">
    <?php 
-    print_options($overlaps, $selected_overlap);    
+       if ($selected_dna_region == "v6")
+       {
+         $selected_overlap = "complete";
+       }
+       elseif ($selected_dna_region == "v4v5") {
+         $selected_overlap = "partial";
+       }
+       print_options($overlaps, $selected_overlap);    
     ?>
       <option value="None"></option>
     </select>
@@ -43,29 +54,61 @@
   </tr>
 
   <?php 
-    foreach ($arr_fields_run as &$value) {
-      echo '
-        <tr class="fields">
-          <td class="fields" align="left"><label for="run_infoForm_'.$value.'">'.$value.'</label></td>
-          <td align="left"><input class="text_inp size_abbr" type="text" name="'.$value.'" id="run_infoForm_'.$value.'" value=""/></td>
-        </tr>      
-      ';  
+  print_out($run_info_results);
+  foreach ($arr_fields_run as $field_name) {
+    if ((check_var($run_info_errors) == 1) AND (!isset($run_info_errors[$field_name])))
+    {
+      $run_info_errors[$field_name] = "";
     }
-    unset($value); // break the reference with the last element
+    $error_message = $run_info_errors[$field_name];
+    echo '
+    <tr class="fields">
+    <td class="fields"><label for="run_info_form_'.$field_name.'">'.$field_name.'</label></td>
+    <td class="fields"><input class="text_inp size_long_input" type="text" name="'.$field_name.'" id="run_info_form_'.$field_name.'" value="'.$run_info_results[$field_name].'"/></td>
+    <td class="message">'.$error_message.'</td>
+    </tr>
+    ';
+  }
+//     foreach ($arr_fields_run as &$value) {
+//       echo '
+//         <tr class="fields">
+//           <td class="fields" align="left"><label for="run_infoForm_'.$value.'">'.$value.'</label></td>
+//           <td align="left"><input class="text_inp size_abbr" type="text" name="'.$value.'" id="run_infoForm_'.$value.'" value=""/></td>
+//         </tr>      
+//       ';  
+//     }
+//     unset($value); // break the reference with the last element
   ?>
   
+
+
+
+
+  <?php 
+// 	if (check_var($run_info_errors) == 0) {
+// 		$run_info_errors = init_arr($run_info_errors, $arr_to_initialize);
+// 	}
+// 	foreach ($arr_run_info_fields as $field_name) {
+// 		if ((check_var($run_info_errors) == 1) AND (!isset($run_info_errors[$field_name])))
+// 		{
+// 			$run_info_errors[$field_name] = "";
+// 		}
+// 		$error_message = $run_info_errors[$field_name];
+// 	}	
+  ?>
+<!--    <td class="message">'.$error_message.'</td> -->
+
+
 </tbody></table>
 </fieldset>
 </td>
 </tr>
 </tbody></table>
 </td></tr>
-<tr><td align="left">
-<table class="buttons" id="run_infoForm-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="run_infoForm_add" value="Submit Run info"/></td></tr>
+<tr><td >
+<table class="buttons" id="run_info_form-buttons"><tbody>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="run_info_form_add" value="Submit Run info"/><input type="hidden" name="run_info_process" value="1"></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>
 </form>
-
-
