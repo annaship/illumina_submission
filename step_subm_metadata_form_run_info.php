@@ -18,7 +18,7 @@
   
   <tr class="fields">
   <td class="fields" align="left"><label for="run_infoForm_path to raw data">path to raw data</label></td>
-  <td align="left"><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp size_long_input" type="text" 
+  <td align="left"  colspan = 5><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp size_long_input" type="text" 
       name="path to raw data" id="run_infoForm_path to raw data" value="<?php echo $selected_path_to_raw_data;?>"/></td>
   </tr>
 
@@ -51,6 +51,7 @@
       <option value="None"></option>
     </select>
     </td>
+    <td class="message"><?php echo $run_info_errors["overlap"];?></td>
   </tr>
 
   <?php 
@@ -64,20 +65,12 @@
     echo '
     <tr class="fields">
     <td class="fields"><label for="run_info_form_'.$field_name.'">'.$field_name.'</label></td>
-    <td class="fields"><input class="text_inp size_long_input" type="text" name="'.$field_name.'" id="run_info_form_'.$field_name.'" value="'.$run_info_results[$field_name].'"/></td>
+    <td class="fields"><input class="text_inp size_abbr" type="text" name="'.$field_name.'" id="run_info_form_'.$field_name.'" value="'.$run_info_results[$field_name].'"/></td>
     <td class="message">'.$error_message.'</td>
     </tr>
     ';
   }
-//     foreach ($arr_fields_run as &$value) {
-//       echo '
-//         <tr class="fields">
-//           <td class="fields" align="left"><label for="run_infoForm_'.$value.'">'.$value.'</label></td>
-//           <td align="left"><input class="text_inp size_abbr" type="text" name="'.$value.'" id="run_infoForm_'.$value.'" value=""/></td>
-//         </tr>      
-//       ';  
-//     }
-//     unset($value); // break the reference with the last element
+
   ?>
   
 
