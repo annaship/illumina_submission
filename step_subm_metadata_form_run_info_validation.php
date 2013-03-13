@@ -46,17 +46,19 @@ if ($run_info_results["overlap"] == "")
 {
   $run_info_errors["overlap"] = "Are you sure there is no overlap?";
 }
-// if( !valid_run_info_part1( $run_info_results["run_info_name1"] ) ) {
-//   $run_info_errors["run_info_name1"] = "The first part of a run_info name could have only letters and no more then 4 of them.";
-// }
+if( !valid_seq_operator( $run_info_results["seq_operator"] ) ) {
+  $run_info_errors["seq_operator"] = "The seq_operator could have only letters and numbers and no more then 4 of them.";
+}
 
-// if( !valid_run_info_part2( $run_info_results["run_info_name2"] ) ) {
-//   $run_info_errors["run_info_name2"] = "The second part of a run_info name could have only letters and numbers and no more then 6 of them";
-// }
+$field_check = array("insert_size", "read_length");
 
-// if( !valid_env_source_name( $selected_env_source_name ) ) {
-//   $run_info_errors["env_source_name"] = "Please choose a valid env_source_name";
-// }
+foreach ($field_check as $field_name)
+{
+  if( !valid_is_number( $run_info_results[$field_name] ) ) 
+  {
+    $run_info_errors[$field_name] = "The " . $field_name . " should be numbers.";
+  }
+}
 
 // // were there any errors?
 // if(count($errors) == 0)

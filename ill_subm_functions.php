@@ -364,21 +364,33 @@ function get_all_projects($connection)
   return $project;
 
 }
+// seq_operator, read_length
+function valid_seq_operator($seq_operator)
+{
+  $isValid = true;
+  $len_seq_operator = strlen($seq_operator);
+  if ($len_seq_operator < 1 || $len_seq_operator > 4)
+  {
+    $isValid = false;
+  }
+  if (! ctype_alnum ($seq_operator))
+  {
+    $isValid = false;
+  }
+  return $isValid;
+}
 
-// 	require 'ill_subm_conn_local.php';
-// 	$query = "SELECT DISTINCT project FROM project WHERE project <> '' ORDER BY project";
-// 	$res = $local_mysqli->query($query);
 
-// 	$i = 0;
-// 	for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-// 		$i += 1;
-// 		$res->data_seek($row_no);
-// 		$row = $res->fetch_assoc();
-// 		$project[] = $row["project"];
-// 	}
-// 	sort($project);
-// 	return $project;
-// }
-
+// insert_size, read_length
+function valid_is_number($field_name)
+{
+  print_out($field_name);
+  $isValid = true;
+  if (! ctype_digit ($field_name))
+  {
+    $isValid = false;
+  }
+  return $isValid;
+}
 
 ?>
