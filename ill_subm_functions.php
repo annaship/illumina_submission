@@ -225,11 +225,11 @@ function add_new_contact($post_res, $vamps_name, $connection) {
   $contact_info = array_map('trim', explode(',', $post_res));
   list($last_name, $first_name, $email, $institution) =  $contact_info;
   $contact = $first_name. " " . $last_name;
-  print_out($contact);
+//   print_out($contact);
   $query = "INSERT INTO contact (contact, email, institution, vamps_name, first_name, last_name)
             VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
               . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
-  print_out($query);
+//   print_out($query);
   
   if(validate_new_contact($contact_info, $vamps_name) == 0)
   {
@@ -384,7 +384,7 @@ function valid_seq_operator($seq_operator)
 // insert_size, read_length
 function valid_is_number($field_name)
 {
-  print_out($field_name);
+//   print_out($field_name);
   $isValid = true;
   if (! ctype_digit ($field_name))
   {

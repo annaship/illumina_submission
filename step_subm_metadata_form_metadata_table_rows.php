@@ -1,7 +1,7 @@
 <?php 
-print_out($selected_dna_region);
-print_out(array_values($adaptors));
-print_out($selected_adaptor);
+// print_out($selected_dna_region);
+// print_out(array_values($adaptors));
+// print_out($selected_adaptor);
 
 ?>
       <tr class="odd">

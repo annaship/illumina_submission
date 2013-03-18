@@ -38,7 +38,7 @@ else
 {
   $selected_path_to_raw_data  = $_POST["path_to_raw_data"];
 }
-print_out($selected_path_to_raw_data);
+// print_out($selected_path_to_raw_data);
 
 $run_info_errors         = check_required_fields($_POST, $required_fields);
 

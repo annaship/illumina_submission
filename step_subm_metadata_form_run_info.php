@@ -55,7 +55,7 @@
   </tr>
 
   <?php 
-  print_out($run_info_results);
+//   print_out($run_info_results);
   foreach ($arr_fields_run as $field_name) {
     if ((check_var($run_info_errors) == 1) AND (!isset($run_info_errors[$field_name])))
     {
