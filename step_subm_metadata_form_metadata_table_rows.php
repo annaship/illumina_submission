@@ -52,6 +52,7 @@
         <select name="adaptor_0" id="form_adaptor_0">
       
        <?php
+         print_out($adaptors_full);
   		 print_options(array_values($adaptors), $selected_adaptor);        
         ?>  
         </select></td>
