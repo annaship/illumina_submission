@@ -193,14 +193,35 @@ if ($_SESSION['is_local'])
   }
   $adaptors = array_unique($adaptors_all);
   asort($adaptors);
-  print_out($adaptors_full[0]);
+//   print_out($adaptors_full[0]);
 }
 else
 {
   $res_adaptor = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $res_adaptor: ".mysql_error());
   while($row = mysql_fetch_row($res_adaptor))
   {
-    $adaptors[$row[0]] = $row[1];
-  }
+//     $adaptors[$row[0]] = $row[1];
+//   }
+    $adaptors_full[] = array(
+        "illumina_adaptor"    => $row["illumina_adaptor"],
+        "illumina_index"      => $row["illumina_index"],
+        "illumina_run_key"    => $row["illumina_run_key"],
+        "dna_region"          => $row["dna_region"],
+        "domain"              => $row["domain"],
+        "illumina_adaptor_id" => $row["illumina_adaptor_id"],
+        "illumina_index_id"   => $row["illumina_index_id"],
+        "illumina_run_key_id" => $row["illumina_run_key_id"],
+        "dna_region_id"       => $row["dna_region_id"]
+    );
+    $adaptors_all[] = $row["illumina_adaptor"];
+    
+    //     $row["illumina_index"].", ".$row["illumina_run_key"].",
+    //       ".$row["dna_region"].", ".$row["domain"].", ".$row["illumina_adaptor_id"].", ".$row["illumina_index_id"].",
+    //       ".$row["illumina_run_key_id"].", ".$row["dna_region_id"];
+    //     //     $env_source_names[$row["env_sample_source_id"]] = $row["env_source_name"];
+    }
+    $adaptors = array_unique($adaptors_all);
+    asort($adaptors);
+    print_out($adaptors_full[0]);
 }
 ?>
