@@ -395,6 +395,18 @@ function valid_is_number($field_name)
 
 function get_run_key_by_adaptor($selected_adaptor, $adaptors_full)
 {
-  print_out($selected_adaptor);
+// TODO: send $selected_adaptor, $selected_dna_region, $selected_domain from metadata validation
+// TODO: return selected run_key, barcode_index 
+  $selected_adaptor    = "A05";
+  $selected_dna_region = "v6";
+  $selected_domain     = "archaea";
+  foreach ($adaptors_full as $value_arr)
+  {
+    if (in_array($selected_adaptor, $value_arr) AND in_array($selected_dna_region, $value_arr) AND in_array($selected_domain, $value_arr)) {
+      print_out($value_arr);
+      print_out($value_arr[illumina_run_key]);
+      print_out($value_arr[illumina_index]);      
+    }
+  }
 }
 ?>

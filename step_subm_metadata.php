@@ -61,8 +61,8 @@ include_once "ill_subm_filled_variables.php";
     <br />
         <?php 
           if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submission_metadata_process"] == 1) {   
-//             include_once 'step_subm_metadata_form_submission_metadata_validation.php';
-print_out("99999");
+            include_once 'step_subm_metadata_form_submission_metadata_validation.php';
+//             print_out("99999");
           }
       //     print_out($submission_metadata_results);
           include("step_subm_metadata_form_metadata_table.php"); ?>
