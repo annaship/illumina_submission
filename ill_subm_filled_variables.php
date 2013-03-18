@@ -157,6 +157,7 @@ $overlaps = run_select_one_field($query, $connection);
 // ---
 
 // $illumina_adaptor_ref 
+$adaptors_full = $adaptors = array();
 $query = "select
 illumina_adaptor, illumina_index, illumina_run_key, dna_region, domain, illumina_adaptor_id, illumina_index_id, illumina_run_key_id, dna_region_id
 FROM " . $db_name . ".illumina_adaptor_ref
@@ -172,7 +173,6 @@ if ($_SESSION['is_local'])
   {
     $res_adaptor->data_seek($row_no);
     $row = $res_adaptor->fetch_assoc();
-//     print_out($row);
     $adaptors_full[] = array(
         "illumina_adaptor"    => $row["illumina_adaptor"],
         "illumina_index"      => $row["illumina_index"],
@@ -185,11 +185,6 @@ if ($_SESSION['is_local'])
         "dna_region_id"       => $row["dna_region_id"]
     ); 
     $adaptors_all[] = $row["illumina_adaptor"];
-    
-//     $row["illumina_index"].", ".$row["illumina_run_key"].", 
-//       ".$row["dna_region"].", ".$row["domain"].", ".$row["illumina_adaptor_id"].", ".$row["illumina_index_id"].", 
-//       ".$row["illumina_run_key_id"].", ".$row["dna_region_id"];    
-//     //     $env_source_names[$row["env_sample_source_id"]] = $row["env_source_name"];
   }
   $adaptors = array_unique($adaptors_all);
   asort($adaptors);
@@ -200,28 +195,21 @@ else
   $res_adaptor = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $res_adaptor: ".mysql_error());
   while($row = mysql_fetch_row($res_adaptor))
   {
-//     $adaptors[$row[0]] = $row[1];
-//   }
     $adaptors_full[] = array(
-        "illumina_adaptor"    => $row["illumina_adaptor"],
-        "illumina_index"      => $row["illumina_index"],
-        "illumina_run_key"    => $row["illumina_run_key"],
-        "dna_region"          => $row["dna_region"],
-        "domain"              => $row["domain"],
-        "illumina_adaptor_id" => $row["illumina_adaptor_id"],
-        "illumina_index_id"   => $row["illumina_index_id"],
-        "illumina_run_key_id" => $row["illumina_run_key_id"],
-        "dna_region_id"       => $row["dna_region_id"]
+        "illumina_adaptor"    => $row[0],
+        "illumina_index"      => $row[1],
+        "illumina_run_key"    => $row[2],
+        "dna_region"          => $row[3],
+        "domain"              => $row[4],
+        "illumina_adaptor_id" => $row[5],
+        "illumina_index_id"   => $row[6],
+        "illumina_run_key_id" => $row[7],
+        "dna_region_id"       => $row[8]
     );
-    $adaptors_all[] = $row["illumina_adaptor"];
-    
-    //     $row["illumina_index"].", ".$row["illumina_run_key"].",
-    //       ".$row["dna_region"].", ".$row["domain"].", ".$row["illumina_adaptor_id"].", ".$row["illumina_index_id"].",
-    //       ".$row["illumina_run_key_id"].", ".$row["dna_region_id"];
-    //     //     $env_source_names[$row["env_sample_source_id"]] = $row["env_source_name"];
-    }
-    $adaptors = array_unique($adaptors_all);
-    asort($adaptors);
-    print_out($adaptors_full[0]);
+    $adaptors_all[] = $row[0];
+  }
+  $adaptors = array_unique($adaptors_all);
+  asort($adaptors);
+  print_out($adaptors_full[0]);
 }
 ?>

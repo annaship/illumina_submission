@@ -1,9 +1,3 @@
-<?php 
-// print_out($selected_dna_region);
-// print_out(array_values($adaptors));
-// print_out($selected_adaptor);
-
-?>
       <tr class="odd">
         <td>
           <select name="domain_0" id="form_domain_0">
@@ -52,8 +46,8 @@
         <select name="adaptor_0" id="form_adaptor_0">
       
        <?php
-         print_out($adaptors_full);
-  		 print_options(array_values($adaptors), $selected_adaptor);        
+  		 print_options(array_values($adaptors), $selected_adaptor);    
+  		 get_run_key_by_adaptor($selected_adaptor);
         ?>  
         </select></td>
         <td>

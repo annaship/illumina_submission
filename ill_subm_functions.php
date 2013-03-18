@@ -393,4 +393,9 @@ function valid_is_number($field_name)
   return $isValid;
 }
 
+function get_run_key_by_adaptor($adaptor)
+{
+  print_out($adaptor);
+  print_out($adaptors);
+}
 ?>
