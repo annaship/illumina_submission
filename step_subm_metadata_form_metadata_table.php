@@ -1,4 +1,5 @@
-<form action='step_subm_metadata_form_metadata_table_submit.php' method='post'>
+<!-- <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'> -->
+<form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
 <div id="submission_metadata">
   <fieldset id="submission_metadata">
     <legend id="submission_metadata-legend">Submition metadata</legend>
@@ -31,5 +32,7 @@
 <!--   <a href="#" title="" class="add-author">Add Author</a> -->
   </fieldset>
   <input type="submit" name="update" id="form_update" value="Update submition metadata"/> <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
+  <input type="hidden" name="submission_metadata_process" value="1"></td></tr>
+  
 </div>
 </form>

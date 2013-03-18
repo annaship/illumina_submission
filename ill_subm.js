@@ -25,6 +25,7 @@ jQuery(function(){
     var counter = 0;
     jQuery('#add_new_rows').click(function(event){
         event.preventDefault();
+//        alert($('#form_adaptor_0').val());
         var copy_row_times = $('#copy_row_times').val();
         for (var i = 0; i < copy_row_times; ++i){		
 		    counter++;

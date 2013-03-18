@@ -12,9 +12,9 @@ function validate_metadata(){
   { 
     validate_metadata();
     include("step_subm_metadata_update.php");
-    $my_array = $_POST;
+//     $my_array = $_POST;
          
-    print_r($_POST);
+//     print_r($_POST);
   }
 //   else if (isset($_POST['copy_row'])) 
 //   { 

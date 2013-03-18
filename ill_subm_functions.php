@@ -393,9 +393,8 @@ function valid_is_number($field_name)
   return $isValid;
 }
 
-function get_run_key_by_adaptor($adaptor)
+function get_run_key_by_adaptor($selected_adaptor, $adaptors_full)
 {
-  print_out($adaptor);
-  print_out($adaptors);
+  print_out($selected_adaptor);
 }
 ?>
