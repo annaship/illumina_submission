@@ -403,9 +403,9 @@ function get_run_key_by_adaptor($selected_adaptor, $adaptors_full)
   foreach ($adaptors_full as $value_arr)
   {
     if (in_array($selected_adaptor, $value_arr) AND in_array($selected_dna_region, $value_arr) AND in_array($selected_domain, $value_arr)) {
-      print_out($value_arr);
-      print_out($value_arr[illumina_run_key]);
-      print_out($value_arr[illumina_index]);      
+//       print_out($value_arr);
+//       print_out($value_arr[illumina_run_key]);
+//       print_out($value_arr[illumina_index]);      
     }
   }
 }

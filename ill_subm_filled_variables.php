@@ -210,6 +210,6 @@ else
   }
   $adaptors = array_unique($adaptors_all);
   asort($adaptors);
-  print_out($adaptors_full[0]);
+//   print_out($adaptors_full[0]);
 }
 ?>
