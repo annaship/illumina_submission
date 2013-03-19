@@ -12,14 +12,7 @@ $error_class_name = "";
 // );
 $required_fields = array();
 $i = 0;
-foreach ($project_form_fields as $field_name => $requirement)
-{
-  if ($requirement == 'required')
-  {
-    $required_fields[$i] = $field_name;
-    $i += 1;
-  }
-}
+$required_fields = create_require_arr($project_form_fields);
 
 $project_results        = populate_post_vars($_POST);
 $selected_env_source_name = $_POST['env_source_name'];

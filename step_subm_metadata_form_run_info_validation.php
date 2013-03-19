@@ -4,14 +4,7 @@ $error_class_name = "";
 
 $required_fields = array();
 $i = 0;
-foreach ($run_info_form_fields as $field_name => $requirement)
-{
-  if ($requirement == "required")
-  {
-    $required_fields[$i] = $field_name;
-    $i += 1;
-  }
-}
+$required_fields = create_require_arr($run_info_form_fields);
 
 $run_info_results      = populate_post_vars($_POST);
 $selected_rundate 	   = $_POST["rundate"];

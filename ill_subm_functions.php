@@ -138,6 +138,20 @@ function populate_post_vars($post_array)
   return $result_post;
 }
 
+function create_require_arr($form_fields)
+{
+  print_out($form_fields);
+  foreach ($form_fields as $field_name => $requirement)
+  {
+    if ($requirement == "required")
+    {
+      $required_fields[$i] = $field_name;
+      $i += 1;
+    }
+  }
+  return $required_fields;
+}
+
 function check_required_fields($post_array, $required_fields)
 {
   $errors = array();
@@ -413,57 +427,16 @@ function get_run_key_by_adaptor($selected_adaptor, $adaptors_full)
 function separate_metadata($metadata, $arr_fields_headers)
 {
   $result_metadata_arr = array();
-  print_out($metadata);
   foreach ($metadata as $key => $value)
   {
-//     print_out($key);
     $number_index = strrpos($key, "_");
     $lane_num     = substr($key, $number_index + 1);    
     $field_name   = substr($key, 0, $number_index);
     if (array_search($field_name, $arr_fields_headers))
     {
       $result_metadata_arr[$lane_num][$field_name] = $value;
-    }
-    
-    // Loop through the $_POST array, which comes from the form...
-//     foreach($result_metadata_arr AS $key => $value)
-//     {
-//       $$key = $value;
-//       print_out($key);
-//       $result_metadata_arr[$key] = htmlspecialchars($value);
-//     }
+    }    
   }
   return $result_metadata_arr;
-  
-  //   UUU -Array (
-//           [domain_0] => B
-//           [lane_0] => 3
-//           [data_owner_0] => 2010, MicroDiversity
-//           [adaptor_0] => A01
-//           [project_0] => AB_HGB1_Bv6v4
-//           [dataset_0] =>
-//           [dataset_description_0] =>
-//           [env_source_name] =>
-//           [tubelabel_0] =>
-//           [barcode_0] =>
-//           [amp_operator_0] =>
-//           [adaptor_1] => A02
-//           [dataset_1] =>
-//           [dataset_description_1] =>
-//           [tubelabel_1] =>
-//           [barcode_1] =>
-//           [amp_operator_1] =>
-//           [adaptor_2] => A03
-//           [dataset_2] =>
-//           [dataset_description_2] =>
-//           [tubelabel_2] =>
-//           [barcode_2] =>
-//           [amp_operator_2] =>
-//           [update] => Update submition metadata
-//           [submission_metadata_process] => 1 ) --
-  
-  
-  
-  
 }
 ?>

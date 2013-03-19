@@ -25,6 +25,11 @@ $project_form_fields = array(
     "funding" => "optional", "env_source_name" => "required", "project_form_contact" => "select"
 );
 
+$submission_metadata_form_fields = array("domain"=> "required", "lane"=> "required", "data_owner"=> "required", "run_key"=> "required", 
+    "barcode_index"=> "required", "adaptor"=> "required", "project"=> "required", "dataset"=> "required", 
+    "dataset_description"=> "optional", "env_source_name"=> "required",
+    "tubelabel"=> "optional", "barcode"=> "optional", "amp_operator"=> "optional");
+
 $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "required",  "read_length" => "required");
 // ---
 $dna_regions = array("v6", "v4v5");
