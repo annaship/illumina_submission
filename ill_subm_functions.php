@@ -140,7 +140,6 @@ function populate_post_vars($post_array)
 
 function create_require_arr($form_fields)
 {
-  print_out($form_fields);
   foreach ($form_fields as $field_name => $requirement)
   {
     if ($requirement == "required")
@@ -154,9 +153,6 @@ function create_require_arr($form_fields)
 
 function check_required_fields($post_array, $required_fields)
 {
-  print_out("\$required_fields = ");
-  print_out($required_fields);
-  
   $errors = array();
   foreach($post_array AS $key => $value)
   {
@@ -164,12 +160,8 @@ function check_required_fields($post_array, $required_fields)
     if(in_array($key, $required_fields) && $value == '')
     {
       $errors[$key] = "The field $key is required.";
-//       print "in function: $key => $value; $errors[$key]<br/>";
     }    
   }
-//   print "<br/>errors from functions<br/>";
-  
-//   print_r($errors);
   return $errors;
 }
 
@@ -381,7 +373,7 @@ function get_all_projects($connection)
   return $project;
 
 }
-// seq_operator, read_length
+
 function valid_seq_operator($seq_operator)
 {
   $isValid = true;
@@ -397,6 +389,21 @@ function valid_seq_operator($seq_operator)
   return $isValid;
 }
 
+function valid_dataset($dataset)
+{
+  $isValid = true;
+  $len_dataset = strlen($dataset);
+  if ($len_dataset < 3 || $len_dataset > 40)
+  {
+    $isValid = false;
+  }
+//   allow alnum and underscore
+  $aValid = array("_"); 
+  if(!ctype_alnum(str_replace($aValid, '', $dataset))) {
+    $isValid = false;
+  }
+  return $isValid;
+}
 
 // insert_size, read_length
 function valid_is_number($field_name)
@@ -410,13 +417,18 @@ function valid_is_number($field_name)
   return $isValid;
 }
 
-function get_run_key_by_adaptor($selected_adaptor, $adaptors_full)
+function get_run_key_by_adaptor($selected_arr, $adaptors_full)
 {
-// TODO: send $selected_adaptor, $selected_dna_region, $selected_domain from metadata validation
+  print_out($selected_arr);
+  print_out("\$selected_adaptor = " . $selected_arr["adaptor"]);
+  print_out("\$selected_dna_region = " . $selected_arr["dna_region"]);
+  print_out("\$selected_domain = " . $selected_arr["domain"]);
+  
+  // TODO: send $selected_adaptor, $selected_dna_region, $selected_domain from metadata validation
 // TODO: return selected run_key, barcode_index 
-  $selected_adaptor    = "A05";
-  $selected_dna_region = "v6";
-  $selected_domain     = "archaea";
+//   $selected_adaptor    = "A05";
+//   $selected_dna_region = "v6";
+//   $selected_domain     = "archaea";
   foreach ($adaptors_full as $value_arr)
   {
     if (in_array($selected_adaptor, $value_arr) AND in_array($selected_dna_region, $value_arr) AND in_array($selected_domain, $value_arr)) {
@@ -435,7 +447,7 @@ function separate_metadata($metadata, $arr_fields_headers)
     $number_index = strrpos($key, "_");
     $lane_num     = substr($key, $number_index + 1);    
     $field_name   = substr($key, 0, $number_index);
-    if (array_search($field_name, $arr_fields_headers))
+    if (isset($field_name, $arr_fields_headers))
     {
       $result_metadata_arr[$lane_num][$field_name] = $value;
     }    

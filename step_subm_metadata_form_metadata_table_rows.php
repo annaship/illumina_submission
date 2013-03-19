@@ -7,11 +7,11 @@
               {
                 if ($selected_domain == $abbr)
                 {
-                  echo '<option value="'.$abbr.'" selected="selected">'.$full_name.'</option>';
+                  echo '<option value="'.$full_name.'" selected="selected">'.$full_name.'</option>';
                 }
                 else 
                 {
-                  echo '<option value="'.$abbr.'">'.$full_name.'</option>';
+                  echo '<option value="'.$full_name.'">'.$full_name.'</option>';
                 }
               }
             ?>
