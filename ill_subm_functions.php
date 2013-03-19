@@ -154,6 +154,9 @@ function create_require_arr($form_fields)
 
 function check_required_fields($post_array, $required_fields)
 {
+  print_out("\$required_fields = ");
+  print_out($required_fields);
+  
   $errors = array();
   foreach($post_array AS $key => $value)
   {
