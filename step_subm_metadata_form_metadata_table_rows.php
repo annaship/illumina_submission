@@ -39,8 +39,7 @@
         </select></td>
       
         <td><div class="wide">NNNN<?php echo $selected_run_key ?></div></td>
-          
-        <td><div class="size_barcode_index" <?php echo $selected_barcode_index ?>/></div></td>
+        <td><div class="size_barcode_index"/><?php echo $selected_barcode_index ?></div></td>
       
         <td>
         <select name="adaptor_0" id="form_adaptor_0">
@@ -70,8 +69,6 @@
         </select></td>
         
       <?php 
-      # _0 - number of row
-//       TODO add value="<?php echo $selected_dataset " to each
       foreach ($arr_fields_add as &$value) {        
         echo '
         <td><input class="text_inp size_tubelabel" type="text" name="'.$value.'_0" id="form_'.$value.'_0" value="'.${'selected_'.$value}.'"/></td>

@@ -4,7 +4,9 @@ include_once("ill_subm_functions.php");
 $metadata_errors = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
 $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
-// print_out($result_metadata_arr);
+
+// remove array #0 == sche_submission
+array_shift($result_metadata_arr);
 
 // TODO: 1) validate all data in foreach $result_metadata_arr
 // TODO: 2) populate index and runkey by adapter
@@ -14,8 +16,8 @@ $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
 $required_fields = array();
 $i = 0;
 $required_fields = create_require_arr($submission_metadata_form_fields);
-// TODO: 1) validate all data in foreach $result_metadata_arr
 
+// TODO: 1) validate all data in foreach $result_metadata_arr
 foreach ($result_metadata_arr as $result_metadata_arr1)
 {
   $metadata_errors = check_required_fields($result_metadata_arr1, $required_fields);
@@ -35,7 +37,6 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
   $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
   $selected_metadata_arr[] = $result_metadata_arr1;
 }
-
 // TODO: 3) print out in table to show with errors in red and allow to change,
   include_once "step_subm_metadata_form_metadata_table_selected.php";
 ?>
