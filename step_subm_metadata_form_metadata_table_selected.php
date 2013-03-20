@@ -33,8 +33,6 @@
                   }
                   include("step_subm_metadata_form_metadata_table_rows.php");
 //                   TODO: 1) not show "check submission" 
-//                   TODO: 2) not show the array #0 (from "check submission")
-//                   TODO: 3) show barcode_index and run_key
                 }
               }
           ?>     

@@ -50,7 +50,7 @@
 <!--     </table>         -->
     <br />
       <?php 
-        if (!($_SERVER["REQUEST_METHOD"] == "POST") || !($_POST["submission_metadata_process"] == 2)) 
+        if (!($_SERVER["REQUEST_METHOD"] == "POST") || !($_POST["submission_metadata_process"])) 
         {   
           include("step_subm_metadata_form_metadata_table.php");
         }
