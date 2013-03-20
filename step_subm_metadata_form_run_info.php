@@ -27,7 +27,7 @@
   <td>
   <select name="dna_region_0" id="form_dna_region_0">
    <?php 
-       print_options($dna_regions, $selected_dna_region_0);    
+       print_options($dna_regions, $selected_dna_region_base);    
     ?>
     </select>
     </td>

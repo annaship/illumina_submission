@@ -417,14 +417,14 @@ function valid_is_number($field_name)
   return $isValid;
 }
 
-function get_run_key_by_adaptor($selected_arr, $adaptors_full)
+function get_run_key_by_adaptor($selected_arr, $adaptors_full, $selected_dna_region_base)
 {
-  print_out($selected_arr);
+//   print_out($selected_arr);
   print_out("\$selected_adaptor = " . $selected_arr["adaptor"]);
-  print_out("\$selected_dna_region = " . $selected_arr["dna_region"]);
+  print_out("\$selected_dna_region_base = " . $selected_dna_region_base);
   print_out("\$selected_domain = " . $selected_arr["domain"]);
   
-  // TODO: send $selected_adaptor, $selected_dna_region, $selected_domain from metadata validation
+// TODO: send $selected_adaptor, $selected_dna_region, $selected_domain from metadata validation
 // TODO: return selected run_key, barcode_index 
 //   $selected_adaptor    = "A05";
 //   $selected_dna_region = "v6";

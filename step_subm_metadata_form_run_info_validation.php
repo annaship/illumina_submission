@@ -8,17 +8,17 @@ $required_fields = create_require_arr($run_info_form_fields);
 
 $run_info_results      = populate_post_vars($_POST);
 $selected_rundate 	   = $_POST["rundate"];
-$selected_dna_region_0 = $_POST["dna_region_0"];
+$selected_dna_region_base = $_POST["dna_region_0"];
 $selected_overlap 	   = $_POST["overlap"];
 $selected_seq_operator = $_POST["seq_operator"];
 $selected_insert_size  = $_POST["insert_size"];
 $selected_read_length  = $_POST["read_length"];
 
-if ($selected_dna_region_0 == "v6")
+if ($selected_dna_region_base == "v6")
 {
   $machine_name = "hs";
 }
-elseif ($selected_dna_region_0 == "v4v5") 
+elseif ($selected_dna_region_base == "v4v5") 
 {
   $machine_name = "ms";
 }
