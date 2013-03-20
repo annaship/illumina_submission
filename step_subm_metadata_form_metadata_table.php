@@ -31,9 +31,10 @@
     </table>
 <!--   <a href="#" title="" class="add-author">Add Author</a> -->
   </fieldset>
-  <input type="submit" name="update" id="form_update" value="Update submition metadata"/> <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
-  <input type="hidden" name="submission_metadata_process" value="1"></td></tr>
-  <input type="hidden" name="selected_dna_region_base" value="<?php echo $selected_dna_region_base?>"></td></tr>
+  <input type="submit" name="update" id="form_update" value="Check submission metadata"/> 
+  <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
+  <input type="hidden" name="submission_metadata_process" value="1">
+  <input type="hidden" name="selected_dna_region_base" value="<?php echo $selected_dna_region_base?>">
   
 </div>
 </form>
