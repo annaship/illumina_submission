@@ -445,9 +445,9 @@ function separate_metadata($metadata, $arr_fields_headers)
   foreach ($metadata as $key => $value)
   {
     $number_index = strrpos($key, "_");
-    $lane_num     = substr($key, $number_index + 1);    
+    $lane_num     = substr($key, $number_index + 1); 
     $field_name   = substr($key, 0, $number_index);
-    if (isset($field_name, $arr_fields_headers))
+    if (isset($field_name, $arr_fields_headers) && ctype_digit($lane_num))
     {
       $result_metadata_arr[$lane_num][$field_name] = $value;
     }    

@@ -1,3 +1,7 @@
+<!--   print_out($metadata_errors); -->
+<?php
+//    print_out($metadata_errors);
+?>
 <!-- <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'> -->
 <form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
 <div id="submission_metadata">
@@ -22,9 +26,8 @@
         </thead>
         <tbody>   
           <?php
-              foreach ($selected_metadata_arr as $selected_metadata_arr1)
+          foreach ($selected_metadata_arr as $num_key => $selected_metadata_arr1)
               {
-//                 take only arrays with selected values
                 if(isset($selected_metadata_arr1["domain"]))
                 {
                   foreach($selected_metadata_arr1 AS $key => $value)
@@ -32,7 +35,17 @@
                     ${"selected_" . $key} = $value;
                   }
                   include("step_subm_metadata_form_metadata_table_rows.php");
-//                   TODO: 1) not show "check submission" 
+                }
+                if (isset($metadata_errors_all[$num_key]))
+                {
+                  echo "<tr class=\"even\">";
+                  foreach ($arr_fields_headers as &$value) 
+                  {
+                    echo "<td class=\"message\">";
+                      print $metadata_errors_all[$num_key][$value];
+                    echo "</td>";
+                  }
+                  echo "</tr>";
                 }
               }
           ?>     

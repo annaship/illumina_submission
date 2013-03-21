@@ -66,7 +66,8 @@ _
 		$error_message = $project_errors[$field_name];
 	}	
   ?>
-</td>    <td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
+</td>    
+<td class="message"><?php echo $project_errors["project_name1"]; echo " ".$project_errors["project_name2"];?></td>
 </tr>
 <?php
 /*
