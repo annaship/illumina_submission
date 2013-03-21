@@ -1,4 +1,3 @@
-<?php print_out($row_num);?>
       <tr class="odd">
         <td>
           <select name="domain_<?php echo $row_num;?>" id="form_domain_<?php echo $row_num;?>">

@@ -16,7 +16,9 @@ $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
 // TODO: create "clean" array, only with real data arrays; if only 1 line - use it instead
 
 // remove array #0 == check_submission
-if (sizeof($result_metadata_arr) > 1)
+print_out("from validation");
+print_out($_POST);
+if (sizeof($result_metadata_arr) > 1 && ($_POST[submission_metadata_selected_process] != 1))
 {
   $result_metadata_arr_0 = array_shift($result_metadata_arr);
 }
