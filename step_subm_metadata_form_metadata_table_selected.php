@@ -6,15 +6,13 @@
       <thead>
         <tr>
           <?php 
-          
-          foreach ($arr_fields_headers as &$value) {
-            echo '
-            <th>'.$value.'</th>
-            ';  
-          
-          }
-          unset($value); // break the reference with the last element
-          
+            foreach ($arr_fields_headers as &$value) 
+            {
+              echo "
+              <th>".$value."</th>
+              ";              
+            }
+            unset($value); // break the reference with the last element          
           ?>      
           </tr>
         </thead>
@@ -48,6 +46,6 @@
   </fieldset>
   <input type="submit" name="update" id="form_update" value="Update submission metadata"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
-  <input type="hidden" name="submission_metadata_process" value="2">
+  <input type="hidden" name="submission_metadata_selected_process" value="1">
 </div>
 </form>

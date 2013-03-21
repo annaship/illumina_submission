@@ -1,8 +1,6 @@
 <?php
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
-print_out($metadata_errors);
-print_out($_POST);
 // if(count($errors) == 0)
 // {
 //   //   put data into the db and clean the table
@@ -18,8 +16,6 @@ $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
 // TODO: create "clean" array, only with real data arrays; if only 1 line - use it instead
 
 // remove array #0 == check_submission
-print_out($result_metadata_arr);
-print_out(sizeof($result_metadata_arr));
 if (sizeof($result_metadata_arr) > 1)
 {
   $result_metadata_arr_0 = array_shift($result_metadata_arr);
