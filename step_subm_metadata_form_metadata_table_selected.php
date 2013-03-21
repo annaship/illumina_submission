@@ -1,16 +1,10 @@
-<!--   print_out($metadata_errors); -->
-<?php
-//    print_out($metadata_errors);
-?>
-<!-- <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'> -->
-<form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
+<form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_subm_metadata.php">
 <div id="submission_metadata">
   <fieldset id="submission_metadata">
     <legend id="submission_metadata-legend">Submition metadata</legend>
     <table id="submission_metadata-fields">
       <thead>
         <tr>
-          <!-- add auto complete -->
           <?php 
           
           foreach ($arr_fields_headers as &$value) {
@@ -51,7 +45,6 @@
           ?>     
         </tbody>
     </table>
-<!--   <a href="#" title="" class="add-author">Add Author</a> -->
   </fieldset>
   <input type="submit" name="update" id="form_update" value="Update submission metadata"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 

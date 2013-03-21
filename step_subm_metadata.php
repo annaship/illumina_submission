@@ -49,7 +49,7 @@
 <!--       </tr> -->
 <!--     </table>         -->
     <br />
-      <?php 
+      <?php
         if (!($_SERVER["REQUEST_METHOD"] == "POST") || !($_POST["submission_metadata_process"])) 
         {   
           include("step_subm_metadata_form_metadata_table.php");
@@ -60,8 +60,7 @@
         }
         elseif ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submission_metadata_process"] == 2) 
         {   
-//             include_once 'step_subm_metadata_form_submission_metadata_validation.php';
-          ;
+          include_once 'step_subm_metadata_form_submission_metadata_validation.php';
         }
       ?>
       <!-- end of content -->    
