@@ -16,8 +16,6 @@ $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
 // TODO: create "clean" array, only with real data arrays; if only 1 line - use it instead
 
 // remove array #0 == check_submission
-print_out("from validation");
-print_out($_POST);
 if (sizeof($result_metadata_arr) > 1 && ($_POST[submission_metadata_selected_process] != 1))
 {
   $result_metadata_arr_0 = array_shift($result_metadata_arr);
@@ -43,13 +41,18 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
   }
   $metadata_errors_all[] = $metadata_errors;
 
-  // 2) populate index and runkey by adapter  
-  $selected_dna_region_base = $_POST["selected_dna_region_base"];
-  
-  $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
-  $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
-  $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
+  // 2) populate index and runkey by adapter
+  // first check:
+  if ($_POST[submission_metadata_selected_process] != 1)
+  {  
+    $selected_dna_region_base = $_POST["selected_dna_region_base"];
+    
+    $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
+    $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
+    $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
+  }
   $selected_metadata_arr[] = $result_metadata_arr1;
+  
 }
 // 3) print out in table to show with errors in red and allow to change, 
   include_once "step_subm_metadata_form_metadata_table_selected.php";

@@ -26,6 +26,8 @@
               foreach($selected_metadata_arr1 AS $key => $value)
               {
                 ${"selected_" . $key} = $value;
+//                 print_out('${"selected_" . $key} = '. $key);
+//                 print_out($value);
               }
               include("step_subm_metadata_form_metadata_table_rows.php");
               $row_num += 1;

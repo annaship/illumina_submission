@@ -60,8 +60,6 @@
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submission_metadata_selected_process"] == 1) 
         {   
-          print_out("URRRA!");
-          print_out($_POST);
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
         }
       ?>
