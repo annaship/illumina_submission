@@ -38,7 +38,7 @@
         ?>
         </select></td>
       
-        <td><input class="text_inp wide"               type="text" name="run_key_0"       id="form_run_key_0"       readonly="readonly" 
+        <td>NNNN<input class="text_inp wide"               type="text" name="run_key_0"       id="form_run_key_0"       readonly="readonly" 
         value="<?php echo $selected_run_key ?>"/></td>
         <td><input class="text_inp size_barcode_index" type="text" name="barcode_index_0" id="form_barcode_index_0" readonly="readonly" 
         value="<?php echo $selected_barcode_index ?>"/></td>

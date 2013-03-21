@@ -30,20 +30,20 @@ jQuery(function(){
         for (var i = 0; i < copy_row_times; ++i){		
 		    counter++;
 		    var newRow = jQuery('<tr class="repeated_row" id="delete_row_' + 
-		            counter + '"><td><input class="text_inp" type="text" readonly="readonly" value="'+$('#form_domain_0').val()+'" name="domain_' + 
-		            counter + '"/></td> <td><input class="text_inp" type="text" value="'+$('#form_lane_0').val()+'" name="lane_' + 
-		            counter + '"/></td> <td><input class="text_inp" type="text" value="'+$('#form_data_owner_0').val()+'" name="data_owner_' + 
-		            counter + '"/></td> <td><div class="wide" id="form_run_key_' + 
-		            counter + '">NNNN</td> <td><div id="barcode_index_' + 
-		            counter + '"</td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_adaptor_0').val()+'" name="adaptor_' + 
-		            counter + '"/></td> <td><input class="text_inp" type="text" readonly="readonly" value="'+$('#form_project_0').val()+'" name="project_' + 
-		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_0').val()+'" name="dataset_' + 
-		            counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_description_0').val()+'" name="dataset_description_' + 
-		            counter + '"/></td> <td><input class="text_inp" type="text" readonly="readonly" value="'+$('#form_env_source_name_0').val()+'" name="env_source_name_' + 
-		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_tubelabel_0').val()+'" name="tubelabel_' + 
-		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_barcode_0').val()+'" name="barcode_' + 
-		            counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_amp_operator_0').val()+'" name="amp_operator_' + 
-		            counter + '"/></td> <td><input type="button" value="Delete" id="delete_row" /></td> </tr>');
+		    		counter + '"><td><input class="text_inp" type="text" readonly="readonly" value="'+$('#form_domain_0').val()+'" name="domain_' + 
+		    		counter + '"/></td> <td><input class="text_inp size_number" type="text" value="'+$('#form_lane_0').val()+'" name="lane_' + 
+		    		counter + '"/></td> <td><input class="text_inp" type="text" value="'+$('#form_data_owner_0').val()+'" name="data_owner_' + 
+		    		counter + '"/></td> <td>NNNN<input class="text_inp wide" type="text" readonly="readonly" value="'+$('#form_run_key_0').val()+'" name="run_key_' + 
+		    		counter + '"/></td> <td><input class="text_inp" type="text" readonly="readonly" value="'+$('#form_barcode_index_0').val()+'" name="barcode_index_' + 
+		    		counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_adaptor_0').val()+'" name="adaptor_' + 
+		    		counter + '"/></td> <td><input class="text_inp" type="text" readonly="readonly" value="'+$('#form_project_0').val()+'" name="project_' + 
+		    		counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_0').val()+'" name="dataset_' + 
+		    		counter + '"/></td> <td><input class="text_inp size_dataset" type="text" value="'+$('#form_dataset_description_0').val()+'" name="dataset_description_' + 
+		    		counter + '"/></td> <td><input class="text_inp" type="text" readonly="readonly" value="'+$('#form_env_source_name_0').val()+'" name="env_source_name_' + 
+		    		counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_tubelabel_0').val()+'" name="tubelabel_' + 
+		    		counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_barcode_0').val()+'" name="barcode_' + 
+		    		counter + '"/></td> <td><input class="text_inp size_tubelabel" type="text" value="'+$('#form_amp_operator_0').val()+'" name="amp_operator_' + 
+		    		counter + '"/></td> <td><input type="button" value="Delete" id="delete_row" /></td> </tr>');
 		    jQuery('table#submission_metadata-fields').append(newRow);
 //    	alert();  onclick="return window.confirm('Please confirm delete');"
         }
