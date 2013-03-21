@@ -26,8 +26,6 @@
               foreach($selected_metadata_arr1 AS $key => $value)
               {
                 ${"selected_" . $key} = $value;
-//                 print_out('${"selected_" . $key} = '. $key);
-//                 print_out($value);
               }
               include("step_subm_metadata_form_metadata_table_rows.php");
               $row_num += 1;
@@ -45,12 +43,14 @@
               echo "</tr>";
             }
           }
+          
           ?>     
         </tbody>
     </table>
+    
   </fieldset>
   <input type="submit" name="update" id="form_update" value="Update submission metadata"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="submission_metadata_selected_process" value="1">
-</div>
+  </div>
 </form>

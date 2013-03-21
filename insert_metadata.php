@@ -1,4 +1,5 @@
 <?php
+  print_out("FROM insert metadata");
   print_r($_POST);
 // $env_source_name = $_POST['env_source_name'];
 // $env_sample_source_id = get_env_sample_source_id($env_source_name, $env_source_names);

@@ -454,4 +454,17 @@ function separate_metadata($metadata, $arr_fields_headers)
   }
   return $result_metadata_arr;
 }
+
+function flat_mult_array($array_to_flat)
+{
+  $flat_array = array();
+  foreach(new RecursiveIteratorIterator(new RecursiveArrayIterator($array_to_flat)) as $k=>$v)
+  {
+    $flat_array[$k] = $v;
+  }
+  return $flat_array;
+}
+
+
+
 ?>

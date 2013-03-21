@@ -1,13 +1,6 @@
 <?php
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
-// if(count($errors) == 0)
-// {
-//   //   put data into the db and clean the table
-//   include_once 'insert_metadata.php';
-//   success_message('Metadata');
-//   $errors = array();
-// }
 
 $metadata_errors     = array();
 $metadata_errors_all = array();
@@ -40,7 +33,6 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
     $metadata_errors[$field_name] = "The " . $field_name . " should be numbers.";
   }
   $metadata_errors_all[] = $metadata_errors;
-
   // 2) populate index and runkey by adapter
   // first check:
   if ($_POST[submission_metadata_selected_process] != 1)
@@ -54,6 +46,20 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
   $selected_metadata_arr[] = $result_metadata_arr1;
   
 }
+
+// check for errors
+$flat_metadata_errors_all = flat_mult_array($metadata_errors_all);
+$metadata_errors_count    = sizeof($flat_metadata_errors_all);
+
+if($metadata_errors_count == 0)
+{
+  print_out("HEREEE!");
+  //   put data into the db and clean the table
+  include_once 'insert_metadata.php';
+  success_message('Metadata');
+  $errors = array();
+}
+
 // 3) print out in table to show with errors in red and allow to change, 
   include_once "step_subm_metadata_form_metadata_table_selected.php";
 ?>
