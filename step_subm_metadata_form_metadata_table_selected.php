@@ -18,28 +18,31 @@
         </thead>
         <tbody>   
           <?php
+          $row_num = 0;
           foreach ($selected_metadata_arr as $num_key => $selected_metadata_arr1)
+          {
+            if(isset($selected_metadata_arr1["domain"]))
+            {
+              foreach($selected_metadata_arr1 AS $key => $value)
               {
-                if(isset($selected_metadata_arr1["domain"]))
-                {
-                  foreach($selected_metadata_arr1 AS $key => $value)
-                  {
-                    ${"selected_" . $key} = $value;
-                  }
-                  include("step_subm_metadata_form_metadata_table_rows.php");
-                }
-                if (isset($metadata_errors_all[$num_key]))
-                {
-                  echo "<tr class=\"even\">";
-                  foreach ($arr_fields_headers as &$value) 
-                  {
-                    echo "<td class=\"message\">";
-                      print $metadata_errors_all[$num_key][$value];
-                    echo "</td>";
-                  }
-                  echo "</tr>";
-                }
+                ${"selected_" . $key} = $value;
               }
+              include("step_subm_metadata_form_metadata_table_rows.php");
+              $row_num += 1;
+              
+            }
+            if (isset($metadata_errors_all[$num_key]))
+            {
+              echo "<tr class=\"even\">";
+              foreach ($arr_fields_headers as &$value) 
+              {
+                echo "<td class=\"message\">";
+                  print $metadata_errors_all[$num_key][$value];
+                echo "</td>";
+              }
+              echo "</tr>";
+            }
+          }
           ?>     
         </tbody>
     </table>

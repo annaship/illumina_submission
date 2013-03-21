@@ -22,6 +22,7 @@
         </thead>
         <tbody>   
           <?php
+              $row_num = 0;
               include("step_subm_metadata_form_metadata_table_rows.php");
           ?>     
           <tr class="repeat_row_tr">
