@@ -479,8 +479,14 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     " ($table_name, dataset_description) VALUES (\"". $$table_name . "\", \"$dataset_description\")";
-    print_out($query);
   }
+  if ($table_name == "run_key")
+  {
+    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
+    " ($table_name, dataset_description) VALUES (\"NNNN". $$table_name . "\")";
+    print_out($query);
+    
+  }  
   else
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
@@ -488,7 +494,6 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     print_out($query);
   }
   $data_id = run_query($query, $table_name);
-  print_out($data_id);
   return $data_id;
 }
 
@@ -525,7 +530,14 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 
 function get_id($data_array, $table_name, $db_name, $connection) 
 {
-  $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
+  if ($table_name == "run_key")
+  {
+    $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"NNNN" . $data_array[$table_name] . "\"";    
+  }
+  else
+  {    
+    $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
+  }
   print_out($query);
   
   $res = run_select_one_field($query, $connection);
