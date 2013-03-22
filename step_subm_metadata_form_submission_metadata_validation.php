@@ -48,16 +48,13 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
 }
 
 // check for errors
-$flat_metadata_errors_all = flat_mult_array($metadata_errors_all);
-$metadata_errors_count    = sizeof($flat_metadata_errors_all);
+$metadata_errors_count = sizeof(flat_mult_array($metadata_errors_all));
 
 if($metadata_errors_count == 0)
 {
-  print_out("HEREEE!");
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';
   success_message('Metadata');
-  $errors = array();
 }
 
 // 3) print out in table to show with errors in red and allow to change, 

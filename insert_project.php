@@ -1,14 +1,20 @@
 <?php
-//   print_r($_POST);
+  print_r($_POST);
+  
 $env_source_name = $_POST['env_source_name'];
 $env_sample_source_id = get_env_sample_source_id($env_source_name, $env_source_names);
 if (!$_SESSION['is_local'])
 {
-  $connection = $newbpc2_connection;
+//   $connection = $newbpc2_connection;
+//   $db_name    = "env454";
+  $connection = $vampsdev_connection;
+  $db_name    = "test";
+  
 }
 else
 {
   $connection = $local_mysqli;
+  $db_name    = "test";
 }
 
 if ($_SESSION['is_local'])
@@ -18,7 +24,7 @@ if ($_SESSION['is_local'])
   $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
   $title      = $_POST['project_title'];
   
-  $project_query = "INSERT INTO project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id) 
+  $project_query = "INSERT INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id) 
                     VALUES (\"$project_name\", \"$title\", \"$_POST[project_description]\", REVERSE(\"$project_name\"), \"$_POST[funding]\", 
                       $env_sample_source_id, $contact_id)";
     
@@ -43,7 +49,7 @@ else
   
   $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
   $title      = $_POST['project_title'];
-  $project_query = "INSERT INTO project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
+  $project_query = "INSERT INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
   VALUES (\"$project_name\", \"$title\", \"$_POST[project_description]\", REVERSE(\"$project_name\"), \"$_POST[funding]\",
           $env_sample_source_id, $contact_id)";
   

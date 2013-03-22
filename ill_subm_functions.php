@@ -189,7 +189,8 @@ function get_contact_id($contact_full, $connection)
   }
   else
   {
-    $db_name = "env454";
+//     $db_name = "env454";
+    $db_name = "test";    
   }
     
   $query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
@@ -218,7 +219,7 @@ function get_contact_id($contact_full, $connection)
   }
   else
   {
-    $contact_id = add_new_contact($post_res, $vamps_name, $connection);
+    $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
   }
   return $contact_id;
 }
@@ -229,13 +230,13 @@ function get_env_sample_source_id($env_source_name, $env_source_names)
   return $env_source_name_id;
 }
 
-function add_new_contact($post_res, $vamps_name, $connection) {
+function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
 //   print_r($post_res);
   $contact_info = array_map('trim', explode(',', $post_res));
   list($last_name, $first_name, $email, $institution) =  $contact_info;
   $contact = $first_name. " " . $last_name;
 //   print_out($contact);
-  $query = "INSERT INTO contact (contact, email, institution, vamps_name, first_name, last_name)
+  $query = "INSERT INTO " . $db_name . ".contact (contact, email, institution, vamps_name, first_name, last_name)
             VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
               . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
 //   print_out($query);
