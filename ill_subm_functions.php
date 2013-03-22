@@ -445,16 +445,17 @@ function flat_mult_array($array_to_flat)
   return $flat_array;
 }
 
-function print_insert_message_by_id($field_name, $project_id)
+function print_insert_message_by_id($field_name, $data_id)
 {
-  if ($project_id > 0)
+  if ($data_id > 0)
   {
-    printf ("<div class = \"message\">New $field_name has id %d.</div>", $project_id);    
+    printf ("<div class = \"message\">New $field_name has id %d.</div>", $data_id);    
   } 
 }
 
 function run_query($query, $table_name)
 {
+  $data_id = 0;
   if ($_SESSION['is_local'])
   {
     $res = $local_mysqli->query($query);
@@ -480,19 +481,23 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     " ($table_name, dataset_description) VALUES (\"". $$table_name . "\", \"$dataset_description\")";
   }
-  if ($table_name == "run_key")
+  elseif ($table_name == "run_key")
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     " ($table_name, dataset_description) VALUES (\"NNNN". $$table_name . "\")";
-    print_out($query);
-    
+  }  
+  elseif ($table_name == "run")
+  {
+    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
+    "($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";
   }  
   else
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
               "($table_name) VALUES (\"". $$table_name . "\")";    
-    print_out($query);
   }
+  print_out($query);
+  
   $data_id = run_query($query, $table_name);
   return $data_id;
 }
@@ -534,6 +539,10 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"NNNN" . $data_array[$table_name] . "\"";    
   }
+  elseif ($table_name == "run")
+  {
+    $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array["rundate"] . "\"";
+  }
   else
   {    
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
@@ -541,6 +550,7 @@ function get_id($data_array, $table_name, $db_name, $connection)
   print_out($query);
   
   $res = run_select_one_field($query, $connection);
+//   TODO: move to function, here and above
   if ($_SESSION['is_local'])
     {
       $res = $connection->query($query);
@@ -559,8 +569,6 @@ function get_id($data_array, $table_name, $db_name, $connection)
     if (isset($row[key($row)]))
     {
       $res_id = $row[key($row)];
-      print_out($res_id);
-
     }
 // if it is new data - insert
     else

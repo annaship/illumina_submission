@@ -28,6 +28,16 @@
   
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
+/*     TODO:
+ * err, should be run! 
+ * UUU -INSERT IGNORE INTO test.project(project) VALUES ("BPC_Austria_Pit_") --
+New project has id 34.
+
+UUU -PROJECT_ID --
+
+UUU -34 --
+*/
+    print_out("++++++++++++++==========+++++++++++++");
     $adaptor 		  = $metadata_arr["adaptor"];
     $amp_operator     = $metadata_arr["amp_operator"];
     $barcode 		  = $metadata_arr["barcode"];
@@ -47,10 +57,10 @@
     print_out($project_id);
 //     TODO: add new, if no project, see "Add new project"
     $read_length 	  = $_SESSION["run_info"]["read_length"];
-    $run_id 		  = get_run_id($_SESSION["run_info"]["rundate"]);
+    $run_id 		  = get_id($_SESSION["run_info"], "run", $db_name, $connection);
+    print_out("\$run_id");
+    print_out($run_id);
     $run_key_id 	  = get_id($metadata_arr, "run_key", $db_name, $connection);
-    print_out("\$run_key_id");
-    print_out($run_key_id);
     $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
     $tubelabel 		  = $metadata_arr["tubelabel"];
   
