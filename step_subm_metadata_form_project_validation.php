@@ -1,5 +1,7 @@
 <?php
+print_out("in project valid local");
 include_once("ill_subm_functions.php");
+print_out("in project valid local after func");
 
 // define variables and initialize with empty values
 $error_class_name = "";
