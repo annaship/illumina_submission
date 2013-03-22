@@ -5,14 +5,10 @@
 <?php include_once("ill_subm_menu.php"); ?>
 
 <?php 
-  print_out("from subm_met -1");
-
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {   
       include_once 'step_subm_metadata_form_run_info_validation.php';
     }
     include("step_subm_metadata_form_run_info.php"); 
-    print_out("from subm_met 0");
-    
 ?>
     
     <?php
