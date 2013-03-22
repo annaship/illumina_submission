@@ -243,19 +243,7 @@ function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
   
   if(validate_new_contact($contact_info, $vamps_name) == 0)
   {
-    if ($_SESSION['is_local'])
-    {
-      $res = $local_mysqli->query($query);
-      $contact_id = $local_mysqli->insert_id;
-      printf ("New Contact record has id %d.\n", $local_mysqli->insert_id);      
-    }
-    else 
-    {     
-      mysql_query($query);
-      $contact_id = mysql_insert_id();
-      print_insert_message_by_id("contact", $contact_id);      
-    }
-    
+    $contact_id = run_query($query, "contact");    
   }
   return $contact_id;
 }
@@ -465,6 +453,23 @@ function print_insert_message_by_id($field_name, $project_id)
   } 
 }
 
+function run_query($query, $table_name)
+{
+  if ($_SESSION['is_local'])
+  {
+    $res = $local_mysqli->query($query);
+    $data_id = $local_mysqli->insert_id;
+    print_insert_message_by_id($table_name, $data_id);
+  }
+  else
+  {
+    mysql_query($query);
+    $data_id = mysql_insert_id();
+    print_insert_message_by_id($table_name, $data_id);
+  }
+  return $data_id;
+}
+
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
   foreach ( $data_array as $key => $value ) {
@@ -482,19 +487,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
               "($table_name) VALUES (\"". $$table_name . "\")";    
     print_out($query);
   }
-  
-  if ($_SESSION['is_local'])
-    {
-      $res = $local_mysqli->query($query);
-      $data_id = $local_mysqli->insert_id;
-      print_insert_message_by_id($table_name, $data_id);
-    }
-  else
-    {
-      mysql_query($query);
-      $data_id = mysql_insert_id();
-      print_insert_message_by_id($table_name, $data_id);
-    }
+  $data_id = run_query($query, $table_name);
   print_out($data_id);
   return $data_id;
 }
