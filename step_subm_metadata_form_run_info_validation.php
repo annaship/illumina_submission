@@ -53,22 +53,13 @@ foreach ($field_check as $field_name)
   }
 }
 
-// // were there any errors?
-// if(count($errors) == 0)
-// {
-// //   put data into the db and clean the table
-//   include_once "insert_run_info.php";
-//   success_message("run_info");
-// //   include_once "success_message.php";
-//   //   clean_the_table();
-// //   foreach ($required_fields as $field_name)
-// //   {
-// //     $run_info_results[$field_name] = "";
-// //   }
-//   $errors = array();
-  
-  
+$run_info_errors_count = sizeof($run_info_errors);
+if ($run_info_errors_count == 0)
+{
+    include_once "insert_run_info.php";
+    success_message("run_info");
+//     clean_the_table();
+}
 
-// }
 ?>
 
