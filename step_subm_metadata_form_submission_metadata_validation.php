@@ -6,7 +6,6 @@ $metadata_errors     = array();
 $metadata_errors_all = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
 $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
-// TODO: create "clean" array, only with real data arrays; if only 1 line - use it instead
 
 // remove array #0 == check_submission
 if (sizeof($result_metadata_arr) > 1 && ($_POST[submission_metadata_selected_process] != 1))

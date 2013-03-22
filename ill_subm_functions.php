@@ -466,7 +466,41 @@ function print_insert_message_by_id($field_name, $project_id)
 }
 
 
-function get_dataset_id($data) {
+function get_id($data_array, $table_name, $db_name, $connection) {
+  $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
+  print_out($query);
+  
+  $res = run_select_one_field($query, $connection);
+  if ($_SESSION['is_local'])
+    {
+      $res = $connection->query($query);
+
+      for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+        $res->data_seek($row_no);
+        $row = $res->fetch_assoc();
+      }
+    }
+    else
+    {
+      $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+      $row     = mysql_fetch_assoc($results);
+    }
+    
+    if (isset($row[key($row)]))
+    {
+      $res_id = $row[key($row)];
+      print_out($res_id);
+
+    }
+// if it is new data - insert
+    else
+    {
+      ;
+//       $res_id = add_new_data($post_res, $vamps_name, $connection, $db_name);
+    }
+    return $res_id;
+  
+  
   ;
 }
 function get_primer_suite_id($data) {
@@ -481,6 +515,9 @@ function get_run_id($data) {
 function get_run_key_id($data) {
   ;
 }
-
+function get_dna_region_id($data)
+{
+  ;
+}
 
 ?>

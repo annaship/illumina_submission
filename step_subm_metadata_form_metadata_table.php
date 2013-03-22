@@ -1,3 +1,4 @@
+
 <!-- <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'> -->
 <form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
 <div id="submission_metadata">

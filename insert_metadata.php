@@ -1,6 +1,6 @@
 <?php
-  print_out("POST FROM insert metadata");
-  print_out($_POST);
+//   print_out("POST FROM insert metadata");
+//   print_out($_POST);
   
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
   $dna_region_id = $file_prefix = $insert_size = $lane = $overlap = $primer_suite_id = ""; 
@@ -20,15 +20,11 @@
     $db_name    = "test";
   }
   
-//   $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
-  
-  print "\$result_metadata_arr";
-  print_out($result_metadata_arr);
-  if (isset($run_info_results))
-  {
-    print "\$run_info_results";
-    print_out($run_info_results);
-  }
+//   echo '<div class="message">';
+//     print_out($_SESSION["run_info"]);
+//   echo '</div>';
+//   UUU -Array ( [form_name] => run_info_form [rundate] => 20130322 [path_to_raw_data] => [dna_region_0] => v4v5 
+//         [overlap] => partial [seq_operator] => AA [insert_size] => 111 [read_length] => 222 [add] => Submit Run info [run_info_process] => 1 ) --
   
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
@@ -36,21 +32,21 @@
     $amp_operator     = $metadata_arr["amp_operator"];
     $barcode 		  = $metadata_arr["barcode"];
     $barcode_index 	  = $metadata_arr["barcode_index"];
-    $dataset_id 	  = get_dataset_id($metadata_arr["dataset"]);
+    $dataset_id 	  = get_id($metadata_arr, "dataset", $db_name, $connection); 
     $domain           = $metadata_arr["domain"];
-//     !!!$dna_region_id 	  = $metadata_arr["AA"];
-// TODO: send dna_region, insert_size, overlap, read_length, rundate, seq_operator from run_info; barcode_index, run_key from adaptor to here
-    $file_prefix      = $metadata_arr["barcode_index"] . $metadata_arr["run_key"] . $metadata_arr["lane"];
-    $insert_size 	  = $metadata_arr["insert_size"];
+    $dna_region_id 	  = get_dna_region_id($_SESSION['run_info']["dna_region_0"]);
+// TODO: send dna_region, insert_size, overlap, read_length, rundate, seq_operator from run_info to here
+    $file_prefix      = $_SESSION["run_info"]["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
+    $insert_size 	  = $_SESSION["run_info"]["insert_size"];
     $lane 			  = $metadata_arr["lane"];
-    $overlap 		  = $metadata_arr["overlap"];
+    $overlap 		  = $_SESSION["run_info"]["overlap"];
     $primer_suite_id  = get_primer_suite_id($dna_region, $domain);
     $project_id       = get_project_id($metadata_arr["project"]);
 //     TODO: add new, if no project
-    $read_length 	  = $metadata_arr["read_length"];
-    $run_id 		  = get_run_id($metadata_arr["rundate"]);
+    $read_length 	  = $_SESSION["run_info"]["read_length"];
+    $run_id 		  = get_run_id($_SESSION["run_info"]["rundate"]);
     $run_key_id 	  = get_run_key_id($metadata_arr["run_key"]);
-    $seq_operator 	  = $metadata_arr["seq_operator"];
+    $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
     $tubelabel 		  = $metadata_arr["tubelabel"];
   
 //   TODO: data_owner print by project, not choose

@@ -1,9 +1,13 @@
 <?php
-print_out("from insert run_info");
-print_out($_POST);
 $run_info_results = populate_post_vars($_POST);
-print_out($run_info_results);
+if (!isset($_SESSION)) {
+  session_start();
+}
+$_SESSION['run_info'] = $run_info_results;
 
+
+// print_out($run_info_results);
+// UUU -Array ( [form_name] => run_info_form [rundate] => 20130322 [path_to_raw_data] => [dna_region_0] => v4v5 [overlap] => partial [seq_operator] => AA [insert_size] => 111 [read_length] => 222 [add] => Submit Run info [run_info_process] => 1 ) --
 // $env_source_name = $_POST['env_source_name'];
 // $env_sample_source_id = get_env_sample_source_id($env_source_name, $env_source_names);
 // if (!$_SESSION['is_local'])
