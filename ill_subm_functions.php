@@ -465,8 +465,72 @@ function print_insert_message_by_id($field_name, $project_id)
   } 
 }
 
+function add_new_data ($data_array, $table_name, $db_name, $connection) 
+{
+  foreach ( $data_array as $key => $value ) {
+    $$key = $value;
+  }
+  if ($table_name == "dataset")
+  {
+    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
+    " ($table_name, dataset_description) VALUES (". $$table_name . ", $dataset_description)";
+    print_out($query);
+  }
+  else
+  {
+    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
+              "($table_name) VALUES (". $$table_name . ")";    
+    print_out($query);
+  }
+  
+  if ($_SESSION['is_local'])
+    {
+      $res = $local_mysqli->query($query);
+      $data_id = $local_mysqli->insert_id;
+      print_insert_message_by_id($table_name, $data_id);
+    }
+  else
+    {
+      mysql_query($query);
+      $data_id = mysql_insert_id();
+      print_insert_message_by_id($table_name, $data_id);
+    }
+  return $data_id;
+}
 
-function get_id($data_array, $table_name, $db_name, $connection) {
+// function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
+//   $contact_info = array_map('trim', explode(',', $post_res));
+//   list($last_name, $first_name, $email, $institution) =  $contact_info;
+//   $contact = $first_name. " " . $last_name;
+//   //   print_out($contact);
+//   $query = "INSERT IGNORE INTO " . $db_name . ".contact (contact, email, institution, vamps_name, first_name, last_name)
+//   VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
+//   . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
+//   //   print_out($query);
+
+//   if(validate_new_contact($contact_info, $vamps_name) == 0)
+//   {
+//     if ($_SESSION['is_local'])
+//     {
+//       $res = $local_mysqli->query($query);
+//       $contact_id = $local_mysqli->insert_id;
+//       printf ("New Contact record has id %d.\n", $local_mysqli->insert_id);
+//     }
+//     else
+//     {
+//       mysql_query($query);
+//       $contact_id = mysql_insert_id();
+//       print_insert_message_by_id("contact", $contact_id);
+//     }
+
+//   }
+//   return $contact_id;
+// }
+
+
+
+function get_id($data_array, $table_name, $db_name, $connection) 
+{
   $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
   print_out($query);
   
@@ -495,14 +559,11 @@ function get_id($data_array, $table_name, $db_name, $connection) {
 // if it is new data - insert
     else
     {
-      ;
-//       $res_id = add_new_data($post_res, $vamps_name, $connection, $db_name);
+      $res_id = add_new_data($data_array, $table_name, $db_name, $connection);
     }
     return $res_id;
-  
-  
-  ;
 }
+
 function get_primer_suite_id($data) {
   ;
 }
