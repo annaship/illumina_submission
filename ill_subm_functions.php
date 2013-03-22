@@ -473,13 +473,13 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   if ($table_name == "dataset")
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
-    " ($table_name, dataset_description) VALUES (". $$table_name . ", $dataset_description)";
+    " ($table_name, dataset_description) VALUES (\"". $$table_name . "\", \"$dataset_description\")";
     print_out($query);
   }
   else
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
-              "($table_name) VALUES (". $$table_name . ")";    
+              "($table_name) VALUES (\"". $$table_name . "\")";    
     print_out($query);
   }
   
@@ -495,6 +495,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
       $data_id = mysql_insert_id();
       print_insert_message_by_id($table_name, $data_id);
     }
+  print_out($data_id);
   return $data_id;
 }
 
