@@ -20,7 +20,7 @@ $selected_contact_full  = $_POST['project_form_contact'];
 $selected_domain        = $_POST['domain'];
 $selected_dna_region    = $_POST['dna_region'];
 
-print_out("in project valid local after func");
+// print_out("in project valid local after func");
 
 $project_errors         = check_required_fields($_POST, $required_fields);
 

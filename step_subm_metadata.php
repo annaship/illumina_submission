@@ -12,15 +12,12 @@
 ?>
     
     <?php
-    print_out("from subm_met 1");
     $show_class = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["project_process"] == 1) {
       $show_class = "show_block";
-      print_out("from subm_met 2");
       
       include_once 'step_subm_metadata_form_project_validation.php';
     }
-    print_out("from subm_met 3");
     
 ?>
           
