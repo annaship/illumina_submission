@@ -22,37 +22,25 @@ $contact_id = get_contact_id($contact_full, $connection);
 $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
 $title      = $_POST['project_title'];
 
-$project_query = "INSERT INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
+$project_query = "INSERT IGNORE INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
   VALUES (\"$project_name\", \"$title\", \"$_POST[project_description]\", REVERSE(\"$project_name\"), \"$_POST[funding]\",
   $env_sample_source_id, $contact_id)";
-
 if (check_var($project_errors) == 0)
 {
   if ($_SESSION['is_local'])
-  {
-      
-    	$res = $local_mysqli->query($project_query);
-    	$project_id = $local_mysqli->insert_id;
-    	printf ("<br/>New project record has id %d.<br/>", $local_mysqli->insert_id);
-    	
-    	$project = get_all_projects($connection);
-    	$selected_project    = $project_name;  
-  //   	print_out($contact_full);
-  //   	$selected_data_owner = ;
-    	$selected_domain     = $_POST['domain'];
-  //  TODO: add 	$selected_data_owner to use in subm table;  	 
+  {     
+  	$res = $local_mysqli->query($project_query);
+  	$project_id = $local_mysqli->insert_id;
    }
   else
   {
-    print_out("project_query");
-    print_out($project_query);
-    $res              = mysql_query($project_query, $connection) or die("Error in insert project: " . mysql_error());
-    $project_id       = mysql_insert_id();
-    print_out($project_id);
-//     $project          = get_all_projects($connection);
-//     $selected_project = $project_name;
-//     print_out($_POST);
-//     $selected_domain  = $_POST['domain'];
+    $res        = mysql_query($project_query, $connection) or die("Error in insert project: " . mysql_error());
+    $project_id = mysql_insert_id();
   }
+
+  print_insert_message_by_id("project", $project_id);
+  $project = get_all_projects($connection, $db_name);
+  $selected_project = $project_name;
+  $selected_domain  = $_POST['domain'];  
 }
 ?>

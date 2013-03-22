@@ -98,9 +98,14 @@ asort($contact_full);
 if (!$_SESSION['is_local'])
 {
   $connection = $newbpc2_connection;
+  $db_name = "env454";
 }
-
-  $project = get_all_projects($connection);
+else
+{
+//   $db_name = "env454";
+  $db_name = "test";
+}
+$project = get_all_projects($connection, $db_name);
   
 // }
 // else

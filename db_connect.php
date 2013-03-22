@@ -23,6 +23,14 @@ $username_n = $config['databases']['newbpcdb2']['users']['readonly']['username']
 $password_n = $config['databases']['newbpcdb2']['users']['readonly']['password'];
 $newbpc2_connection = mysql_connect($hostname_n, $username_n, $password_n) or die("Not connected with $hostname_n: " . mysql_error());
 
+// env454 read and write
+$hostname_nw = $config['databases']['newbpcdb2']['host'];
+$database_nw = $config['databases']['newbpcdb2']['name'];
+$port_nw     = $config['databases']['newbpcdb2']['port'];
+$username_nw = $config['databases']['newbpcdb2']['users']['readwrite']['username']; #vampsdev_rw
+$password_nw = $config['databases']['newbpcdb2']['users']['readwrite']['password'];
+$newbpc2_connection = mysql_connect($hostname_n, $username_n, $password_n) or die("Not connected with $hostname_n: " . mysql_error());
+
 // development
 // vampsdev.test
 $hostname_d = $config['databases']['vamps']['host'];

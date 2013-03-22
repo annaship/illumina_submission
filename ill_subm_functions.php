@@ -253,7 +253,7 @@ function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
     {     
       mysql_query($query);
       $contact_id = mysql_insert_id();
-      printf("Last inserted record has id %d\n", $contact_id);
+      print_insert_message_by_id("contact", $contact_id);      
     }
     
   }
@@ -358,17 +358,8 @@ function run_select_one_field($query, $connection) {
   return $result_arr;
 }
 
-function get_all_projects($connection)
+function get_all_projects($connection, $db_name)
 {
-  if (!$_SESSION['is_local'])
-  {
-    $db_name = "env454";
-  }
-  else
-  {
-    $db_name = "test";
-  }
-
   $query = "SELECT DISTINCT project FROM " . $db_name . ".project WHERE project <> ''";
   $project = run_select_one_field($query, $connection);
   return $project;
@@ -466,6 +457,12 @@ function flat_mult_array($array_to_flat)
   return $flat_array;
 }
 
-
+function print_insert_message_by_id($field_name, $project_id)
+{
+  if ($project_id > 0)
+  {
+    printf ("<div class = \"message\">New $field_name has id %d.</div>", $project_id);    
+  } 
+}
 
 ?>
