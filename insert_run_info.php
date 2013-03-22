@@ -1,7 +1,9 @@
 <?php
 print_out("from insert run_info");
 print_out($_POST);
-  
+$run_info_results = populate_post_vars($_POST);
+print_out($run_info_results);
+
 // $env_source_name = $_POST['env_source_name'];
 // $env_sample_source_id = get_env_sample_source_id($env_source_name, $env_source_names);
 // if (!$_SESSION['is_local'])

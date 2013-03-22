@@ -236,7 +236,7 @@ function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
   list($last_name, $first_name, $email, $institution) =  $contact_info;
   $contact = $first_name. " " . $last_name;
 //   print_out($contact);
-  $query = "INSERT INTO " . $db_name . ".contact (contact, email, institution, vamps_name, first_name, last_name)
+  $query = "INSERT IGNORE INTO " . $db_name . ".contact (contact, email, institution, vamps_name, first_name, last_name)
             VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
               . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
 //   print_out($query);
@@ -464,5 +464,23 @@ function print_insert_message_by_id($field_name, $project_id)
     printf ("<div class = \"message\">New $field_name has id %d.</div>", $project_id);    
   } 
 }
+
+
+function get_dataset_id($data) {
+  ;
+}
+function get_primer_suite_id($data) {
+  ;
+}
+function get_project_id($data) {
+  ;
+}
+function get_run_id($data) {
+  ;
+}
+function get_run_key_id($data) {
+  ;
+}
+
 
 ?>
