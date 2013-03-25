@@ -140,6 +140,7 @@ function populate_post_vars($post_array)
 
 function create_require_arr($form_fields)
 {
+  $required_fields = array();
   foreach ($form_fields as $field_name => $requirement)
   {
     if ($requirement == "required")
@@ -177,6 +178,7 @@ function success_message($data_name)
 
 function get_one_value($query, $db_name, $connection)
 {
+  $row = array();
   if ($_SESSION['is_local'])
   {
     $res = $connection->query($query);
@@ -196,6 +198,7 @@ function get_one_value($query, $db_name, $connection)
 
 function get_contact_id($contact_full, $connection)
 {
+  $contact_id = 0;
   $post_res = $_POST['project_form_contact'];
   //   list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
@@ -233,13 +236,14 @@ function get_contact_id($contact_full, $connection)
 
 function get_env_sample_source_id($env_source_name, $env_source_names)
 {
+  $env_source_name_id = 0;
   $env_source_name_id = array_search($env_source_name, $env_source_names);
   return $env_source_name_id;
 }
 
 function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
-//   print_r($post_res);
-  $contact_info = array_map('trim', explode(',', $post_res));
+  $new_contact_id = 0;
+  $contact_info   = array_map('trim', explode(',', $post_res));
   list($last_name, $first_name, $email, $institution) =  $contact_info;
   $contact = $first_name. " " . $last_name;
 //   print_out($contact);
@@ -250,9 +254,9 @@ function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
   
   if(validate_new_contact($contact_info, $vamps_name) == 0)
   {
-    $contact_id = run_query($query, "contact");    
+    $new_contact_id = run_query($query, "contact");    
   }
-  return $contact_id;
+  return $new_contact_id;
 }
 
 function validate_new_contact($contact_info, $vamps_name) {
@@ -306,20 +310,21 @@ function init_arr($arr_name, $key_names) {
 }
 
 function init_project_var($arr_to_initialize) {
-	foreach ($arr_to_initialize as $field_name) {
-		if (!isset($project_errors[$field_name]))
-		{
-			$project_errors[$field_name]  = "";
-		}
-	}
-	foreach ($arr_to_initialize as $field_name) {
-		if (!isset($project_results[$field_name]))
-		{
-			$project_results[$field_name]  = "";
-		}
-	}
-	$my_arr = array($project_errors, $project_results);
-	return $my_arr;
+  $my_arr = array();
+  foreach ($arr_to_initialize as $field_name) {
+  	if (!isset($project_errors[$field_name]))
+  	{
+  		$project_errors[$field_name]  = "";
+  	}
+  }
+  foreach ($arr_to_initialize as $field_name) {
+  	if (!isset($project_results[$field_name]))
+  	{
+  		$project_results[$field_name]  = "";
+  	}
+  }
+  $my_arr = array($project_errors, $project_results);
+  return $my_arr;
 }
 
 function print_out($array_name)
@@ -330,7 +335,7 @@ function print_out($array_name)
 }
 
 function run_select_one_field($query, $connection) {
-
+  $result_arr = array();
   if ($_SESSION['is_local'])
   {
     $local_mysqli = $connection;
@@ -355,6 +360,7 @@ function run_select_one_field($query, $connection) {
 
 function get_all_projects($connection, $db_name)
 {
+  $project = "";
   $query = "SELECT DISTINCT project FROM " . $db_name . ".project WHERE project <> ''";
   $project = run_select_one_field($query, $connection);
   return $project;
@@ -467,6 +473,7 @@ function print_red_message($message)
 
 function run_query($query, $table_name)
 {
+  $success_insert = 0;
 //   TODO: Why return project with run_id?
   $data_id = 0;
   if ($_SESSION['is_local'])
@@ -477,15 +484,19 @@ function run_query($query, $table_name)
   }
   else
   {
-    mysql_query($query);
-    $data_id = mysql_insert_id();
-    print_insert_message_by_id($table_name, $data_id);
+    $success_insert = mysql_query($query);
+    if ($success_insert)
+    {
+      $data_id = mysql_insert_id();
+      print_insert_message_by_id($table_name, $data_id);
+    }
   }
   return $data_id;
 }
 
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
+  $data_id = 0;
   foreach ( $data_array as $key => $value ) {
     $$key = $value;
   }
@@ -520,6 +531,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 
 function get_id($data_array, $table_name, $db_name, $connection) 
 {
+  $res_id = 0;
   if ($table_name == "run_key")
   {
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"NNNN" . $data_array[$table_name] . "\"";    
@@ -570,6 +582,9 @@ function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
   else 
   {
     print_red_message("Something is wrong with the Primer Suite name");
+    print_out($query);
+    print_out($suite_name);
+    print_out($domain);
   }
   return $res_id;
 }
