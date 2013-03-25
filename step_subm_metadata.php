@@ -4,6 +4,26 @@
 <h1>Illumina files processing</h1>
 <?php include_once("ill_subm_menu.php"); ?>
 
+
+<?php 
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["vamps_subm_info_process"] == 1) {
+    print_out($_POST);
+    list($user, $last_name, $first_name, $email, $institution, $selected_project, $selected_project_title, $selected_project_description, 
+            $selected_env_source_name, $selected_env_source_name_id, $selected_funding) = array_map('trim', explode(', ', $_POST["project_form_vamps_submission_info"]));
+    
+    $selected_data_owner = $last_name . ", " . $first_name;
+    $selected_contact_full = $contact_full[$user];
+    print_out("HERE");
+    print_red_message($selected_contact_full);
+    
+//     TODO: $_POST[project_form_vamps_submission_info] to selected variables
+//     UUU -Array ( [form_name] => vamps_subm_info_form 
+//             [project_form_vamps_submission_info] => ashipunova, Shipunova, Anna, ashipunova@mbl.edu, MBL, AS_temp_Bv6, temp project title, temp project description, water-freshwater, 120, 0 
+//             [add] => Submit [vamps_subm_info_process] => 1 ) --
+  }
+
+?>
+
 <?php
   if (isset($_SESSION["run_info"]) && $_SESSION["run_info"] != array()) {
     $run_info_results         = $_SESSION["run_info"];
