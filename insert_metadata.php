@@ -45,7 +45,7 @@ UUU -34 --
     $dataset_id 	  = get_id($metadata_arr, "dataset", $db_name, $connection); 
     $domain           = $metadata_arr["domain"];
     $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
-//     get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection); 
+    $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection); 
 // TODO: send dna_region, insert_size, overlap, read_length, rundate, seq_operator from run_info to here
 //     print_out("\$file_prefix");
     
@@ -71,7 +71,9 @@ UUU -34 --
 // [env_source_name] => extreme habitat [tubelabel] => dat111 [barcode] => bar [amp_operator] => amp ) 
 // [1] => Array ( [domain] => Bacteria [lane] => 5 [data_owner] => 2010, MicroDiversity [run_key] => [barcode_index] => [adaptor] => A03 [project] => AB_HGB1_Bv6v4 
 //         [dataset] => dat1 [dataset_description] => dat11 [env_source_name] => extreme habitat [tubelabel] => dat111 [barcode] => bar [amp_operator] => amp ) ) --    
-
+    print_out("\$dna_region_id");
+    print_red_message($dna_region_id);
+    
     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
         dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 

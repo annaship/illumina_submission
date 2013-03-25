@@ -505,7 +505,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     "($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";
   } 
-  elseif ($table_name == "project")
+  elseif ($table_name == "project" || $table_name == "dna_region")
   {
     break;
   } 
@@ -528,6 +528,11 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array["rundate"] . "\"";
   }
+  elseif ($table_name == "dna_region_0")
+  {
+    $table_name = "dna_region";
+    $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array["dna_region_0"] . "\"";
+  }
   else
   {    
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
@@ -535,33 +540,16 @@ function get_id($data_array, $table_name, $db_name, $connection)
  
   $row = get_one_value($query, $db_name, $connection);
   
-//   $res = run_select_one_field($query, $connection);
-// //   TODO: move to function, here and above
-//   if ($_SESSION['is_local'])
-//     {
-//       $res = $connection->query($query);
-
-//       for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-//         $res->data_seek($row_no);
-//         $row = $res->fetch_assoc();
-//       }
-//     }
-//     else
-//     {
-//       $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
-//       $row     = mysql_fetch_assoc($results);
-//     }
-    
-    if (isset($row[key($row)]))
-    {
-      $res_id = $row[key($row)];
-    }
-// if it is new data - insert
-    else
-    {
-      $res_id = add_new_data($data_array, $table_name, $db_name, $connection);
-    }
-    return $res_id;
+  if (isset($row[key($row)]))
+  {
+    $res_id = $row[key($row)];
+  }
+  // if it is new data - insert
+  else
+  {
+    $res_id = add_new_data($data_array, $table_name, $db_name, $connection);
+  }
+  return $res_id;
 }
 
 function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
@@ -574,7 +562,6 @@ function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
   $primer_domain = $domain . "l";
   $suite_name    = $primer_domain . " " . $dna_region . " Suite";
   $query         = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $suite_name . "\"";
-  print_out($query);
   $row = get_one_value($query, $db_name, $connection);
   if (isset($row[key($row)]))
   {
