@@ -4,6 +4,18 @@
 <h1>Illumina files processing</h1>
 <?php include_once("ill_subm_menu.php"); ?>
 
+<?php
+  if (isset($_SESSION["run_info"]) && $_SESSION["run_info"] != array()) {
+    $run_info_results         = $_SESSION["run_info"];
+    $selected_rundate 	      = $_SESSION["run_info"]["rundate"];
+    $selected_dna_region_base = $_SESSION["run_info"]["dna_region_0"];
+    $selected_overlap 	      = $_SESSION["run_info"]["overlap"];
+    $selected_seq_operator    = $_SESSION["run_info"]["seq_operator"];
+    $selected_insert_size     = $_SESSION["run_info"]["insert_size"];
+    $selected_read_length     = $_SESSION["run_info"]["read_length"];
+  } 
+?>
+
 <?php 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {   
       include_once 'step_subm_metadata_form_run_info_validation.php';
@@ -63,8 +75,7 @@
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submission_metadata_selected_process"] == 1) 
         {   
-          include_once 'step_subm_metadata_form_submission_metadata_validation.php';
-          
+          include_once 'step_subm_metadata_form_submission_metadata_validation.php';          
         }
       ?>
       <!-- end of content -->    

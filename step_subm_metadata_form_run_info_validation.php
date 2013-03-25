@@ -7,6 +7,8 @@ $i = 0;
 $required_fields = create_require_arr($run_info_form_fields);
 
 $run_info_results      = populate_post_vars($_POST);
+
+
 $selected_rundate 	   = $_POST["rundate"];
 $selected_dna_region_base = $_POST["dna_region_0"];
 $selected_overlap 	   = $_POST["overlap"];

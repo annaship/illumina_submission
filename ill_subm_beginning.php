@@ -1,5 +1,6 @@
 <?php
 if(!isset($_SESSION)) { session_start(); } 
+// $_SESSION["run_info"] = array();
 if ($_SESSION['is_local'])
 {  
     $docroot = $_SESSION['docroot'];

@@ -1,3 +1,4 @@
+
 <?php
 //   print_out("POST FROM insert metadata");
 //   print_out($_POST);
@@ -46,11 +47,6 @@ UUU -34 --
     $domain           = $metadata_arr["domain"];
     $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
     $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection); 
-// TODO: send dna_region, insert_size, overlap, read_length, rundate, seq_operator from run_info to here
-//     print_out("\$file_prefix");
-    
-    print_out($_SESSION["run_info"]);
-    print_out($metadata_arr);
     $file_prefix      = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
     $insert_size 	  = $_SESSION["run_info"]["insert_size"];
     $lane 			  = $metadata_arr["lane"];
@@ -63,16 +59,14 @@ UUU -34 --
     $run_key_id 	  = get_id($metadata_arr, "run_key", $db_name, $connection);
     $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
     $tubelabel 		  = $metadata_arr["tubelabel"];
-  
-//   TODO: data_owner print by project, not choose
 
-// UUU -Array ( [0] => Array ( [domain] => Bacteria [lane] => 5 [data_owner] => 2010, MicroDiversity [run_key] =>       
-//         [barcode_index] => [adaptor] => A02 [project] => AB_HGB1_Bv6v4 [dataset] => dat1 [dataset_description] => dat11 
-// [env_source_name] => extreme habitat [tubelabel] => dat111 [barcode] => bar [amp_operator] => amp ) 
-// [1] => Array ( [domain] => Bacteria [lane] => 5 [data_owner] => 2010, MicroDiversity [run_key] => [barcode_index] => [adaptor] => A03 [project] => AB_HGB1_Bv6v4 
-//         [dataset] => dat1 [dataset_description] => dat11 [env_source_name] => extreme habitat [tubelabel] => dat111 [barcode] => bar [amp_operator] => amp ) ) --    
-    print_out("\$dna_region_id");
-    print_red_message($dna_region_id);
+    
+    
+    //     print_out($_SESSION["run_info"]);
+    //     print_out($metadata_arr);
+    
+    
+//   TODO: data_owner print by project, not choose
     
     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
