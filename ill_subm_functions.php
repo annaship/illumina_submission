@@ -587,7 +587,8 @@ function get_all_submission_info($connection, $db_name)
 {
   $vamps_submission_info = array();
   
-  $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions JOIN " . $db_name . ".vamps_submissions_tubes USING(submit_code);";
+//   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions JOIN " . $db_name . ".vamps_submissions_tubes USING(submit_code);";
+  $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions ORDER BY id DESC limit 3";
   print_out($query);
   if ($_SESSION['is_local'])
   {

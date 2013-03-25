@@ -237,4 +237,27 @@ else
 }
 list($subm_field_names, $vamps_submission_info) = get_all_submission_info($connection, $db_name);
 
+// $contact_full[$row['user']] = $row['last_name'].', '.$row['first_name'].', '.$row['email'].', '.$row['institution'];
+$need_names = array("user", "last_name", "first_name", "email", "institution", "temp_project", "title",
+    "project_description", "environment", "env_source_id", "funding");
+// , "tube_label", "tube_description", "domain", "primer_suite", "dna_region"
+$vamps_submission_info_show = array();
+$key_num_subm = array_search("submit_code", $subm_field_names);
+foreach ($vamps_submission_info as $vamps_submission_info_arr)
+{
+  $vamps_submission_info_show_1 = array();
+  foreach ($need_names as $field_name)
+  {
+    $key_num = array_search($field_name, $subm_field_names);
+//     print_out("\$field_name = ");
+//     print_out($field_name);["submit_code"]
+//     print_out($vamps_submission_info_arr[$key_num]);
+    $vamps_submission_info_show_1[] = $vamps_submission_info_arr[$key_num];
+  }
+//   print_out($subm_field_names);
+  $vamps_submission_info_show[$vamps_submission_info_arr[$key_num_subm]] = implode(", ", $vamps_submission_info_show_1);
+  
+}
+// print_out($vamps_submission_info_show);
+
 ?>
