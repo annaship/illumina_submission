@@ -455,6 +455,7 @@ function print_insert_message_by_id($field_name, $data_id)
 
 function run_query($query, $table_name)
 {
+//   TODO: Why return project with run_id?
   $data_id = 0;
   if ($_SESSION['is_local'])
   {
@@ -476,6 +477,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   foreach ( $data_array as $key => $value ) {
     $$key = $value;
   }
+  
   if ($table_name == "dataset")
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
@@ -490,48 +492,25 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     "($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";
-  }  
+  } 
+  elseif ($table_name == "project")
+  {
+    break;
+  } 
   else
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
               "($table_name) VALUES (\"". $$table_name . "\")";    
   }
+  print_out("before = ");
+  print_out($data_id);
   print_out($query);
   
   $data_id = run_query($query, $table_name);
+  print_out("after = ");
+  print_out($data_id);
   return $data_id;
 }
-
-// function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
-//   $contact_info = array_map('trim', explode(',', $post_res));
-//   list($last_name, $first_name, $email, $institution) =  $contact_info;
-//   $contact = $first_name. " " . $last_name;
-//   //   print_out($contact);
-//   $query = "INSERT IGNORE INTO " . $db_name . ".contact (contact, email, institution, vamps_name, first_name, last_name)
-//   VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
-//   . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
-//   //   print_out($query);
-
-//   if(validate_new_contact($contact_info, $vamps_name) == 0)
-//   {
-//     if ($_SESSION['is_local'])
-//     {
-//       $res = $local_mysqli->query($query);
-//       $contact_id = $local_mysqli->insert_id;
-//       printf ("New Contact record has id %d.\n", $local_mysqli->insert_id);
-//     }
-//     else
-//     {
-//       mysql_query($query);
-//       $contact_id = mysql_insert_id();
-//       print_insert_message_by_id("contact", $contact_id);
-//     }
-
-//   }
-//   return $contact_id;
-// }
-
-
 
 function get_id($data_array, $table_name, $db_name, $connection) 
 {
@@ -547,6 +526,7 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {    
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
   }
+  print_out("FROM get_id");
   print_out($query);
   
   $res = run_select_one_field($query, $connection);
