@@ -175,6 +175,25 @@ function success_message($data_name)
   }
 }
 
+function get_one_value($query, $db_name, $connection)
+{
+  if ($_SESSION['is_local'])
+  {
+    $res = $connection->query($query);
+  
+    for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+      $res->data_seek($row_no);
+      $row = $res->fetch_assoc();
+    }
+  }
+  else
+  {
+    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+    $row     = mysql_fetch_assoc($results);
+  }
+  return $row;
+}
+
 function get_contact_id($contact_full, $connection)
 {
   $post_res = $_POST['project_form_contact'];
@@ -199,20 +218,8 @@ function get_contact_id($contact_full, $connection)
   first_name like \"" . $first_name. "%\" AND
   last_name = \"" . $last_name. "\"";
 
-  if ($_SESSION['is_local'])
-  {
-    $res = $connection->query($query);
-    
-    for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-      $res->data_seek($row_no);
-      $row = $res->fetch_assoc();
-    }
-  }
-  else
-  {
-    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
-    $row     = mysql_fetch_assoc($results);    
-  }
+  $row = get_one_value($query, $db_name, $connection);
+
   if (isset($row[key($row)]))
   {
     $contact_id = $row[key($row)];
@@ -453,6 +460,11 @@ function print_insert_message_by_id($field_name, $data_id)
   } 
 }
 
+function print_red_message($message)
+{
+  printf ("<div class = \"message\">$message</div>");
+}
+
 function run_query($query, $table_name)
 {
 //   TODO: Why return project with run_id?
@@ -502,13 +514,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
               "($table_name) VALUES (\"". $$table_name . "\")";    
   }
-  print_out("before = ");
-  print_out($data_id);
-  print_out($query);
-  
   $data_id = run_query($query, $table_name);
-  print_out("after = ");
-  print_out($data_id);
   return $data_id;
 }
 
@@ -526,25 +532,25 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {    
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
   }
-  print_out("FROM get_id");
-  print_out($query);
+ 
+  $row = get_one_value($query, $db_name, $connection);
   
-  $res = run_select_one_field($query, $connection);
-//   TODO: move to function, here and above
-  if ($_SESSION['is_local'])
-    {
-      $res = $connection->query($query);
+//   $res = run_select_one_field($query, $connection);
+// //   TODO: move to function, here and above
+//   if ($_SESSION['is_local'])
+//     {
+//       $res = $connection->query($query);
 
-      for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-        $res->data_seek($row_no);
-        $row = $res->fetch_assoc();
-      }
-    }
-    else
-    {
-      $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
-      $row     = mysql_fetch_assoc($results);
-    }
+//       for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+//         $res->data_seek($row_no);
+//         $row = $res->fetch_assoc();
+//       }
+//     }
+//     else
+//     {
+//       $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+//       $row     = mysql_fetch_assoc($results);
+//     }
     
     if (isset($row[key($row)]))
     {
@@ -558,21 +564,28 @@ function get_id($data_array, $table_name, $db_name, $connection)
     return $res_id;
 }
 
-function get_primer_suite_id($data) {
-  ;
+function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
+  $res_id = 0;
+  $table_name = "primer_suite";
+  if ($dna_region == "v4v5")
+  {
+    $dna_region = "V4-V5";
+  }
+  $primer_domain = $domain . "l";
+  $suite_name    = $primer_domain . " " . $dna_region . " Suite";
+  $query         = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $suite_name . "\"";
+  print_out($query);
+  $row = get_one_value($query, $db_name, $connection);
+  if (isset($row[key($row)]))
+  {
+    $res_id = $row[key($row)];
+  }
+  else 
+  {
+    print_red_message("Something is wrong with the primer suite name");
+  }
+  return $res_id;
 }
-function get_project_id($data) {
-  ;
-}
-function get_run_id($data) {
-  ;
-}
-function get_run_key_id($data) {
-  ;
-}
-function get_dna_region_id($data)
-{
-  ;
-}
+
 
 ?>

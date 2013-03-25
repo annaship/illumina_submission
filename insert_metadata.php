@@ -44,22 +44,22 @@ UUU -34 --
     $barcode_index 	  = $metadata_arr["barcode_index"];
     $dataset_id 	  = get_id($metadata_arr, "dataset", $db_name, $connection); 
     $domain           = $metadata_arr["domain"];
-    $dna_region_id 	  = ""; 
+    $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
 //     get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection); 
 // TODO: send dna_region, insert_size, overlap, read_length, rundate, seq_operator from run_info to here
-    $file_prefix      = $_SESSION["run_info"]["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
+//     print_out("\$file_prefix");
+    
+    print_out($_SESSION["run_info"]);
+    print_out($metadata_arr);
+    $file_prefix      = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
     $insert_size 	  = $_SESSION["run_info"]["insert_size"];
     $lane 			  = $metadata_arr["lane"];
     $overlap 		  = $_SESSION["run_info"]["overlap"];
-    $primer_suite_id  = get_primer_suite_id($dna_region, $domain);
+    $primer_suite_id  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);
     $project_id       = get_id($metadata_arr, "project", $db_name, $connection); 
-    print_out("PROJECT_ID");
-    print_out($project_id);
 //     TODO: add new, if no project, see "Add new project"
     $read_length 	  = $_SESSION["run_info"]["read_length"];
     $run_id 		  = get_id($_SESSION["run_info"], "run", $db_name, $connection);
-    print_out("\$run_id");
-    print_out($run_id);
     $run_key_id 	  = get_id($metadata_arr, "run_key", $db_name, $connection);
     $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
     $tubelabel 		  = $metadata_arr["tubelabel"];
