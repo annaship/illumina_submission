@@ -52,7 +52,6 @@
       
        <?php
   		 print_options(array_values($adaptors), $selected_adaptor);    
-//   		 get_run_key_by_adaptor($selected_adaptor);
         ?>  
         </select></td>
         <td>

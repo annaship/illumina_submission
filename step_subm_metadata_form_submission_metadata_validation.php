@@ -33,15 +33,14 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
   }
   $metadata_errors_all[] = $metadata_errors;
   // 2) populate index and runkey by adapter
-  // first check:
-  if ($_POST[submission_metadata_selected_process] != 1)
-  {  
-    $selected_dna_region_base = $_POST["selected_dna_region_base"];
-    
-    $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
-    $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
-    $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
+  if (isset($_SESSION["run_info"]["dna_region_0"]))
+  {
+    $selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);      
   }
+  
+  $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
+  $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
+  $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
   $selected_metadata_arr[] = $result_metadata_arr1;
   
 }

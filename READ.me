@@ -23,19 +23,22 @@ Includes:
 		ill_subm_menu.php (submission pipeline steps)
 			step_subm_metadata.php
 				step_subm_metadata_form_run_info.php
+			  step_subm_metadata_form_run_info_validation.php
+			    insert_run_info.php
 				step_subm_metadata_form_project.php
 				step_subm_metadata_form_project_validation.php
 					insert_project.php
-				step_subm_metadata_form_owner.php
-				step_subm_metadata_form_owner_validation.php
-					insert_owner.php
 				step_subm_metadata_form_metadata_table.php
 					step_subm_metadata_form_metadata_table_rows.php
+				step_subm_metadata_form_submission_metadata_validation.php
+				  step_subm_metadata_form_metadata_table_selected.php
+				    step_subm_metadata_form_metadata_table_rows.php
+				  insert_metadata.php
 				
 Forms:
-	step_subm_metadata_form_metadata_table.php: <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'>
-	step_subm_metadata_form_owner.php:          <form method="post" name="data_ownerForm" id="data_ownerForm" action="step_subm_metadata.php">
-	step_subm_metadata_form_project.php:        <form method="post" name="project_form" id="project_form" action="step_subm_metadata.php">
-	step_subm_metadata_form_run_info.php:       <form method="post" name="run_infoForm" id="run_infoForm" action="">
+	step_subm_metadata_form_metadata_table.php: <form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
+	step_subm_metadata_form_project.php:        <form method="post" name="project_form"             id="project_form"             action="step_subm_metadata.php">
+	step_subm_metadata_form_run_info.php:       <form method="post" name="run_info_form"            id="run_info_form"            action="step_subm_metadata.php">
+  
         
 
