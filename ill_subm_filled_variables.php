@@ -223,4 +223,18 @@ else
   asort($adaptors);
 //   print_out($adaptors_full[0]);
 }
+
+// -------
+if (!$_SESSION['is_local'])
+{
+  $connection = $vampsprod_connection;
+  $db_name = "vamps";
+}
+else
+{
+  //   $db_name = "env454";
+  $db_name = "test";
+}
+list($subm_field_names, $vamps_submission_info) = get_all_submission_info($connection, $db_name);
+
 ?>

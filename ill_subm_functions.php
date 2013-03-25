@@ -583,5 +583,44 @@ function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
   return $res_id;
 }
 
+function get_all_submission_info($connection, $db_name)
+{
+  $vamps_submission_info = array();
+  
+  $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions JOIN " . $db_name . ".vamps_submissions_tubes USING(submit_code);";
+  print_out($query);
+  if ($_SESSION['is_local'])
+  {
+//     $local_mysqli = $connection;
+//     $results = $local_mysqli->query($query);
+//     for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) {
+//       $results->data_seek($row_no);
+//       $row = $results->fetch_assoc();
+//       $result_arr[] = $row[key($row)];
+//     }
+;
+  }
+  else
+  {
+    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+    $subm_field_names = get_field_names($results);
+    while($row = mysql_fetch_row($results))
+    {      
+      $vamps_submission_info[] = $row;
+    }
+  }
+  return array($subm_field_names, $vamps_submission_info);  
+}
 
+function get_field_names($results) {
+  $i = 0;
+  $field_names = array();
+  while ($i < mysql_num_fields($results))
+  {
+    $meta = mysql_fetch_field($results, $i);
+    $field_names[] = $meta->name;
+    $i += 1;
+  }
+  return $field_names;
+}
 ?>
