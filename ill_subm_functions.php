@@ -569,7 +569,7 @@ function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
   }
   else 
   {
-    print_red_message("Something is wrong with the primer suite name");
+    print_red_message("Something is wrong with the Primer Suite name");
   }
   return $res_id;
 }
