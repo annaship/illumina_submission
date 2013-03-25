@@ -3,9 +3,6 @@ function print_options($array_name, $selected_val)
 {
   foreach ($array_name as $val)
   {
-//       html = '<option value="'+value+'" selected="selected">'+text+'</option>';
-//     <option value="volvo">Volvo</option>
-    
     if ($selected_val == $val)
     {
       echo '<option value="'.$val.'" selected="selected">'.$val.'</option>';
@@ -581,10 +578,7 @@ function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
   }
   else 
   {
-    print_red_message("Something is wrong with the Primer Suite name");
-    print_out($query);
-    print_out($suite_name);
-    print_out($domain);
+    print_red_message("Something is wrong with the Primer Suite name: \"$suite_name\"");
   }
   return $res_id;
 }

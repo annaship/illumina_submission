@@ -19,8 +19,10 @@
         <tbody>   
           <?php
           $row_num = 0;
+          print_red_message("\$selected_metadata_arr1");
           foreach ($selected_metadata_arr as $num_key => $selected_metadata_arr1)
           {
+            print_out($selected_metadata_arr1);
             if(isset($selected_metadata_arr1["domain"]))
             {
               foreach($selected_metadata_arr1 AS $key => $value)

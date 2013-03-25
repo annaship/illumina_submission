@@ -8,7 +8,7 @@ if ($_SESSION['is_local'])
   $connection = $local_mysqli;
 }
 
-$selected_overlap = $selected_contact_full = $selected_domain = 
+    $selected_overlap = $selected_contact_full = $selected_domain = 
 	$selected_lane = $selected_data_owner = $selected_run_key = 
 	$selected_barcode_index = $selected_project = $selected_dataset = 
 	$selected_dataset_description = $selected_env_source_name = 
@@ -165,6 +165,7 @@ $query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
 $overlaps = run_select_one_field($query, $connection);
 
 // ---
+$domains_array = array("Bacteria", "Archaea");
 
 // $illumina_adaptor_ref 
 $adaptors_full = $adaptors = array();

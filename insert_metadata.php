@@ -53,7 +53,7 @@
     $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill");
     if ($new_run_info_ill_id)
     {
-      print("++++++++++++++==========+++++++++++++");      
+      print("==========================================");      
     }
   }
 ?>
