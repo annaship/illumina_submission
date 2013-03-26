@@ -637,4 +637,18 @@ function get_machine_name($selected_dna_region_base)
   }
   return $machine_name;
 }
+
+function get_data_from_csv($file_name)
+{
+  print_red_message($file_name);
+  $csv_arr_result = array();
+  $handle = fopen($file_name, "r");
+  if( $handle ) {
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+      $csv_arr_result[] = $data;
+    }
+    fclose($handle);
+  }
+  return $csv_arr_result;
+}
 ?>
