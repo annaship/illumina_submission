@@ -3,19 +3,6 @@
           <select name="domain_<?php echo $row_num;?>" id="form_domain_<?php echo $row_num;?>">
            <?php 
              print_options(array_values($domains_array), $selected_domain);
-            
-//               $domain_wo_abbr = array("Bacteria" => "B", "Archaea" => "A", "Eukarya" => "E", "Fungi" => "F");
-//               foreach ($domain_wo_abbr as $full_name => $abbr)
-//               {
-//                 if ($selected_domain == $abbr && $selected_domain == $full_name)
-//                 {
-//                   echo '<option value="'.$full_name.'" selected="selected">'.$full_name.'</option>';
-//                 }
-//                 else 
-//                 {
-//                   echo '<option value="'.$full_name.'">'.$full_name.'</option>';
-//                 }
-//               }
             ?>
           </select>                
         </td>

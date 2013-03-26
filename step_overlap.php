@@ -24,7 +24,7 @@
       {
         $command_line_overlap = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/" . $rundate .
         "; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -s illumina_files -l debug -p illumina -r " .
-        $rundate . " -ft fastq -i " . $raw_path . " -cp . $is_compressed .  -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
+        $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
         ;
         
         //       print_out($command_line_overlap)

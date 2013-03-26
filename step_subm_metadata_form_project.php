@@ -19,7 +19,6 @@ _
 
   <select name="domain" id="form_domain">
   <?php 
-    $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A", "Eukarya (E)" => "E", "Fungi (F)" => "F");
     foreach ($domain_w_abbr as $full_name => $abbr)
     {
       if ($selected_domain == $abbr)
