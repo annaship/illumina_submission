@@ -2,6 +2,7 @@
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
   $dna_region_id = $file_prefix = $insert_size = $lane = $overlap = $primer_suite_id = ""; 
   $project_id = $read_length = $run_id = $run_key_id = $seq_operator = $tubelabel = "";
+  $lanes = $all_lanes = array();
   
   if (!$_SESSION['is_local'])
   {
@@ -55,5 +56,9 @@
     {
       print("==========================================");      
     }
+    
+    $lanes[] = $lane; 
   }
+  $all_lanes = array_unique($lanes);
+  $_SESSION["run_info"]["lanes"] = $all_lanes;
 ?>
