@@ -641,7 +641,6 @@ function get_machine_name($selected_dna_region_base)
 function get_data_from_csv($file_name)
 {
   $num = $row = 0;
-  print_red_message($file_name);
   $csv_arr_result = array();
   $handle = fopen($file_name, "r");
   if( $handle ) {

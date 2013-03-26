@@ -1,3 +1,7 @@
+<?php 
+print_red_message("HERE");
+print_red_message($selected_data_owner);
+?>
       <tr class="odd">
         <td>
           <select name="domain_<?php echo $row_num;?>" id="form_domain_<?php echo $row_num;?>">
