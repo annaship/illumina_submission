@@ -97,6 +97,12 @@
         { 
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';          
         }
+        print_out($_FILES);
       ?>
-      <!-- end of content -->    
+      <div id = "csv_load">
+        <a href="csv_download.php">Click to download CSV file</a>
+     </div>
+      
+      <!-- end of content -->
+          
 <?php include_once("ill_subm_end.php"); ?>     
