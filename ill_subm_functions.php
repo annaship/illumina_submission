@@ -624,4 +624,17 @@ function get_field_names($results) {
   }
   return $field_names;
 }
+
+function get_machine_name($selected_dna_region_base)
+{ 
+  if ($selected_dna_region_base == "v6")
+  {
+    $machine_name = "hs";
+  }
+  elseif ($selected_dna_region_base == "v4v5")
+  {
+    $machine_name = "ms";
+  }
+  return $machine_name;
+}
 ?>

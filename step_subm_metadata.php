@@ -7,14 +7,14 @@
 
 <?php 
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["vamps_subm_info_process"] == 1) {
-    print_out($_POST);
+//     print_out($_POST);
     list($user, $last_name, $first_name, $email, $institution, $selected_project, $selected_project_title, $selected_project_description, 
             $selected_env_source_name, $selected_env_source_name_id, $selected_funding) = array_map('trim', explode(', ', $_POST["project_form_vamps_submission_info"]));
     
     $selected_data_owner = $last_name . ", " . $first_name;
     $selected_contact_full = $contact_full[$user];
-    print_out("HERE");
-    print_red_message($selected_contact_full);
+//     print_out("HERE");
+//     print_red_message($selected_contact_full);
     
 //     TODO: $_POST[project_form_vamps_submission_info] to selected variables
 //     UUU -Array ( [form_name] => vamps_subm_info_form 

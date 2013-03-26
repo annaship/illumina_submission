@@ -16,14 +16,7 @@ $selected_seq_operator = $_POST["seq_operator"];
 $selected_insert_size  = $_POST["insert_size"];
 $selected_read_length  = $_POST["read_length"];
 
-if ($selected_dna_region_base == "v6")
-{
-  $machine_name = "hs";
-}
-elseif ($selected_dna_region_base == "v4v5") 
-{
-  $machine_name = "ms";
-}
+$machine_name = get_machine_name($selected_dna_region_base);
 
 if (!isset($_POST["path_to_raw_data"]) or $_POST["path_to_raw_data"] == "")
 {

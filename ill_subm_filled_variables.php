@@ -253,4 +253,6 @@ foreach ($vamps_submission_info as $vamps_submission_info_arr)
   $vamps_submission_info_show[$vamps_submission_info_arr[$key_num_subm]] = implode(", ", $vamps_submission_info_show_1);  
 }
 
+// -------
+$machine_names = array("ms" => "miseq", "hs" => "hiseq");
 ?>
