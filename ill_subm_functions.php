@@ -656,17 +656,4 @@ function get_data_from_csv($file_name)
   return $csv_arr_result;
 }
 
-
-
-// while(($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-//   // number of fields in the csv
-//   $num = count($data);
-//   print_out($num);
-//   // get the values from the csv
-//   $csv[$row]['row1'] = $data[0];
-//   $csv[$row]['row2'] = $data[1];
-
-//   // inc the row
-//   $row++;
-// }
 ?>
