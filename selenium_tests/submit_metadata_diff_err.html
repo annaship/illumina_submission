@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://vampsdev.mbl.edu/" />
+<title>submit_metadata_diff_err</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">submit_metadata_diff_err</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/illumina_submission/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_overlap</td>
+	<td>label=complete</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_dna_region_0</td>
+	<td>label=v4v5</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_overlap</td>
+	<td>label=partial</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_info_form_seq_operator</td>
+	<td>AA</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_info_form_insert_size</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_info_form_read_length</td>
+	<td>222</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=run_info_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form_dataset_0</td>
+	<td>dat1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=copy_row_times</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add_new_rows</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_data_owner_0</td>
+	<td>label=Agustian, Auguste</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_adaptor_0</td>
+	<td>label=B04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_project_0</td>
+	<td>label=BPC_Austria_Pit_</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form_dataset_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_env_source_name_0</td>
+	<td>label=indoor</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add_new_rows</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@id='delete_row'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_domain_0</td>
+	<td>label=Bacteria</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form_lane_0</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add_new_rows</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_update</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTable</td>
+	<td>id=submission_metadata-fields.3.1</td>
+	<td>The lane should be numbers.</td>
+</tr>
+<tr>
+	<td>verifyTable</td>
+	<td>id=submission_metadata-fields.6.7</td>
+	<td>The field dataset is required.</td>
+</tr>
+<tr>
+	<td>verifyTable</td>
+	<td>id=submission_metadata-fields.3.9</td>
+	<td>The field env_source_name is required.</td>
+</tr>
+<tr>
+	<td>verifyTable</td>
+	<td>id=submission_metadata-fields.3.7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextNotPresent</td>
+	<td>//table[@id='submission_metadata-fields']/tbody/tr[3]/td[8]</td>
+	<td>The field dataset is required.</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@id='form_barcode_index_1'])[1]</td>
+	<td>TGACCA</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_0</td>
+	<td>ATCACG</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@id='form_run_key_1'])[1]</td>
+	<td>CGACG</td>
+</tr>
+</tbody></table>
+</body>
+</html>
