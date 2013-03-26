@@ -640,15 +640,33 @@ function get_machine_name($selected_dna_region_base)
 
 function get_data_from_csv($file_name)
 {
+  $num = $row = 0;
   print_red_message($file_name);
   $csv_arr_result = array();
   $handle = fopen($file_name, "r");
   if( $handle ) {
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-      $csv_arr_result[] = $data;
+//       $num = count($data);
+
+      $csv_arr_result[$row] = $data;
+      $row++;
     }
     fclose($handle);
   }
   return $csv_arr_result;
 }
+
+
+
+// while(($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
+//   // number of fields in the csv
+//   $num = count($data);
+//   print_out($num);
+//   // get the values from the csv
+//   $csv[$row]['row1'] = $data[0];
+//   $csv[$row]['row2'] = $data[1];
+
+//   // inc the row
+//   $row++;
+// }
 ?>
