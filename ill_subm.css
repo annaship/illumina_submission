@@ -503,7 +503,7 @@ label
 	/* cursor:pointer; */	
 }
 
-#csv_load
+#csv_load, #subm_metadata_upload
 {
 	margin: 10px;
 	margin-left: 0px;

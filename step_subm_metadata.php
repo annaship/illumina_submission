@@ -13,8 +13,6 @@
     
     $selected_data_owner = $last_name . ", " . $first_name;
     $selected_contact_full = $contact_full[$user];
-//     print_out("HERE");
-//     print_red_message($selected_contact_full);
     
 //     TODO: $_POST[project_form_vamps_submission_info] to selected variables
 //     UUU -Array ( [form_name] => vamps_subm_info_form 
@@ -33,10 +31,11 @@
     $selected_seq_operator    = $_SESSION["run_info"]["seq_operator"];
     $selected_insert_size     = $_SESSION["run_info"]["insert_size"];
     $selected_read_length     = $_SESSION["run_info"]["read_length"];
+    $selected_path_to_raw_data = $_SESSION["run_info"]["path_to_raw_data"];
   } 
 ?>
 
-<?php 
+<?php
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {   
       include_once 'step_subm_metadata_form_run_info_validation.php';
     }

@@ -16,16 +16,17 @@ $selected_seq_operator = $_POST["seq_operator"];
 $selected_insert_size  = $_POST["insert_size"];
 $selected_read_length  = $_POST["read_length"];
 
-$machine_name = get_machine_name($selected_dna_region_base);
-
 if (!isset($_POST["path_to_raw_data"]) or $_POST["path_to_raw_data"] == "")
 {
-  $selected_path_to_raw_data =  $selected_rundate . $machine_name . "/";
+  $selected_path_to_raw_data = make_path_to_raw_data($selected_rundate, $selected_dna_region_base);
 }
 else
 {
   $selected_path_to_raw_data  = $_POST["path_to_raw_data"];
 }
+
+
+
 // print_out($selected_path_to_raw_data);
 
 $run_info_errors         = check_required_fields($_POST, $required_fields);

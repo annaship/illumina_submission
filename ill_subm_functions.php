@@ -686,4 +686,12 @@ function get_domain_from_csv_data($csv_domain, $domains_array)
   $domain       = $domains_array[$csv_domain_1[0]];
   return $domain;
 }
+
+function make_path_to_raw_data($selected_rundate, $selected_dna_region_base)
+{
+  
+  $machine_name = get_machine_name($selected_dna_region_base);
+  $selected_path_to_raw_data =  $selected_rundate . $machine_name . "/";
+  return $selected_path_to_raw_data;
+}
 ?>

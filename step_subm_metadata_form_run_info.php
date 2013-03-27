@@ -11,9 +11,14 @@
 <table class="fields" id="run_info_form_run_info-fields"><tbody>
 
   <tr class="fields">
-  <?php $today = date("Ymd");?>
+  <?php
+  if (!$selected_rundate)
+  {
+    $selected_rundate = date("Ymd");
+  }
+  ?>
   <td class="fields" align="left"><label for="run_infoForm_rundate">rundate</label></td>
-  <td align="left"><input class="text_inp size_long_input" type="text" name="rundate" id="run_infoForm_rundate" value="<?php PRINT "$today";?>"/></td>
+  <td align="left"><input class="text_inp size_long_input" type="text" name="rundate" id="run_infoForm_rundate" value="<?php echo $selected_rundate;?>"/></td>
   </tr>
   
   <tr class="fields">
