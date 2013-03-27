@@ -24,6 +24,7 @@
 
 <?php
   if (isset($_SESSION["run_info"]) && $_SESSION["run_info"] != array()) {
+    $run_info_results = array();
     $run_info_results         = $_SESSION["run_info"];
     $selected_rundate 	      = $_SESSION["run_info"]["rundate"];
     $selected_dna_region_base = $_SESSION["run_info"]["dna_region_0"];

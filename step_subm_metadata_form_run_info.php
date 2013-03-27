@@ -105,7 +105,8 @@
 </td></tr>
 <tr><td >
 <table class="buttons" id="run_info_form-buttons"><tbody>
-<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="run_info_form_add" value="Submit Run info"/><input type="hidden" name="run_info_process" value="1"></td></tr>
+<tr class="buttons"><td class="buttons"><input type="submit" name="add" id="run_info_form_add" value="Submit Run info"/>
+<input type="hidden" name="run_info_process" value="1"></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>
