@@ -1,6 +1,6 @@
 <?php 
-print_red_message("HERE");
-print_red_message($selected_data_owner);
+// print_red_message("HERE");
+// print_red_message($selected_data_owner);
 ?>
       <tr class="odd">
         <td>

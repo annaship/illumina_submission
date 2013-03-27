@@ -655,4 +655,35 @@ function get_data_from_csv($file_name)
   return $csv_arr_result;
 }
 
+function slice_arr_by_field_name($need_names, $subm_field_names, $subm_data)
+{
+  $arr_by_fields = array();
+
+  foreach ($need_names as $field_name)
+  {
+    $key_num = array_search($field_name, $subm_field_names);
+    $arr_by_fields[$field_name] = $subm_data[$key_num];
+  }
+  return $arr_by_fields;
+}
+
+function make_arr_by_key_field_name($subm_field_names, $subm_data, $need_names, $key_field_name)
+{
+
+  $arr_by_key_field_name = array();
+  $key_field_name_idx    = array_search($key_field_name, $subm_field_names);
+  foreach ($subm_data as $subm_data_arr)
+    {
+      $arr_by_key_field_name_1 = slice_arr_by_field_name($need_names, $subm_field_names, $subm_data_arr);
+      $arr_by_key_field_name[$subm_data_arr[$key_field_name_idx]] = implode(", ", $arr_by_key_field_name_1);
+    }
+  return $arr_by_key_field_name;
+}
+
+function get_domain_from_csv_data($csv_domain, $domains_array)
+{
+  $csv_domain_1 = explode(" ", $csv_domain);
+  $domain       = $domains_array[$csv_domain_1[0]];
+  return $domain;
+}
 ?>

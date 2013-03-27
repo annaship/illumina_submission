@@ -20,8 +20,7 @@ if ($_SESSION['is_local'])
 $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A");
 //               $domain_wo_abbr = array("Bacteria" => "B", "Archaea" => "A", "Eukarya" => "E", "Fungi" => "F");
 // ---
-$domains_array = array("Bacteria", "Archaea");
-
+$domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea");
     
 $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
     "tubelabel", "barcode", "amp_operator");
@@ -40,6 +39,10 @@ $submission_metadata_form_fields = array("domain"=> "required", "lane"=> "requir
 $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "required",  "read_length" => "required");
 // ---
 $dna_regions = array("v6", "v4v5");
+// ---
+$need_names = array("user", "last_name", "first_name", "email", "institution", "temp_project", "title",
+    "project_description", "environment", "env_source_id", "funding");
+// , "tube_label", "tube_description", "domain", "primer_suite", "dna_region"
 // ---
 
 $arr_fields_to_show = array("project_title", "project_description", "funding");
@@ -241,21 +244,8 @@ else
 }
 list($subm_field_names, $vamps_submission_info) = get_submission_info($connection, $db_name);
 
-$need_names = array("user", "last_name", "first_name", "email", "institution", "temp_project", "title",
-    "project_description", "environment", "env_source_id", "funding");
-// , "tube_label", "tube_description", "domain", "primer_suite", "dna_region"
 $vamps_submission_info_show = array();
-$key_num_subm = array_search("submit_code", $subm_field_names);
-foreach ($vamps_submission_info as $vamps_submission_info_arr)
-{
-  $vamps_submission_info_show_1 = array();
-  foreach ($need_names as $field_name)
-  {
-    $key_num = array_search($field_name, $subm_field_names);
-    $vamps_submission_info_show_1[] = $vamps_submission_info_arr[$key_num];
-  }
-  $vamps_submission_info_show[$vamps_submission_info_arr[$key_num_subm]] = implode(", ", $vamps_submission_info_show_1);  
-}
+$vamps_submission_info_show = make_arr_by_key_field_name($subm_field_names, $vamps_submission_info, $need_names, "submit_code");
 
 // -------
 $machine_names = array("ms" => "miseq", "hs" => "hiseq");
