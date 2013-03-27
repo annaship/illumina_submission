@@ -5,7 +5,7 @@
  
 ?>
 
-<form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="step_subm_metadata_upload.php">
+<form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="step_subm_metadata.php">
 <div id="subm_metadata_upload">
   <fieldset id="subm_metadata_upload">
     <legend id="subm_metadata_upload-legend">Submition metadata</legend>
@@ -83,6 +83,8 @@
               $selected_seq_operator		= $arr_by_headers["seq_operator"];
               $selected_tubelabel			= $arr_by_headers["tubelabel"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
+//            dinamically add row number to any field name
+              $row_num++;
           }       
         ?>   
         </tbody>

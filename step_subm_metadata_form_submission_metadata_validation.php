@@ -2,6 +2,9 @@
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
+print_red_message("FROM validation");
+print_out($_POST);
+
 $metadata_errors     = array();
 $metadata_errors_all = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
