@@ -91,13 +91,21 @@
           include("step_subm_metadata_form_metadata_table.php");
           $metadata_errors_count = 0;          
         }
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST["submission_metadata_process"] == 1 
-                || $_POST["subm_metadata_upload_process"] == 1)
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && 
+                (  $_POST["submission_metadata_process"] == 1 
                 || $_POST["submission_metadata_selected_process"] == 1
-                ) 
+                )
+           ) 
         {   
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
         }
+        elseif ($_SERVER["REQUEST_METHOD"] == "POST" &&
+                (  $_POST["subm_metadata_upload_process"] == 1
+                )
+        )
+        {
+          include_once 'step_subm_metadata_form_submission_metadata_validation.php';
+        }        
       ?>
       <div id = "csv_load">
         <a href="csv_download.php">Click to download CSV file</a>

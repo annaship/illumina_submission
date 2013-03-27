@@ -50,6 +50,7 @@ $metadata_errors_count = sizeof(flat_mult_array($metadata_errors_all));
 
 if($metadata_errors_count == 0)
 {
+  
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';
   success_message('Metadata');

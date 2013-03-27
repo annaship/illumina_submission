@@ -20,7 +20,7 @@
   
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
-
+    
     $adaptor 		  = $metadata_arr["adaptor"];
     $amp_operator     = $metadata_arr["amp_operator"];
     $barcode 		  = $metadata_arr["barcode"];

@@ -30,6 +30,7 @@
   
 //   print_out($run_info_results);
   include_once 'step_subm_metadata_form_run_info.php';
+  $_SESSION["run_info"] = $run_info_results;
 ?>
 
 <form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="step_subm_metadata.php">
