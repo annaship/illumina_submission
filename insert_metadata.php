@@ -63,4 +63,7 @@
   }
   $all_lanes = array_unique($lanes);
   $_SESSION["run_info"]["lanes"] = $all_lanes;
+  
+//   ====
+  include_once 'step_subm_metadata_create_csv.php';
 ?>

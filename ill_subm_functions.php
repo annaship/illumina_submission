@@ -730,17 +730,17 @@ function array_to_scv($array, $header_row = true, $col_sep = ",", $row_sep = "\n
   return $output;
 }
 
-function create_csv_file($csv_data) {
+function create_csv_file($csv_data, $file_name) {
   ;
-  $csv_data = array (
-      array('aaa', 'bbb', 'ccc', 'dddd'),
-      array('123', '456', '789'),
-      array('"aaa"', '"bbb"')
-  );
+//   $csv_data = array (
+//       array('aaa', 'bbb', 'ccc', 'dddd'),
+//       array('123', '456', '789'),
+//       array('"aaa"', '"bbb"')
+//   );
 
-  $fp = fopen('file.csv', 'w');
+  $fp = fopen($file_name, 'w') or die("Can't open $file_name");
 
-  foreach ($list as $fields) {
+  foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
   }
 
