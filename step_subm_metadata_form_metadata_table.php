@@ -1,4 +1,3 @@
-
 <!-- <form action='step_subm_metadata_form_metadata_table_submit.php' method='post'> -->
 <form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
 <div id="submission_metadata">
@@ -33,7 +32,7 @@
     </table>
 <!--   <a href="#" title="" class="add-author">Add Author</a> -->
   </fieldset>
-  <input type="submit" name="update" id="form_update" value="Check submission metadata"/> 
+  <input type="submit" name="update" id="form_update_metadata_table" value="Check submission metadata"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="submission_metadata_process" value="1">
   <input type="hidden" name="selected_dna_region_base" value="<?php echo $selected_dna_region_base?>">

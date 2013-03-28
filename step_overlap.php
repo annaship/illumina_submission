@@ -32,7 +32,6 @@
         $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
         ;
         
-        //       print_out($command_line_overlap)
         print_red_message($command_line_overlap);        
       }
       

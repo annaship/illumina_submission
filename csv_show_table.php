@@ -1,7 +1,6 @@
 <?php 
   $file_name = $_FILES["csv"]["tmp_name"];
   $csv_data = get_data_from_csv($file_name);
-//   print_out($csv_data);
   $row_num = 0;
   $csv_headers_needed = array("adaptor", "barcode", "barcode_index", "data_owner", "dataset_name", "domain", "env_sample_source",
       "lane", "op_amp", "op_empcr", "project_name", "runkey",
@@ -28,7 +27,6 @@
     $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
   }
   
-//   print_out($run_info_results);
   include_once 'step_subm_metadata_form_run_info.php';
   $_SESSION["run_info"] = $run_info_results;
 ?>
@@ -105,7 +103,7 @@
         </tbody>
     </table>
   </fieldset>
-  <input type="submit" name="update" id="form_update" value="Check submission metadata"/> 
+  <input type="submit" name="update" id="form_update_from_csv" value="Check submission metadata"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="subm_metadata_upload_process" value="1">
   </div>

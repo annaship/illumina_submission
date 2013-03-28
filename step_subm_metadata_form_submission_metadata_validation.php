@@ -25,6 +25,7 @@ $required_fields = create_require_arr($submission_metadata_form_fields);
 // 1) validate all data in foreach $result_metadata_arr
 foreach ($result_metadata_arr as $result_metadata_arr1)
 {
+  
   $metadata_errors = check_required_fields($result_metadata_arr1, $required_fields);
   $field_name = "lane";
   if( isset($result_metadata_arr1[$field_name]) && !valid_is_number($result_metadata_arr1[$field_name]))
@@ -33,24 +34,25 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
   }
   $metadata_errors_all[] = $metadata_errors;
   // 2) populate index and runkey by adapter
-  if (isset($_SESSION["run_info"]["dna_region_0"]))
+  if (check_var($_SESSION["run_info"]["dna_region_0"]))
   {
     $selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);      
   }
   
   $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
+  
   $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
   $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
   $selected_metadata_arr[] = $result_metadata_arr1;
   
 }
-
 // check for errors
 $metadata_errors_count = sizeof(flat_mult_array($metadata_errors_all));
 
 if($metadata_errors_count == 0)
 {
-  
+  $result_metadata_arr = $selected_metadata_arr;
+
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';
   success_message('Metadata');

@@ -7,7 +7,6 @@
 
 <?php 
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["vamps_subm_info_process"] == 1) {
-//     print_out($_POST);
     list($user, $last_name, $first_name, $email, $institution, $selected_project, $selected_project_title, $selected_project_description, 
             $selected_env_source_name, $selected_env_source_name_id, $selected_funding) = array_map('trim', explode(', ', $_POST["project_form_vamps_submission_info"]));
     
@@ -83,13 +82,25 @@
 <!--     </table>         -->
     <br />
       <?php
-//       TODO: apdate run_key and index by adaptor if "Update subm meatadata" button
-        if ((!($_SERVER["REQUEST_METHOD"] == "POST") || !($_POST["submission_metadata_process"])) 
+//         print_out($_SESSION["run_info_errors"]);
+        if (check_var($_SESSION["run_info_errors"]))
+        {
+//           echo "<div class=\"big\">";
+            print_red_message("<span class=\"big\">Please fix the run info above</span>");
+//           echo "</div>";
+          
+        }
+        elseif ((!($_SERVER["REQUEST_METHOD"] == "POST") || !($_POST["submission_metadata_process"])) 
                 && !($_POST["submission_metadata_selected_process"])
-                && !($_POST["subm_metadata_upload_process"])) 
+                && !($_POST["subm_metadata_upload_process"])
+                ) 
         {   
+//           print_red_message("HERE1");
           include("step_subm_metadata_form_metadata_table.php");
           $metadata_errors_count = 0;          
+//           print_red_message("HERE11");
+//           print_out($_SESSION["run_info_errors"]);
+          
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST" && 
                 (  $_POST["submission_metadata_process"] == 1 
@@ -97,19 +108,29 @@
                 )
            ) 
         {   
+//           print_red_message("HERE2");
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
+//           print_red_message("HERE21");
+//           print_out($_SESSION["run_info_errors"]);
+          
         }
         elseif ($_SERVER["REQUEST_METHOD"] == "POST" &&
                 (  $_POST["subm_metadata_upload_process"] == 1
                 )
         )
         {
+//           print_red_message("HERE3");          
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
+          echo "
+                <div id = \"csv_load\">
+                  <a href=\"csv_download.php\">Click to download CSV file</a>
+                </div>
+          ";
+//           print_red_message("HERE31");
+//           print_out($_SESSION["run_info_errors"]);          
         }        
       ?>
-      <div id = "csv_load">
-        <a href="csv_download.php">Click to download CSV file</a>
-     </div>
+
       
       <!-- end of content -->
           

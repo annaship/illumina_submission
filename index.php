@@ -20,6 +20,7 @@
 session_start();
 $_SESSION['cur_user'] = get_current_user();
 $_SESSION["run_info"] = array();
+$_SESSION["run_info_errors"] = array();
 
 if ($_SERVER['SERVER_NAME'] == "localhost")
 {

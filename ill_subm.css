@@ -591,3 +591,7 @@ table#submission_metadata-fields tr.repeated_row td {
 .show_block {
 	display: block !important;	
 }
+
+.big {
+	font-size: 200%;
+}

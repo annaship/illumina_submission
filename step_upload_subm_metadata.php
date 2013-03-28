@@ -16,10 +16,7 @@
 <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["upload_file_step"] == 1)
   {
-    
-//     print_out($_FILES);   
     include_once 'csv_show_table.php';
-    
   }
 ?>
 </div>

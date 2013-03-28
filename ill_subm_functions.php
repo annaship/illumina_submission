@@ -243,7 +243,6 @@ function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
   $contact_info   = array_map('trim', explode(',', $post_res));
   list($last_name, $first_name, $email, $institution) =  $contact_info;
   $contact = $first_name. " " . $last_name;
-//   print_out($contact);
   $query = "INSERT IGNORE INTO " . $db_name . ".contact (contact, email, institution, vamps_name, first_name, last_name)
             VALUES (\"" . $contact. "\", \"" . $email. "\", \"" . $institution
               . "\", \"" . $vamps_name. "\", \"" . $first_name. "\", \"" . $last_name. "\")";
@@ -398,7 +397,6 @@ function valid_dataset($dataset)
 // insert_size, read_length
 function valid_is_number($field_name)
 {
-//   print_out($field_name);
   $isValid = true;
   if (! ctype_digit ($field_name))
   {
@@ -415,7 +413,6 @@ function get_run_key_by_adaptor($selected_arr, $adaptors_full, $selected_dna_reg
   $selected_adaptor    = strtolower($selected_arr["adaptor"]);
   $selected_dna_region = strtolower($selected_dna_region_base);
   $selected_domain     = strtolower($selected_arr["domain"]);
-//     print_out($adaptors_full);
   foreach ($adaptors_full as $adaptors_arr)
   {
     if (($selected_adaptor    == strtolower($adaptors_arr["illumina_adaptor"]))
@@ -506,7 +503,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   elseif ($table_name == "run_key")
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
-    " ($table_name, dataset_description) VALUES (\"NNNN". $$table_name . "\")";
+    " ($table_name) VALUES (\"NNNN". $$table_name . "\")";
   }  
   elseif ($table_name == "run")
   {

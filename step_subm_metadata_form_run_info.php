@@ -60,13 +60,14 @@
   </tr>
 
   <?php 
-//   print_out($run_info_results);
+
   foreach ($arr_fields_run as $field_name) {
     if ((check_var($run_info_errors) == 1) AND (!isset($run_info_errors[$field_name])))
     {
       $run_info_errors[$field_name] = "";
     }
     $error_message = $run_info_errors[$field_name];
+    
     echo '
     <tr class="fields">
     <td class="fields"><label for="run_info_form_'.$field_name.'">'.$field_name.'</label></td>
@@ -75,7 +76,8 @@
     </tr>
     ';
   }
-
+ 
+  $_SESSION["run_info_errors"] = $run_info_errors;
   ?>
   
 

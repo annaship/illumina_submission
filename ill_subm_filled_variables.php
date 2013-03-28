@@ -93,18 +93,6 @@ asort($contact);
 asort($contact_full);
 
 // ---
-// if (!$_SESSION['is_local'])
-// {
-//   $db_name = "env454";
-//   $connection = $newbpc2_connection;
-// }
-// $query = "SELECT DISTINCT project FROM " . $db_name . ".project WHERE project <> '' ORDER BY project";
-// print_out($db_name);
-// print_out($query);
-// $project = run_select_one_field($query, $connection);
-// asort($project);
-// if ($_SESSION['is_local'])
-// {
 if (!$_SESSION['is_local'])
 {
   $connection = $newbpc2_connection;
@@ -116,19 +104,7 @@ else
   $db_name = "test";
 }
 $project = get_all_projects($connection, $db_name);
-  
-// }
-// else
-// {
-//   $query = "SELECT DISTINCT project FROM env454.project WHERE project <> '' ORDER BY project";
-//   $result_project = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_project: ".mysql_error());
-//   $i = 0;
-//   while($row = mysql_fetch_row($result_project))
-//   {
-//     $i += 1;
-//     $project[$i] = $row[0];
-//   }  
-// }
+
 // ---
 
 $arr_fields_add = array("tubelabel", "barcode", "amp_operator");
@@ -206,7 +182,6 @@ if ($_SESSION['is_local'])
   }
   $adaptors = array_unique($adaptors_all);
   asort($adaptors);
-//   print_out($adaptors_full[0]);
 }
 else
 {
@@ -228,7 +203,6 @@ else
   }
   $adaptors = array_unique($adaptors_all);
   asort($adaptors);
-//   print_out($adaptors_full[0]);
 }
 
 // -------

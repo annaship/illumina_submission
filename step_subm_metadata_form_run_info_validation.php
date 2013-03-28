@@ -25,10 +25,6 @@ else
   $selected_path_to_raw_data  = $_POST["path_to_raw_data"];
 }
 
-
-
-// print_out($selected_path_to_raw_data);
-
 $run_info_errors         = check_required_fields($_POST, $required_fields);
 
 if ($run_info_results["overlap"] == "")
@@ -50,11 +46,16 @@ foreach ($field_check as $field_name)
 }
 
 $run_info_errors_count = sizeof($run_info_errors);
+
 if ($run_info_errors_count == 0)
 {
     include_once "insert_run_info.php";
     success_message("run_info");
 //     clean_the_table();
+}
+else 
+{
+  $_SESSION["run_info_errors"] = $run_info_errors;
 }
 
 ?>

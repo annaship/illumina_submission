@@ -1,3 +1,8 @@
+<?php 
+//     print_red_message("subm_meta_selected");
+//     print_out($_POST);
+?>
+            
 <form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_subm_metadata.php">
 <div id="submission_metadata">
   <fieldset id="submission_metadata">
@@ -49,7 +54,7 @@
     </table>
     
   </fieldset>
-  <input type="submit" name="update" id="form_update" value="Update submission metadata"/> 
+  <input type="submit" name="update" id="form_update_selected" value="Update submission metadata"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="submission_metadata_selected_process" value="1">
   </div>

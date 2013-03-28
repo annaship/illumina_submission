@@ -17,7 +17,8 @@
     $connection = $local_mysqli;
     $db_name    = "test";
   }
-  
+
+
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
     
@@ -42,7 +43,7 @@
     $tubelabel 		  = $metadata_arr["tubelabel"];
        
 //   TODO: data_owner print by project, not choose
-    
+
     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
         dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
@@ -51,6 +52,7 @@
       \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
     ";
+//     print_out($insert_metadata_query);
     $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill");
     if ($new_run_info_ill_id)
     {
