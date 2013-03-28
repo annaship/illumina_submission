@@ -9,12 +9,11 @@
  * 
  */
 //print csv file
-$table_headers = array('header1', 'header2', 'header3');
-$data_all = array(
-    array('data11', 'data12', 'data13'),
-    array('data21', 'data22', 'data23'),
-    array('data31', 'data32', 'data23')
-);
+$metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", "data_owner", 
+        "dataset", "dataset_description", "dna_region", "email", "env_sample_source", "first_name", 
+        "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
+        "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
+
 print_red_message("\$data_all");
 print_out($result_metadata_arr);
 print_out($_SESSION['run_info']);
@@ -28,18 +27,28 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $amp_operator   = $metadata_arr["amp_operator"];
   $barcode 		  = $metadata_arr["barcode"];
   $barcode_index  = $metadata_arr["barcode_index"];
-  $dataset_id 	  = get_id($metadata_arr, "dataset", $db_name, $connection);
+  $data_owner     = "";
+  $dataset 	      = $metadata_arr["dataset"];
+  $dataset_description = ""; 
   $domain         = $metadata_arr["domain"];
   $dna_region 	  = $_SESSION["run_info"]["dna_region_0"];
+  $email = "";
+  $env_sample_source = ""; 
+  $first_name = "";
+  $funding = "";
   $file_prefix    = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
   $insert_size 	  = $_SESSION["run_info"]["insert_size"];
   $lane 		  = $metadata_arr["lane"];
+  $last_name = "";
   $overlap 		  = $_SESSION["run_info"]["overlap"];
+  $primer_suite = "";
   $primer_suite_id  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);
-  $project_id       = get_id($metadata_arr, "project", $db_name, $connection);
+  $project 		  = $metadata_arr["project"];
+  $project_description = "";
+  $project_title = "";
   $read_length 	  = $_SESSION["run_info"]["read_length"];
-  $run_id 		  = get_id($_SESSION["run_info"], "run", $db_name, $connection);
-  $run_key_id 	  = get_id($metadata_arr, "run_key", $db_name, $connection);
+  $run  		  = $_SESSION["run_info"]["run"];
+  $run_key 	      = $metadata_arr["run_key"];
   $seq_operator   = $_SESSION["run_info"]["seq_operator"];
   $tubelabel 	  = $metadata_arr["tubelabel"];
 
@@ -73,9 +82,6 @@ foreach ($lanes as $lane_name)
 //   $file_name = "/usr/local/tmp/table_result_ill11.csv";
 //     $file_name = "/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/table_result_ill.csv";
   print_out($file_name);
-//   /xraid2-2/g454/run_new_pipeline
-  
-
 
 //   $data_all = array();
   create_csv_file($data_all, $file_name);
