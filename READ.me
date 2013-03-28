@@ -21,24 +21,30 @@ Includes:
   index 
 	ill_subm_index_local.php | ill_subm_index.php
 		ill_subm_menu.php (submission pipeline steps)
-			step_subm_metadata.php
-				step_subm_metadata_form_run_info.php
-			  step_subm_metadata_form_run_info_validation.php
-			    insert_run_info.php
-				step_subm_metadata_form_project.php
-				step_subm_metadata_form_project_validation.php
-					insert_project.php
-				step_subm_metadata_form_metadata_table.php
-					step_subm_metadata_form_metadata_table_rows.php
-				step_subm_metadata_form_submission_metadata_validation.php
-				  step_subm_metadata_form_metadata_table_selected.php
-				    step_subm_metadata_form_metadata_table_rows.php
-				  insert_metadata.php
+		  Submit Metadata:
+  		  step_upload_subm_metadata.php
+		      csv_show_table.php
+		      
+  			step_subm_metadata.php
+  				step_subm_metadata_form_run_info.php
+  			  step_subm_metadata_form_run_info_validation.php
+  			    insert_run_info.php
+  				step_subm_metadata_form_project.php
+  				step_subm_metadata_form_project_validation.php
+  					insert_project.php
+  				step_subm_metadata_form_metadata_table.php
+  					step_subm_metadata_form_metadata_table_rows.php
+  				step_subm_metadata_form_submission_metadata_validation.php
+  				  step_subm_metadata_form_metadata_table_selected.php
+  				    step_subm_metadata_form_metadata_table_rows.php
+  				  insert_metadata.php
 				
 Forms:
 	step_subm_metadata_form_metadata_table.php: <form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
 	step_subm_metadata_form_project.php:        <form method="post" name="project_form"             id="project_form"             action="step_subm_metadata.php">
 	step_subm_metadata_form_run_info.php:       <form method="post" name="run_info_form"            id="run_info_form"            action="step_subm_metadata.php">
+  step_upload_subm_metadata.php               <form method="POST" name="form_upload_csv"          id="form_upload_csv"          action="step_take_subm_metadata.php"  enctype="multipart/form-data" >
   
+TODO: add all forms
         
 

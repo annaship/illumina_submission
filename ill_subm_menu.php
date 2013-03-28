@@ -1,14 +1,14 @@
 <div id="my_menu">
   <ul id="nav"> 
    
-<!--   <li><a href="step_subm_metadata.php">Create Submission Metadata</a></li> -->
-  <li><a href="#here">Submit Metadata</a>
-    <ul class="nav first">     
-      <li><a href="step_upload_subm_metadata.php">Upload Submission Metadata</a></li>
-      <li><a href="step_subm_metadata.php">Create Submission Metadata</a></li>
-      <li><a href="step_take_subm_metadata.php">Take Metadata from VAMPS</a></li>
-    </ul>  
-  </li>      
+  <li><a href="step_upload_subm_metadata.php">Upload Submission Metadata</a></li>
+<!--   <li><a href="#here">Submit Metadata</a> -->
+<!--     <ul class="nav first">      -->
+<!--       <li><a href="step_upload_subm_metadata.php">Upload Submission Metadata</a></li> -->
+<!--       <li><a href="step_subm_metadata.php">Create Submission Metadata</a></li> -->
+<!--       <li><a href="step_take_subm_metadata.php">Take Metadata from VAMPS</a></li> -->
+<!--     </ul>   -->
+<!--   </li>       -->
   
   <li><a href="step_overlap.php">Overlap Analyzing</a></li>
   <li><a href="step_gast.php">Gast</a></li>

@@ -595,3 +595,7 @@ table#submission_metadata-fields tr.repeated_row td {
 .big {
 	font-size: 200%;
 }
+
+.how_to {
+	font-size: 120%;
+}
