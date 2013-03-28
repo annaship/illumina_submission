@@ -223,4 +223,11 @@ $vamps_submission_info_show = make_arr_by_key_field_name($subm_field_names, $vam
 
 // -------
 $machine_names = array("ms" => "miseq", "hs" => "hiseq");
+
+$rundate       = $_SESSION["run_info"]["rundate"];
+$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
+$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
+$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/" . $rundate;
+$lanes         = $_SESSION["run_info"]["lanes"];
+
 ?>

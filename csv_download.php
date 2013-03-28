@@ -3,7 +3,13 @@
 //content type
 header('Content-type: text/csv');
 //open/save dialog box
-header('Content-Disposition: attachment; filename="table_result_ill.csv"');
+// header('Content-Disposition: attachment; filename="table_result_ill.csv"');
+header('Content-Disposition: attachment; filename="check_this.txt"');
+
 //read from server and write to buffer
-readfile('/usr/local/tmp/table_result_ill.csv');
+// readfile('/usr/local/tmp/table_result_ill.csv');
+// readfile("/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/check_this.txt")
+// readfile("/usr/local/tmp/check_this.txt");
+readfile("/xraid2-2/g454/check_this.txt");
+
 ?>

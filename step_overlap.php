@@ -7,39 +7,42 @@
       <h1>Illumina files processing</h1>
       <?php 
       include_once("ill_subm_menu.php");
-      $lanes         = array();
-      $machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
-      $rundate       = $_SESSION["run_info"]["rundate"];
-      $raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
-//       TODO: add real csv path
-      $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/" . $rundate;
-      $is_compressed = "True";
-      $do_perfect    = "True";      
-      if ($_SESSION["run_info"]["overlap"] == partial)
+      
+      if (!check_var($_SESSION["run_info"]))
       {
-        $do_perfect = "False";         
+        print_red_message("Please submit metadata first here: 
+                <a href\"http://vampsdev.mbl.edu/illumina_submission/step_upload_subm_metadata.php\">Upload Submission Metadata</a>");
       }
-
-      $lanes         = $_SESSION["run_info"]["lanes"];
-      foreach ($lanes as $lane_name)
+      else 
       {
-        $csv_name      = "metadata_" . $rundate . "_" . $lane_name . ".csv";
-        
-        $command_line_overlap = "cd " . $path_to_csv .
-        "; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
-        -csv " . $path_to_csv . "/" . $csv_name .  
-        " -s illumina_files -l debug -p illumina -r " .
-        $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
-        ;
-        
-        print_red_message($command_line_overlap);        
-      }
-      
-      
-      
-      
-
-
+        $lanes         = array();
+  //       $rundate       = $_SESSION["run_info"]["rundate"];
+  //       $machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
+  //       $raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
+  //       $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/" . $rundate;
+        $is_compressed = "True";
+        $do_perfect    = "True";      
+        if ($_SESSION["run_info"]["overlap"] == partial)
+        {
+          $do_perfect = "False";         
+        }
+  
+//         $lanes         = $_SESSION["run_info"]["lanes"];
+        foreach ($lanes as $lane_name)
+        {
+          $csv_name = create_csv_name($rundate, $lane_name); 
+//           "metadata_" . $rundate . "_" . $lane_name . ".csv";
+          
+          $command_line_overlap = "cd " . $path_to_csv .
+          "; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
+          -csv " . $path_to_csv . "/" . $csv_name .  
+          " -s illumina_files -l debug -p illumina -r " .
+          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
+          ;
+          
+          print_red_message($command_line_overlap);        
+        }
+      }      
 //         UUU -Array ( [form_name] => run_info_form [rundate] => 20130326 [path_to_raw_data] => 20130326hs/
 //                 [dna_region_0] => v6 [overlap] => complete [seq_operator] => AA [insert_size] => 111
 //                 [read_length] => 222 [add] => Submit Run info [run_info_process] => 1 [lanes] => Array ( [0] => 1 [1] => 3 ) ) --

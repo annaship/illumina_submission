@@ -738,13 +738,19 @@ function create_csv_file($csv_data, $file_name) {
 //       array('"aaa"', '"bbb"')
 //   );
 
-  $fp = fopen($file_name, 'w') or die("Can't open $file_name");
+  $fp = fopen($file_name, 'w') or die("Can't open $file_name: ");
 
   foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
   }
 
   fclose($fp);
+}
+
+function create_csv_name($rundate, $lane_name)
+{
+  $csv_file_name = "metadata_" . $rundate . "_" . $lane_name . ".csv";
+  return $csv_file_name;
 }
 
 ?>
