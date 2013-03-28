@@ -730,15 +730,43 @@ function array_to_scv($array, $header_row = true, $col_sep = ",", $row_sep = "\n
   return $output;
 }
 
+//error handler function
+function customError($errno, $errstr)
+{
+//   print_r(debug_backtrace());
+//   print_r(debug_print_backtrace());
+
+  $err_arr     = error_get_last();
+  $err_message = $err_arr["message"];
+  $err_file    = $err_arr["file"];
+  $err_line    = $err_arr["line"];
+  echo "<b>Error:</b> [$errno] \"$err_message\" occured in $err_file on the line $err_line<br>";
+  echo "Ending Script";
+  die();
+}
+
 function create_csv_file($csv_data, $file_name) {
   ;
-//   $csv_data = array (
-//       array('aaa', 'bbb', 'ccc', 'dddd'),
-//       array('123', '456', '789'),
-//       array('"aaa"', '"bbb"')
-//   );
+  $csv_data = array (
+      array('aaa', 'bbb', 'ccc', 'dddd'),
+      array('123', '456', '789'),
+      array('"aaa"', '"bbb"')
+  );
 
-  $fp = fopen($file_name, 'w') or die("Can't open $file_name: ");
+
+  
+  //set error handler
+  set_error_handler("customError", E_USER_ERROR);
+  
+  //trigger error E_USER_ERROR
+//   $test=2;
+//   if ($test>1)
+//   {
+//     trigger_error("Value must be 1 or below",E_ALL);
+//   }
+  
+  set_error_handler("E_ALL");
+  $fp = fopen($file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
 
   foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
