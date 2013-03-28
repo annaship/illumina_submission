@@ -121,6 +121,37 @@
         {
 //           print_red_message("HERE3");          
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
+          
+          //print csv file
+          $table_headers = array('header1', 'header2', 'header3');
+          $data_all = array(
+              array('data11', 'data12', 'data13'),
+              array('data21', 'data22', 'data23'),
+              array('data31', 'data32', 'data23')
+              );
+          print_red_message("\$data_all");
+          print_out($data_all);
+          array_unshift($data_all, $table_headers);
+          
+          print_red_message("\$data_all; \$table_headers");
+          print_out($data_all);
+          print_out($table_headers);
+          
+          $csv_data = array_to_scv($data_all, false);
+
+          print_red_message("\$data_all");
+          print_out($csv_data);
+          
+          $dir = dirname(__FILE__);
+          print_out($dir);
+          
+          $myFile = "/usr/local/tmp/table_result_ill.csv";
+          
+          $fh = fopen($myFile, 'w') or die("Can't open file");
+          fwrite($fh, $csv_data);
+          fclose($fh);
+          print_out("HERE");
+          
           echo "
                 <div id = \"csv_load\">
                   <a href=\"csv_download.php\">Click to download CSV file</a>
