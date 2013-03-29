@@ -559,17 +559,22 @@ function get_id($data_array, $table_name, $db_name, $connection)
   return $res_id;
 }
 
-function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
-  $res_id = 0;
-  $table_name = "primer_suite";
+function get_primer_suite_name($dna_region, $domain) {
   if ($dna_region == "v4v5")
   {
     $dna_region = "V4-V5";
   }
   $primer_domain = $domain . "l";
   $suite_name    = $primer_domain . " " . $dna_region . " Suite";
-  $query         = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $suite_name . "\"";
-  $row = get_one_value($query, $db_name, $connection);
+  return $suite_name;
+}
+
+function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
+  $res_id = 0;
+  $table_name = "primer_suite";  
+  $suite_name = get_primer_suite_name($dna_region, $domain);
+  $query      = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $suite_name . "\"";
+  $row        = get_one_value($query, $db_name, $connection);
   if (isset($row[key($row)]))
   {
     $res_id = $row[key($row)];
@@ -578,6 +583,7 @@ function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
   {
     print_red_message("Something is wrong with the Primer Suite name: \"$suite_name\"");
   }
+  
   return $res_id;
 }
 
