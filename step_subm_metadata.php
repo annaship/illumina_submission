@@ -119,7 +119,7 @@
                 )
         )
         {
-//           print_red_message("HERE3");          
+          print_red_message("HERE3");        
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
           
           echo "
@@ -127,7 +127,7 @@
                   <a href=\"csv_download.php\">Click to download CSV file</a>
                 </div>
           ";
-//           print_red_message("HERE31");
+          print_red_message("HERE31");
 //           print_out($_SESSION["run_info_errors"]);          
         }        
       ?>

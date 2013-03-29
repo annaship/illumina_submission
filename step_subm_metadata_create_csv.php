@@ -15,8 +15,9 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
 // print_red_message("\$data_all");
-// print_out($result_metadata_arr);
-// print_out($_SESSION['run_info']);
+print_out($result_metadata_arr);
+print_out($_SESSION['run_info']);
+print_out($contact_full);
 
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
@@ -27,25 +28,25 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $amp_operator   = $metadata_arr["amp_operator"];
   $barcode 		  = $metadata_arr["barcode"];
   $barcode_index  = $metadata_arr["barcode_index"];
-  $data_owner     = get_data_owner("");
+  $data_owner     = $metadata_arr["data_owner"];
   $dataset 	      = $metadata_arr["dataset"];
-  $dataset_description = ""; 
+  $dataset_description = $metadata_arr["dataset_description"]; 
   $domain         = $metadata_arr["domain"];
   $dna_region 	  = $_SESSION["run_info"]["dna_region_0"];
-  $email = "";
-  $env_sample_source = ""; 
-  $first_name = "";
-  $funding = "";
+  $email          = $metadata_arr["dummy"];
+  $env_sample_source = $metadata_arr["dummy"]; 
+  $first_name     = $metadata_arr["dummy"];
+  $funding        = $metadata_arr["dummy"];
   $file_prefix    = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
   $insert_size 	  = $_SESSION["run_info"]["insert_size"];
   $lane 		  = $metadata_arr["lane"];
-  $last_name = "";
+  $last_name      = $metadata_arr["dummy"];
   $overlap 		  = $_SESSION["run_info"]["overlap"];
-  $primer_suite = "";
+  $primer_suite   = $metadata_arr["dummy"];
   $primer_suite_id  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);
   $project 		  = $metadata_arr["project"];
-  $project_description = "";
-  $project_title = "";
+  $project_description = $metadata_arr["dummy"];
+  $project_title  = $metadata_arr["dummy"];
   $read_length 	  = $_SESSION["run_info"]["read_length"];
   $run  		  = $_SESSION["run_info"]["run"];
   $run_key 	      = $metadata_arr["run_key"];
@@ -53,6 +54,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $tubelabel 	  = $metadata_arr["tubelabel"];
 
 }
+
 
 
 // array_unshift($data_all, $table_headers);

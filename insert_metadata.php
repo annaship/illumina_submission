@@ -3,7 +3,8 @@
   $dna_region_id = $file_prefix = $insert_size = $lane = $overlap = $primer_suite_id = ""; 
   $project_id = $read_length = $run_id = $run_key_id = $seq_operator = $tubelabel = "";
   $lanes = $all_lanes = array();
-  
+
+    
   if (!$_SESSION['is_local'])
   {
     //   $connection = $newbpc2_connection;
@@ -21,7 +22,7 @@
 
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
-    
+
     $adaptor 		  = $metadata_arr["adaptor"];
     $amp_operator     = $metadata_arr["amp_operator"];
     $barcode 		  = $metadata_arr["barcode"];
@@ -52,8 +53,10 @@
       \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
     ";
+    
 //     print_out($insert_metadata_query);
     $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill");
+   
     if ($new_run_info_ill_id)
     {
       print("==========================================");      

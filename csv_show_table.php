@@ -85,14 +85,12 @@
 
 
           foreach ($csv_metadata as $csv_metadata_row) {
-//             $csv_metadata_row = slice_arr_by_field_name($csv_headers_needed, $csv_field_names, $csv_data_row);
-//             print_out($vamps_submissions_arr);
-// print_out($vamps_submissions_arr[$csv_metadata_row["submit_code"]]["environment"]);
-            
+
               $selected_adaptor				= strtoupper($csv_metadata_row["adaptor"]);
               $selected_amp_operator		= $csv_metadata_row["op_amp"];
               $selected_barcode				= $csv_metadata_row["barcode"];
-              $selected_barcode_index		= $csv_metadata_row["barcode_index"]; 
+              $selected_barcode_index		= $csv_metadata_row["barcode_index"];
+              $selected_user   			    = $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"];              
               $selected_data_owner			= $contact[$vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"]];
               $selected_dataset				= $csv_metadata_row["dataset_name"];
               $selected_dataset_description	= $csv_metadata_row["tube_description"];
@@ -106,6 +104,8 @@
               $selected_run_key				= $csv_metadata_row["run_key"];
               $selected_tubelabel			= $csv_metadata_row["tube_label"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
+              
+              print_red_message($selected_user);
 //            dinamically add row number to any field name
               $row_num++;
               
@@ -117,5 +117,6 @@
   <input type="submit" name="update" id="form_update_from_csv" value="Check submission metadata"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="subm_metadata_upload_process" value="1">
+  
   </div>
 </form>

@@ -4,6 +4,8 @@
 ?>
       <tr class="odd">
         <td>
+          <input type="hidden" name="user_<?php echo $row_num;?>" id="form_user_<?php echo $row_num;?>" value="<?php echo $selected_user ?>"/>
+        
           <select name="domain_<?php echo $row_num;?>" id="form_domain_<?php echo $row_num;?>">
            <?php 
              print_options(array_values($domains_array), $selected_domain);
@@ -71,8 +73,7 @@
         ';  
       }
       unset($value); // break the reference with the last element
+
       ?>
-      
-      <tr class="even">
       </tr>
       
