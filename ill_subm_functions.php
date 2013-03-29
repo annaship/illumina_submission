@@ -790,34 +790,43 @@ function get_submit_code($csv_metadata)
 
 function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
 {
-    print_red_message("HERE");
-  
     $vamps_submissions_arr = array();
     $submit_code_arr_uniq  = array_unique($submit_code_arr);
-  
     foreach ($submit_code_arr_uniq as $submit_code)
     {
       $query = "SELECT * FROM " . $db_name . ".vamps_submissions WHERE
         submit_code = \"" . $submit_code. "\"";
-      print_red_message("from get_user_env_by_submit_code");
       $row = get_one_value($query, $db_name, $connection);
-      print_red_message("HERE1");
-  
-  //     print_out($row);
       $vamps_submissions_arr[$submit_code] = $row;
-  
-  //     if (isset($row[key($row)]))
-  //     {
-  //       $contact_id = $row[key($row)];
-  //     }
-  //     else
-  //     {
-  //       $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
-  //     }
-  //     return $contact_id;
+      
     }
-   print_out($vamps_submissions_arr);
+    return $vamps_submissions_arr;
 }
+    
+  
+//     foreach ($submit_code_arr_uniq as $submit_code)
+//     {
+//       $query = "SELECT * FROM " . $db_name . ".vamps_submissions WHERE
+//         submit_code = \"" . $submit_code. "\"";
+//       print_red_message("from get_user_env_by_submit_code");
+//       $row = get_one_value($query, $db_name, $connection);
+//       print_red_message("HERE1");
+  
+//       print_out($row);
+//       $vamps_submissions_arr[$submit_code] = $row;
+  
+//   //     if (isset($row[key($row)]))
+//   //     {
+//   //       $contact_id = $row[key($row)];
+//   //     }
+//   //     else
+//   //     {
+//   //       $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
+//   //     }
+//   //     return $contact_id;
+//     }
+//    print_out($submit_code_arr_uniq);
+// }
   
 
 ?>

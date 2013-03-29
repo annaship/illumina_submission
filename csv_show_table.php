@@ -23,9 +23,20 @@
   
   $submit_code_arr = get_submit_code($csv_metadata);
   
+  if (!$_SESSION['is_local'])
+  {
+    $connection = $vampsprod_connection;
+    $db_name    = "vamps";
+  }
+  else
+  {
+    $connection = $local_mysqli;
+    $db_name    = "test";
+  }
+  
+   $vamps_submissions_arr = get_info_by_submit_code($submit_code_arr, $db_name, $connection);
+  
   foreach ($all_csv_run_info as $csv_run_info_row) {
-
-    
 //     TODO: deal with different dna_regions in one csv
     $run_info_results = array(
         "dna_region_0"	   => $csv_run_info_row["dna_region"],
@@ -75,16 +86,18 @@
 
           foreach ($csv_metadata as $csv_metadata_row) {
 //             $csv_metadata_row = slice_arr_by_field_name($csv_headers_needed, $csv_field_names, $csv_data_row);
+//             print_out($vamps_submissions_arr);
+// print_out($vamps_submissions_arr[$csv_metadata_row["submit_code"]]["environment"]);
             
               $selected_adaptor				= strtoupper($csv_metadata_row["adaptor"]);
               $selected_amp_operator		= $csv_metadata_row["op_amp"];
               $selected_barcode				= $csv_metadata_row["barcode"];
               $selected_barcode_index		= $csv_metadata_row["barcode_index"]; 
-              $selected_data_owner			= $contact[$csv_metadata_row["data_owner"]];
+              $selected_data_owner			= $contact[$vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"]];
               $selected_dataset				= $csv_metadata_row["dataset_name"];
               $selected_dataset_description	= $csv_metadata_row["tube_description"];
               $selected_domain				= get_domain_from_csv_data($csv_metadata_row["domain"], $domains_array);
-              $selected_env_source_name		= $csv_metadata_row["env_sample_source"];
+              $selected_env_source_name		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["environment"];
               $selected_funding				= $csv_metadata_row["funding"];
               $selected_lane				= $csv_metadata_row["lane"];
               $selected_project				= $csv_metadata_row["project"];
@@ -95,7 +108,8 @@
               include 'step_subm_metadata_form_metadata_table_rows.php';
 //            dinamically add row number to any field name
               $row_num++;
-          }       
+              
+         }       
         ?>   
         </tbody>
     </table>
