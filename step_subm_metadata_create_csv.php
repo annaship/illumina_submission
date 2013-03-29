@@ -84,20 +84,20 @@ $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index",
 // $file_name = "/usr/local/tmp/table_result_ill1.csv";
 // TODO: create directory
 // -----
-print_out($lanes);
-foreach ($lanes as $lane_name)
+foreach (array_unique($lanes) as $lane_name)
 {
   $csv_name = create_csv_name($rundate, $lane_name);
   //           "metadata_" . $rundate . "_" . $lane_name . ".csv";
   $file_name = $path_to_csv . "/" . $csv_name;
 
-//   print_out($file_name);
 //   $file_name = "/usr/local/tmp/table_result_ill11.csv";
 //     $file_name = "/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/table_result_ill.csv";
 //   print_out($file_name);
 
 //   $data_all = array();
-  create_csv_file($data_all, $file_name);
+  print_out($file_name);
+  print_out($csv_name);
+    create_csv_file($data_all, $file_name);
 }
 // -----
 //           $fh = fopen($myFile, 'w') or die("Can't open file");

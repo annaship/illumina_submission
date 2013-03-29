@@ -754,12 +754,12 @@ function customError($errno, $errstr)
 }
 
 function create_csv_file($csv_data, $file_name) {
-  ;
-  $csv_data = array (
-      array('aaa', 'bbb', 'ccc', 'dddd'),
-      array('123', '456', '789'),
-      array('"aaa"', '"bbb"')
-  );
+//   ;
+//   $csv_data = array (
+//       array('aaa', 'bbb', 'ccc', 'dddd'),
+//       array('123', '456', '789'),
+//       array('"aaa"', '"bbb"')
+//   );
 
 
   
