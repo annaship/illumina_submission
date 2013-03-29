@@ -31,7 +31,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $data_for_csv["data_owner"]    	    = $metadata_arr["data_owner"];
   $data_for_csv["dataset"] 	            = $metadata_arr["dataset"];
   $data_for_csv["dataset_description"]  = $metadata_arr["dataset_description"]; 
-  $data_for_csv["domain"]        		= $metadata_arr["domain"];
+//   $data_for_csv["domain"]        		= $metadata_arr["domain"];
   $data_for_csv["dna_region"] 	 	    = $_SESSION["run_info"]["dna_region_0"];
   $data_for_csv["email"]         		= $contact_info[2];
   $data_for_csv["env_sample_source"]	= $metadata_arr["env_source_name"]; 
@@ -39,11 +39,12 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $data_for_csv["funding"]       		= $metadata_arr["funding"];
   $data_for_csv["file_prefix"]   		= $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
   $data_for_csv["insert_size"] 	        = $_SESSION["run_info"]["insert_size"];
+  $data_for_csv["institution"] 	        = $contact_info[3];
   $data_for_csv["lane"] 		 		= $metadata_arr["lane"];
   $data_for_csv["last_name"]     		= $contact_info[0];
   $data_for_csv["overlap"] 		 	    = $_SESSION["run_info"]["overlap"];
   $data_for_csv["primer_suite"]  		= get_primer_suite_name($_SESSION["run_info"]["dna_region_0"], $metadata_arr["domain"]);
-  $data_for_csv["primer_suite_id"] 	    = get_primer_suite_id($_SESSION["run_info"]["dna_region_0"], $metadata_arr["domain"], $db_name, $connection);
+//   $data_for_csv["primer_suite_id"] 	    = get_primer_suite_id($_SESSION["run_info"]["dna_region_0"], $metadata_arr["domain"], $db_name, $connection);
   $data_for_csv["project"] 		 	    = $metadata_arr["project"];
   $data_for_csv["project_description"]  = $metadata_arr["project_description"];
   $data_for_csv["project_title"] 		= $metadata_arr["project_title"];
@@ -58,18 +59,24 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 
 
 
+$table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", 
+    "data_owner", "dataset", "dataset_description", "dna_region", "email", "env_sample_source", 
+    "first_name", "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
+    "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel");
+
 // array_unshift($data_all, $table_headers);
 
-// print_red_message("\$data_all; \$table_headers");
-print_red_message("\$data_all: ");
 
-print_out($data_all);
+// print_red_message("\$data_all; \$table_headers");
+// print_red_message("\$data_all: ");
+
+// print_out($data_all);
 // print_out($table_headers);
 
-//           $csv_data = array_to_scv($data_all, false);
+          $csv_data = array_to_scv($data_all, false);
 
-//           print_red_message("\$data_all");
-//           print_out($csv_data);
+          print_red_message("\$csv_data");
+          print_out($csv_data);
 
 // $dir = dirname(__FILE__);
 //           print_out($dir);
@@ -77,6 +84,7 @@ print_out($data_all);
 // $file_name = "/usr/local/tmp/table_result_ill1.csv";
 // TODO: create directory
 // -----
+print_out($lanes);
 foreach ($lanes as $lane_name)
 {
   $csv_name = create_csv_name($rundate, $lane_name);
