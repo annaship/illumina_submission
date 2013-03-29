@@ -57,8 +57,6 @@ if($metadata_errors_count == 0)
 {
   $result_metadata_arr = $selected_metadata_arr;
 
-  print_red_message("POST");
-  print_out($_POST);
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';
 //   print_red_message("FROM valid1");

@@ -1,6 +1,6 @@
 <?php 
-    print_red_message("subm_meta_selected");
-    print_out($_POST);
+//     print_red_message("subm_meta_selected");
+//     print_out($_POST);
 ?>
             
 <form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_subm_metadata.php">

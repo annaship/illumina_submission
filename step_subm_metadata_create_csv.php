@@ -17,41 +17,41 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
 // print_red_message("\$data_all");
 print_out($result_metadata_arr);
 print_out($_SESSION['run_info']);
-print_out($contact_full);
 
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
 foreach ($result_metadata_arr as $row_num => $metadata_arr)
 {
-
-  $adaptor 		  = $metadata_arr["adaptor"];
-  $amp_operator   = $metadata_arr["amp_operator"];
-  $barcode 		  = $metadata_arr["barcode"];
-  $barcode_index  = $metadata_arr["barcode_index"];
-  $data_owner     = $metadata_arr["data_owner"];
-  $dataset 	      = $metadata_arr["dataset"];
-  $dataset_description = $metadata_arr["dataset_description"]; 
-  $domain         = $metadata_arr["domain"];
-  $dna_region 	  = $_SESSION["run_info"]["dna_region_0"];
-  $email          = $metadata_arr["dummy"];
-  $env_sample_source = $metadata_arr["dummy"]; 
-  $first_name     = $metadata_arr["dummy"];
-  $funding        = $metadata_arr["dummy"];
-  $file_prefix    = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
-  $insert_size 	  = $_SESSION["run_info"]["insert_size"];
-  $lane 		  = $metadata_arr["lane"];
-  $last_name      = $metadata_arr["dummy"];
-  $overlap 		  = $_SESSION["run_info"]["overlap"];
-  $primer_suite   = $metadata_arr["dummy"];
-  $primer_suite_id  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);
-  $project 		  = $metadata_arr["project"];
-  $project_description = $metadata_arr["dummy"];
-  $project_title  = $metadata_arr["dummy"];
-  $read_length 	  = $_SESSION["run_info"]["read_length"];
-  $run  		  = $_SESSION["run_info"]["run"];
-  $run_key 	      = $metadata_arr["run_key"];
-  $seq_operator   = $_SESSION["run_info"]["seq_operator"];
-  $tubelabel 	  = $metadata_arr["tubelabel"];
+  $contact_info   = $contact_full[$metadata_arr["user"]];
+  
+  $data_all[$row_num]["adaptor"] 		 	  = $metadata_arr["adaptor"];
+  $data_all[$row_num]["amp_operator"]  		  = $metadata_arr["amp_operator"];
+  $data_all[$row_num]["barcode"] 		      = $metadata_arr["barcode"];
+  $data_all[$row_num]["barcode_index"] 		  = $metadata_arr["barcode_index"];
+  $data_all[$row_num]["data_owner"]    		  = $metadata_arr["data_owner"];
+  $data_all[$row_num]["dataset"] 	          = $metadata_arr["dataset"];
+  $data_all[$row_num]["dataset_description"]  = $metadata_arr["dataset_description"]; 
+  $data_all[$row_num]["domain"]        		  = $metadata_arr["domain"];
+  $data_all[$row_num]["dna_region"] 	 	  = $_SESSION["run_info"]["dna_region_0"];
+  $data_all[$row_num]["email"]         		  = $contact_info["email"];
+  $data_all[$row_num]["env_sample_source"]	  = $metadata_arr["env_source_name"]; 
+  $data_all[$row_num]["first_name"]    		  = $contact_info["first_name"];
+  $data_all[$row_num]["funding"]       		  = $metadata_arr["funding"];
+  $data_all[$row_num]["file_prefix"]   		  = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
+  $data_all[$row_num]["insert_size"] 	      = $_SESSION["run_info"]["insert_size"];
+  $data_all[$row_num]["lane"] 		 		  = $metadata_arr["lane"];
+  $data_all[$row_num]["last_name"]     		  = $contact_info["last_name"];;
+  $data_all[$row_num]["overlap"] 		 	  = $_SESSION["run_info"]["overlap"];
+  $data_all[$row_num]["primer_suite"]  		  = $metadata_arr["dummy"];
+  $data_all[$row_num]["primer_suite_id"] 	  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);
+  $data_all[$row_num]["project"] 		 	  = $metadata_arr["project"];
+  $data_all[$row_num]["project_description"]  = $metadata_arr["project_description"];
+  $data_all[$row_num]["project_title"] 		  = $metadata_arr["project_title"];
+  $data_all[$row_num]["read_length"] 	 	  = $_SESSION["run_info"]["read_length"];
+  $data_all[$row_num]["run"]  		 		  = $_SESSION["run_info"]["run"];
+  $data_all[$row_num]["run_key"] 	     	  = $metadata_arr["run_key"];
+  $data_all[$row_num]["seq_operator"]  		  = $_SESSION["run_info"]["seq_operator"];
+  $data_all[$row_num]["tubelabel"] 	 		  = $metadata_arr["tubelabel"];
 
 }
 
@@ -60,7 +60,9 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 // array_unshift($data_all, $table_headers);
 
 // print_red_message("\$data_all; \$table_headers");
-// print_out($data_all);
+print_red_message("\$data_all: ");
+
+print_out($data_all);
 // print_out($table_headers);
 
 //           $csv_data = array_to_scv($data_all, false);

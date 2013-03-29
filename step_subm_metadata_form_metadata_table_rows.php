@@ -1,11 +1,14 @@
 <?php 
-// print_red_message("HERE");
-// print_red_message($selected_data_owner);
+print_red_message("HERE");
+print_red_message($selected_funding);
 ?>
       <tr class="odd">
         <td>
           <input type="hidden" name="user_<?php echo $row_num;?>" id="form_user_<?php echo $row_num;?>" value="<?php echo $selected_user ?>"/>
-        
+          <input type="hidden" name="funding_<?php echo $row_num;?>" id="form_funding_<?php echo $row_num;?>" value="<?php echo $selected_funding ?>"/>
+          <input type="hidden" name="project_description_<?php echo $row_num;?>" id="form_project_description_<?php echo $row_num;?>" value="<?php echo $selected_project_description ?>"/>
+          <input type="hidden" name="project_title_<?php echo $row_num;?>" id="form_project_title_<?php echo $row_num;?>" value="<?php echo $selected_project_title ?>"/>
+          
           <select name="domain_<?php echo $row_num;?>" id="form_domain_<?php echo $row_num;?>">
            <?php 
              print_options(array_values($domains_array), $selected_domain);
