@@ -21,6 +21,8 @@
     $all_csv_run_info[] = slice_arr_by_field_name($csv_headers_run_info_needed, $csv_field_names, $csv_data_row);
   }
   
+  $submit_code_arr = get_submit_code($csv_metadata);
+  
   foreach ($all_csv_run_info as $csv_run_info_row) {
 
     
