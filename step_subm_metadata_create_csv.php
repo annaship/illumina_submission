@@ -61,11 +61,10 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 
 $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", 
     "data_owner", "dataset", "dataset_description", "dna_region", "email", "env_sample_source", 
-    "first_name", "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
+    "first_name", "funding", "file_prefix", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
     "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel");
 
-// array_unshift($data_all, $table_headers);
-
+array_unshift($data_all, $table_headers);
 
 // print_red_message("\$data_all; \$table_headers");
 // print_red_message("\$data_all: ");
@@ -90,13 +89,6 @@ foreach (array_unique($lanes) as $lane_name)
   //           "metadata_" . $rundate . "_" . $lane_name . ".csv";
   $file_name = $path_to_csv . "/" . $csv_name;
 
-//   $file_name = "/usr/local/tmp/table_result_ill11.csv";
-//     $file_name = "/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/table_result_ill.csv";
-//   print_out($file_name);
-
-//   $data_all = array();
-  print_out($file_name);
-  print_out($csv_name);
     create_csv_file($data_all, $file_name);
 }
 // -----
