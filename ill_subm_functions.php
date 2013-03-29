@@ -559,7 +559,8 @@ function get_id($data_array, $table_name, $db_name, $connection)
   return $res_id;
 }
 
-function get_primer_suite_name($dna_region, $domain) {
+function get_primer_suite_name($dna_region, $domain) 
+{
   if ($dna_region == "v4v5")
   {
     $dna_region = "V4-V5";

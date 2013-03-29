@@ -22,37 +22,38 @@ print_out($_SESSION['run_info']);
 // take headers from correct metadata
 foreach ($result_metadata_arr as $row_num => $metadata_arr)
 {
-  $contact_info   = $contact_full[$metadata_arr["user"]];
+  $contact_info   = array_map('trim', explode(',', $contact_full[$metadata_arr["user"]])); 
   
-  $data_all[$row_num]["adaptor"] 		 	  = $metadata_arr["adaptor"];
-  $data_all[$row_num]["amp_operator"]  		  = $metadata_arr["amp_operator"];
-  $data_all[$row_num]["barcode"] 		      = $metadata_arr["barcode"];
-  $data_all[$row_num]["barcode_index"] 		  = $metadata_arr["barcode_index"];
-  $data_all[$row_num]["data_owner"]    		  = $metadata_arr["data_owner"];
-  $data_all[$row_num]["dataset"] 	          = $metadata_arr["dataset"];
-  $data_all[$row_num]["dataset_description"]  = $metadata_arr["dataset_description"]; 
-  $data_all[$row_num]["domain"]        		  = $metadata_arr["domain"];
-  $data_all[$row_num]["dna_region"] 	 	  = $_SESSION["run_info"]["dna_region_0"];
-  $data_all[$row_num]["email"]         		  = $contact_info["email"];
-  $data_all[$row_num]["env_sample_source"]	  = $metadata_arr["env_source_name"]; 
-  $data_all[$row_num]["first_name"]    		  = $contact_info["first_name"];
-  $data_all[$row_num]["funding"]       		  = $metadata_arr["funding"];
-  $data_all[$row_num]["file_prefix"]   		  = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
-  $data_all[$row_num]["insert_size"] 	      = $_SESSION["run_info"]["insert_size"];
-  $data_all[$row_num]["lane"] 		 		  = $metadata_arr["lane"];
-  $data_all[$row_num]["last_name"]     		  = $contact_info["last_name"];;
-  $data_all[$row_num]["overlap"] 		 	  = $_SESSION["run_info"]["overlap"];
-  $data_all[$row_num]["primer_suite"]  		  = $metadata_arr["dummy"];
-  $data_all[$row_num]["primer_suite_id"] 	  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);
-  $data_all[$row_num]["project"] 		 	  = $metadata_arr["project"];
-  $data_all[$row_num]["project_description"]  = $metadata_arr["project_description"];
-  $data_all[$row_num]["project_title"] 		  = $metadata_arr["project_title"];
-  $data_all[$row_num]["read_length"] 	 	  = $_SESSION["run_info"]["read_length"];
-  $data_all[$row_num]["run"]  		 		  = $_SESSION["run_info"]["run"];
-  $data_all[$row_num]["run_key"] 	     	  = $metadata_arr["run_key"];
-  $data_all[$row_num]["seq_operator"]  		  = $_SESSION["run_info"]["seq_operator"];
-  $data_all[$row_num]["tubelabel"] 	 		  = $metadata_arr["tubelabel"];
-
+  $data_for_csv["adaptor"] 		 	    = $metadata_arr["adaptor"];
+  $data_for_csv["amp_operator"]         = $metadata_arr["amp_operator"];
+  $data_for_csv["barcode"] 		        = $metadata_arr["barcode"];
+  $data_for_csv["barcode_index"] 	    = $metadata_arr["barcode_index"];
+  $data_for_csv["data_owner"]    	    = $metadata_arr["data_owner"];
+  $data_for_csv["dataset"] 	            = $metadata_arr["dataset"];
+  $data_for_csv["dataset_description"]  = $metadata_arr["dataset_description"]; 
+  $data_for_csv["domain"]        		= $metadata_arr["domain"];
+  $data_for_csv["dna_region"] 	 	    = $_SESSION["run_info"]["dna_region_0"];
+  $data_for_csv["email"]         		= $contact_info[2];
+  $data_for_csv["env_sample_source"]	= $metadata_arr["env_source_name"]; 
+  $data_for_csv["first_name"]    		= $contact_info[1];
+  $data_for_csv["funding"]       		= $metadata_arr["funding"];
+  $data_for_csv["file_prefix"]   		= $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
+  $data_for_csv["insert_size"] 	        = $_SESSION["run_info"]["insert_size"];
+  $data_for_csv["lane"] 		 		= $metadata_arr["lane"];
+  $data_for_csv["last_name"]     		= $contact_info[0];
+  $data_for_csv["overlap"] 		 	    = $_SESSION["run_info"]["overlap"];
+  $data_for_csv["primer_suite"]  		= get_primer_suite_name($_SESSION["run_info"]["dna_region_0"], $metadata_arr["domain"]);
+  $data_for_csv["primer_suite_id"] 	    = get_primer_suite_id($_SESSION["run_info"]["dna_region_0"], $metadata_arr["domain"], $db_name, $connection);
+  $data_for_csv["project"] 		 	    = $metadata_arr["project"];
+  $data_for_csv["project_description"]  = $metadata_arr["project_description"];
+  $data_for_csv["project_title"] 		= $metadata_arr["project_title"];
+  $data_for_csv["read_length"] 	 	    = $_SESSION["run_info"]["read_length"];
+  $data_for_csv["run"]  		 		= $_SESSION["run_info"]["run"];
+  $data_for_csv["run_key"] 	     	    = $metadata_arr["run_key"];
+  $data_for_csv["seq_operator"]  		= $_SESSION["run_info"]["seq_operator"];
+  $data_for_csv["tubelabel"] 	 		= $metadata_arr["tubelabel"];
+  
+  $data_all[] = $data_for_csv;
 }
 
 
