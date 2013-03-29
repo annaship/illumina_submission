@@ -14,9 +14,9 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
-print_red_message("\$data_all");
-print_out($result_metadata_arr);
-print_out($_SESSION['run_info']);
+// print_red_message("\$data_all");
+// print_out($result_metadata_arr);
+// print_out($_SESSION['run_info']);
 
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
@@ -27,7 +27,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $amp_operator   = $metadata_arr["amp_operator"];
   $barcode 		  = $metadata_arr["barcode"];
   $barcode_index  = $metadata_arr["barcode_index"];
-  $data_owner     = "";
+  $data_owner     = get_data_owner("");
   $dataset 	      = $metadata_arr["dataset"];
   $dataset_description = ""; 
   $domain         = $metadata_arr["domain"];
@@ -78,10 +78,10 @@ foreach ($lanes as $lane_name)
   //           "metadata_" . $rundate . "_" . $lane_name . ".csv";
   $file_name = $path_to_csv . "/" . $csv_name;
 
-  print_out($file_name);
+//   print_out($file_name);
 //   $file_name = "/usr/local/tmp/table_result_ill11.csv";
 //     $file_name = "/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/table_result_ill.csv";
-  print_out($file_name);
+//   print_out($file_name);
 
 //   $data_all = array();
   create_csv_file($data_all, $file_name);
@@ -90,6 +90,6 @@ foreach ($lanes as $lane_name)
 //           $fh = fopen($myFile, 'w') or die("Can't open file");
 //           fwrite($fh, $csv_data);
 //           fclose($fh);
-print_out("HERE");
+// print_out("HERE");
 
 ?>

@@ -87,49 +87,9 @@ and proper updating of the state variable to the heatmap and crosstabs windows
 <!--         </form> -->
        
 <?php 
-// What you see in drop down select:
-$queries_by_name = array(
-    'q1' => "Determine the number of reads that made it into the database",
-//     "SELECT lane, count(rawseq_id) as seqcnt FROM rawseq JOIN env454.run using(run_id) WHERE run='rundate' group by lane",
-    'q2' => "Check the number of reads that were loaded into gast_rundate_dna_region", 
-//     "SELECT COUNT(distinct read_id) FROM gast_rundate_dna_region",
-    'q3' => "Check that the initial set of sequences is correct", 
-//     "SELECT COUNT(DISTINCT trimsequence_id) FROM trimseq
-//               JOIN run using(run_id)
-//               JOIN dna_region using(dna_region_id)
-//               WHERE run = 'rundate' AND dna_region = '<em>dna_region</em>'",
-    'q4' => "Count the reads in the tagtax table for your run",
-//     "SELECT count(read_id) from tagtax
-//               JOIN trimseq using(read_id)
-//               JOIN run using(run_id)
-//               WHERE run='rundate'",
-    'q5' => "Taxonomic diversity of your run", 
-//     "SELECT taxonomy, count(read_id) as count_all from tagtax JOIN taxonomy USING(taxonomy_id)
-//               JOIN trimseq using(read_id)
-//               JOIN run using(run_id)
-//               WHERE run='rundate' group by taxonomy",
-    'q6' => "Taxonomy by project and dataset", 
-//     "SELECT project, dataset, taxonomy, count(read_id) from tagtax
-//               JOIN taxonomy USING(taxonomy_id)
-//               JOIN trimseq using(read_id)
-//               JOIN project using(project_id)
-//               JOIN dna_region using(dna_region_id)
-//               JOIN dataset using(dataset_id)
-//               JOIN run using (run_id)
-//               WHERE run=rundate group by project, dataset, taxonomy;",
-    'q7' => "Delete reason / project / dataset for your run",  
-    'q8' => "Billing info from Vamps submission",    
-    'q9' => "Overview of your run from Vamps submission",
-    'q10' => "Project / dataset / run uploaded on vamps",
-    'q11' => "New project / dataset uploaded on vamps",
-// SELECT project, dataset, user FROM vamps.vamps_projects_datasets 
-//                   LEFT JOIN vamps.vamps_projects_datasets_previous USING(project, dataset, dataset_count, has_sequence, date_trimmed, dataset_info) 
-//                   LEFT JOIN vamps.vamps_users USING(project)
-//                   WHERE vamps.vamps_projects_datasets_previous.id IS NULL
-    
-); 
 
-$submit_code = $_GET['code'];
+
+// $submit_code = $_GET['code'];
 
 }
 ?>
