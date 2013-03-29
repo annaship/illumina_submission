@@ -175,6 +175,7 @@ function success_message($data_name)
 
 function get_one_value($query, $db_name, $connection)
 {
+  set_error_handler("customError", E_USER_ERROR);
   $row = array();
   if ($_SESSION['is_local'])
   {
@@ -187,7 +188,7 @@ function get_one_value($query, $db_name, $connection)
   }
   else
   {
-    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+    $results = mysql_query($query, $connection) or trigger_error("$query : ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
   }
   return $row;
