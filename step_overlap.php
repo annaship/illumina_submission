@@ -10,6 +10,12 @@
             
 //       print_out($_SERVER);
       include_once 'choose_metadata.php';
+      if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["find_metadata_process"] == 1)
+      {
+        print_red_message("CHANGE command line");
+      }
+      else
+      {
 ?>
       <div id="command_line_print">
 <?php 
@@ -68,7 +74,7 @@
 //  -s illumina_files -l debug -p illumina -r 20121221 -ft fastq -i /xraid2-2/sequencing/Illumina/20121221hs/Project_SLM_NIH_Bv6_plt2 
 // -cp True -lane_name 'lane_2' -do_perfect True
       
-      
+      } #else    
 ?>
 
 </div>
