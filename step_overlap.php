@@ -16,7 +16,9 @@
       if (!check_var($_SESSION["run_info"]))
       {
         print_red_message("Please submit metadata first here: 
-                <a href\"http://vampsdev.mbl.edu/illumina_submission/step_upload_subm_metadata.php\">Upload Submission Metadata</a>");
+                <a href\"http://vampsdev.mbl.edu/illumina_submission/step_upload_subm_metadata.php\">Upload Submission Metadata</a><br/>
+                Or choose one");
+        include_once 'choose_metadata.php';
       }
       else 
       {       
