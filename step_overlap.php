@@ -8,6 +8,7 @@
       <?php 
       include_once("ill_subm_menu.php");
             
+//       print_out($_SERVER);
       include_once 'choose_metadata.php';
 ?>
       <div id="command_line_print">

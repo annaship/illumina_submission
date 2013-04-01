@@ -1,12 +1,3 @@
-$(document).ready(function() {
-  $('#form_rundate').click(function() {
-    $('<div class="quick-alert">Alert! Watch me before it\'s too late!</div>')
-    .insertAfter( $(this) );
-  });
-});
-
-
-
 $("#add_new_row").click(function() {
 	add_new_row();
 	return false;
@@ -16,6 +7,12 @@ $("#add_new_row").click(function() {
 $('.hide_project').click(function() {
 	$('tr.hide_project_tr').toggle();
   });
+
+$('.hide_find_run').click(function() {
+	$('tr.hide_find_run_tr').toggle();
+  });
+
+
 
 $('.hide_owner').click(function() {
 //	$('tr.hide_owner_tr').show();
