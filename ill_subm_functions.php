@@ -754,7 +754,6 @@ function customError($errno, $errstr)
 }
 
 function create_csv_file($csv_data, $file_name) {
- 
   //set error handler
   set_error_handler("customError", E_USER_ERROR);
   
@@ -764,8 +763,9 @@ function create_csv_file($csv_data, $file_name) {
   foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
   }
-
   fclose($fp);
+  return $fp;
+  
 }
 
 function create_csv_name($rundate, $lane_name)

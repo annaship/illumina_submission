@@ -230,4 +230,15 @@ $raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_
 $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/" . $rundate;
 $lanes         = $_SESSION["run_info"]["lanes"];
 
+// -----
+if (!$_SESSION['is_local'])
+{
+  $db_name = "env454";
+  $connection = $newbpc2_connection;
+}
+$query = "SELECT DISTINCT run FROM " . $db_name . ".run";
+
+$runs = run_select_one_field($query, $connection);
+rsort($runs);
+
 ?>

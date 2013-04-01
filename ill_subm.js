@@ -1,3 +1,12 @@
+$(document).ready(function() {
+  $('#form_rundate').click(function() {
+    $('<div class="quick-alert">Alert! Watch me before it\'s too late!</div>')
+    .insertAfter( $(this) );
+  });
+});
+
+
+
 $("#add_new_row").click(function() {
 	add_new_row();
 	return false;

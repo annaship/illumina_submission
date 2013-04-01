@@ -23,7 +23,13 @@ Includes:
 		ill_subm_menu.php (submission pipeline steps)
 		  Submit Metadata:
   		  step_upload_subm_metadata.php
+  		    step_upload_csv_instruction.php
 		      csv_show_table.php
+		        step_subm_metadata_form_run_info.php
+		        step_subm_metadata_form_metadata_table_rows.php
+		      step_subm_metadata_form_submission_metadata_validation.php
+		        insert_metadata.php
+		          step_subm_metadata_create_csv.php
 		      
   			step_subm_metadata.php
   				step_subm_metadata_form_run_info.php
@@ -38,6 +44,12 @@ Includes:
   				  step_subm_metadata_form_metadata_table_selected.php
   				    step_subm_metadata_form_metadata_table_rows.php
   				  insert_metadata.php
+  				  
+  	  step_overlap.php
+  	    choose_metadata.php
+  	  step_gast.php
+    	  choose_metadata.php
+  	  
 				
 Forms:
 	step_subm_metadata_form_metadata_table.php: <form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">

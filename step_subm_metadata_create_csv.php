@@ -68,12 +68,19 @@ array_unshift($data_all, $table_headers);
 $csv_data = array_to_scv($data_all, false);
 // TODO: create directory
 // -----
+$is_created = array();
 foreach (array_unique($lanes) as $lane_name)
 {
   $csv_name  = create_csv_name($rundate, $lane_name);
   $file_name = $path_to_csv . "/" . $csv_name;
-  create_csv_file($data_all, $file_name);
+  $is_created[$file_name] = create_csv_file($data_all, $file_name);
 }
 
-
+if (check_var($is_created)) {
+  ksort($is_created);
+  foreach ($is_created as $file_path => $fp)
+  {
+    print_red_message("$file_path was created");
+  }
+}
 ?>

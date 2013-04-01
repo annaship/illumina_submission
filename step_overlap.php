@@ -7,6 +7,8 @@
       <h1>Illumina files processing</h1>
       <?php 
       include_once("ill_subm_menu.php");
+            
+      include_once 'choose_metadata.php';
       
       if (!check_var($_SESSION["run_info"]))
       {
@@ -47,7 +49,7 @@
           $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
           ;
           
-          print_red_message($command_line_overlap);        
+//           print_red_message($command_line_overlap);        
         }
       }      
 //         UUU -Array ( [form_name] => run_info_form [rundate] => 20130326 [path_to_raw_data] => 20130326hs/

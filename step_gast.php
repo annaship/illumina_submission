@@ -34,7 +34,7 @@
           $command_line_gast = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
                   $lane_name . "/analysis/reads_overlap/; run_gast_ill.sh; date";
           
-          print_red_message($command_line_gast);        
+//           print_red_message($command_line_gast);        
         }
       }      
 //         UUU -Array ( [form_name] => run_info_form [rundate] => 20130326 [path_to_raw_data] => 20130326hs/
