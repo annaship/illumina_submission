@@ -72,7 +72,7 @@ $is_created = array();
 foreach (array_unique($lanes) as $lane_name)
 {
   $csv_name  = create_csv_name($rundate, $lane_name);
-  $file_name = $path_to_csv . "/" . $csv_name;
+  $file_name = $path_to_csv  . $rundate . "/" . $csv_name;
   $is_created[$file_name] = create_csv_file($data_all, $file_name);
 }
 
