@@ -54,7 +54,7 @@
     </table>
     
   </fieldset>
-  <input type="submit" name="update" id="form_update_selected" value="Update submission metadata"/> 
+  <input type="submit" name="update" id="form_update_selected" value="Update submission metadata file"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="submission_metadata_selected_process" value="1">
   </div>

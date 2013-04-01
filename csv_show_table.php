@@ -118,7 +118,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
         </tbody>
     </table>
   </fieldset>
-  <input type="submit" name="update" id="form_update_from_csv" value="Check submission metadata"/> 
+  <input type="submit" name="update" id="form_update_from_csv" value="Create submission metadata file"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="subm_metadata_upload_process" value="1">
   

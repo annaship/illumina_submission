@@ -15,8 +15,8 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
 // print_red_message("\$data_all");
-print_out($result_metadata_arr);
-print_out($_SESSION['run_info']);
+// print_out($result_metadata_arr);
+// print_out($_SESSION['run_info']);
 
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
@@ -65,36 +65,15 @@ $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index",
     "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel");
 
 array_unshift($data_all, $table_headers);
-
-// print_red_message("\$data_all; \$table_headers");
-// print_red_message("\$data_all: ");
-
-// print_out($data_all);
-// print_out($table_headers);
-
-          $csv_data = array_to_scv($data_all, false);
-
-          print_red_message("\$csv_data");
-          print_out($csv_data);
-
-// $dir = dirname(__FILE__);
-//           print_out($dir);
-
-// $file_name = "/usr/local/tmp/table_result_ill1.csv";
+$csv_data = array_to_scv($data_all, false);
 // TODO: create directory
 // -----
 foreach (array_unique($lanes) as $lane_name)
 {
-  $csv_name = create_csv_name($rundate, $lane_name);
-  //           "metadata_" . $rundate . "_" . $lane_name . ".csv";
+  $csv_name  = create_csv_name($rundate, $lane_name);
   $file_name = $path_to_csv . "/" . $csv_name;
-
-    create_csv_file($data_all, $file_name);
+  create_csv_file($data_all, $file_name);
 }
-// -----
-//           $fh = fopen($myFile, 'w') or die("Can't open file");
-//           fwrite($fh, $csv_data);
-//           fclose($fh);
-// print_out("HERE");
+
 
 ?>

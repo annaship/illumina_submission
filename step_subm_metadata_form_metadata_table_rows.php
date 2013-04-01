@@ -1,6 +1,6 @@
 <?php 
-print_red_message("HERE");
-print_red_message($selected_funding);
+// print_red_message("HERE");
+// print_red_message($selected_funding);
 ?>
       <tr class="odd">
         <td>

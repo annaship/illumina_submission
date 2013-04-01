@@ -1,7 +1,7 @@
 <?php include_once("ill_subm_beginning.php"); ?>
 <?php
   include_once("ill_subm_functions.php");
-  include_once "ill_subm_filled_variables.php"; 
+  include_once "ill_subm_filled_variables.php";
 ?>
        
       <h1>Illumina files processing</h1>
@@ -14,7 +14,12 @@
                 <a href\"http://vampsdev.mbl.edu/illumina_submission/step_upload_subm_metadata.php\">Upload Submission Metadata</a>");
       }
       else 
-      {
+      {       
+        echo "
+          <p>
+            The command line below can be run on any server.
+          </p>
+        ";
         $lanes         = array();
   //       $rundate       = $_SESSION["run_info"]["rundate"];
   //       $machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
@@ -26,13 +31,15 @@
         {
           $do_perfect = "False";         
         }
+        
   
-//         $lanes         = $_SESSION["run_info"]["lanes"];
+        $lanes = $_SESSION["run_info"]["lanes"];
+        
         foreach ($lanes as $lane_name)
         {
+
           $csv_name = create_csv_name($rundate, $lane_name); 
-//           "metadata_" . $rundate . "_" . $lane_name . ".csv";
-          
+         
           $command_line_overlap = "cd " . $path_to_csv .
           "; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
           -csv " . $path_to_csv . "/" . $csv_name .  
