@@ -9,8 +9,8 @@ print "\$_SESSION:";
 print_out($_SESSION);
 
 
-if (isset($_SESSION["csv_metadata"])) {
-	$csv_metadata = $_SESSION["csv_metadata"];
+if (isset($_SESSION["csv_content"])) {
+	$csv_metadata = $_SESSION["csv_content"];
 }
 
 ?>

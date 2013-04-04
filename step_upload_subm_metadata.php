@@ -20,6 +20,7 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["upload_file_step"] == 1)
   {
     include_once 'step_subm_metadata_get_csv_info.php';
+  	$_SESSION["run_info_valid"] = 0;
   }
 
   //1) show only run_info and submit run_info
@@ -31,7 +32,8 @@
   include("step_subm_metadata_form_run_info.php");
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1)
   {
-  	
+  	include_once 'step_subm_metadata_csv_show_table.php';
+  	 
   }  
   //3) show table
   //4) create csv
