@@ -1,12 +1,12 @@
 <?php 
-print "<br/>";
-print_red_message("from choose metadata form form");
-print "<br/>";
-print_out($_POST);
+// print "<br/>";
+// print_red_message("from choose metadata form form");
+// print "<br/>";
+// print_out($_POST);
 // print_r($_SERVER["SCRIPT_NAME"]);
 // print_out($_SESSION);
 // print_red_message($path_to_csv);
-print "<br/>";
+// print "<br/>";
 $selected_machine = $_POST["find_machine"];
 ?>
 <?php 

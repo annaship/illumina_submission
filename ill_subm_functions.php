@@ -3,7 +3,7 @@ function print_options($array_name, $selected_val)
 {
   foreach ($array_name as $val)
   {
-    if ($selected_val == $val)
+  	if ($selected_val == $val)
     {
       echo '<option value="'.$val.'" selected="selected">'.$val.'</option>';
     }
@@ -803,29 +803,18 @@ function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
 }
     
   
-//     foreach ($submit_code_arr_uniq as $submit_code)
-//     {
-//       $query = "SELECT * FROM " . $db_name . ".vamps_submissions WHERE
-//         submit_code = \"" . $submit_code. "\"";
-//       print_red_message("from get_user_env_by_submit_code");
-//       $row = get_one_value($query, $db_name, $connection);
-//       print_red_message("HERE1");
-  
-//       print_out($row);
-//       $vamps_submissions_arr[$submit_code] = $row;
-  
-//   //     if (isset($row[key($row)]))
-//   //     {
-//   //       $contact_id = $row[key($row)];
-//   //     }
-//   //     else
-//   //     {
-//   //       $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
-//   //     }
-//   //     return $contact_id;
-//     }
-//    print_out($submit_code_arr_uniq);
-// }
-  
+function add_zero($adaptor) {
+	if (strlen($adaptor) == 2)
+	{
+		$pattern = '/([A-Za-z])([0-9])/';
+		preg_match($pattern, $adaptor, $matches);
+		$adaptor0 = $matches[1] . "0" . $matches[2];
+		return $adaptor0;
+	}
+	else 
+	{
+		return $adaptor;
+	}
 
+}
 ?>

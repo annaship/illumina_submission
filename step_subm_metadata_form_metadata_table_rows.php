@@ -1,6 +1,12 @@
 <?php 
 // print_red_message("HERE");
-// print_red_message($selected_funding);
+// print_red_message($selected_adaptor);
+// print_out($adaptors);
+// print_out(array_values($adaptors));
+// print_out($selected_adaptor);
+ 
+
+
 ?>
       <tr class="odd">
         <td>
@@ -47,7 +53,9 @@
         <select name="adaptor_<?php echo $row_num;?>" id="form_adaptor_<?php echo $row_num;?>">
       
        <?php
-  		 print_options(array_values($adaptors), $selected_adaptor);    
+       	print_options($adaptors, $selected_adaptor);
+        
+//   		 print_options(array_values($adaptors), $selected_adaptor);    
         ?>  
         </select></td>
         <td>

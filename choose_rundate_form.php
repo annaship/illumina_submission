@@ -1,13 +1,13 @@
 <?php 
-print "<br/>";
-print_red_message("from rundate form");
-print_out($_POST);
+// print "<br/>";
+// print_red_message("from rundate form");
+// print_out($_POST);
 // // print_r($_SERVER["SCRIPT_NAME"]);
 // // print_out($_SESSION);
 // print_red_message($path_to_csv);
-print "<br/>";
-print "GGGG";
-print_out($machine_names);
+// print "<br/>";
+// print "GGGG";
+// print_out($machine_names);
 // $selected_machine = $_POST["find_machine"];
 ?>
 <form method="post" name="find_rundate_form" id="find_rundate_form" action="<?php echo $_SESSION["meta_from"]; ?>">

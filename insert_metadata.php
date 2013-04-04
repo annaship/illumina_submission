@@ -31,7 +31,7 @@
     $domain           = $metadata_arr["domain"];
     $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
     $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection); 
-    $file_prefix      = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
+//     $file_prefix      = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
     $insert_size 	  = $_SESSION["run_info"]["insert_size"];
     $lane 			  = $metadata_arr["lane"];
     $overlap 		  = $_SESSION["run_info"]["overlap"];

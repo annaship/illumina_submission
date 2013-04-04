@@ -1,4 +1,5 @@
 <?php 
+  ini_set("auto_detect_line_endings", true);
   $file_name = $_FILES["csv"]["tmp_name"];
   $csv_data = get_data_from_csv($file_name);
   
@@ -90,8 +91,8 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 [funding] => [num_of_tubes] => 6 [date_initial] => 2012-03-13 [date_updated] => 2012-03-13 [locked] => 1 ) ) --
 */
           foreach ($csv_metadata as $csv_metadata_row) {
-            
-              $selected_adaptor				= strtoupper($csv_metadata_row["adaptor"]);
+              $selected_adaptor				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
+//               print_red_message("\$selected_adaptor = $selected_adaptor");
               $selected_amp_operator		= $csv_metadata_row["op_amp"];
               $selected_barcode				= $csv_metadata_row["barcode"];
               $selected_barcode_index		= $csv_metadata_row["barcode_index"];
