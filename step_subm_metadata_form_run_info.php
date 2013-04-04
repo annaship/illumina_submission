@@ -1,4 +1,4 @@
-<form method="post" name="run_info_form" id="run_info_form" action="step_subm_metadata.php">
+<form method="post" name="run_info_form" id="run_info_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
 <input type="hidden" name="form_name" id="run_info_form_form_name" value="run_info_form"/>
 <table class="form" id="run_info_form-form"><tbody>
 <tr><td>

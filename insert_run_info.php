@@ -5,5 +5,5 @@ if (!isset($_SESSION)) {
 }
 $_SESSION["run_info"] = $run_info_results;
 $_SESSION["run_info"]["path_to_raw_data"] = $selected_path_to_raw_data;
-
+$_SESSION["run_info_valid"] = 1;
 ?>

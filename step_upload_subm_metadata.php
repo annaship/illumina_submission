@@ -19,8 +19,23 @@
 <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["upload_file_step"] == 1)
   {
-    include_once 'csv_show_table.php';
+    include_once 'step_subm_metadata_get_csv_info.php';
   }
+
+  //1) show only run_info and submit run_info
+  //2) verify run_info
+  
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {
+  	include_once 'step_subm_metadata_form_run_info_validation.php';
+  }
+  include("step_subm_metadata_form_run_info.php");
+  if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1)
+  {
+  	
+  }  
+  //3) show table
+  //4) create csv
+  
 ?>
 </div>
       <!-- end of content -->    
