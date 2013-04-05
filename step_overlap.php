@@ -13,7 +13,29 @@
       include_once 'choose_metadata.php';
       if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
       {
-        print_red_message("CHANGE command line");
+      	$rundate = $lane_name = $raw_path = $path_to_csv = $csv_name = $is_compressed = $do_perfect = $machine_name = "";
+//       	TODO: move repetitions from below
+      	$rundate     = $_POST["find_rundate"];
+      	$lane_name   = $_POST["find_lane"];
+      	$raw_path    = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
+      	$machine_name = array_search($_POST["find_machine"], $machine_names);
+      	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";      	
+        $csv_name = create_csv_name($rundate, $lane_name);
+        $is_compressed = "True";
+        $do_perfect    = "True";
+        if ($_SESSION["run_info"]["overlap"] == partial)
+        {
+        	$do_perfect = "False";
+        }        
+        	 
+        $command_line_overlap1 = "cd " . $path_to_csv . $rundate .
+        	"; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
+          -csv " . $path_to_csv  . $rundate . "/" . $csv_name .
+                  " -s illumina_files -l debug -p illumina -r " .
+                  $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
+                  ;
+        
+		print_red_message($command_line_overlap1);        
       }
       else
       {
@@ -28,7 +50,8 @@
         include_once 'choose_metadata.php';
       }
       else 
-      {       
+      {    
+//       	$rundate = $lane_name = $raw_path = $path_to_csv = $csv_name = $is_compressed = $do_perfect = "";
         echo "
           <p>
             This command line(s) can be run on any server:
