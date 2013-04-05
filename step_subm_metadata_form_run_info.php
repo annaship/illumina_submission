@@ -1,21 +1,18 @@
 <?php 
-print_red_message("From form_run_info");
-print "\$run_info_results: ";
-print_out($run_info_results);
-print "\$_SESSION[run_info]: ";
-print_out($_SESSION["run_info"]);
+// print_red_message("From form_run_info");
+// print "\$run_info_results: ";
+// print_out($run_info_results);
+// print "\$_SESSION[run_info]: ";
+// print_out($_SESSION["run_info"]);
 
 
 if (check_var($_SESSION["run_info"]))
 {
-	print_red_message("HERE");
 	$run_info_results = $_SESSION["run_info"];
 }
-
-	print_red_message("HERE1");
-	$selected_rundate = $run_info_results["rundate"];
-	$selected_overlap = $run_info_results["overlap"];
-	$selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
+$selected_rundate = $run_info_results["rundate"];
+$selected_overlap = $run_info_results["overlap"];
+$selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
 ?>
 
 <form method="post" name="run_info_form" id="run_info_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
@@ -100,25 +97,6 @@ if (check_var($_SESSION["run_info"]))
   $_SESSION["run_info_errors"] = $run_info_errors;
   ?>
   
-
-
-
-
-  <?php 
-// 	if (check_var($run_info_errors) == 0) {
-// 		$run_info_errors = init_arr($run_info_errors, $arr_to_initialize);
-// 	}
-// 	foreach ($arr_run_info_fields as $field_name) {
-// 		if ((check_var($run_info_errors) == 1) AND (!isset($run_info_errors[$field_name])))
-// 		{
-// 			$run_info_errors[$field_name] = "";
-// 		}
-// 		$error_message = $run_info_errors[$field_name];
-// 	}	
-  ?>
-<!--    <td class="message">'.$error_message.'</td> -->
-
-
 </tbody></table>
 </fieldset>
 </td>
@@ -127,15 +105,6 @@ if (check_var($_SESSION["run_info"]))
 </td></tr>
 <tr><td >
 <?php 
-// print_red_message("From form_run_info");
-// print_red_message("\$_POST");
-// print_out($_POST);
-// print_red_message("\$_SERVER");
-// print_out($_SERVER);
-// print_red_message("\$_SESSION[run_info_valid]");
-// print_out($_SESSION["run_info_valid"]);
-
-// print_out($_SESSION["run_info"]);
 
 if ($_SESSION["run_info_valid"] == 0)
 {

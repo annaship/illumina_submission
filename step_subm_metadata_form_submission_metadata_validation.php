@@ -2,7 +2,7 @@
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
-print_red_message("FROM subm_metadata_validation");
+// print_red_message("FROM subm_metadata_validation");
 
 $metadata_errors     = array();
 $metadata_errors_all = array();

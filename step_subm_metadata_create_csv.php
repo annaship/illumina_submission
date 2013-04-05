@@ -1,5 +1,5 @@
 <?php 
-print_red_message("FROM step_subm_metadata_create_csv.php");
+// print_red_message("FROM step_subm_metadata_create_csv.php");
 
 // include_once("ill_subm_functions.php");
 // include_once "ill_subm_filled_variables.php";
@@ -16,7 +16,7 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
-print_red_message("From subm_create_csv");
+// print_red_message("From subm_create_csv");
 // print_out($result_metadata_arr);
 // print_out($_SESSION['run_info']);
 
