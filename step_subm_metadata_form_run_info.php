@@ -1,3 +1,23 @@
+<?php 
+print_red_message("From form_run_info");
+print "\$run_info_results: ";
+print_out($run_info_results);
+print "\$_SESSION[run_info]: ";
+print_out($_SESSION["run_info"]);
+
+
+if (check_var($_SESSION["run_info"]))
+{
+	print_red_message("HERE");
+	$run_info_results = $_SESSION["run_info"];
+}
+
+	print_red_message("HERE1");
+	$selected_rundate = $run_info_results["rundate"];
+	$selected_overlap = $run_info_results["overlap"];
+	$selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
+?>
+
 <form method="post" name="run_info_form" id="run_info_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
 <input type="hidden" name="form_name" id="run_info_form_form_name" value="run_info_form"/>
 <table class="form" id="run_info_form-form"><tbody>
@@ -114,6 +134,8 @@
 // print_out($_SERVER);
 // print_red_message("\$_SESSION[run_info_valid]");
 // print_out($_SESSION["run_info_valid"]);
+
+// print_out($_SESSION["run_info"]);
 
 if ($_SESSION["run_info_valid"] == 0)
 {

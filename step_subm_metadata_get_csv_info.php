@@ -41,9 +41,6 @@
    $_SESSION["csv_content"] = $csv_metadata;
     
     $run_info_results = make_run_info_results($all_csv_run_info);
-	$selected_rundate = $run_info_results["rundate"];
-	$selected_overlap = $run_info_results["overlap"];
-	$selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
    
 //   foreach ($all_csv_run_info as $csv_run_info_row) {
 // //     TODO: deal with different dna_regions in one csv
@@ -62,7 +59,7 @@
 //   }
   
   $_SESSION["run_info"] = $run_info_results;
-  print_red_message("FROM subm_get_csv");
-  print_out($_SESSION["run_info"]);
+//   print_red_message("FROM subm_get_csv");
+//   print_out($_SESSION["run_info"]);
 ?>
 
