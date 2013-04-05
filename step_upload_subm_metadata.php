@@ -15,6 +15,15 @@
 </form> 
 </div>
 
+<?php 
+print_red_message("FROM upload_subm_metadata");
+print_red_message("\$_POST");
+print_out($_POST);
+print_red_message("\$_SESSION[run_info_valid]");
+print_out($_SESSION["run_info_valid"]);
+
+?>
+
 <div>
 <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["upload_file_step"] == 1)
@@ -30,13 +39,18 @@
   	include_once 'step_subm_metadata_form_run_info_validation.php';
   }
   include("step_subm_metadata_form_run_info.php");
+  
+  //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1)
   {
   	include_once 'step_subm_metadata_csv_show_table.php';
-  	 
   }  
-  //3) show table
   //4) create csv
+  
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["subm_metadata_upload_process"] == 1) 
+  {
+  	include_once 'step_subm_metadata_form_submission_metadata_validation.php';  	 
+  }
   
 ?>
 </div>

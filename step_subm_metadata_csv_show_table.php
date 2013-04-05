@@ -1,17 +1,21 @@
 <?php 
 print_red_message("From metadata_csv_show_table");
 
-print "\$_POST:";
-print_out($_POST);
-// print "\$_SERVER:";
-// print_out($_SERVER);
-print "\$_SESSION:";
-print_out($_SESSION);
+// print "\$_POST:";
+// print_out($_POST);
+// // print "\$_SERVER:";
+// // print_out($_SERVER);
+// print "\$_SESSION:";
+// print_out($_SESSION);
 
 
 if (isset($_SESSION["csv_content"])) {
 	$csv_metadata = $_SESSION["csv_content"];
 }
+if (isset($_SESSION["vamps_submissions_arr"])) {
+	$vamps_submissions_arr = $_SESSION["vamps_submissions_arr"];
+}
+
 
 ?>
 <form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
@@ -21,9 +25,7 @@ if (isset($_SESSION["csv_content"])) {
     <table id="subm_metadata_upload-fields">
 
     <?php
-    print_red_message("HERE3");
-    print_out($csv_metadata);
-    
+
     
       echo "
       <thead>
@@ -50,8 +52,13 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 [institution] => MBL [temp_project] => JCR_SP [title] => sponge microbiome 
 [project_description] => Microbial diversity within sponge species Hexadella sp [environment] => host associated [env_source_id] => 30 
 [funding] => [num_of_tubes] => 6 [date_initial] => 2012-03-13 [date_updated] => 2012-03-13 [locked] => 1 ) ) --
-*/
+*/		  $row_num = 0;
           foreach ($csv_metadata as $csv_metadata_row) {
+//           	print_red_message("\$csv_metadata_row");
+//           	print_out($csv_metadata_row);
+//           	print_red_message("\$vamps_submissions_arr");
+//           	print_out($vamps_submissions_arr);
+          	
               $selected_adaptor				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
 //               print_red_message("\$selected_adaptor = $selected_adaptor");
               $selected_amp_operator		= $csv_metadata_row["op_amp"];
@@ -65,7 +72,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               $selected_env_source_name		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["environment"];
               $selected_funding				= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["funding"];
               $selected_lane				= $csv_metadata_row["lane"];
-              $selected_project				= $csv_metadata_row["project"];
+              $selected_project				= $csv_metadata_row["project_name"];
               $selected_project_description	= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_description"];
               $selected_project_title		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"];
               $selected_run_key				= $csv_metadata_row["run_key"];

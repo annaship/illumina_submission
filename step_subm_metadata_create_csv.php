@@ -14,27 +14,34 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
-// print_red_message("\$data_all");
+print_red_message("From subm_create_csv");
 // print_out($result_metadata_arr);
 // print_out($_SESSION['run_info']);
 
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
+// TODO: use $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"] to get username
+
 foreach ($result_metadata_arr as $row_num => $metadata_arr)
 {
   $contact_info   = array_map('trim', explode(',', $contact_full[$metadata_arr["user"]])); 
+//   print_out($metadata_arr);
   
   $data_for_csv["adaptor"] 		 	    = $metadata_arr["adaptor"];
   $data_for_csv["amp_operator"]         = $metadata_arr["amp_operator"];
   $data_for_csv["barcode"] 		        = $metadata_arr["barcode"];
   $data_for_csv["barcode_index"] 	    = $metadata_arr["barcode_index"];
-  $data_for_csv["data_owner"]    	    = $metadata_arr["data_owner"];
+  $data_for_csv["data_owner"]    	    = $metadata_arr["user"];
   $data_for_csv["dataset"] 	            = $metadata_arr["dataset"];
   $data_for_csv["dataset_description"]  = $metadata_arr["dataset_description"]; 
 //   $data_for_csv["domain"]        		= $metadata_arr["domain"];
   $data_for_csv["dna_region"] 	 	    = $_SESSION["run_info"]["dna_region_0"];
   $data_for_csv["email"]         		= $contact_info[2];
-  $data_for_csv["env_sample_source_id"]	= $metadata_arr["env_source_name"]; 
+//   TODO: take id! );$key = array_search('green', $array); // $key = 2;
+  print_red_message("\$metadata_arr[env_source_name]");
+  print_out($metadata_arr["env_source_name"]);
+  $data_for_csv["env_sample_source_id"]	= array_search($metadata_arr["env_source_name"], $env_source_names); 
+  print_out($data_for_csv["env_sample_source_id"]);
   $data_for_csv["first_name"]    		= $contact_info[1];
   $data_for_csv["funding"]       		= $metadata_arr["funding"];
   $data_for_csv["insert_size"] 	        = $_SESSION["run_info"]["insert_size"];
@@ -46,7 +53,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 //   $data_for_csv["primer_suite_id"] 	    = get_primer_suite_id($_SESSION["run_info"]["dna_region_0"], $metadata_arr["domain"], $db_name, $connection);
   $data_for_csv["project"] 		 	    = $metadata_arr["project"];
   $data_for_csv["project_description"]  = $metadata_arr["project_description"];
-  if (check_var($metadata_arr["project_title"]))
+  if (isset($metadata_arr["project_title"]) && $metadata_arr["project_title"] != "")
   {
   	$data_for_csv["project_title"] 		= $metadata_arr["project_title"];
   }
@@ -54,6 +61,8 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
   	$data_for_csv["project_title"] 		= $metadata_arr["project"];
   }
+  print_red_message($metadata_arr["project_title"] . "\$metadata_arr[\"project_title\"]");
+  
   $data_for_csv["read_length"] 	 	    = $_SESSION["run_info"]["read_length"];
   $data_for_csv["run"]  		 		= $_SESSION["run_info"]["rundate"];
   $data_for_csv["run_key"] 	     	    = "NNNN" . $metadata_arr["run_key"];

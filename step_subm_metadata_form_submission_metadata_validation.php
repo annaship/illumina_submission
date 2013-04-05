@@ -2,6 +2,8 @@
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
+print_red_message("FROM subm_metadata_validation");
+
 $metadata_errors     = array();
 $metadata_errors_all = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
@@ -55,6 +57,9 @@ $metadata_errors_count = sizeof(flat_mult_array($metadata_errors_all));
 
 if($metadata_errors_count == 0)
 {
+// 	print_red_message("from metadata validation");
+// 	print_out($selected_metadata_arr);
+// 	TODO: change env_id and data_owner 
   $result_metadata_arr = $selected_metadata_arr;
 
   //   put data into the db and clean the table

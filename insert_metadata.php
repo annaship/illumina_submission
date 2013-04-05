@@ -19,7 +19,10 @@
     $db_name    = "test";
   }
 
-
+//   print_red_message("From insert_metadata");
+  
+// print_red_message("\$result_metadata_arr");
+// print_out($result_metadata_arr);
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
 
