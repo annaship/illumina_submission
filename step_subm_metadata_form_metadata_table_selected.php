@@ -1,5 +1,5 @@
 <?php 
-//     print_red_message("subm_meta_selected");
+    print_red_message("subm_meta_selected");
 //     print_out($_POST);
 ?>
             

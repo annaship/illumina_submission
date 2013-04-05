@@ -39,8 +39,6 @@
    
    $_SESSION["vamps_submissions_arr"] = $vamps_submissions_arr;
    $_SESSION["csv_content"] = $csv_metadata;
-   print_red_message("from subm_get_csv");
-   print_out($run_info_results);
     
   foreach ($all_csv_run_info as $csv_run_info_row) {
 //     TODO: deal with different dna_regions in one csv

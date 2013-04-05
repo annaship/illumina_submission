@@ -1,4 +1,6 @@
 <?php 
+print_red_message("FROM step_subm_metadata_create_csv.php");
+
 // include_once("ill_subm_functions.php");
 // include_once "ill_subm_filled_variables.php";
 
@@ -37,11 +39,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 //   $data_for_csv["domain"]        		= $metadata_arr["domain"];
   $data_for_csv["dna_region"] 	 	    = $_SESSION["run_info"]["dna_region_0"];
   $data_for_csv["email"]         		= $contact_info[2];
-//   TODO: take id! );$key = array_search('green', $array); // $key = 2;
-  print_red_message("\$metadata_arr[env_source_name]");
-  print_out($metadata_arr["env_source_name"]);
   $data_for_csv["env_sample_source_id"]	= array_search($metadata_arr["env_source_name"], $env_source_names); 
-  print_out($data_for_csv["env_sample_source_id"]);
   $data_for_csv["first_name"]    		= $contact_info[1];
   $data_for_csv["funding"]       		= $metadata_arr["funding"];
   $data_for_csv["insert_size"] 	        = $_SESSION["run_info"]["insert_size"];
@@ -60,9 +58,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   else
   {
   	$data_for_csv["project_title"] 		= $metadata_arr["project"];
-  }
-  print_red_message($metadata_arr["project_title"] . "\$metadata_arr[\"project_title\"]");
-  
+  }  
   $data_for_csv["read_length"] 	 	    = $_SESSION["run_info"]["read_length"];
   $data_for_csv["run"]  		 		= $_SESSION["run_info"]["rundate"];
   $data_for_csv["run_key"] 	     	    = "NNNN" . $metadata_arr["run_key"];
