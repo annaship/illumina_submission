@@ -16,7 +16,6 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
-// print_red_message("From subm_create_csv");
 // print_out($result_metadata_arr);
 // print_out($_SESSION['run_info']);
 

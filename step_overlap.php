@@ -8,9 +8,10 @@
       <?php 
       include_once("ill_subm_menu.php");
             
-//       print_out($_SERVER);
+      print_out($_POST);
+      print_out($_SESSION["run_info"]);
       include_once 'choose_metadata.php';
-      if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["find_metadata_process"] == 1)
+      if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
       {
         print_red_message("CHANGE command line");
       }
