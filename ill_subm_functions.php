@@ -817,4 +817,22 @@ function add_zero($adaptor) {
 	}
 
 }
+
+function make_run_info_results($run_info)
+{
+	foreach ($run_info as $csv_run_info_row)
+	{
+		//     TODO: deal with different dna_regions in one csv
+		$run_info_results = array(
+				"dna_region_0"	   => $csv_run_info_row["dna_region"],
+				"insert_size"	   => $csv_run_info_row["insert_size"],
+				"overlap"		   => $csv_run_info_row["overlap"],
+				"read_length"	   => $csv_run_info_row["read_length"],
+				"rundate"          => $csv_run_info_row["rundate"],
+				"seq_operator"	   => $csv_run_info_row["op_seq"],
+				"path_to_raw_data" => make_path_to_raw_data($csv_run_info_row["rundate"], $csv_run_info_row["dna_region"])
+		);
+	}
+	return $run_info_results;
+}
 ?>

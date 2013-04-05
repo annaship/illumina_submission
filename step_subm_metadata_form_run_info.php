@@ -107,13 +107,13 @@
 </td></tr>
 <tr><td >
 <?php 
-print_red_message("From form_run_info");
-print_red_message("\$_POST");
-print_out($_POST);
-print_red_message("\$_SERVER");
-print_out($_SERVER);
-print_red_message("\$_SESSION[run_info_valid]");
-print_out($_SESSION["run_info_valid"]);
+// print_red_message("From form_run_info");
+// print_red_message("\$_POST");
+// print_out($_POST);
+// print_red_message("\$_SERVER");
+// print_out($_SERVER);
+// print_red_message("\$_SESSION[run_info_valid]");
+// print_out($_SESSION["run_info_valid"]);
 
 if ($_SESSION["run_info_valid"] == 0)
 {

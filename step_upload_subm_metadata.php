@@ -16,9 +16,9 @@
 </div>
 
 <?php 
-print_red_message("FROM upload_subm_metadata");
-print_red_message("\$_POST");
-print_out($_POST);
+// print_red_message("FROM upload_subm_metadata");
+// print_red_message("\$_POST");
+// print_out($_POST);
 // print_red_message("\$_SERVER");
 // print_out($_SERVER);
 // print_red_message("\$_SESSION[run_info_valid]");

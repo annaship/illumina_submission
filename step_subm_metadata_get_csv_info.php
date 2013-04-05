@@ -40,23 +40,29 @@
    $_SESSION["vamps_submissions_arr"] = $vamps_submissions_arr;
    $_SESSION["csv_content"] = $csv_metadata;
     
-  foreach ($all_csv_run_info as $csv_run_info_row) {
-//     TODO: deal with different dna_regions in one csv
-    $run_info_results = array(
-        "dna_region_0"	   => $csv_run_info_row["dna_region"],
-        "insert_size"	   => $csv_run_info_row["insert_size"],
-        "overlap"		   => $csv_run_info_row["overlap"],
-        "read_length"	   => $csv_run_info_row["read_length"],
-        "rundate"          => $csv_run_info_row["rundate"],
-        "seq_operator"	   => $csv_run_info_row["op_seq"],
-        "path_to_raw_data" => make_path_to_raw_data($csv_run_info_row["rundate"], $csv_run_info_row["dna_region"])
-        );
-    $selected_rundate	= $run_info_results["rundate"];
-    $selected_overlap   = $run_info_results["overlap"];
-    $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
-  }
+    $run_info_results = make_run_info_results($all_csv_run_info);
+	$selected_rundate = $run_info_results["rundate"];
+	$selected_overlap = $run_info_results["overlap"];
+	$selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
+   
+//   foreach ($all_csv_run_info as $csv_run_info_row) {
+// //     TODO: deal with different dna_regions in one csv
+//     $run_info_results = array(
+//         "dna_region_0"	   => $csv_run_info_row["dna_region"],
+//         "insert_size"	   => $csv_run_info_row["insert_size"],
+//         "overlap"		   => $csv_run_info_row["overlap"],
+//         "read_length"	   => $csv_run_info_row["read_length"],
+//         "rundate"          => $csv_run_info_row["rundate"],
+//         "seq_operator"	   => $csv_run_info_row["op_seq"],
+//         "path_to_raw_data" => make_path_to_raw_data($csv_run_info_row["rundate"], $csv_run_info_row["dna_region"])
+//         );
+//     $selected_rundate	= $run_info_results["rundate"];
+//     $selected_overlap   = $run_info_results["overlap"];
+//     $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
+//   }
   
   $_SESSION["run_info"] = $run_info_results;
-//   print_out($_SESSION);
+  print_red_message("FROM subm_get_csv");
+  print_out($_SESSION["run_info"]);
 ?>
 
