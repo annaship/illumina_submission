@@ -106,10 +106,25 @@
 </tbody></table>
 </td></tr>
 <tr><td >
+<?php 
+print_red_message("From form_run_info");
+print_red_message("\$_POST");
+print_out($_POST);
+print_red_message("\$_SERVER");
+print_out($_SERVER);
+print_red_message("\$_SESSION[run_info_valid]");
+print_out($_SESSION["run_info_valid"]);
+
+if ($_SESSION["run_info_valid"] == 0)
+{
+?>
 <table class="buttons" id="run_info_form-buttons"><tbody>
 <tr class="buttons"><td class="buttons"><input type="submit" name="add" id="run_info_form_add" value="Submit Run info"/>
 <input type="hidden" name="run_info_process" value="1"></td></tr>
 </tbody></table>
+<?php 
+}
+?>
 </td></tr>
 </tbody></table>
 </form>

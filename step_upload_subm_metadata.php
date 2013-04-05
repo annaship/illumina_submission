@@ -21,8 +21,8 @@ print_red_message("\$_POST");
 print_out($_POST);
 // print_red_message("\$_SERVER");
 // print_out($_SERVER);
-print_red_message("\$_SESSION[run_info_valid]");
-print_out($_SESSION["run_info_valid"]);
+// print_red_message("\$_SESSION[run_info_valid]");
+// print_out($_SESSION["run_info_valid"]);
 
 ?>
 
@@ -50,6 +50,7 @@ print_out($_SESSION["run_info_valid"]);
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
   		&& !($_POST["subm_metadata_upload_process"] == 1)
+		&& sizeof($_POST)
 	)
   {
   	include_once 'step_subm_metadata_csv_show_table.php';
