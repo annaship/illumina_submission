@@ -6,7 +6,7 @@
 <form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_subm_metadata.php">
 <div id="submission_metadata">
   <fieldset id="submission_metadata">
-    <legend id="submission_metadata-legend">Submition metadata</legend>
+    <legend id="submission_metadata-legend">Submission metadata</legend>
     <table id="submission_metadata-fields">
       <thead>
         <tr>

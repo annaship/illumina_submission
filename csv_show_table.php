@@ -60,7 +60,7 @@
 <form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="step_subm_metadata.php">
 <div id="subm_metadata_upload">
   <fieldset id="subm_metadata_upload">
-    <legend id="subm_metadata_upload-legend">Submition metadata</legend>
+    <legend id="subm_metadata_upload-legend">Submission metadata</legend>
     <table id="subm_metadata_upload-fields">
 
     <?php 
