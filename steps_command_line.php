@@ -28,7 +28,8 @@
         {
         	$csv_path_error = "Sorry, there is no such file: ". $path_to_csv;
         }
-       
+        $lanes = array($lane_name);        
+
       }
       else
       {
@@ -62,21 +63,6 @@
 	        
 	  
 	        $lanes = $_SESSION["run_info"]["lanes"];
-	        
-	        foreach ($lanes as $lane_name)
-	        {
-	
-	          $csv_name      = create_csv_name($rundate, $lane_name); 
-	          $csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
-// 	          $command_line_overlap = "cd " . $path_to_csv . $rundate .
-// 	          "; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
-// 	          -csv " . $path_to_csv  . $rundate . "/" . $csv_name .  
-// 	          " -s illumina_files -l debug -p illumina -r " .
-// 	          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
-// 	          ;
-	          
-// 	          print_red_message($command_line_overlap);        
-	        }
 	      }      
 	//         UUU -Array ( [form_name] => run_info_form [rundate] => 20130326 [path_to_raw_data] => 20130326hs/
 	//                 [dna_region_0] => v6 [overlap] => complete [seq_operator] => AA [insert_size] => 111
@@ -89,9 +75,23 @@
 	// -cp True -lane_name 'lane_2' -do_perfect True
 	      
 	} #else
-	print_red_message("From steps");
-	print_red_message("\$csv_file_name = $csv_file_name");
-      
+
+	foreach ($lanes as $lane_name)
+	{
+		print_red_message("lane_name = $lane_name");
+		$csv_name      = create_csv_name($rundate, $lane_name);
+		$csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
+		 
+		$command_line = "cd " . $path_to_csv . $rundate .
+		"; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
+	          -csv " . $path_to_csv  . $rundate . "/" . $csv_name .
+		          " -s " . $pipeline_command . " -l debug -p illumina -r " .
+		          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
+		          ;
+		           
+		          print_red_message($command_line);
+	}
+	
 ?>
 
       
