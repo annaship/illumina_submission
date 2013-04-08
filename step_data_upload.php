@@ -11,6 +11,7 @@
 	$pipeline_command = "env454upload";
 	
 	include_once("steps_command_line.php");
+	include_once("steps_command_line_print.php");
 	
 
 ?>

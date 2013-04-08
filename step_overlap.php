@@ -11,7 +11,8 @@
 	$pipeline_command = "illumina_files";
 	
 	include_once("steps_command_line.php");
-
+	include_once("steps_command_line_print.php");
+	
 ?>
 	
 </div>
