@@ -41,15 +41,6 @@
 // 				AND run = '20130322' 
 // 				AND lane = '1'; 
 
-// select count(*) from run_info_ill   
-// JOIN project using(project_id)    
-// JOIN dataset using(dataset_id)    
-// JOIN run using(run_id)   
-// JOIN primer_suite using(primer_suite_id)   WHERE primer_suite = 'Bacterial V6 Suite'   AND run = '20130322'  and lane = '1';
-		
-		
-// 		$command_line_overlap_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
-// 									$lane_name . "/analysis/reads_overlap/; " . $stat_check_command_name . "; date";
 		print_red_message($seq_check);	
 	}	
 ?>
