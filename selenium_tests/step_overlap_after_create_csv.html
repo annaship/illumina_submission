@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://vampsdev.mbl.edu/" />
+<title>step_overlap_after_create_csv</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">step_overlap_after_create_csv</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/illumina_submission/step_overlap.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Upload Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv</td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/RUNDATE_20120315.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=Submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_overlap</td>
+	<td>label=complete</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_info_form_insert_size</td>
+	<td>95</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_infoForm_path to raw data</td>
+	<td>20120315hs/test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=run_info_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form_lane_1</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form_lane_2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_update_from_csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Overlap Analyzing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_1.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20120315hs/test -cp True -lane_name &quot;lane_1&quot; -do_perfect True</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_2.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20120315hs/test -cp True -lane_name &quot;lane_2&quot; -do_perfect True</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_3.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20120315hs/test -cp True -lane_name &quot;lane_3&quot; -do_perfect True</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20120315/lane_1/analysis/reads_overlap/; take_hs_stats.py; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20120315/lane_2/analysis/reads_overlap/; take_hs_stats.py; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20120315/lane_3/analysis/reads_overlap/; take_hs_stats.py; date</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -57,6 +57,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130322/lane_1/analysis/reads_overlap/; take_hs_stats.py; date</td>
+	<td></td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>css=input.hide_find_run</td>
 	<td></td>
@@ -82,11 +87,15 @@
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
+	<td>verifyTextNotPresent</td>
 	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20121115; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20121115/metadata_20121115_3.csv -s illumina_files -l debug -p illumina -r 20121115 -ft fastq -i /xraid2-2/sequencing/Illumina/20121115/my_project -cp True -lane_name &quot;lane_3&quot; -do_perfect True</td>
 	<td></td>
 </tr>
-
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Sorry, there is no such file: /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/</td>
+	<td></td>
+</tr>
 </tbody></table>
 </body>
 </html>
