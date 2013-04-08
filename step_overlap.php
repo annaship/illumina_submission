@@ -15,7 +15,7 @@
 	print_red_message("From step_overlap!!!");
 	print_red_message("\$csv_file_name = $csv_file_name");
 	
-	echo "<div id=\"command_line_print\">";
+// 	echo "<div id=\"command_line_print\">";
 	
 // 	$csv_path_error
 // 	$command_line_overlap = "cd " . $path_to_csv . $rundate .
@@ -26,7 +26,7 @@
 //                  ;
 // 	print_red_message($command_line_overlap);
 ?>
-	</div>
+<!-- 	</div> -->
 	
 </div>
       

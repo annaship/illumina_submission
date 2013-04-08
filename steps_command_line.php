@@ -43,12 +43,7 @@
 	      else 
 	      {    
 	//       	$rundate = $lane_name = $raw_path = $path_to_csv = $csv_name = $is_compressed = $do_perfect = "";
-	        echo "
-	          <p>
-	            This command line(s) can be run on any server:
-	          </p>
-	          <br/>
-	        ";
+
 	        $lanes         = array();
 	  //       $rundate       = $_SESSION["run_info"]["rundate"];
 	  //       $machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
@@ -76,6 +71,13 @@
 	      
 	} #else
 
+	echo "<div id=\"command_line_print\">";
+	echo "
+	          <p>
+	            This command line(s) can be run on any server:
+	          </p>
+	          <br/>
+	        ";
 	foreach ($lanes as $lane_name)
 	{
 		print_red_message("lane_name = $lane_name");
@@ -89,8 +91,9 @@
 		          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
 		          ;
 		           
-		          print_red_message($command_line);
+		print_red_message($command_line);
 	}
+	echo "</div>";
 	
 ?>
 
