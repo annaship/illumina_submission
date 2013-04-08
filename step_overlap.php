@@ -15,11 +15,11 @@
       {
       	$rundate = $lane_name = $raw_path = $path_to_csv = $csv_name = $is_compressed = $do_perfect = $machine_name = "";
 //       	TODO: move repetitions from below
-      	$rundate     = $_POST["find_rundate"];
-      	$lane_name   = $_POST["find_lane"];
-      	$raw_path    = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
+      	$rundate      = $_POST["find_rundate"];
+      	$lane_name    = $_POST["find_lane"];
+      	$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
       	$machine_name = array_search($_POST["find_machine"], $machine_names);
-      	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";      	
+      	$path_to_csv  = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";      
         $csv_name = create_csv_name($rundate, $lane_name);
         $is_compressed = "True";
         $do_perfect    = "True";
@@ -27,15 +27,22 @@
         {
         	$do_perfect = "False";
         }        
-        	 
+        $csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
         $command_line_overlap1 = "cd " . $path_to_csv . $rundate .
         	"; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
-          -csv " . $path_to_csv  . $rundate . "/" . $csv_name .
+          -csv " . $csv_file_name .
                   " -s illumina_files -l debug -p illumina -r " .
                   $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
                   ;
-        
-		print_red_message($command_line_overlap1);        
+                  
+		if (!file_exists($csv_file_name))
+		{
+			print_red_message("Sorry, there is no such file: ". $path_to_csv);
+		}       
+		else
+		{
+			print_red_message($command_line_overlap1);
+		} 		        
       }
       else
       {
@@ -45,8 +52,8 @@
       if (!check_var($_SESSION["run_info"]))
       {
         print_red_message("Please submit metadata first here: 
-                <a href\"http://vampsdev.mbl.edu/illumina_submission/step_upload_subm_metadata.php\">Upload Submission Metadata</a><br/>
-                Or choose one");
+                <a href\"http://vampsdev.mbl.edu/illumina_submission/step_upload_subm_metadata.php\">Upload Submission Metadata</a>.<br/>
+                Or choose one by clicking the button above.");
         include_once 'choose_metadata.php';
       }
       else 
