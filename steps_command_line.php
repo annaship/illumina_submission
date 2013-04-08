@@ -1,13 +1,7 @@
-<?php include_once("ill_subm_beginning.php"); ?>
-<?php
-  include_once("ill_subm_functions.php");
-  include_once "ill_subm_filled_variables.php";
-?>
-       
-      <h1>Illumina files processing</h1>
       <?php 
-      include_once("ill_subm_menu.php");
-            
+
+      //       include_once("ill_subm_menu.php");
+      print_red_message("From step_command_line, POST = ");
       print_out($_POST);
       print_out($_SESSION["run_info"]);
       include_once 'choose_metadata.php';
@@ -28,21 +22,13 @@
         	$do_perfect = "False";
         }        
         $csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
-        $command_line_overlap1 = "cd " . $path_to_csv . $rundate .
-        	"; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
-          -csv " . $csv_file_name .
-                  " -s illumina_files -l debug -p illumina -r " .
-                  $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
-                  ;
-                  
-		if (!file_exists($csv_file_name))
-		{
-			print_red_message("Sorry, there is no such file: ". $path_to_csv);
-		}       
-		else
-		{
-			print_red_message($command_line_overlap1);
-		} 		        
+        
+        $csv_path_error = "";
+        if (!file_exists($csv_file_name))
+        {
+        	$csv_path_error = "Sorry, there is no such file: ". $path_to_csv;
+        }
+       
       }
       else
       {
@@ -83,8 +69,8 @@
         foreach ($lanes as $lane_name)
         {
 
-          $csv_name = create_csv_name($rundate, $lane_name); 
-         
+          $csv_name      = create_csv_name($rundate, $lane_name); 
+          $csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
           $command_line_overlap = "cd " . $path_to_csv . $rundate .
           "; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
           -csv " . $path_to_csv  . $rundate . "/" . $csv_name .  
@@ -105,10 +91,11 @@
 //  -s illumina_files -l debug -p illumina -r 20121221 -ft fastq -i /xraid2-2/sequencing/Illumina/20121221hs/Project_SLM_NIH_Bv6_plt2 
 // -cp True -lane_name 'lane_2' -do_perfect True
       
-      } #else    
+      } #else
+      print_red_message("From steps");
+      print_red_message("\$csv_file_name = $csv_file_name");
+      
 ?>
 
-</div>
       
-      <!-- end of content -->    
-<?php include_once("ill_subm_end.php"); ?>     
+</div>
