@@ -29,7 +29,10 @@
 ?>
 
 <div id="command_line_print">
-	Afterwards you can check amount of unknowns percentage by using
+	<p>
+		Afterwards you can check the percent of "Unknown" taxa by using:	
+	</p>
+    <br/>
 <?php 
 	foreach ($lanes as $lane_name)
 	{
