@@ -18,12 +18,13 @@
   <ul class="nav first"> 
     <li><a href="step_demultiplex.php">demultiplex</a></li>
     <li><a href="step_overlap.php">overlap</a></li>
+    <li><a href="step_filter_mismatch.php">filtering mismatch</a></li>
     <li><a href="step_uniqueing.php">uniqueing</a></li>
     <li><a href="step_clear_db.php">clear db</a></li>
     <li><a href="step_check_fa_counts.php">check counts in fa files</a></li>
     <li><a href="step_check_db_counts.php">check counts in db</a></li>
     <li><a href="step_gzip_all.php">gzip all</a></li>
-    <li><a href="step_ungzip_all.php">ungzip all</a></li>
+    <li><a href="step_gunzip_all.php">gunzip all</a></li>
     </ul>  
   </li>      
   </ul> 

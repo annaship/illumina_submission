@@ -27,7 +27,21 @@
 	}
 	echo "</div>";
 ?>
-	
+
+<div id="command_line_print">
+	<p>
+		Afterwards you can check the percent of "Unknown" taxa by using:	
+	</p>
+    <br/>
+<?php 
+	foreach ($lanes as $lane_name)
+	{
+		$check_gast_unknowns = "check_gast_unknowns.sh";
+		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
+									$lane_name . "/analysis/reads_overlap/; " . $check_gast_unknowns . "; date";
+		print_red_message($command_line_gast_check);	
+	}	
+?>
 </div>
       
       <!-- end of content -->    
