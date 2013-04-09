@@ -34,7 +34,15 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $data_for_csv["barcode_index"] 	    = $metadata_arr["barcode_index"];
   $data_for_csv["data_owner"]    	    = $metadata_arr["user"];
   $data_for_csv["dataset"] 	            = $metadata_arr["dataset"];
-  $data_for_csv["dataset_description"]  = $metadata_arr["dataset_description"]; 
+  if (check_var($metadata_arr["dataset_description"]))
+  {	
+  	$data_for_csv["dataset_description"]  = $metadata_arr["dataset_description"];
+  }
+  else
+  {
+  	$data_for_csv["dataset_description"]  = $metadata_arr["dataset"];
+  }
+  	 
 //   $data_for_csv["domain"]        		= $metadata_arr["domain"];
   $data_for_csv["dna_region"] 	 	    = $_SESSION["run_info"]["dna_region_0"];
   $data_for_csv["email"]         		= $contact_info[2];
