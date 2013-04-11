@@ -21,11 +21,17 @@ $_SESSION["meta_from"] = $_SERVER["SCRIPT_NAME"];
 $show_class = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
 {
-	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $_POST["find_machine"] . "_info/";
-	$path_to_ini = $path_to_csv  . $_POST["find_rundate"] . "/" . $_POST["find_rundate"] . "_" . $_POST["find_lane"] . "_run_info.ini";
+	$selected_rundate = $_POST["find_rundate"];
+	$selected_machine = $_POST["find_machine"];
+	$selected_lane    = $_POST["find_lane"];
+	
+	
+	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $$selected_machine . "_info/";
+	$path_to_ini = $path_to_csv  . $selected_rundate . "/" . $selected_rundate . "_" . $selected_lane . "_run_info.ini";
 	$ini_path_error = "";
 	print_red_message("GGG: file_exists(\$path_to_ini)");
 	print_out(file_exists($path_to_ini));
+	
 	if (!file_exists($path_to_ini))
 	{
 		$ini_path_error = "Sorry, there is no such file: ". $path_to_ini;

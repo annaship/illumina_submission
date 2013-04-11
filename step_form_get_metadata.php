@@ -2,9 +2,7 @@
 // print_out($_SERVER);
 print_red_message("From ". $_SERVER["PHP_SELF"] . "; step_form_get_metadata");
 
-$selected_rundate = $POST["find_rundate"];
-$selected_machine = $POST["find_machine"];
-$selected_lane    = $POST["find_lane"];
+
 ?>
 <form method="post" name="choose_meta_w_path_form" id="choose_meta_w_path_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
 <input type="hidden" name="form_name" id="choose_meta_w_path_form_form_name" value="choose_meta_w_path_form"/>
