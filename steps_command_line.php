@@ -35,32 +35,32 @@ if (check_var($_SESSION["run_info"]))
 	}
 	$lanes = $_SESSION["run_info"]["lanes"];
 }
-// else 
-// {
-// 	$rundate       = $_POST["find_rundate"];
-// 	$lane_name     = $_POST["find_lane"];
-// 	$lanes 		   = array($lane_name);
-// 	$machine_name  = array_search($_POST["find_machine"], $machine_names);
-// 	$csv_name      = create_csv_name($rundate, $lane_name);
+else 
+{
+	$rundate       = $_POST["find_rundate"];
+	$lane_name     = $_POST["find_lane"];
+	$lanes 		   = array($lane_name);
+	$machine_name  = array_search($_POST["find_machine"], $machine_names);
+	$csv_name      = create_csv_name($rundate, $lane_name);
 	
-// 	// 2) there is ini file
-// 	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
-// 	{
-// 		print_red_message("HERE1");
-// 		/*
-// 		 * POST:
-// 		* UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 4 [add] => Submit [choose_run_m_process] => 1 ) --
-// 		$run_info_ini:
-// 		UUU -Array ( [rundate] => 20130322 [lane] => 4 [domain] => Bacteria [dna_region] => v6 [path_to_raw_data] => /xraid2-2/sequencing/Illumina/20130322/Project_NMS_v6 [overlap] => complete ) --
-// 		*
-// 		* */
-// 		$raw_path 	 = $run_info_ini["path_to_raw_data"];
-// 		if ($run_info_ini["overlap"] == "partial")
-// 		{
-// 			$do_perfect = "False";
-// 		}
-// 	}
-// } #no session
+	// 2) there is ini file
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
+	{
+		print_red_message("HERE1");
+		/*
+		 * POST:
+		* UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 4 [add] => Submit [choose_run_m_process] => 1 ) --
+		$run_info_ini:
+		UUU -Array ( [rundate] => 20130322 [lane] => 4 [domain] => Bacteria [dna_region] => v6 [path_to_raw_data] => /xraid2-2/sequencing/Illumina/20130322/Project_NMS_v6 [overlap] => complete ) --
+		*
+		* */
+		$raw_path 	 = $run_info_ini["path_to_raw_data"];
+		if ($run_info_ini["overlap"] == "partial")
+		{
+			$do_perfect = "False";
+		}
+	}
+} #no session
 
 $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
 
