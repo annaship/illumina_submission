@@ -7,6 +7,7 @@ $_SESSION["run_info"] = $run_info_results;
 $_SESSION["run_info"]["path_to_raw_data"] = $selected_path_to_raw_data;
 $_SESSION["run_info_valid"] = 1;
 
+// insert into ini file
 $lanes = get_val_from_arr($_SESSION["csv_content"], "lane");
 $_SESSION["run_info"]["lanes"] = $lanes;
 $domains = get_val_from_arr($_SESSION["csv_content"], "domain");
