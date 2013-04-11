@@ -1,20 +1,21 @@
       <?php 
-print_red_message("From ". $_SERVER["PHP_SELF"]);
+print_red_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line_print");
       
       
-	echo "<div id=\"command_line_print\">";
-	echo "
-	          <p>
-	            This command line(s) can be run on any server:
-	          </p>
-	          <br/>
-	        ";
-	if ($csv_path_error)
+	if (check_var($csv_path_error) == 0)
 	{
 		print_red_message($csv_path_error);
 	}
 	else
 	{
+		echo "<div id=\"command_line_print\">";
+		echo "
+	          <p>
+	            This command line(s) can be run on any server:
+	          </p>
+	          <br/>
+	        ";
+		
 		foreach ($lanes as $lane_name)
 		{
 			print_red_message("lane_name = $lane_name");

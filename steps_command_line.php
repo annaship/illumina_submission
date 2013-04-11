@@ -1,7 +1,7 @@
       <?php 
 
       //       include_once("ill_subm_menu.php");
-print_red_message("From ". $_SERVER["PHP_SELF"]);
+print_red_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line");
       //       print_out($_POST);
 //       print_out($_SESSION["run_info"]);
       include_once 'choose_metadata.php';

@@ -7,14 +7,17 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-print_red_message("From ". $_SERVER["PHP_SELF"]);
+print_red_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
 		
 	$pipeline_command = "illumina_files";
 	
 	include_once("steps_command_line.php");
-
+	print_red_message("\$csv_path_error");
+	print_out(check_var($csv_path_error));
 	include_once("steps_command_line_print.php");
-	
+
+	if (check_var($csv_path_error) == 1)
+	{
 ?>
 
 <div id="command_line_print">
@@ -30,6 +33,8 @@ print_red_message("From ". $_SERVER["PHP_SELF"]);
 	}	
 ?>
 </div>
+<?php }#!$csv_path_error
+?>
       
       <!-- end of content -->    
 <?php include_once("ill_subm_end.php"); ?>     

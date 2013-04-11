@@ -1,7 +1,7 @@
 <?php 
 // print "<br/>";
-// print_red_message("from choose metadata");
-print_red_message("From ". $_SERVER["PHP_SELF"]);
+// print_red_message("from choose_metadata");
+print_red_message("From ". $_SERVER["PHP_SELF"] . "; choose_metadata");
 
 // print "<br/>";
 // print_out($_POST);
