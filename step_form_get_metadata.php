@@ -1,7 +1,10 @@
 <?php 
 // print_out($_SERVER);
-print_red_message("From ". $_SERVER["PHP_SELF"]);
+print_red_message("From ". $_SERVER["PHP_SELF"] . "; step_form_get_metadata");
 
+$selected_rundate = $POST["find_rundate"];
+$selected_machine = $POST["find_machine"];
+$selected_lane    = $POST["find_lane"];
 ?>
 <form method="post" name="choose_meta_w_path_form" id="choose_meta_w_path_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
 <input type="hidden" name="form_name" id="choose_meta_w_path_form_form_name" value="choose_meta_w_path_form"/>
@@ -42,10 +45,12 @@ print_red_message("From ". $_SERVER["PHP_SELF"]);
   <td class="fields" ><label for="find_lane">Lane number</label>
   </td>
   <td>
-  	<input class="text_inp size_abbr" type="text" name="find_lane" id="form_lane" value=""/>
+  	<input class="text_inp size_abbr" type="text" name="find_lane" id="form_lane" value="<?php echo $selected_lane;?>"/>
   </td>
 </tr> 
 <!-- Full path to raw data -->
+<?php #$selected_path_to_raw_data = $selected_rundate; ?>
+<tr>Sorry, there is no ini file, please add a path to raw data:</tr>
 <tr class="fields">
   <td class="fields" align="left"><label for="run_infoForm_path to raw data">path to raw data</label></td>
   <td align="left"  colspan = 5><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp size_long_input" type="text" 
