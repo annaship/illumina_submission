@@ -4,10 +4,10 @@ print_red_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line");
 //       print_out($_SESSION["run_info"]);
 include_once 'choose_metadata.php';
 print_out($_POST);
-print_red_message("\$run_info_ini:");
-print_out($run_info_ini);
-print_red_message("\$_SESSION[\"run_info\"]");
-print_out($_SESSION["run_info"]);
+// print_red_message("\$run_info_ini:");
+// print_out($run_info_ini);
+// print_red_message("\$_SESSION[\"run_info\"]");
+// print_out($_SESSION["run_info"]);
 
 /*
 1) just uploaded csv
@@ -33,7 +33,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 	// 2) there is ini file
 	if ($_POST["choose_run_m_process"] == 1)
 	{
-		print_red_message("HERE1");
+// 		print_red_message("HERE1");
 		/*
 		 * POST:
 		* UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 4 [add] => Submit [choose_run_m_process] => 1 ) --
@@ -50,7 +50,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 // 	3) not 1 nor 2	
 	elseif ($_POST["choose_meta_w_path_process"] == 1)
 	{
-		print_red_message("HERE2");
+// 		print_red_message("HERE2");
 		// 	 UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 1 [path_to_raw_data] => 20130322 [add] => Submit [choose_run_w_path_process] => 1 ) --
 		$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
 		if ($_POST["find_machine"] == "miseq")
@@ -176,26 +176,26 @@ $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$m
 // 	// -cp True -lane_name 'lane_2' -do_perfect True
 	      
 // 	} #else
-print "====================================================================";
+// print "====================================================================";
 
-print "<br/>"; print_red_message("\$do_perfect");
-print_out($do_perfect);
+// print "<br/>"; print_red_message("\$do_perfect");
+// print_out($do_perfect);
 
-print "<br/>"; print_red_message("\$is_compressed");
-print_out($is_compressed);
+// print "<br/>"; print_red_message("\$is_compressed");
+// print_out($is_compressed);
 
 
-print "<br/>"; print_red_message("\$path_to_csv");
-print_out($path_to_csv);
+// print "<br/>"; print_red_message("\$path_to_csv");
+// print_out($path_to_csv);
 
-print "<br/>"; print_red_message("\$pipeline_command");
-print_out($pipeline_command);
+// print "<br/>"; print_red_message("\$pipeline_command");
+// print_out($pipeline_command);
 
-print "<br/>"; print_red_message("\$raw_path");
-print_out($raw_path);
+// print "<br/>"; print_red_message("\$raw_path");
+// print_out($raw_path);
 
-print "<br/>"; print_red_message("\$rundate");
-print_out($rundate);
+// print "<br/>"; print_red_message("\$rundate");
+// print_out($rundate);
 
 
 

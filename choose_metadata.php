@@ -1,7 +1,7 @@
 <?php 
 // print "<br/>";
 // print_red_message("from choose_metadata");
-print_red_message("From ". $_SERVER["PHP_SELF"] . "; choose_metadata");
+// print_red_message("From ". $_SERVER["PHP_SELF"] . "; choose_metadata");
 
 // print "<br/>";
 // print_out($_POST);
@@ -26,11 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
 	$selected_lane    = $_POST["find_lane"];
 	
 	
-	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $$selected_machine . "_info/";
+	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $selected_machine . "_info/";
 	$path_to_ini = $path_to_csv  . $selected_rundate . "/" . $selected_rundate . "_" . $selected_lane . "_run_info.ini";
 	$ini_path_error = "";
-	print_red_message("GGG: file_exists(\$path_to_ini)");
-	print_out(file_exists($path_to_ini));
 	
 	if (!file_exists($path_to_ini))
 	{

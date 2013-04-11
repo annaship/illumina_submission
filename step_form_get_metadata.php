@@ -1,6 +1,6 @@
 <?php 
 // print_out($_SERVER);
-print_red_message("From ". $_SERVER["PHP_SELF"] . "; step_form_get_metadata");
+// print_red_message("From ". $_SERVER["PHP_SELF"] . "; step_form_get_metadata");
 
 
 ?>
