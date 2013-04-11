@@ -3,20 +3,20 @@
 print_red_message("From ". $_SERVER["PHP_SELF"]);
 
 ?>
-<form method="post" name="choose_run_m_form" id="choose_run_m_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
-<input type="hidden" name="form_name" id="choose_run_m_form_form_name" value="choose_run_m_form"/>
-<table class="form" id="choose_run_m_form-form"><tbody>
+<form method="post" name="choose_meta_w_path_form" id="choose_meta_w_path_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
+<input type="hidden" name="form_name" id="choose_meta_w_path_form_form_name" value="choose_meta_w_path_form"/>
+<table class="form" id="choose_meta_w_path_form-form"><tbody>
 <tr><td>
-<table class="fields" id="choose_run_m_form-fields"><tbody>
+<table class="fields" id="choose_meta_w_path_form-fields"><tbody>
 
 <tr class="fields">
 <td class="fields" colspan="2">
-<fieldset id="choose_run_m_form_choose_run_m">
-<!-- <legend id="choose_run_m_form_choose_run_m-legend">Add new choose_run_m</legend> -->
-<table class="fields" id="choose_run_m_form_choose_run_m-fields"><tbody>
+<fieldset id="choose_meta_w_path_form_choose_meta_w_path">
+<!-- <legend id="choose_meta_w_path_form_choose_meta_w_path-legend">Add new choose_meta_w_path</legend> -->
+<table class="fields" id="choose_meta_w_path_form_choose_meta_w_path-fields"><tbody>
 
 <tr class="fields">
-  <td class="fields" ><label for="choose_run_m_form_choose_run_m">Run date</label>
+  <td class="fields" ><label for="choose_meta_w_path_form_choose_meta_w_path">Run date</label>
   </td>
   <td>
 	<select name="find_rundate" id="form_find_rundate">
@@ -59,10 +59,10 @@ print_red_message("From ". $_SERVER["PHP_SELF"]);
 </tbody></table>
 </td></tr>
 <tr><td >
-<table class="buttons" id="choose_run_m_form-buttons"><tbody>
+<table class="buttons" id="choose_meta_w_path_form-buttons"><tbody>
 <tr class="buttons"><td class="buttons">
-<input type="submit" name="add" id="choose_run_m_form_add" value="Submit"/>
-<input type="hidden" name="choose_run_m_process" value="1"></td></tr>
+<input type="submit" name="add" id="choose_meta_w_path_form_add" value="Submit"/>
+<input type="hidden" name="choose_meta_w_path_process" value="1"></td></tr>
 </tbody></table>
 </td></tr>
 </tbody></table>
