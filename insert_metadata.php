@@ -66,7 +66,6 @@
       print("==========================================");      
     }
   }
-print_out($_SESSION["run_info"]["lanes"]);
   
 //   ====
   include_once 'step_subm_metadata_create_csv.php';

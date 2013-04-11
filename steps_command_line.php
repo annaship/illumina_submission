@@ -13,7 +13,9 @@
       	$lane_name    = $_POST["find_lane"];
       	$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
       	$machine_name = array_search($_POST["find_machine"], $machine_names);
-      	$path_to_csv  = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";      
+      	$path_to_csv  = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";   
+print_red_message($path_to_csv);
+      	
         $csv_name = create_csv_name($rundate, $lane_name);
         $is_compressed = "True";
         $do_perfect    = "True";
@@ -40,7 +42,7 @@
 	                Or choose one by clicking the button above.");
 	        include_once 'choose_metadata.php';
 	      }
-	      else 
+	      else #we just uploaded a csv
 	      {    
 	//       	$rundate = $lane_name = $raw_path = $path_to_csv = $csv_name = $is_compressed = $do_perfect = "";
 
