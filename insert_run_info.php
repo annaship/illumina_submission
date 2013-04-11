@@ -20,15 +20,21 @@ foreach ($lanes as $lane)
 		$run_info_file_name = $path_to_csv  . $rundate . "/" . $rundate . "_" . $lane . "_run_info.ini";
 		$fp 				= fopen($run_info_file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
 		$domain_name 		= get_domain_from_csv_data($domain, $domains_array);
-		$ini_content = "
-rundate          = '" . $_SESSION["run_info"]["rundate"] . "'
-lane             = '" . $lane . "'
-domain           = '" . $domain_name . "'
-dna_region       = '" . $_SESSION["run_info"]["dna_region_0"] . "'
-path_to_raw_data = '/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"] . "'
-overlap          = '" . $_SESSION["run_info"]["overlap"] . "'
-		";
-		fwrite($fp, $ini_content);
+		$ini_content = array("rundate" => $_SESSION["run_info"]["rundate"],
+							 "lane"    => $lane,
+							 "domain"  => $domain_name,
+							 "dna_region" => $_SESSION["run_info"]["dna_region_0"],
+							 "path_to_raw_data" => '/xraid2-2/sequencing/Illumina/"' . $_SESSION["run_info"]["path_to_raw_data"],
+							 "overlap"			=> $_SESSION["run_info"]["overlap"]				
+							);
+// 		print_out(json_encode($ini_content));
+// 		UUU -{"rundate":"20130322",
+// "lane":"4",
+// "domain":"Bacteria",
+// "dna_region":"v6",
+// "path_to_raw_data":"\/xraid2-2\/sequencing\/Illumina\/\"20130322\/Project_NMS_v6",
+// "overlap":"complete"} --
+		fwrite($fp, json_encode($ini_content));
 		fclose($fp);
 	}
 }

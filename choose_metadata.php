@@ -37,13 +37,14 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["find_metadata_process"] 
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
 {
-	print_red_message("\$path_to_csv = " . $path_to_csv);
+// 	include_once(read_ini_file.php);
 	$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $_POST["find_machine"] . "_info/";
-	print_red_message("\$path_to_csv = " . $path_to_csv);
-	
 	$path_to_ini = $path_to_csv  . $_POST["find_rundate"] . "/" . $_POST["find_rundate"] . "_" . $_POST["find_lane"] . "_run_info.ini";
 	
 	print_red_message("\$path_to_ini = " . $path_to_ini);
+	
+	$handle = fopen($file_name, "r") or trigger_error("Can't open $file_name: ", E_USER_ERROR);
+	
 }
     
 ?>
