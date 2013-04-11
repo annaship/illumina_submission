@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
 	
 	if (!file_exists($path_to_ini))
 	{
-		$ini_path_error = "Sorry, there is no such file: ". $path_to_ini;
+		$ini_path_error = "Sorry, there is no ini file: ". $path_to_ini;
 		include("step_form_get_metadata.php");						
 	}
 	else 

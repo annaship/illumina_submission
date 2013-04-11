@@ -48,7 +48,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 		}
 	}
 // 	3) not 1 nor 2	
-	elseif ($_POST["choose_run_w_path_process"] == 1)
+	elseif ($_POST["choose_meta_w_path_process"] == 1)
 	{
 		print_red_message("HERE2");
 		// 	 UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 1 [path_to_raw_data] => 20130322 [add] => Submit [choose_run_w_path_process] => 1 ) --

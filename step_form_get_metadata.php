@@ -47,8 +47,14 @@ print_red_message("From ". $_SERVER["PHP_SELF"] . "; step_form_get_metadata");
   </td>
 </tr> 
 <!-- Full path to raw data -->
-<?php #$selected_path_to_raw_data = $selected_rundate; ?>
-<tr>Sorry, there is no ini file, please add a path to raw data:</tr>
+<?php 
+    print_red_message("Sorry, there is no ini file. Please add a path to raw data.");
+    if ($selected_path_to_raw_data == "")
+    {
+    	$selected_path_to_raw_data = $selected_rundate;
+    }
+    ?>
+
 <tr class="fields">
   <td class="fields" align="left"><label for="run_infoForm_path to raw data">path to raw data</label></td>
   <td align="left"  colspan = 5><span class="emph">/xraid2-2/sequencing/Illumina/</span><input class="text_inp size_long_input" type="text" 
