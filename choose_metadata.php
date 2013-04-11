@@ -1,8 +1,10 @@
 <?php 
 // print "<br/>";
-print_red_message("from choose metadata");
+// print_red_message("from choose metadata");
+print_red_message("From ". $_SERVER["PHP_SELF"]);
+
 // print "<br/>";
-print_out($_POST);
+// print_out($_POST);
 // // print_r($_SERVER["SCRIPT_NAME"]);
 // // print_out($_SESSION);
 // print_red_message($path_to_csv);
@@ -13,38 +15,31 @@ print_out($_POST);
 if(!isset($_SESSION)) {
   session_start();
 }
-// $path_to_csv = "";
 
 $_SESSION["meta_from"] = $_SERVER["SCRIPT_NAME"];
-// print_out($_SESSION);
 
 $show_class = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["find_rundate_process"] == 1) 
-{      
-  $show_class = "show_block";
-      
-//       include_once 'step_form_get_metadata.php';
-  include_once 'step_form_get_run_info.php';
-  print_red_message("find_rundate_process");
-}
-elseif ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["find_metadata_process"] == 1)
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
 {
-  print "find_metadata_process";
-//     print_out($_POST);
-  list($first_part, $file_rundate, $file_line) = explode("_", pathinfo($_POST["csv_files_find"],  PATHINFO_FILENAME));
-//     print_red_message(pathinfo($_POST["csv_files_find"],  PATHINFO_FILENAME));
-//     print_red_message($file_line);
-}
-elseif ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
-{
-// 	include_once(read_ini_file.php);
-	$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $_POST["find_machine"] . "_info/";
+	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $_POST["find_machine"] . "_info/";
 	$path_to_ini = $path_to_csv  . $_POST["find_rundate"] . "/" . $_POST["find_rundate"] . "_" . $_POST["find_lane"] . "_run_info.ini";
-	
-	print_red_message("\$path_to_ini = " . $path_to_ini);
-	
-	$handle = fopen($file_name, "r") or trigger_error("Can't open $file_name: ", E_USER_ERROR);
-	
+	$ini_path_error = "";
+	if (!file_exists($path_to_ini))
+	{
+		$ini_path_error = "Sorry, there is no such file: ". $path_to_ini;
+	}
+	else 
+	{	
+		$ini_data     = file_get_contents($path_to_ini);
+		$run_info_ini = json_decode($ini_data, true);
+	}
+// 	UUU -Array ( 
+//[rundate] => 20130322 
+//[lane] => 4 
+//[domain] => Bacteria 
+//[dna_region] => v6 
+//[path_to_raw_data] => /xraid2-2/sequencing/Illumina/20130322/Project_NMS_v6 
+//[overlap] => complete ) --
 }
     
 ?>
@@ -55,8 +50,16 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] =
     <table>
          <tr style="display:none;" class="hide_find_run_tr <?php echo $show_class; ?>">
            <td colspan="3">
-             <?php #include("step_form_get_metadata.php"); ?>
-             <?php include("step_form_get_run_info.php"); ?>                 
+             <?php 
+				if ($ini_path_error == "") {
+					include("step_form_get_run_info.php");
+				}
+				else
+				{
+					include("step_form_get_metadata.php");						
+				}
+
+			?>                 
              
         </td>
       </tr>

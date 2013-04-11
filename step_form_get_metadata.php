@@ -1,5 +1,6 @@
 <?php 
 // print_out($_SERVER);
+print_red_message("From ". $_SERVER["PHP_SELF"]);
 
 ?>
 <form method="post" name="choose_run_m_form" id="choose_run_m_form" action="<?php echo $_SERVER["PHP_SELF"]?>">

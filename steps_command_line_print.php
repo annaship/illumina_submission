@@ -1,5 +1,7 @@
       <?php 
-
+print_red_message("From ". $_SERVER["PHP_SELF"]);
+      
+      
 	echo "<div id=\"command_line_print\">";
 	echo "
 	          <p>

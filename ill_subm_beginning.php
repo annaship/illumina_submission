@@ -1,6 +1,9 @@
 <?php
 if(!isset($_SESSION)) { session_start(); } 
 // $_SESSION["run_info"] = array();
+ini_set('error_reporting', E_ALL);
+
+
 if ($_SESSION['is_local'])
 {  
     $docroot = $_SESSION['docroot'];

@@ -24,7 +24,7 @@ foreach ($lanes as $lane)
 							 "lane"    => $lane,
 							 "domain"  => $domain_name,
 							 "dna_region" => $_SESSION["run_info"]["dna_region_0"],
-							 "path_to_raw_data" => '/xraid2-2/sequencing/Illumina/"' . $_SESSION["run_info"]["path_to_raw_data"],
+							 "path_to_raw_data" => "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"],
 							 "overlap"			=> $_SESSION["run_info"]["overlap"]				
 							);
 // 		print_out(json_encode($ini_content));

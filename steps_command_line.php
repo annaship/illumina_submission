@@ -1,9 +1,9 @@
       <?php 
 
       //       include_once("ill_subm_menu.php");
-      print_red_message("From step_command_line, POST = ");
-      print_out($_POST);
-      print_out($_SESSION["run_info"]);
+print_red_message("From ". $_SERVER["PHP_SELF"]);
+      //       print_out($_POST);
+//       print_out($_SESSION["run_info"]);
       include_once 'choose_metadata.php';
       if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
       {

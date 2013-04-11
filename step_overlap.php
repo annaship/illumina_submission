@@ -7,10 +7,12 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-
+print_red_message("From ". $_SERVER["PHP_SELF"]);
+		
 	$pipeline_command = "illumina_files";
 	
 	include_once("steps_command_line.php");
+
 	include_once("steps_command_line_print.php");
 	
 ?>
