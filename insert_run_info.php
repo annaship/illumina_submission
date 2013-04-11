@@ -6,4 +6,30 @@ if (!isset($_SESSION)) {
 $_SESSION["run_info"] = $run_info_results;
 $_SESSION["run_info"]["path_to_raw_data"] = $selected_path_to_raw_data;
 $_SESSION["run_info_valid"] = 1;
+
+$lanes = get_val_from_arr($_SESSION["csv_content"], "lane");
+$_SESSION["run_info"]["lanes"] = $lanes;
+$domains = get_val_from_arr($_SESSION["csv_content"], "domain");
+$rundate = $_SESSION["run_info"]["rundate"];
+
+foreach ($lanes as $lane)
+{
+	foreach ($domains as $domain)
+	{
+		$run_info_file_name = $path_to_csv  . $rundate . "/" . $rundate . "_" . $lane . "_run_info.ini";
+		$fp 				= fopen($run_info_file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
+		$domain_name 		= get_domain_from_csv_data($domain, $domains_array);
+		$ini_content = "
+rundate          = '" . $_SESSION["run_info"]["rundate"] . "'
+lane             = '" . $lane . "'
+domain           = '" . $domain_name . "'
+dna_region       = '" . $_SESSION["run_info"]["dna_region_0"] . "'
+path_to_raw_data = '/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"] . "'
+overlap          = '" . $_SESSION["run_info"]["overlap"] . "'
+		";
+		fwrite($fp, $ini_content);
+		fclose($fp);
+	}
+}
+
 ?>

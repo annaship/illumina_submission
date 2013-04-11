@@ -836,4 +836,15 @@ function make_run_info_results($run_info)
 	return $run_info_results;
 }
 
+function get_val_from_arr($array, $field_name)
+{
+	$field_names = $all_field_names = array();
+	foreach ($array as $row_num => $metadata_arr)
+	{
+		$field_names[] = $metadata_arr[$field_name];
+	}
+	$all_field_names = array_unique($field_names);
+	return $all_field_names;
+}
+
 ?>
