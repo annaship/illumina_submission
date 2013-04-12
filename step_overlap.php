@@ -14,8 +14,8 @@
 	include_once("steps_command_line.php");
 	include_once("steps_command_line_print.php");
 
-	if (check_var($csv_path_error) == 1)
-	{
+// 	if (check_var($csv_path_error) == 1)
+// 	{
 ?>
 
 <div id="command_line_print">
@@ -31,7 +31,7 @@
 	}	
 ?>
 </div>
-<?php }#!$csv_path_error
+<?php // }#!$csv_path_error
 ?>
       
       <!-- end of content -->    
