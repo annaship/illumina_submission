@@ -41,7 +41,7 @@
 // 				AND run = '20130322' 
 // 				AND lane = '1'; 
 
-		print_red_message($seq_check);	
+		print_green_message($seq_check);	
 	}	
 ?>
 </div>

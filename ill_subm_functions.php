@@ -466,6 +466,17 @@ function print_red_message($message)
   printf ("<div class = \"message\">$message</div>");
 }
 
+function print_green_message($message)
+{
+	printf ("<div class = \"green_message\">$message</div>");
+}
+
+function print_blue_message($message)
+{
+	printf ("<div class = \"blue_message\">$message</div>");
+}
+
+
 function run_query($query, $table_name)
 {
   $success_insert = 0;

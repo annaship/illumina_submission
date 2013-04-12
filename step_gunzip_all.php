@@ -23,7 +23,7 @@
 	{
     	$command_line_gzip = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
         					$lane_name . "/analysis/reads_overlap/; time gunzip *.gz";
-        print_red_message($command_line_gzip);        
+        print_green_message($command_line_gzip);        
 	}
 	echo "</div>";
 ?>

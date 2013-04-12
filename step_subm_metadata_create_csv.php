@@ -1,5 +1,6 @@
 <?php 
-// print_red_message("FROM step_subm_metadata_create_csv.php");
+$lanes = array();
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_subm_metadata_create_csv");
 
 // include_once("ill_subm_functions.php");
 // include_once "ill_subm_filled_variables.php";
@@ -72,9 +73,9 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $data_for_csv["seq_operator"]  		= $_SESSION["run_info"]["seq_operator"];
   $data_for_csv["tubelabel"] 	 		= $metadata_arr["tubelabel"];
 
+  $lanes[] = $data_for_csv["lane"];
   $data_all[] = $data_for_csv;
 }
-
 
 
 $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", 
@@ -87,7 +88,10 @@ $csv_data = array_to_scv($data_all, false);
 // TODO: create directory
 // -----
 $is_created = array();
-foreach (array_unique($lanes) as $lane_name)
+
+$_SESSION["run_info"]["lanes"] = array_unique($lanes);
+
+foreach ($_SESSION["run_info"]["lanes"] as $lane_name)
 {
   $csv_name  = create_csv_name($rundate, $lane_name);
   $file_name = $path_to_csv  . $rundate . "/" . $csv_name;
@@ -98,7 +102,7 @@ if (check_var($is_created)) {
   ksort($is_created);
   foreach ($is_created as $file_path => $fp)
   {
-    print_red_message("$file_path was created");
+    print_green_message("$file_path was created");
   }
 }
 ?>

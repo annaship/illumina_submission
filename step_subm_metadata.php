@@ -95,10 +95,10 @@
                 && !($_POST["subm_metadata_upload_process"])
                 ) 
         {   
-//           print_red_message("HERE1");
+//           print_blue_message("HERE1");
           include("step_subm_metadata_form_metadata_table.php");
           $metadata_errors_count = 0;          
-//           print_red_message("HERE11");
+//           print_blue_message("HERE11");
 //           print_out($_SESSION["run_info_errors"]);
           
         }
@@ -108,9 +108,9 @@
                 )
            ) 
         {   
-//           print_red_message("HERE2");
+//           print_blue_message("HERE2");
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
-//           print_red_message("HERE21");
+//           print_blue_message("HERE21");
 //           print_out($_SESSION["run_info_errors"]);
           
         }
@@ -119,7 +119,7 @@
                 )
         )
         {
-//           print_red_message("HERE3");        
+//           print_blue_message("HERE3");        
           include_once 'step_subm_metadata_form_submission_metadata_validation.php';
           
 //           echo "
@@ -127,7 +127,7 @@
 //                   <a href=\"csv_download.php\">Click to download CSV file</a>
 //                 </div>
 //           ";
-//           print_red_message("HERE31");
+//           print_blue_message("HERE31");
 //           print_out($_SESSION["run_info_errors"]);          
         }        
       ?>

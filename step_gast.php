@@ -23,7 +23,7 @@
 	{
     	$command_line_gast = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
         					$lane_name . "/analysis/reads_overlap/; run_gast_ill.sh; date";
-        print_red_message($command_line_gast);        
+        print_green_message($command_line_gast);        
 	}
 	echo "</div>";
 ?>
@@ -39,7 +39,7 @@
 		$check_gast_unknowns = "check_gast_unknowns.sh";
 		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
 									$lane_name . "/analysis/reads_overlap/; " . $check_gast_unknowns . "; date";
-		print_red_message($command_line_gast_check);	
+		print_green_message($command_line_gast_check);	
 	}	
 ?>
 </div>

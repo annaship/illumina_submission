@@ -578,6 +578,17 @@ table#submission_metadata-fields tr.repeated_row td {
     color:#C00000; font-weight: bold;
 }
 
+.green_message {
+    color: #006600; font-weight: bold;
+}
+
+.blue_message {
+    color: #0000FF; font-weight: bold;
+}
+
+
+}
+
 /* tr.hide_owner_tr {
 	display: block;
 	display: none;	

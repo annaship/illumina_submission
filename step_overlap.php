@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-// print_red_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
 		
 	$pipeline_command = "illumina_files";
 	
@@ -27,7 +27,7 @@
 	{
 		$command_line_overlap_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
 									$lane_name . "/analysis/reads_overlap/; " . $stat_check_command_name . "; date";
-		print_red_message($command_line_overlap_check);	
+		print_green_message($command_line_overlap_check);	
 	}	
 ?>
 </div>

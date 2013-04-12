@@ -9,9 +9,11 @@ $_SESSION["run_info_valid"] = 1;
 
 // insert into ini file
 $lanes = get_val_from_arr($_SESSION["csv_content"], "lane");
-$_SESSION["run_info"]["lanes"] = $lanes;
+$_SESSION["run_info"]["lanes"] = array_unique($lanes);
 $domains = get_val_from_arr($_SESSION["csv_content"], "domain");
 $rundate = $_SESSION["run_info"]["rundate"];
+// print_red_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
+// print_out($_SESSION["run_info"]["lanes"]);
 
 foreach ($lanes as $lane)
 {
@@ -27,7 +29,6 @@ foreach ($lanes as $lane)
 							 "path_to_raw_data" => "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"],
 							 "overlap"			=> $_SESSION["run_info"]["overlap"]				
 							);
-// 		print_out(json_encode($ini_content));
 // 		UUU -{"rundate":"20130322",
 // "lane":"4",
 // "domain":"Bacteria",

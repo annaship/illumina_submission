@@ -1,9 +1,10 @@
 <?php
-//       include_once("ill_subm_menu.php");
-print_red_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line");
-//       print_out($_SESSION["run_info"]);
 include_once 'choose_metadata.php';
-print_out($_POST);
+
+
+// print_red_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line");
+//       print_out($_SESSION["run_info"]);
+// print_out($_POST);
 // print_red_message("\$run_info_ini:");
 // print_out($run_info_ini);
 // print_red_message("\$_SESSION[\"run_info\"]");

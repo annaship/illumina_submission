@@ -2,7 +2,8 @@
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
-// print_red_message("FROM subm_metadata_validation");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
+// print_out($_SESSION["run_info"]["lanes"]);
 
 $metadata_errors     = array();
 $metadata_errors_all = array();
@@ -57,14 +58,14 @@ $metadata_errors_count = sizeof(flat_mult_array($metadata_errors_all));
 
 if($metadata_errors_count == 0)
 {
-// 	print_red_message("from metadata validation");
+// 	print_blue_message("from metadata validation");
 // 	print_out($selected_metadata_arr);
 // 	TODO: change env_id and data_owner 
   $result_metadata_arr = $selected_metadata_arr;
 
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';
-//   print_red_message("FROM valid1");
+//   print_blue_message("FROM valid1");
 //   print_out($result_metadata_arr);
   success_message('Metadata');
 }

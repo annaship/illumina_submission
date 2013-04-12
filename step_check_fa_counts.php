@@ -33,7 +33,7 @@
 		$fa_count_command = "grep '>' " . $file_ext . " | wc -l";
 		$fa_count_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
 						$lane_name . "/analysis/reads_overlap/; " . $fa_count_command . "; date";
-		print_red_message($fa_count_check);	
+		print_green_message($fa_count_check);	
 	}	
 ?>
 </div>
