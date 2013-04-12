@@ -21,25 +21,30 @@
 <?php 
 	$stat_check_command_name = "take_" . $machine_name . "_stats.py";
 	
+	$suite_name = "";
+	$suite_name = get_primer_suite_name($run_info_ini["dna_region"], $run_info_ini["domain"]);
+
+	
 	foreach ($lanes as $lane_name)
 	{
 // 		TODO: 'Bacterial V6 Suite'
-		$suite_name = "";
 		$seq_check = "mysql -h newbpcdb2 env454 -e 'select count(*) from sequence_pdr_info_ill 			
 			JOIN run_info_ill using(run_info_ill_id) 			
 			JOIN project using(project_id) 			
 			JOIN dataset using(dataset_id) 			
 			JOIN run using(run_id) 			
 			JOIN primer_suite using(primer_suite_id) WHERE primer_suite = \"" . $suite_name . "\" AND run = \"" . $rundate . "\" AND lane = \"" . $lane_name . "\"'";
-// 		select count(*) from sequence_pdr_info_ill 
-// 			JOIN run_info_ill using(run_info_ill_id) 
-// 			JOIN project using(project_id) 
-// 			JOIN dataset using(dataset_id) 
-// 			JOIN run using(run_id) 
-// 			JOIN primer_suite using(primer_suite_id) 
-// 			WHERE primer_suite = 'Bacterial V6 Suite' 
-// 				AND run = '20130322' 
-// 				AND lane = '1'; 
+
+		/*
+		 select count(*) from run_info_ill
+		JOIN project using(project_id)
+		JOIN dataset using(dataset_id)
+		JOIN run using(run_id)
+		JOIN primer_suite using(primer_suite_id)
+		WHERE primer_suite = 'Bacterial V6 Suite'
+		AND run = '20130322'  and lane = '1';
+		*/
+		
 
 		print_green_message($seq_check);	
 	}	
