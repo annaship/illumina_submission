@@ -64,7 +64,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 } #no session
 elseif (check_var($_SESSION["run_info"]))
 {
-		print_blue_message("HERE3");
+// 		print_blue_message("HERE3");
 	/*
 	 * UUU -Array ( [form_name] => run_info_form [rundate] => 20120315 [path_to_raw_data] => 20120315hs/test [dna_region_0] => v6 [overlap] => complete [seq_operator] => JR [insert_size] => 95 [read_length] => 111 [add] => Submit Run info [run_info_process] => 1 [lanes] => Array ( [0] => 1 ) ) --
 	*/
@@ -73,8 +73,7 @@ elseif (check_var($_SESSION["run_info"]))
 	{
 		$domains[] = $arr_data["domain"];
 	}
-	$domains_un = array_unique($domains);
-	
+	$domains_un    = array_unique($domains);	
 	$rundate       = $_SESSION["run_info"]["rundate"];
 	$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
 	$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];

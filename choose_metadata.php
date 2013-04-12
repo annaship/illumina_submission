@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["choose_run_m_process"]
 	
 	
 	$path_to_csv    = "/xraid2-2/g454/run_new_pipeline/illumina/" . $selected_machine . "_info/";
-	$domain_letter  = "A";//$metadata_arr["domain"][0];
 	$path_to_ini    = $path_to_csv  . $selected_rundate . "/" . $selected_rundate . "_" . $selected_lane . "_" . $domain_letter . "_run_info.ini";
+	print_blue_message("\$path_to_ini = $path_to_ini");
 	$ini_path_error = "";
 	
 	if (!file_exists($path_to_ini))

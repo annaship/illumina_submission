@@ -1,5 +1,5 @@
       <?php 
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line_print");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line_print");
 //       print_blue_message("\$csv_path_error");
 //       print_out($csv_path_error);
 //       print_out(check_var($csv_path_error));
