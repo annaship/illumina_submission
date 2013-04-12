@@ -15,7 +15,7 @@
 	echo "<div id=\"command_line_print\">";
 	echo "
 	          <p>
-	            This command line(s) can be run on any server:
+	            This command line(s) should be run on <strong>grendel</strong>:
 	          </p>
 	          <br/>
 	        ";
@@ -36,7 +36,8 @@
 <?php 
 	foreach ($lanes as $lane_name)
 	{
-		$check_gast_unknowns = "check_gast_unknowns.sh";
+// 		$check_gast_unknowns = "check_gast_unknowns.sh";
+		$check_gast_unknowns = "percent10_gast_unknowns.sh";
 		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
 									$lane_name . "/analysis/reads_overlap/; " . $check_gast_unknowns . "; date";
 		print_green_message($command_line_gast_check);	
