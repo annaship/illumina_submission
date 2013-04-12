@@ -70,18 +70,19 @@ $current_submit_code = array_keys($_SESSION["vamps_submissions_arr"])[0];
 
 // submit_code table errors
 $error_field_names = implode('", "', array_keys($all_errors_uniq));
-
-print_red_message("
-<br/>
-<br/>
-There is no data for: \"$error_field_names\". 
-Probably the metadata were not properly submitted via <a href=\"http://vamps.mbl.edu/utils/submissions/project_submit.php\" target=\"_blank\">Project Submission</a> on VAMPS. 
-<br/>
-The \"submit_code\" to check is $current_submit_code.
-<br/>
-<br/>
-");
-
+if ($error_field_names != "")
+{
+	print_red_message("
+	<br/>
+	<br/>
+	There is no data for: \"$error_field_names\". 
+	Probably the metadata were not properly submitted via <a href=\"http://vamps.mbl.edu/utils/submissions/project_submit.php\" target=\"_blank\">Project Submission</a> on VAMPS. 
+	<br/>
+	The \"submit_code\" to check is $current_submit_code.
+	<br/>
+	<br/>
+	");
+}
 
 if($metadata_errors_count == 0)
 {

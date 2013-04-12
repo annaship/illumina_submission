@@ -35,7 +35,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 	// 2) there is ini file
 	if (isset ($_POST["choose_run_m_process"]) && $_POST["choose_run_m_process"] == 1)
 	{
-// 		print_blue_message("HERE1");
+		print_blue_message("HERE1");
 		/*
 		 * POST:
 		* UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 4 [add] => Submit [choose_run_m_process] => 1 ) --
@@ -52,7 +52,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 // 	3) not 1 nor 2	
 	elseif ($_POST["choose_meta_w_path_process"] == 1)
 	{
-// 		print_blue_message("HERE2");
+		print_blue_message("HERE2");
 		// 	 UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 1 [path_to_raw_data] => 20130322 [add] => Submit [choose_run_w_path_process] => 1 ) --
 		$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
 		if ($_POST["find_machine"] == "miseq")
@@ -64,9 +64,17 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 } #no session
 elseif (check_var($_SESSION["run_info"]))
 {
+		print_blue_message("HERE3");
 	/*
 	 * UUU -Array ( [form_name] => run_info_form [rundate] => 20120315 [path_to_raw_data] => 20120315hs/test [dna_region_0] => v6 [overlap] => complete [seq_operator] => JR [insert_size] => 95 [read_length] => 111 [add] => Submit Run info [run_info_process] => 1 [lanes] => Array ( [0] => 1 ) ) --
 	*/
+	
+	foreach ($_SESSION["csv_content"] as $arr_data)
+	{
+		$domains[] = $arr_data["domain"];
+	}
+	$domains_un = array_unique($domains);
+	
 	$rundate       = $_SESSION["run_info"]["rundate"];
 	$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
 	$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];

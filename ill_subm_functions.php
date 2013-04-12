@@ -913,22 +913,5 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	return $suite_names;
 }
 
-function validate_data_for_csv($data_all_for_csv)
-{
-	foreach ($data_all_for_csv as $row_num => $data_row)
-	{
-// 		print_blue_message("\$data_row");
-// 		print_out($data_row);
-		foreach ($data_row as $key_name => $value)
-		{
-			if ($value == "")
-			{
-				$csv_errors[$row_num][$key_name] = "ERR";
-			}
-		}
-	}
-// 	print_blue_message("\$csv_errors");
-// 	print_out($csv_errors);
-}
 
 ?>

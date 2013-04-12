@@ -19,7 +19,8 @@ foreach ($lanes as $lane)
 {
 	foreach ($domains as $domain)
 	{
-		$run_info_file_name = $path_to_csv  . $rundate . "/" . $rundate . "_" . $lane . "_run_info.ini";
+		$domain_letter      = $metadata_arr["domain"][0];		
+		$run_info_file_name = $path_to_csv  . $rundate . "/" . $rundate . "_" . $lane . "_" . $domain_letter . "_run_info.ini";
 		$fp 				= fopen($run_info_file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
 		$domain_name 		= get_domain_from_csv_data($domain, $domains_array);
 		$ini_content = array("rundate" => $_SESSION["run_info"]["rundate"],

@@ -23,8 +23,10 @@
 <?php 
 	$stat_check_command_name = "take_" . $machine_name . "_stats.py";
 	
-	foreach ($lanes as $lane_name)
+	foreach ($lanes as $lane_num)
 	{
+		print_red_message("\$domain_letter = $domain_letter");
+		$lane_name = $lane_num . "_" . $domain_letter;
 		$command_line_overlap_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
 									$lane_name . "/analysis/reads_overlap/; " . $stat_check_command_name . "; date";
 		print_green_message($command_line_overlap_check);	

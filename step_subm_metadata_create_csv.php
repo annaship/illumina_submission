@@ -91,9 +91,13 @@ $csv_data = array_to_scv($data_all, false);
 $is_created = array();
 
 $_SESSION["run_info"]["lanes"] = array_unique($lanes);
+// print_blue_message("\$metadata_arr[\"domain\"]");
+// print_out($metadata_arr["domain"]);
+$domain_letter = $metadata_arr["domain"][0];
 
-foreach ($_SESSION["run_info"]["lanes"] as $lane_name)
+foreach ($_SESSION["run_info"]["lanes"] as $lane_num)
 {
+  $lane_name = $lane_num . "_" . $domain_letter;
   $csv_name  = create_csv_name($rundate, $lane_name);
   $file_name = $path_to_csv  . $rundate . "/" . $csv_name;
   $is_created[$file_name] = create_csv_file($data_all, $file_name);
