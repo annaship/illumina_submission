@@ -19,8 +19,9 @@
 	          </p>
 	          <br/>
 	        ";
-	foreach ($lanes as $lane_name)
+	foreach ($lanes as $lane_num)
 	{
+		$lane_name = $lane_num . "_" . $domain_letter;	
     	$command_line_gast = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
         					$lane_name . "/analysis/reads_overlap/; run_gast_ill.sh; date";
         print_green_message($command_line_gast);        
@@ -34,8 +35,9 @@
 	</p>
     <br/>
 <?php 
-	foreach ($lanes as $lane_name)
+	foreach ($lanes as $lane_num)
 	{
+		$lane_name = $lane_num . "_" . $domain_letter;	
 // 		$check_gast_unknowns = "check_gast_unknowns.sh";
 		$check_gast_unknowns = "percent10_gast_unknowns.sh";
 		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
