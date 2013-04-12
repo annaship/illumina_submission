@@ -41,7 +41,9 @@ $application_data['modules']['logger']->debug = false;
 $application_data['config'] = $config;
 include_once($application_data['config']['paths']['root']."/docs/includes/debug_header.php");
 
-$state = $_SESSION['state'];
+if (isset($_SESSION["state"])) {
+	$state = $_SESSION["state"];
+}
 require_once('checkSession.php');
 $user          = checkSession();
 $TITLE         = "VAMPS - TITLE GOES HERE";

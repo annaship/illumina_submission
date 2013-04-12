@@ -26,13 +26,22 @@ $required_fields = array();
 $i = 0;
 $required_fields = create_require_arr($submission_metadata_form_fields);
 
+array_push($required_fields, "funding", "project_description");
+
 // 1) validate all data in foreach $result_metadata_arr
+// print_blue_message("from metadata validation");
+//   print_blue_message("FROM valid1");
+//   print_out($result_metadata_arr);
+
 foreach ($result_metadata_arr as $result_metadata_arr1)
 {
+// 	print_blue_message("\$result_metadata_arr1");
+// 	print_out($result_metadata_arr1);
+	
   $metadata_errors = check_required_fields($result_metadata_arr1, $required_fields);
-  $field_name = "lane";
   
-  if( isset($result_metadata_arr1[$field_name]) && !valid_is_number($result_metadata_arr1[$field_name]))
+  $field_name = "lane";
+    if( isset($result_metadata_arr1[$field_name]) && !valid_is_number($result_metadata_arr1[$field_name]))
   {
     $metadata_errors[$field_name] = "The " . $field_name . " should be numbers.";
   }
@@ -54,12 +63,17 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
     
 }
 // check for errors
-$metadata_errors_count = sizeof(flat_mult_array($metadata_errors_all));
+$all_errors_uniq       = flat_mult_array($metadata_errors_all);
+$metadata_errors_count = sizeof($all_errors_uniq);
+
+// submit_code table errors
+	$error_field_names = implode('", "', array_keys($all_errors_uniq));
+	
+	print_red_message("There is no data for: \"$error_field_names\". Please check if it was submitted to VAMPS in the first place. That could be in ");
+
 
 if($metadata_errors_count == 0)
 {
-// 	print_blue_message("from metadata validation");
-// 	print_out($selected_metadata_arr);
 // 	TODO: change env_id and data_owner 
   $result_metadata_arr = $selected_metadata_arr;
 

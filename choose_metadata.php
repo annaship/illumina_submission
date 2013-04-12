@@ -19,7 +19,7 @@ if(!isset($_SESSION)) {
 $_SESSION["meta_from"] = $_SERVER["SCRIPT_NAME"];
 
 $show_class = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["choose_run_m_process"]) && $_POST["choose_run_m_process"] == 1)
 {
 	$selected_rundate = $_POST["find_rundate"];
 	$selected_machine = $_POST["find_machine"];

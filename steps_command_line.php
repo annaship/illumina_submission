@@ -2,12 +2,13 @@
 include_once 'choose_metadata.php';
 
 
-// print_red_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line");
-//       print_out($_SESSION["run_info"]);
-// print_out($_POST);
-// print_red_message("\$run_info_ini:");
+// 	print_blue_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line");
+//     print_out($_SESSION["run_info"]);
+// 	print_blue_message("\$_POST:");
+//       print_out($_POST);
+// print_blue_message("\$run_info_ini:");
 // print_out($run_info_ini);
-// print_red_message("\$_SESSION[\"run_info\"]");
+// print_blue_message("\$_SESSION[\"run_info\"]");
 // print_out($_SESSION["run_info"]);
 
 /*
@@ -32,9 +33,9 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 	$csv_name      = create_csv_name($rundate, $lane_name);
 	
 	// 2) there is ini file
-	if ($_POST["choose_run_m_process"] == 1)
+	if (isset ($_POST["choose_run_m_process"]) && $_POST["choose_run_m_process"] == 1)
 	{
-// 		print_red_message("HERE1");
+// 		print_blue_message("HERE1");
 		/*
 		 * POST:
 		* UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 4 [add] => Submit [choose_run_m_process] => 1 ) --
@@ -51,7 +52,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 // 	3) not 1 nor 2	
 	elseif ($_POST["choose_meta_w_path_process"] == 1)
 	{
-// 		print_red_message("HERE2");
+// 		print_blue_message("HERE2");
 		// 	 UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 1 [path_to_raw_data] => 20130322 [add] => Submit [choose_run_w_path_process] => 1 ) --
 		$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
 		if ($_POST["find_machine"] == "miseq")
@@ -69,7 +70,7 @@ elseif (check_var($_SESSION["run_info"]))
 	$rundate       = $_SESSION["run_info"]["rundate"];
 	$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
 	$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
-	if ($_SESSION["run_info"]["overlap"] == partial)
+	if ($_SESSION["run_info"]["overlap"] == "partial")
 	{
 		$do_perfect = "False";
 	}
@@ -81,7 +82,7 @@ $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$m
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_m_process"] == 1)
 // {
-// 	print_red_message("HERE1");
+// 	print_blue_message("HERE1");
 // 	/*
 // 	 * POST:
 // 	* UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 4 [add] => Submit [choose_run_m_process] => 1 ) --
@@ -97,7 +98,7 @@ $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$m
 // }
 // elseif ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["choose_run_w_path_process"] == 1)
 // {
-// 	print_red_message("HERE2");
+// 	print_blue_message("HERE2");
 // 	// 	 UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 1 [path_to_raw_data] => 20130322 [add] => Submit [choose_run_w_path_process] => 1 ) --
 // 	$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
 // 	if ($_POST["find_machine"] == "miseq")
@@ -119,7 +120,7 @@ $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$m
 //       	$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
 //       	$machine_name = array_search($_POST["find_machine"], $machine_names);
 //       	$path_to_csv  = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";   
-// print_red_message($path_to_csv);
+// print_blue_message($path_to_csv);
       	
 //         $csv_name = create_csv_name($rundate, $lane_name);
 //         $is_compressed = "True";
@@ -142,7 +143,7 @@ $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$m
 //       {
 // 	      if (!check_var($_SESSION["run_info"]))
 // 	      {
-// 	        print_red_message("Please submit metadata first here: 
+// 	        print_blue_message("Please submit metadata first here: 
 // 	                <a href\"http://vampsdev.mbl.edu/illumina_submission/step_upload_subm_metadata.php\">Upload Submission Metadata</a>.<br/>
 // 	                Or choose one by clicking the button above.");
 // 	        include_once 'choose_metadata.php';
@@ -179,23 +180,23 @@ $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$m
 // 	} #else
 // print "====================================================================";
 
-// print "<br/>"; print_red_message("\$do_perfect");
+// print "<br/>"; print_blue_message("\$do_perfect");
 // print_out($do_perfect);
 
-// print "<br/>"; print_red_message("\$is_compressed");
+// print "<br/>"; print_blue_message("\$is_compressed");
 // print_out($is_compressed);
 
 
-// print "<br/>"; print_red_message("\$path_to_csv");
+// print "<br/>"; print_blue_message("\$path_to_csv");
 // print_out($path_to_csv);
 
-// print "<br/>"; print_red_message("\$pipeline_command");
+// print "<br/>"; print_blue_message("\$pipeline_command");
 // print_out($pipeline_command);
 
-// print "<br/>"; print_red_message("\$raw_path");
+// print "<br/>"; print_blue_message("\$raw_path");
 // print_out($raw_path);
 
-// print "<br/>"; print_red_message("\$rundate");
+// print "<br/>"; print_blue_message("\$rundate");
 // print_out($rundate);
 
 

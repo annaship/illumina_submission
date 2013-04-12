@@ -286,7 +286,7 @@ function validate_new_contact($contact_info, $vamps_name) {
 
 function check_var($variable)
 {
-	if (!isset($variable) OR empty($variable))
+	if (!isset($variable) || empty($variable))
 	{
 		return 0;
 	}
@@ -856,6 +856,79 @@ function get_val_from_arr($array, $field_name)
 	}
 	$all_field_names = array_unique($field_names);
 	return $all_field_names;
+}
+
+function get_primer_suite_name_from_db($data_arr, $connection)
+{
+	print_blue_message("\$data_arr");
+	print_out($data_arr);
+	if ($_SESSION['is_local'])
+	{
+		$db_name = "test";
+	}
+	else
+	{
+		//   $db_name    = "env454";
+		$db_name    = "test";		
+	}
+	
+	$rundate = "";
+	$lanes	 = array();
+	$suite_names = array();
+	
+	if (isset($data_arr["find_rundate"]) && isset($data_arr["find_lane"]))
+	{
+		$rundate = $data_arr["find_rundate"];
+		$lanes 	 = array($data_arr["find_lane"]);
+	}
+	else 
+	{
+		$rundate = $data_arr["rundate"];
+		$lanes 	 = $data_arr["lanes"];
+		
+	}
+	
+	foreach ($lanes as $lane)
+	{
+		print_blue_message($lane);
+		$query = "
+	SELECT DISTINCT primer_suite, dna_region
+	 		FROM run_info_ill
+	 		JOIN run USING(run_id)
+	 		JOIN dna_region USING(dna_region_id)
+	 		JOIN primer_suite USING(primer_suite_id)
+	 		WHERE
+	 		run = \"" . $rundate . "\"
+	 		AND lane = " . $lane . "			
+				";
+
+		print_blue_message("\$query = ");
+		print_out($query);
+		
+		
+		$suite_names[] = get_one_value($query, $db_name, $connection);
+	}
+	print_blue_message("\$suite_names = ");
+	print_out($suite_names);
+	return $suite_names;
+}
+
+function validate_data_for_csv($data_all_for_csv)
+{
+	foreach ($data_all_for_csv as $row_num => $data_row)
+	{
+// 		print_blue_message("\$data_row");
+// 		print_out($data_row);
+		foreach ($data_row as $key_name => $value)
+		{
+			if ($value == "")
+			{
+				$csv_errors[$row_num][$key_name] = "ERR";
+			}
+		}
+	}
+// 	print_blue_message("\$csv_errors");
+// 	print_out($csv_errors);
 }
 
 ?>

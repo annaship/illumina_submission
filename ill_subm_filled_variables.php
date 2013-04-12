@@ -27,8 +27,8 @@ $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_
 
 $project_form_fields = array(
     "project_name1" => "required", "project_name2" => "required", "domain" => "select",
-    "dna_region" => "select", "project_title" => "optional", "project_description" => "optional",
-    "funding" => "optional", "env_source_name" => "required", "project_form_contact" => "select"
+    "dna_region" => "select", "project_title" => "optional", "project_description" => "required",
+    "funding" => "required", "env_source_name" => "required", "project_form_contact" => "select"
 );
 
 $submission_metadata_form_fields = array("domain"=> "required", "lane"=> "required", "data_owner"=> "required", 

@@ -21,7 +21,15 @@
   <td>
 	<select name="find_rundate" id="form_find_rundate">
     <?php 
-      print_options($runs, $selected_rundate);
+	    if (!isset($selected_rundate))
+	    {
+	    	$selected_rundate = "";
+	    	if (isset($_POST["find_rundate"]))
+	    	{
+	    		$selected_rundate = $_POST["find_rundate"];
+	    	}
+	    }
+      	print_options($runs, $selected_rundate);
     ?>
     </select>
   </td>
@@ -33,6 +41,15 @@
   <td>
 	<select name="find_machine" id="form_machine">
     <?php 
+      if (!isset($selected_machine))
+      {
+      	$selected_machine = "";
+      	if (isset($_POST["find_machine"]))
+      	{
+      		$selected_machine = $_POST["find_machine"];
+      	}
+      }
+//       $selected_machine = from_post_or_empty($_POST, )
       print_options($machine_names, $selected_machine);
     ?>
     </select>
