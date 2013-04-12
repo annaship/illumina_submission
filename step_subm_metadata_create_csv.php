@@ -23,7 +23,6 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
 // TODO: use $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"] to get username
-print_out($result_metadata_arr);
 
 foreach ($result_metadata_arr as $row_num => $metadata_arr)
 {
