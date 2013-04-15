@@ -1,5 +1,6 @@
 <?php
-// 	print_red_message("FROM insert_metadata.php");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
+
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
   $dna_region_id = $file_prefix = $insert_size = $lane = $overlap = $primer_suite_id = ""; 

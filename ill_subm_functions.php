@@ -920,6 +920,7 @@ function creat_dir_if_not_existst($dir_name)
 	}
 }
 
+// <<<<<<< HEAD
 function create_lane_dom_names($lanes, $domains)
 {
 	$lane_dom_names = array();
@@ -932,4 +933,26 @@ function create_lane_dom_names($lanes, $domains)
 }
 
 
+// =======
+// function get_domain_from_post($post_arr)
+// {
+// 	print_blue_message("HERE: in get_domain_from_post");
+// 	foreach ($post_arr as $post_row_key => $post_row_value)
+// 	{
+// 		print_out($post_row);
+// 		print_out("\$post_row_key = $post_row_key; \$post_row_value = $post_row_value;");
+// 		if (preg_match('/domain_\d/', $post_row_key))
+// 		{
+// 			print_blue_message("In IF");
+// 			$domains_all[] = $post_row_value; 
+// 		}			
+// 	}
+// 	$i++;
+	
+// 	print_blue_message("array_unique(\$domains_all);");
+// 	print_out(array_unique($domains_all));
+// 	return array_unique($domains_all);
+// }
+
+// >>>>>>> 6125a630933cbd06e899b2a9f166c6c358cc504d
 ?>
