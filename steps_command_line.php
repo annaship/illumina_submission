@@ -39,7 +39,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 	$lanes 		   = array($lane_name);
 	$machine_name  = array_search($_POST["find_machine"], $machine_names);
 	$csv_name      = create_csv_name($rundate, $lane_name);
-	
+	$domains 	   = array($domain);
 	// 2) there is ini file
 	if (isset ($_POST["choose_run_m_process"]) && $_POST["choose_run_m_process"] == 1)
 	{
