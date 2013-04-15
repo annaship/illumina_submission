@@ -1,5 +1,5 @@
 <?php
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
 
 $run_info_results = populate_post_vars($_POST);
 if (!isset($_SESSION)) {
@@ -11,22 +11,33 @@ $_SESSION["run_info_valid"] = 1;
 
 // insert into ini file
 $lanes = get_val_from_arr($_SESSION["csv_content"], "lane");
-$_SESSION["run_info"]["lanes"] = array_unique($lanes);
+// $_SESSION["run_info"]["lanes"] = array_unique($lanes);
+$_SESSION["run_info"]["lanes"] = $lanes;
 $domains = get_val_from_arr($_SESSION["csv_content"], "domain");
 $rundate = $_SESSION["run_info"]["rundate"];
-// print_red_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
 // print_out($_SESSION["run_info"]["lanes"]);
+$lane_dom_names = create_lane_dom_names($lanes, $domains);
 
-foreach ($lanes as $lane)
-{
-	foreach ($domains as $domain)
-	{
+// 	print_blue_message("\$lanes = ");
+// 	print_out($lanes);
+// 	print_blue_message("\$domains = ");
+// 	print_out($domains);
+// 	$lane_dom_names = create_lane_dom_names($lanes, $domains);
+// 	print_blue_message("\$lane_dom_names = ");
+// 	print_out($lane_dom_names);
+// 	print_blue_message("===========");
+// foreach ($lanes as $lane)
+// {
+// 	foreach ($domains as $domain)
+// 	{
 		
-		$domain_name 		= get_domain_from_csv_data($domain, $domains_array);
-		$domain_letter      = $domain[0];
-		$lane_name 			= $lane . "_" . $domain_letter;
+// 		$domain_name 		= get_domain_from_csv_data($domain, $domains_array);
+// 		$domain_letter      = $domain[0];
+foreach ($lane_dom_names as $lane_dom_name)
+{
+// 		$lane_name 			= $lane . "_" . $domain_letter;
 		$dir_name 			= $path_to_csv  . $rundate;
-		$ini_file_name      = $rundate . "_" . $lane_name . "_run_info.ini";
+		$ini_file_name      = $rundate . "_" . $lane_dom_name . "_run_info.ini";
 		$run_info_file_name = $dir_name . "/" . $ini_file_name;
 		creat_dir_if_not_existst($dir_name);
 		set_error_handler("customError", E_USER_ERROR);		
@@ -47,7 +58,6 @@ foreach ($lanes as $lane)
 // "overlap":"complete"} --
 		fwrite($fp, json_encode($ini_content));
 		fclose($fp);
-	}
 }
 
 ?>

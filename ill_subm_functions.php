@@ -854,8 +854,8 @@ function get_val_from_arr($array, $field_name)
 	{
 		$field_names[] = $metadata_arr[$field_name];
 	}
-	$all_field_names = array_unique($field_names);
-	return $all_field_names;
+// 	$all_field_names = array_unique($field_names);
+	return $field_names;
 }
 
 function get_primer_suite_name_from_db($data_arr, $connection)
