@@ -1,5 +1,6 @@
 <?php 
-// print_red_message("From form_run_info");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata_form_run_info");
+
 // print "\$run_info_results: ";
 // print_out($run_info_results);
 // print "\$_SESSION[run_info]: ";

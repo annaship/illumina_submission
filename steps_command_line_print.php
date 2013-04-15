@@ -16,8 +16,9 @@
 	          </p>
 	          <br/>
 	        ";
-		foreach ($lanes as $lane_name)
+		foreach ($lanes as $lane_num)
 		{
+			$lane_name     = $lane_num . "_" . $domain_letter;
 			$csv_name      = create_csv_name($rundate, $lane_name);
 			$csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
 

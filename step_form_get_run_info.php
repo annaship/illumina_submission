@@ -55,6 +55,29 @@
     </select>
   </td>
 </tr> 
+
+<tr class="fields">
+  <td class="fields" ><label for="find_domain">Domain</label>
+  </td>
+  <td>
+	<select name="find_domain" id="form_domain">
+    <?php 
+      if (!isset($selected_domain))
+      {
+      	$selected_domain = "Bacteria";
+      	if (isset($_POST["find_domain"]))
+      	{
+      		$selected_domain = $_POST["find_domain"];
+      	}
+      }
+      print_out($domains_array);
+//       $selected_domain = from_post_or_empty($_POST, )
+      print_options($domains_array, $selected_domain);
+    ?>
+    </select>
+  </td>
+</tr> 
+
 <tr class="fields">
   <td class="fields" ><label for="find_lane">Lane number</label>
   </td>
@@ -62,6 +85,7 @@
   	<input class="text_inp size_abbr" type="text" name="find_lane" id="form_lane" value="<?php echo $selected_lane;?>"/>
   </td>
 </tr> 
+
 <!-- Full path to raw data -->
 <!-- <tr class="fields"> -->
 <!--   <td class="fields" align="left"><label for="run_infoForm_path to raw data">path to raw data</label></td> -->

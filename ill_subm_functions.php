@@ -854,8 +854,8 @@ function get_val_from_arr($array, $field_name)
 	{
 		$field_names[] = $metadata_arr[$field_name];
 	}
-	$all_field_names = array_unique($field_names);
-	return $all_field_names;
+// 	$all_field_names = array_unique($field_names);
+	return $field_names;
 }
 
 function get_primer_suite_name_from_db($data_arr, $connection)
@@ -913,22 +913,23 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	return $suite_names;
 }
 
-function validate_data_for_csv($data_all_for_csv)
+function creat_dir_if_not_existst($dir_name)
 {
-	foreach ($data_all_for_csv as $row_num => $data_row)
-	{
-// 		print_blue_message("\$data_row");
-// 		print_out($data_row);
-		foreach ($data_row as $key_name => $value)
-		{
-			if ($value == "")
-			{
-				$csv_errors[$row_num][$key_name] = "ERR";
-			}
-		}
+	if (!is_dir($dir_name)) {
+		mkdir($dir_name);
 	}
-// 	print_blue_message("\$csv_errors");
-// 	print_out($csv_errors);
 }
+
+function create_lane_dom_names($lanes, $domains)
+{
+	$lane_dom_names = array();
+	foreach ($lanes as $row_num => $lane)
+	{
+		$lane_dom_names[] = $lane . "_" . $domains[$row_num][0];
+	}		
+	return array_unique($lane_dom_names);
+	
+}
+
 
 ?>

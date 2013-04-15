@@ -1,5 +1,5 @@
 <?php 
-$lanes = array();
+$lanes = $domains = array();
 // print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_subm_metadata_create_csv");
 
 // include_once("ill_subm_functions.php");
@@ -17,6 +17,7 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
+// print_blue_message("\$result_metadata_arr");
 // print_out($result_metadata_arr);
 // print_out($_SESSION['run_info']);
 
@@ -44,6 +45,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   	$data_for_csv["dataset_description"]  = $metadata_arr["dataset"];
   }
   	 
+  $domains[]							= $metadata_arr["domain"];
 //   $data_for_csv["domain"]        		= $metadata_arr["domain"];
   $data_for_csv["dna_region"] 	 	    = $_SESSION["run_info"]["dna_region_0"];
   $data_for_csv["email"]         		= $contact_info[2];
@@ -78,6 +80,8 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 }
 
 // $csv_creat_errors = validate_data_for_csv($data_all);
+// print_blue_message("\$domains");
+// print_out($domains);
 
 $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", 
     "data_owner", "dataset", "dataset_description", "dna_region", "email", "env_sample_source_id", 
@@ -91,11 +95,17 @@ $csv_data = array_to_scv($data_all, false);
 $is_created = array();
 
 $_SESSION["run_info"]["lanes"] = array_unique($lanes);
+// print_blue_message("\$metadata_arr[\"domain\"]");
+// print_out($metadata_arr["domain"]);
+// $domain_letter = $metadata_arr["domain"][0];
 
-foreach ($_SESSION["run_info"]["lanes"] as $lane_name)
+$lane_dom_names = create_lane_dom_names($lanes, $domains);
+
+foreach ($lane_dom_names as $lane_dom_name)
 {
-  $csv_name  = create_csv_name($rundate, $lane_name);
-  $file_name = $path_to_csv  . $rundate . "/" . $csv_name;
+//   $lane_name = $lane_num . "_" . $domain_letter;
+  $csv_name  = create_csv_name($rundate, $lane_dom_name);
+  $file_name = $path_to_csv  . $rundate . "/" . $csv_name;  
   $is_created[$file_name] = create_csv_file($data_all, $file_name);
 }
 

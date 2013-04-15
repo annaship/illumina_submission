@@ -1,5 +1,8 @@
 <?php
 include_once("ill_subm_functions.php");
+
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata_form_run_info_validation");
+
 $error_class_name = "";
 
 $required_fields = array();
@@ -46,10 +49,9 @@ foreach ($field_check as $field_name)
 }
 
 $run_info_errors_count = sizeof($run_info_errors);
-
 if ($run_info_errors_count == 0)
 {
-    include_once "insert_run_info.php";
+	include_once "insert_run_info.php";
     success_message("run_info");
 //     clean_the_table();
 }

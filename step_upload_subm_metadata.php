@@ -16,13 +16,13 @@
 </div>
 
 <?php 
-// print_red_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata");
 
-// print_red_message("\$_POST");
+// print_blue_message("\$_POST");
 // print_out($_POST);
-// print_red_message("\$_SERVER");
+// print_blue_message("\$_SERVER");
 // print_out($_SERVER);
-// print_red_message("\$_SESSION[run_info_valid]");
+// print_blue_message("\$_SESSION[run_info_valid]");
 // print_out($_SESSION["run_info_valid"]);
 
 ?>
@@ -41,7 +41,7 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {
   	include_once 'step_subm_metadata_form_run_info_validation.php';
   }
-//   print_red_message("\$_POST");
+//   print_blue_message("\$_POST");
 //   print_out(sizeof($_POST));
   if (sizeof($_POST))
   {
@@ -58,8 +58,9 @@
   }  
   //4) create csv
   
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["subm_metadata_upload_process"] == 1) 
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST["subm_metadata_upload_process"] == 1) || ($_POST["submission_metadata_selected_process"] == 1)) 
   {
+//   	print_blue_message("HERE");
   	include_once 'step_subm_metadata_form_submission_metadata_validation.php';  	 
   }
   

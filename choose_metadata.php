@@ -1,13 +1,13 @@
 <?php 
 // print "<br/>";
-// print_red_message("from choose_metadata");
-// print_red_message("From ". $_SERVER["PHP_SELF"] . "; choose_metadata");
+// print_blue_message("from choose_metadata");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; choose_metadata");
 
 // print "<br/>";
 // print_out($_POST);
 // // print_r($_SERVER["SCRIPT_NAME"]);
-// // print_out($_SESSION);
-// print_red_message($path_to_csv);
+// print_out($_SESSION);
+// print_blue_message($path_to_csv);
 // print "<br/>";
 ?>
 <?php
@@ -21,13 +21,15 @@ $_SESSION["meta_from"] = $_SERVER["SCRIPT_NAME"];
 $show_class = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["choose_run_m_process"]) && $_POST["choose_run_m_process"] == 1)
 {
+// 	print_blue_message("HERE4");
 	$selected_rundate = $_POST["find_rundate"];
 	$selected_machine = $_POST["find_machine"];
+	$selected_domain  = $_POST["find_domain"];
 	$selected_lane    = $_POST["find_lane"];
+	$domain_letter    = $selected_domain[0];
 	
-	
-	$path_to_csv = "/xraid2-2/g454/run_new_pipeline/illumina/" . $selected_machine . "_info/";
-	$path_to_ini = $path_to_csv  . $selected_rundate . "/" . $selected_rundate . "_" . $selected_lane . "_run_info.ini";
+	$path_to_csv    = "/xraid2-2/g454/run_new_pipeline/illumina/" . $selected_machine . "_info/";
+	$path_to_ini    = $path_to_csv  . $selected_rundate . "/" . $selected_rundate . "_" . $selected_lane . "_" . $domain_letter . "_run_info.ini";
 	$ini_path_error = "";
 	
 	if (!file_exists($path_to_ini))
