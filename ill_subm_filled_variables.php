@@ -34,7 +34,7 @@ $project_form_fields = array(
 $submission_metadata_form_fields = array("domain"=> "required", "lane"=> "required", "data_owner"=> "required", 
     "run_key"=> "select", "barcode_index"=> "select", "adaptor"=> "required", "project"=> "required", 
     "dataset"=> "required", "dataset_description"=> "optional", "env_source_name"=> "required",
-    "tubelabel"=> "optional", "barcode"=> "optional", "amp_operator"=> "optional");
+    "tubelabel"=> "optional", "barcode"=> "optional", "amp_operator"=> "required");
 
 $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "required",  "read_length" => "required");
 // ---
