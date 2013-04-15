@@ -13,6 +13,11 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
+	<td>/illumina_submission/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
 	<td>/illumina_submission/step_overlap.php</td>
 	<td></td>
 </tr>
@@ -24,27 +29,7 @@
 <tr>
 	<td>type</td>
 	<td>id=csv</td>
-	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/SUBMITCODE_jreveillaud819833.csv</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>name=Submit</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=csv</td>
-	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=csv</td>
-	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/SUBMITCODE_jreveillaud819833.csv</td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/SUBMITCODE_tdelmont_test.csv</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -64,11 +49,11 @@
 <tr>
 	<td>type</td>
 	<td>id=run_infoForm_path to raw data</td>
-	<td>20130322/Project_POST_16S_v6</td>
+	<td>20150000/test</td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322/metadata_20130322_1.csv -s illumina_files -l debug -p illumina -r 20130322 -ft fastq -i /xraid2-2/sequencing/Illumina/20130322/Project_POST_16S_v6 -cp True -lane_name &quot;lane_1_A&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_1.csv -s illumina_files -l debug -p illumina -r 20150000 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_1_A&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
@@ -109,7 +94,7 @@
 <tr>
 	<td>type</td>
 	<td>id=run_infoForm_path to raw data</td>
-	<td>20120315hs/test</td>
+	<td>20150000/test</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -123,7 +108,7 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322/metadata_20130322_1.csv was created</td>
+	<td>/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_1.csv was created</td>
 	<td></td>
 </tr>
 <tr>
@@ -178,17 +163,17 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_1.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20120315hs/test -cp True -lane_name &quot;lane_1&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_1.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_1&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_2.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20120315hs/test -cp True -lane_name &quot;lane_2&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_2.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_2&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_3.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20120315hs/test -cp True -lane_name &quot;lane_3&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_3.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_3&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
