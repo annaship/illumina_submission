@@ -17,6 +17,7 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
         "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
         "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
 
+// print_blue_message("\$result_metadata_arr");
 // print_out($result_metadata_arr);
 // print_out($_SESSION['run_info']);
 
@@ -44,6 +45,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   	$data_for_csv["dataset_description"]  = $metadata_arr["dataset"];
   }
   	 
+  $domains[]							= $metadata_arr["domain"];
 //   $data_for_csv["domain"]        		= $metadata_arr["domain"];
   $data_for_csv["dna_region"] 	 	    = $_SESSION["run_info"]["dna_region_0"];
   $data_for_csv["email"]         		= $contact_info[2];
@@ -78,6 +80,8 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 }
 
 // $csv_creat_errors = validate_data_for_csv($data_all);
+print_blue_message("\$domains");
+print_out($domains);
 
 $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", 
     "data_owner", "dataset", "dataset_description", "dna_region", "email", "env_sample_source_id", 
