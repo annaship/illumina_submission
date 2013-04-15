@@ -33,7 +33,7 @@ $lane_dom_names = create_lane_dom_names($lanes, $domains);
 		
 // 		$domain_name 		= get_domain_from_csv_data($domain, $domains_array);
 // 		$domain_letter      = $domain[0];
-foreach ($lane_dom_names as $lane_dom_name)
+foreach (array_unique($lane_dom_names) as $lane_dom_name)
 {
 // 		$lane_name 			= $lane . "_" . $domain_letter;
 		$dir_name 			= $path_to_csv  . $rundate;
@@ -45,10 +45,9 @@ foreach ($lane_dom_names as $lane_dom_name)
 		set_error_handler("customError", E_USER_ERROR);		
 		$fp 				= fopen($run_info_file_name, 'w') or trigger_error("Can't open $run_info_file_name: ", E_USER_ERROR);
 		
-		$ini_content = array("rundate" => $_SESSION["run_info"]["rundate"],
-							 "lane"    => $lane,
-							 "domain"  => $domain_name,
-							 "dna_region" => $_SESSION["run_info"]["dna_region_0"],
+		$ini_content = array("rundate" 			=> $_SESSION["run_info"]["rundate"],
+							 "lane_domain"  	=> $lane_dom_name,
+							 "dna_region"       => $_SESSION["run_info"]["dna_region_0"],
 							 "path_to_raw_data" => "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"],
 							 "overlap"			=> $_SESSION["run_info"]["overlap"]				
 							);
