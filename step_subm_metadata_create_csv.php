@@ -1,9 +1,12 @@
 <?php 
 $lanes = array();
 print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_subm_metadata_create_csv");
-
-// include_once("ill_subm_functions.php");
-// include_once "ill_subm_filled_variables.php";
+// print_blue_message("\$_POST");
+// print_out($_POST);
+// print_blue_message("\$_SESSION");
+// print_out($_SESSION);
+include_once("ill_subm_functions.php");
+include_once "ill_subm_filled_variables.php";
 
 /* TODO:
  * 1) csv in _info directory
@@ -23,6 +26,10 @@ $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcod
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
 // TODO: use $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"] to get username
+if (isset($_POST))
+{
+	$domains1 = get_domain_from_post($_POST);
+}
 
 foreach ($result_metadata_arr as $row_num => $metadata_arr)
 {
@@ -91,8 +98,8 @@ $csv_data = array_to_scv($data_all, false);
 $is_created = array();
 
 $_SESSION["run_info"]["lanes"] = array_unique($lanes);
-// print_blue_message("\$metadata_arr[\"domain\"]");
-// print_out($metadata_arr["domain"]);
+print_blue_message("\$metadata_arr[\"domain\"]");
+print_out($metadata_arr["domain"]);
 $domain_letter = $metadata_arr["domain"][0];
 
 foreach ($_SESSION["run_info"]["lanes"] as $lane_num)

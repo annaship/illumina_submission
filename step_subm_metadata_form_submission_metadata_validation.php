@@ -2,7 +2,7 @@
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
 // print_out($_SESSION["run_info"]["lanes"]);
 
 $metadata_errors     = array();
@@ -84,6 +84,9 @@ if ($error_field_names != "")
 	");
 }
 
+// 3) print out in table to show with errors in red and allow to change,
+include_once "step_subm_metadata_form_metadata_table_selected.php";
+
 if($metadata_errors_count == 0)
 {
 // 	TODO: change env_id and data_owner 
@@ -96,7 +99,5 @@ if($metadata_errors_count == 0)
   success_message('Metadata');
 }
 
-// 3) print out in table to show with errors in red and allow to change, 
-  include_once "step_subm_metadata_form_metadata_table_selected.php";
 ?>
 
