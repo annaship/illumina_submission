@@ -16,8 +16,23 @@ $_SESSION["run_info"]["lanes"] = $lanes;
 $domains = get_val_from_arr($_SESSION["csv_content"], "domain");
 $rundate = $_SESSION["run_info"]["rundate"];
 // print_out($_SESSION["run_info"]["lanes"]);
-
 $lane_dom_names = create_lane_dom_names($lanes, $domains);
+
+// 	print_blue_message("\$lanes = ");
+// 	print_out($lanes);
+// 	print_blue_message("\$domains = ");
+// 	print_out($domains);
+// 	$lane_dom_names = create_lane_dom_names($lanes, $domains);
+// 	print_blue_message("\$lane_dom_names = ");
+// 	print_out($lane_dom_names);
+// 	print_blue_message("===========");
+// foreach ($lanes as $lane)
+// {
+// 	foreach ($domains as $domain)
+// 	{
+		
+// 		$domain_name 		= get_domain_from_csv_data($domain, $domains_array);
+// 		$domain_letter      = $domain[0];
 foreach ($lane_dom_names as $lane_dom_name)
 {
 // 		$lane_name 			= $lane . "_" . $domain_letter;

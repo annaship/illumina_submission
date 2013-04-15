@@ -1,5 +1,5 @@
 <?php 
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
 //     print_out($_POST);
 ?>
             

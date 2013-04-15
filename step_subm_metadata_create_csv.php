@@ -1,6 +1,6 @@
 <?php 
 $lanes = $domains = array();
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_subm_metadata_create_csv");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_subm_metadata_create_csv");
 
 // include_once("ill_subm_functions.php");
 // include_once "ill_subm_filled_variables.php";

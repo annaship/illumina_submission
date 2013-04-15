@@ -1,5 +1,5 @@
 <?php
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";

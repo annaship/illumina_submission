@@ -2,7 +2,7 @@
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
 // print_out($_SESSION["run_info"]["lanes"]);
 
 $metadata_errors     = array();
