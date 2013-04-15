@@ -39,7 +39,9 @@ foreach ($lane_dom_names as $lane_dom_name)
 		$dir_name 			= $path_to_csv  . $rundate;
 		$ini_file_name      = $rundate . "_" . $lane_dom_name . "_run_info.ini";
 		$run_info_file_name = $dir_name . "/" . $ini_file_name;
-		creat_dir_if_not_existst($dir_name);
+		if (!is_dir($dir_name)) {
+			creat_dir_if_not_existst($dir_name);
+		}
 		set_error_handler("customError", E_USER_ERROR);		
 		$fp 				= fopen($run_info_file_name, 'w') or trigger_error("Can't open $run_info_file_name: ", E_USER_ERROR);
 		

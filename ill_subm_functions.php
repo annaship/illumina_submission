@@ -775,6 +775,7 @@ function create_csv_file($csv_data, $file_name) {
     fputcsv($fp, $fields);
   }
   fclose($fp);
+  chmod($file_name, 0664);
   return $fp;
   
 }
@@ -917,11 +918,13 @@ function creat_dir_if_not_existst($dir_name)
 {
 // 	exec ("chmod 664 -R /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000");
 	
-	if (!is_dir($dir_name)) {
-		mkdir($dir_name);
-	}
+// 	if (!is_dir($dir_name)) {
+	mkdir($dir_name);
+// 	}
+	umask(0002);
+// 	exec ("chmod 0664 -R " . $dir_name);
 	chmod($dir_name, 02775);
-	exec ("chmod 664 -R $dir_name");
+// 	exec ("chmod 664 -R " . $dir_name);
 }
 
 function create_lane_dom_names($lanes, $domains)
