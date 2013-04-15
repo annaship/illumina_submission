@@ -21,7 +21,15 @@
 			$lane_name     = $lane_num . "_" . $domain_letter;
 			$csv_name      = create_csv_name($rundate, $lane_name);
 			$csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
-
+			if ($raw_path == "")
+			{
+				print_red_message("Path to raw data is empty!");
+			}
+			else 
+			{
+				print_red_message("Please check if the path to raw data exists: " . $raw_path);
+			}
+			
 			$command_line = "cd " . $path_to_csv . $rundate .
 			"; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
 		          -csv " . $path_to_csv  . $rundate . "/" . $csv_name .

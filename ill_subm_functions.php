@@ -918,9 +918,7 @@ function creat_dir_if_not_existst($dir_name)
 {
 // 	exec ("chmod 664 -R /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000");
 	
-// 	if (!is_dir($dir_name)) {
 	mkdir($dir_name);
-// 	}
 	umask(0002);
 // 	exec ("chmod 0664 -R " . $dir_name);
 	chmod($dir_name, 02775);
@@ -938,5 +936,16 @@ function create_lane_dom_names($lanes, $domains)
 	
 }
 
-
+function check_raw_path($dir_name)
+{
+// That will not work, because vampsdev has no permission to look into /xraid2-2/sequencing/Illumina
+	$raw_exists = 0;
+	if (is_dir($dir_name)) {
+		
+		$raw_exists = 1;
+	}
+	print_blue_message("\$raw_exists = $raw_exists");
+	
+	return $raw_exists;
+}
 ?>
