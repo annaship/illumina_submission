@@ -80,8 +80,8 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 }
 
 // $csv_creat_errors = validate_data_for_csv($data_all);
-print_blue_message("\$domains");
-print_out($domains);
+// print_blue_message("\$domains");
+// print_out($domains);
 
 $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", 
     "data_owner", "dataset", "dataset_description", "dna_region", "email", "env_sample_source_id", 
@@ -97,15 +97,26 @@ $is_created = array();
 $_SESSION["run_info"]["lanes"] = array_unique($lanes);
 // print_blue_message("\$metadata_arr[\"domain\"]");
 // print_out($metadata_arr["domain"]);
-$domain_letter = $metadata_arr["domain"][0];
+// $domain_letter = $metadata_arr["domain"][0];
 
-$lane_names = create_lane_dom_names($lanes, $domains);
+$lane_dom_names = create_lane_dom_names($lanes, $domains);
 
-foreach ($_SESSION["run_info"]["lanes"] as $lane_num)
+foreach ($lane_dom_names as $lane_dom_name)
 {
-  $lane_name = $lane_num . "_" . $domain_letter;
-  $csv_name  = create_csv_name($rundate, $lane_name);
+	print_blue_message("\$lane_dom_name");
+	print_out($lane_dom_name);
+	
+//   $lane_name = $lane_num . "_" . $domain_letter;
+  $csv_name  = create_csv_name($rundate, $lane_dom_name);
+  print_blue_message("\$csv_name");
+  print_out($csv_name);
+  
   $file_name = $path_to_csv  . $rundate . "/" . $csv_name;
+  print_blue_message("\$file_name");
+  print_out($file_name);
+  
+  print "+++++++++++++++++++";
+  
   $is_created[$file_name] = create_csv_file($data_all, $file_name);
 }
 
