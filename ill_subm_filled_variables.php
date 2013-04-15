@@ -19,7 +19,7 @@ if ($_SESSION['is_local'])
 // $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A", "Eukarya (E)" => "E", "Fungi (F)" => "F");
 $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A");
 //               $domain_wo_abbr = array("Bacteria" => "B", "Archaea" => "A", "Eukarya" => "E", "Fungi" => "F");
-// ---
+
 $domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea");
     
 $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
