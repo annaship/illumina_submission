@@ -24,7 +24,27 @@
 <tr>
 	<td>type</td>
 	<td>id=csv</td>
-	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/RUNDATE_20120315.csv</td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/SUBMITCODE_jreveillaud819833.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=Submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv</td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv</td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/SUBMITCODE_jreveillaud819833.csv</td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -44,7 +64,92 @@
 <tr>
 	<td>type</td>
 	<td>id=run_infoForm_path to raw data</td>
+	<td>20130322/Project_POST_16S_v6</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322/metadata_20130322_1.csv -s illumina_files -l debug -p illumina -r 20130322 -ft fastq -i /xraid2-2/sequencing/Illumina/20130322/Project_POST_16S_v6 -cp True -lane_name &quot;lane_1_A&quot; -do_perfect True</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>There is no data for: &quot;&quot;. Probably the metadata were not properly submitted via Project Submission on VAMPS. <br /> The &quot;submit_code&quot; to check is tdelmont433407.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_info_form_insert_size</td>
+	<td>95</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>There is no data for: &quot;&quot;. Probably the metadata were not properly submitted via Project Submission on VAMPS. <br /> The &quot;submit_code&quot; to check is tdelmont433407.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_info_form_read_length</td>
+	<td>101</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=run_info_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Overlap Analyzing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Upload Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_infoForm_path to raw data</td>
 	<td>20120315hs/test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Overlap Analyzing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=span.repo.css-truncate-target</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322/metadata_20130322_1.csv was created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Commits</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=print message if funding and project_dataset is missing, show submit_…</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Browse code</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=bb4351bd2eeaba74b597dde8f809fc1c-1a2a534635037e5adc27597f58fc98778a5b62f7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Upload Submission Metadata</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -94,11 +199,6 @@
 <tr>
 	<td>verifyTextPresent</td>
 	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20120315/lane_2/analysis/reads_overlap/; take_hs_stats.py; date</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20120315/lane_3/analysis/reads_overlap/; take_hs_stats.py; date</td>
 	<td></td>
 </tr>
 </tbody></table>

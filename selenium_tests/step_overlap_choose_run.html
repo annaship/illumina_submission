@@ -37,6 +37,11 @@
 	<td>label=hiseq</td>
 </tr>
 <tr>
+	<td>select</td>
+	<td>id=form_domain</td>
+	<td>label=Archaea</td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=form_lane</td>
 	<td>1</td>
@@ -54,12 +59,12 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322/metadata_20130322_1.csv -s illumina_files -l debug -p illumina -r 20130322 -ft fastq -i /xraid2-2/sequencing/Illumina/20130322/Project_POST_16S_v6 -cp True -lane_name &quot;lane_1&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20130322/metadata_20130322_1_A.csv -s illumina_files -l debug -p illumina -r 20130322 -ft fastq -i /xraid2-2/sequencing/Illumina/20130322/Project_POST_16S_v6 -cp True -lane_name &quot;lane_1_A&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130322/lane_1/analysis/reads_overlap/; take_hs_stats.py; date</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130322/lane_1_A/analysis/reads_overlap/; take_hs_stats.py; date</td>
 	<td></td>
 </tr>
 <tr>
