@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
 		
 	$pipeline_command = "illumina_files";
 	
@@ -22,12 +22,13 @@
 	Afterwards you can check the overlap percentage by using
 <?php 
 	$stat_check_command_name = "take_" . $machine_name . "_stats.py";
+	$lane_dom_names 		 = create_lane_dom_names($lanes, $domains);
 	
-	foreach ($lanes as $lane_num)
-	{		
-		$lane_name = $lane_num . "_" . $domain_letter;
+	foreach ($lane_dom_names as $lane_dom_name)
+	{
 		$command_line_overlap_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
-									$lane_name . "/analysis/reads_overlap/; " . $stat_check_command_name . "; date";
+									$lane_dom_name . "/analysis/reads_overlap/; " . $stat_check_command_name . "; date";
+		
 		print_green_message($command_line_overlap_check);	
 	}	
 ?>
