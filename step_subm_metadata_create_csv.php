@@ -1,5 +1,5 @@
 <?php 
-$lanes = array();
+$lanes = $domains = array();
 print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_subm_metadata_create_csv");
 
 // include_once("ill_subm_functions.php");
@@ -98,6 +98,8 @@ $_SESSION["run_info"]["lanes"] = array_unique($lanes);
 // print_blue_message("\$metadata_arr[\"domain\"]");
 // print_out($metadata_arr["domain"]);
 $domain_letter = $metadata_arr["domain"][0];
+
+$lane_names = create_lane_dom_names($lanes, $domains);
 
 foreach ($_SESSION["run_info"]["lanes"] as $lane_num)
 {

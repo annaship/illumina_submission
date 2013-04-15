@@ -921,4 +921,22 @@ function creat_dir_if_not_existst($dir_name)
 	}
 }
 
+function create_lane_dom_names($lanes, $domains)
+{
+	$lane_dom_names = array();
+	foreach ($lanes as $row_num => $lane)
+	{
+// 		print_blue_message("\$row_num = $row_num; \$lane = $lane; \$domains[\$row_num]; $domains[$row_num]; \$domains[\$row_num][0] = " . $domains[$row_num][0]);
+// 		print_out($lane);
+		
+		$lane_dom_names[] = $lane . "_" . $domains[$row_num][0];
+	}
+		
+	print_blue_message("\$lane_dom_names = ");
+	print_out($lane_dom_names);
+	print_out(array_unique($lane_dom_names));
+	
+}
+
+
 ?>
