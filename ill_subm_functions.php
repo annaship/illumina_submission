@@ -915,7 +915,6 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 
 function creat_dir_if_not_existst($dir_name)
 {
-	print_blue_message($dir_name);
 	if (!is_dir($dir_name)) {
 		mkdir($dir_name);
 	}

@@ -103,20 +103,9 @@ $lane_dom_names = create_lane_dom_names($lanes, $domains);
 
 foreach ($lane_dom_names as $lane_dom_name)
 {
-	print_blue_message("\$lane_dom_name");
-	print_out($lane_dom_name);
-	
 //   $lane_name = $lane_num . "_" . $domain_letter;
   $csv_name  = create_csv_name($rundate, $lane_dom_name);
-  print_blue_message("\$csv_name");
-  print_out($csv_name);
-  
-  $file_name = $path_to_csv  . $rundate . "/" . $csv_name;
-  print_blue_message("\$file_name");
-  print_out($file_name);
-  
-  print "+++++++++++++++++++";
-  
+  $file_name = $path_to_csv  . $rundate . "/" . $csv_name;  
   $is_created[$file_name] = create_csv_file($data_all, $file_name);
 }
 

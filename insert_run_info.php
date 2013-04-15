@@ -1,5 +1,5 @@
 <?php
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
 
 $run_info_results = populate_post_vars($_POST);
 if (!isset($_SESSION)) {
@@ -16,7 +16,6 @@ $domains = get_val_from_arr($_SESSION["csv_content"], "domain");
 $rundate = $_SESSION["run_info"]["rundate"];
 // print_red_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
 // print_out($_SESSION["run_info"]["lanes"]);
-print_blue_message("HERE1");
 
 foreach ($lanes as $lane)
 {
@@ -30,7 +29,6 @@ foreach ($lanes as $lane)
 		$ini_file_name      = $rundate . "_" . $lane_name . "_run_info.ini";
 		$run_info_file_name = $dir_name . "/" . $ini_file_name;
 		creat_dir_if_not_existst($dir_name);
-		print_blue_message("HERE2");
 		set_error_handler("customError", E_USER_ERROR);		
 		$fp 				= fopen($run_info_file_name, 'w') or trigger_error("Can't open $run_info_file_name: ", E_USER_ERROR);
 		
@@ -51,6 +49,5 @@ foreach ($lanes as $lane)
 		fclose($fp);
 	}
 }
-print_blue_message("HERE20");
 
 ?>
