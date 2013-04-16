@@ -245,6 +245,12 @@ if (!$_SESSION['is_local'])
   $db_name = "env454";
   $connection = $newbpc2_connection;
 }
+else 
+{
+  $db_name = "test";
+  $connection = $local_mysqli;
+
+}
 $query = "SELECT DISTINCT run FROM " . $db_name . ".run";
 
 $runs = run_select_one_field($query, $connection);

@@ -81,7 +81,8 @@ elseif (check_var($_SESSION["run_info"]))
 	{
 		$domains[] = $arr_data["domain"];
 	}
-	$domain        = array_unique($domains)[0];
+	$dom_arr_uniq = array_unique($domains);
+	$domain       = $dom_arr_uniq[0];
 // 	print_blue_message("\$domains");
 // 	print_out($domains);	
 	$rundate       = $_SESSION["run_info"]["rundate"];
