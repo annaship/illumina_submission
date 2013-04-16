@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
 		
 	$pipeline_command = "illumina_files";
 	

@@ -5,7 +5,10 @@
 // print_out($run_info_results);
 // print "\$_SESSION[run_info]: ";
 // print_out($_SESSION["run_info"]);
-
+if (!check_var($run_info_errors))
+{
+	$run_info_errors = array();
+}
 
 if (check_var($_SESSION["run_info"]))
 {
@@ -50,7 +53,11 @@ $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
   <td>
   <select name="dna_region_0" id="form_dna_region_0">
    <?php 
-       print_options($dna_regions, $selected_dna_region_base);    
+   	if (!check_var(selected_dna_region_base))
+   	{ 
+   		$selected_dna_region_base = "";
+   	}
+   		print_options($dna_regions, $selected_dna_region_base);
     ?>
     </select>
     </td>

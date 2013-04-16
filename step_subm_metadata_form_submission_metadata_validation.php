@@ -1,8 +1,9 @@
 <?php
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
+
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
 // print_out($_SESSION["run_info"]["lanes"]);
 
 $metadata_errors     = array();
@@ -66,7 +67,8 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
 $all_errors_uniq       = flat_mult_array($metadata_errors_all);
 $metadata_errors_count = sizeof($all_errors_uniq);
 
-$current_submit_code = array_keys($_SESSION["vamps_submissions_arr"])[0];
+$submit_code_arr       = array_keys($_SESSION["vamps_submissions_arr"]);
+$current_submit_code   = $submit_code_arr[0];
 
 // submit_code table errors
 $error_field_names = implode('", "', array_keys($all_errors_uniq));

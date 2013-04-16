@@ -1,5 +1,5 @@
 <?php 
-// print_red_message("From metadata_csv_show_table");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; metadata_csv_show_table");
 
 // print "\$_POST:";
 // print_out($_POST);

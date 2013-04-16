@@ -1,4 +1,6 @@
 <?php
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; ill_subm_filled_variables");
+
 if(!isset($_SESSION)) { session_start(); } 
 
 if ($_SESSION['is_local'])
@@ -113,7 +115,7 @@ $arr_fields_run = array("seq_operator", "insert_size", "read_length");
 // ---
 if ($_SESSION['is_local'])
 {
-  $env_sample_source_table = "env_sample_source";
+  $env_sample_source_table = "test.env_sample_source";
 }
 else
 {
@@ -147,7 +149,6 @@ if (!$_SESSION['is_local'])
   $connection = $newbpc2_connection;
 }
 $query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
-
 $overlaps = run_select_one_field($query, $connection);
 
 // $illumina_adaptor_ref 
@@ -227,7 +228,15 @@ $machine_names = array("ms" => "miseq", "hs" => "hiseq");
 $rundate       = $_SESSION["run_info"]["rundate"];
 $machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
 $raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
-$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
+if ($_SESSION['is_local'])
+{
+	$path_to_csv = $docroot . "/";
+// 	print_blue_message("\$docroot = " . $docroot . "; \$path_to_csv = " . $path_to_csv);
+}
+else 
+{
+	$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
+}
 $lanes         = $_SESSION["run_info"]["lanes"];
 
 // -----
@@ -240,5 +249,7 @@ $query = "SELECT DISTINCT run FROM " . $db_name . ".run";
 
 $runs = run_select_one_field($query, $connection);
 rsort($runs);
+
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; ill_subm_filled_variables; END");
 
 ?>

@@ -1,6 +1,7 @@
 .svn/*
 archive/*
 .htaccess
+ill_subm_conn_local.php
 
 # Eclipse
 .buildpath

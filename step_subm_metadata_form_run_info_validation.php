@@ -5,7 +5,7 @@ include_once("ill_subm_functions.php");
 
 $error_class_name = "";
 
-$required_fields = array();
+$required_fields = $run_info_errors = array();
 $i = 0;
 $required_fields = create_require_arr($run_info_form_fields);
 

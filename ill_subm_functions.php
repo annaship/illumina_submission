@@ -176,14 +176,18 @@ function success_message($data_name)
 function get_one_value($query, $db_name, $connection)
 {
   set_error_handler("customError", E_USER_ERROR);
+  
   $row = array();
   if ($_SESSION['is_local'])
   {
     $res = $connection->query($query);
-  
-    for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
-      $res->data_seek($row_no);
-      $row = $res->fetch_assoc();
+  	if (isset($res) && isset($res->num_rows))
+  	{
+	    for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) 
+	    {
+	      $res->data_seek($row_no);
+	      $row = $res->fetch_assoc();
+	    }
     }
   }
   else
@@ -484,9 +488,12 @@ function run_query($query, $table_name)
   $data_id = 0;
   if ($_SESSION['is_local'])
   {
-    $res = $local_mysqli->query($query);
-    $data_id = $local_mysqli->insert_id;
-    print_insert_message_by_id($table_name, $data_id);
+  	if (isset($local_mysqli))
+  	{
+	    $res = $local_mysqli->query($query);
+	    $data_id = $local_mysqli->insert_id;
+	    print_insert_message_by_id($table_name, $data_id);
+  	}
   }
   else
   {
@@ -719,6 +726,7 @@ function make_path_to_raw_data($selected_rundate, $selected_dna_region_base)
  */
 function array_to_scv($array, $header_row = true, $col_sep = ",", $row_sep = "\n", $qut = '"')
 {
+  $output = "";
   if (!is_array($array) or !is_array($array[0])) return false;
 
   //Header row.
@@ -861,8 +869,6 @@ function get_val_from_arr($array, $field_name)
 
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
-	print_blue_message("\$data_arr");
-	print_out($data_arr);
 	if ($_SESSION['is_local'])
 	{
 		$db_name = "test";
@@ -891,7 +897,6 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	
 	foreach ($lanes as $lane)
 	{
-		print_blue_message($lane);
 		$query = "
 	SELECT DISTINCT primer_suite, dna_region
 	 		FROM run_info_ill
@@ -903,14 +908,8 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		AND lane = " . $lane . "			
 				";
 
-		print_blue_message("\$query = ");
-		print_out($query);
-		
-		
 		$suite_names[] = get_one_value($query, $db_name, $connection);
 	}
-	print_blue_message("\$suite_names = ");
-	print_out($suite_names);
 	return $suite_names;
 }
 

@@ -15,7 +15,7 @@
 //   print_r($row);
 //   echo " contact = " . $row['contact'] . "<br/>";
 // }
-
+// phpinfo();
 
 session_start();
 $_SESSION['cur_user'] = get_current_user();
@@ -25,7 +25,7 @@ $_SESSION["run_info_errors"] = array();
 if ($_SERVER['SERVER_NAME'] == "localhost")
 {
   $_SESSION['is_local'] = True;
-  $_SESSION['docroot']  = "/illumina_submission_site_local_add";
+  $_SESSION['docroot']  = "../illumina_submission_site_local_add";
   
   include_once("ill_subm_index_local.php");
   
