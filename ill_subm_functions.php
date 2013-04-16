@@ -7,7 +7,8 @@ function print_options($array_name, $selected_val)
     {
       echo '<option value="'.$val.'" selected="selected">'.$val.'</option>';
     }
-    else {
+    else 
+    {
       echo '<option value="'.$val.'">'.$val.'</option>';
     }
   }
@@ -291,6 +292,14 @@ function validate_new_contact($contact_info, $vamps_name) {
 
 function check_var($variable)
 {
+// 	if (isset($variable) && !empty($variable))
+// 	{
+// 		return 1;
+// 	}
+// 	else
+// 	{
+// 		return 0;
+// 	}
 	if (!isset($variable) || empty($variable))
 	{
 		return 0;

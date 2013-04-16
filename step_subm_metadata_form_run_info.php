@@ -5,6 +5,7 @@
 // print_out($run_info_results);
 // print "\$_SESSION[run_info]: ";
 // print_out($_SESSION["run_info"]);
+	
 if (!check_var($run_info_errors))
 {
 	$run_info_errors = array();
