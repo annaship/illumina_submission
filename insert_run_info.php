@@ -44,6 +44,7 @@ foreach (array_unique($lane_dom_names) as $lane_dom_name)
 		}
 		set_error_handler("customError", E_USER_ERROR);		
 		$fp 				= fopen($run_info_file_name, 'w') or trigger_error("Can't open $run_info_file_name: ", E_USER_ERROR);
+		chmod($run_info_file_name, 0664);
 		
 		$ini_content = array("rundate" 			=> $_SESSION["run_info"]["rundate"],
 							 "lane_domain"  	=> $lane_dom_name,
