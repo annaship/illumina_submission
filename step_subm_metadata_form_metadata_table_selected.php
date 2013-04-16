@@ -42,7 +42,10 @@
               foreach ($arr_fields_headers as &$value) 
               {
                 echo "<td class=\"message\">";
+                if (isset($metadata_errors_all[$num_key][$value]))
+                {
                   print $metadata_errors_all[$num_key][$value];
+                }
                 echo "</td>";
               }
               echo "</tr>";

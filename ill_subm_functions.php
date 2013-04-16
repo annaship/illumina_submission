@@ -137,6 +137,7 @@ function populate_post_vars($post_array)
 
 function create_require_arr($form_fields)
 {
+  $i = 0;
   $required_fields = array();
   foreach ($form_fields as $field_name => $requirement)
   {
@@ -341,10 +342,14 @@ function run_select_one_field($query, $connection) {
   {
     $local_mysqli = $connection;
     $results = $local_mysqli->query($query);
-    for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) {
-      $results->data_seek($row_no);
-      $row = $results->fetch_assoc();
-      $result_arr[] = $row[key($row)];
+    if (isset($results) && isset($results->num_rows))
+    {
+	    for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) 
+	    {
+	      $results->data_seek($row_no);
+	      $row = $results->fetch_assoc();
+	      $result_arr[] = $row[key($row)];
+	    }
     }
   }
   else
@@ -425,7 +430,7 @@ function get_run_key_by_adaptor($selected_arr, $adaptors_full, $selected_dna_reg
      && ($selected_domain     == strtolower($adaptors_arr["domain"]))) 
     {
       $return_array["illumina_run_key"] = $adaptors_arr["illumina_run_key"];
-      $return_array["illumina_index"]   = $adaptors_arr[illumina_index];    
+      $return_array["illumina_index"]   = $adaptors_arr["illumina_index"];    
     }
   }
   return $return_array;
@@ -612,17 +617,20 @@ function get_submission_info($connection, $db_name)
   
 //   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions JOIN " . $db_name . ".vamps_submissions_tubes USING(submit_code);";
   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions ORDER BY id DESC limit 3";
-//   print_out($query);
   if ($_SESSION['is_local'])
   {
-//     $local_mysqli = $connection;
-//     $results = $local_mysqli->query($query);
-//     for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) {
-//       $results->data_seek($row_no);
-//       $row = $results->fetch_assoc();
-//       $result_arr[] = $row[key($row)];
-//     }
-;
+    $local_mysqli = $connection;
+    $results = $local_mysqli->query($query);
+    if (isset($results->num_rows))
+    {
+	    for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) 
+	    {
+	      $results->data_seek($row_no);
+	      $row                     = $results->fetch_assoc();
+	      $subm_field_names        = array_keys($row);
+	      $vamps_submission_info[] = $row;
+	    }
+    }
   }
   else
   {

@@ -53,7 +53,7 @@ $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
   <td>
   <select name="dna_region_0" id="form_dna_region_0">
    <?php 
-   	if (!check_var(selected_dna_region_base))
+   	if (!check_var($selected_dna_region_base))
    	{ 
    		$selected_dna_region_base = "";
    	}

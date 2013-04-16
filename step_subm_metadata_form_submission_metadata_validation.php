@@ -13,7 +13,7 @@ $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
 // print_out($_POST);
 
 // remove array #0 == check_submission
-if (sizeof($result_metadata_arr) > 1 && ($_POST[submission_metadata_process] == 1))
+if (sizeof($result_metadata_arr) > 1 && isset($_POST["submission_metadata_process"]) && ($_POST["submission_metadata_process"] == 1))
 {
   $result_metadata_arr_0 = array_shift($result_metadata_arr);
 }

@@ -36,7 +36,7 @@
 ?>
 
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {   
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["run_info_process"]) && $_POST["run_info_process"] == 1) {   
       include_once 'step_subm_metadata_form_run_info_validation.php';
     }
     include("step_subm_metadata_form_run_info.php"); 
@@ -44,7 +44,7 @@
     
     <?php
     $show_class = "";
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["project_process"] == 1) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["project_process"]) && $_POST["project_process"] == 1) {
       $show_class = "show_block";
       
       include_once 'step_subm_metadata_form_project_validation.php';
@@ -103,8 +103,8 @@
           
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST" && 
-                (  $_POST["submission_metadata_process"] == 1 
-                || $_POST["submission_metadata_selected_process"] == 1
+                (  (isset($_POST["submission_metadata_process"]) && $_POST["submission_metadata_process"] == 1) 
+                || (isset($_POST["submission_metadata_selected_process"]) && $_POST["submission_metadata_selected_process"] == 1)
                 )
            ) 
         {   
