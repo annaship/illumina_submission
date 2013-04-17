@@ -84,6 +84,7 @@ if ($_SESSION['is_local'])
 }
 else
 {
+  
   $result_vamps_user = mysql_query($query, $vampsprod_connection) or die("SELECT Error: $result_vamps_user: ".mysql_error());
   while($row = mysql_fetch_row($result_vamps_user))
   {
