@@ -48,6 +48,27 @@
   	include("step_subm_metadata_form_run_info.php");
   }
   
+  $show_class = "";
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["project_process"]) && $_POST["project_process"] == 1) {
+  	$show_class = "show_block";
+  
+  	include_once 'step_subm_metadata_form_project_validation.php';
+  }
+  
+  ?>
+            
+      <br />
+      <input type="button" value="Add new project" class="hide_project" />
+      
+      <table>
+           <tr style="display:none;" class="hide_project_tr <?php echo $show_class; ?>">
+             <td colspan="3">
+               <?php include("step_subm_metadata_form_project.php"); ?>                 
+          </td>
+        </tr>
+      </table>
+  <?php
+      
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
   		&& !($_POST["subm_metadata_upload_process"] == 1)

@@ -206,8 +206,7 @@ function get_contact_id($contact_full, $connection)
   $post_res = $_POST['project_form_contact'];
   //   list($last_name, $first_name, $email, $institution) = explode(",", $post_res);
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
-  
-  $vamps_name = array_search($post_res, $contact_full);
+
   
   if ($_SESSION['is_local'])
   {
@@ -218,15 +217,22 @@ function get_contact_id($contact_full, $connection)
 //     $db_name = "env454";
     $db_name = "test";    
   }
-    
+  print_blue_message("HERE: \$last_name = $last_name; \$first_name = $first_name");
+//   print_out($_POST);
+print_blue_message("\$db_name = $db_name");
+  $vamps_name = array_search($post_res, $contact_full);
+    print_out($vamps_name);
+  
   $query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
   institution = \"" . $institution. "\" AND
   vamps_name = \"" . $vamps_name. "\" AND
   first_name like \"" . $first_name. "%\" AND
   last_name = \"" . $last_name. "\"";
 
+  print_blue_message("\$query = $query");
   $row = get_one_value($query, $db_name, $connection);
-
+  print_out($row);
+  
   if (isset($row[key($row)]))
   {
     $contact_id = $row[key($row)];
@@ -481,17 +487,17 @@ function print_insert_message_by_id($field_name, $data_id)
 
 function print_red_message($message)
 {
-  printf ("<div class = \"message\">$message</div>");
+  print("<div class = \"message\">$message</div>");
 }
 
 function print_green_message($message)
 {
-	printf ("<div class = \"green_message\">$message</div>");
+	print ("<div class = \"green_message\">$message</div>");
 }
 
 function print_blue_message($message)
 {
-	printf ("<div class = \"blue_message\">$message</div>");
+	print ("<div class = \"blue_message\">$message</div>");
 }
 
 

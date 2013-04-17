@@ -17,6 +17,9 @@ else
 }
 
 $contact_id = get_contact_id($contact_full, $connection);
+// var_dump($connection);
+// print_blue_message("\$contact_id = $contact_id");
+// print_out($contact_full);
 
 $project_name = $_POST['project_name1'] . "_" . $_POST['project_name2'] . "_" . $_POST['domain'] . $_POST['dna_region'];
 $title      = $_POST['project_title'];
@@ -24,12 +27,18 @@ $title      = $_POST['project_title'];
 $project_query = "INSERT IGNORE INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
   VALUES (\"$project_name\", \"$title\", \"$_POST[project_description]\", REVERSE(\"$project_name\"), \"$_POST[funding]\",
   $env_sample_source_id, $contact_id)";
+
+// var_dump($connection);
+// print_blue_message($db_name);
+// print_out($project_query);
 if (check_var($project_errors) == 0)
 {
   if ($_SESSION['is_local'])
   {     
   	$res = $local_mysqli->query($project_query);
+  	var_dump($res);
   	$project_id = $local_mysqli->insert_id;
+  	print_blue_message($project_id);
    }
   else
   {

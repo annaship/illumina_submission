@@ -1,4 +1,4 @@
-<form method="post" name="project_form" id="project_form" action="step_subm_metadata.php">
+<form method="post" name="project_form" id="project_form" action="step_upload_subm_metadata.php">
 <input type="hidden" name="form_name" id="project_form_form_name" value="project_form"/>
 <table class="form" id="project_form-form"><tbody>
 <tr><td>
