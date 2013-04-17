@@ -5,15 +5,48 @@
 // print_out($run_info_results);
 // print "\$_SESSION[run_info]: ";
 // print_out($_SESSION["run_info"]);
-
+if (!isset($run_info_errors))
+{
+	$run_info_errors = array();
+}
+if (!isset($run_info_results))
+{
+	$run_info_results = array();
+}
 
 if (check_var($_SESSION["run_info"]))
 {
 	$run_info_results = $_SESSION["run_info"];
 }
-$selected_rundate = $run_info_results["rundate"];
-$selected_overlap = $run_info_results["overlap"];
-$selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
+if (isset($run_info_results["rundate"]))
+{
+	$selected_rundate = $run_info_results["rundate"];
+}
+else
+{
+    $selected_rundate = date("Ymd");
+}
+if (isset($run_info_results["overlap"]))
+{
+	$selected_overlap = $run_info_results["overlap"];	
+}
+else 
+{
+	$selected_overlap = "";
+}
+
+if (isset($run_info_results["path_to_raw_data"]))
+{	
+	$selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
+}
+else 
+{
+	$selected_path_to_raw_data = "";
+}
+if (!isset($selected_dna_region_base))
+{
+	$selected_dna_region_base = "";
+}
 ?>
 
 <form method="post" name="run_info_form" id="run_info_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
@@ -29,12 +62,6 @@ $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
 <table class="fields" id="run_info_form_run_info-fields"><tbody>
 
   <tr class="fields">
-  <?php
-  if (!$selected_rundate)
-  {
-    $selected_rundate = date("Ymd");
-  }
-  ?>
   <td class="fields" align="left"><label for="run_infoForm_rundate">rundate</label></td>
   <td align="left"><input class="text_inp size_long_input" type="text" name="rundate" id="run_infoForm_rundate" value="<?php echo $selected_rundate;?>"/></td>
   </tr>
@@ -74,22 +101,31 @@ $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
       <option value="None"></option>
     </select>
     </td>
-    <td class="message"><?php echo $run_info_errors["overlap"];?></td>
+    <td class="message"><?php 
+    if (isset($run_info_errors["overlap"]))
+    {
+    	echo $run_info_errors["overlap"];
+    }
+    ?></td>
   </tr>
 
   <?php 
 
   foreach ($arr_fields_run as $field_name) {
-    if ((check_var($run_info_errors) == 1) AND (!isset($run_info_errors[$field_name])))
+    if (!isset($run_info_errors[$field_name]))
     {
       $run_info_errors[$field_name] = "";
     }
     $error_message = $run_info_errors[$field_name];
-    
+    $res_field     = "";
+    if (isset($run_info_results[$field_name]))
+    {
+    	$res_field = $run_info_results[$field_name];
+    }
     echo '
     <tr class="fields">
     <td class="fields"><label for="run_info_form_'.$field_name.'">'.$field_name.'</label></td>
-    <td class="fields"><input class="text_inp size_abbr" type="text" name="'.$field_name.'" id="run_info_form_'.$field_name.'" value="'.$run_info_results[$field_name].'"/></td>
+    <td class="fields"><input class="text_inp size_abbr" type="text" name="'.$field_name.'" id="run_info_form_'.$field_name.'" value="'. $res_field .'"/></td>
     <td class="message">'.$error_message.'</td>
     </tr>
     ';
@@ -107,7 +143,7 @@ $selected_path_to_raw_data = $run_info_results["path_to_raw_data"];
 <tr><td >
 <?php 
 
-if ($_SESSION["run_info_valid"] == 0)
+if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 0)
 {
 ?>
 <table class="buttons" id="run_info_form-buttons"><tbody>

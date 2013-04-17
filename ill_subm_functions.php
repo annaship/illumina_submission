@@ -137,6 +137,7 @@ function populate_post_vars($post_array)
 
 function create_require_arr($form_fields)
 {
+  $i = 0;
   $required_fields = array();
   foreach ($form_fields as $field_name => $requirement)
   {
