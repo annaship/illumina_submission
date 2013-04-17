@@ -217,21 +217,15 @@ function get_contact_id($contact_full, $connection)
 //     $db_name = "env454";
     $db_name = "test";    
   }
-  print_blue_message("HERE: \$last_name = $last_name; \$first_name = $first_name");
-//   print_out($_POST);
-print_blue_message("\$db_name = $db_name");
   $vamps_name = array_search($post_res, $contact_full);
-    print_out($vamps_name);
-  
+ 
   $query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
   institution = \"" . $institution. "\" AND
   vamps_name = \"" . $vamps_name. "\" AND
   first_name like \"" . $first_name. "%\" AND
   last_name = \"" . $last_name. "\"";
 
-  print_blue_message("\$query = $query");
   $row = get_one_value($query, $db_name, $connection);
-  print_out($row);
   
   if (isset($row[key($row)]))
   {

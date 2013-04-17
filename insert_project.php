@@ -36,9 +36,8 @@ if (check_var($project_errors) == 0)
   if ($_SESSION['is_local'])
   {     
   	$res = $local_mysqli->query($project_query);
-  	var_dump($res);
+//   	var_dump($res);
   	$project_id = $local_mysqli->insert_id;
-  	print_blue_message($project_id);
    }
   else
   {
