@@ -1,4 +1,4 @@
-<?php include("ill_subm_beginning.php"); ?>
+ <?php include("ill_subm_beginning.php"); ?>
 <?php include_once "ill_subm_filled_variables.php"; ?>
 
 <h1>Illumina files processing</h1>
@@ -103,8 +103,8 @@
           
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST" && 
-                (  (isset($_POST["submission_metadata_process"]) && $_POST["submission_metadata_process"] == 1) 
-                || (isset($_POST["submission_metadata_selected_process"]) && $_POST["submission_metadata_selected_process"] == 1)
+                (  $_POST["submission_metadata_process"] == 1 
+                || $_POST["submission_metadata_selected_process"] == 1
                 )
            ) 
         {   

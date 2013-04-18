@@ -1,5 +1,5 @@
 <!-- <form method="post" name="data_ownerForm" id="data_ownerForm" action="data_owner_submit.php"> -->
-<form method="post" name="data_ownerForm" id="data_ownerForm" action="step_subm_metadata.php">
+<form method="post" name="data_ownerForm" id="data_ownerForm" action="step_upload_subm_metadata.php">
 <?php print "$message";?>
 <table class="form" id="data_ownerForm-form"><tbody>
 <tr><td>

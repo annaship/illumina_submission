@@ -29,7 +29,7 @@
 
 <div>
 <?php
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["upload_file_step"] == 1)
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_file_step"]) && $_POST["upload_file_step"] == 1)
   {
     include_once 'step_subm_metadata_get_csv_info.php';
   	$_SESSION["run_info_valid"] = 0;
@@ -38,7 +38,7 @@
   //1) show only run_info and submit run_info
   //2) verify run_info
   
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["run_info_process"] == 1) {
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["run_info_process"]) && $_POST["run_info_process"] == 1) {
   	include_once 'step_subm_metadata_form_run_info_validation.php';
   }
 //   print_blue_message("\$_POST");
@@ -71,8 +71,8 @@
       
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
-  		&& !($_POST["subm_metadata_upload_process"] == 1)
-		&& !($_POST["submission_metadata_selected_process"] == 1)
+  		&& !(isset($_POST["subm_metadata_upload_process"]) && $_POST["subm_metadata_upload_process"] == 1)
+		&& !(isset($_POST["submission_metadata_selected_process"]) && $_POST["submission_metadata_selected_process"] == 1)
 		&& sizeof($_POST)
 	)
   {
@@ -88,8 +88,8 @@
   )
 ) 
   {
-  	error_reporting(E_ALL);
-  	ini_set('max_execution_time', 300);
+//   	error_reporting(E_ALL);
+//   	ini_set('max_execution_time', 300);
   	include_once 'step_subm_metadata_form_submission_metadata_validation.php';  	 
   }
   
