@@ -27,7 +27,8 @@ $application_data['modules']['logger']->set_debug(true);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Start the session so this file can access session variables...
-session_start();
+// session_start();
+if(!isset($_SESSION)) { session_start(); }
 
 ////////////////////////////////////////////////////////////////////////////////
 // In many locations, ideally, the user can change the "view_mode" (see the wiki

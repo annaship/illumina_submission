@@ -51,6 +51,7 @@
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
   		&& !($_POST["subm_metadata_upload_process"] == 1)
+		&& !($_POST["submission_metadata_selected_process"] == 1)
 		&& sizeof($_POST)
 	)
   {
@@ -58,7 +59,13 @@
   }  
   //4) create csv
   
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST["subm_metadata_upload_process"] == 1) || ($_POST["submission_metadata_selected_process"] == 1)) 
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && 
+  (
+	(isset($_POST["subm_metadata_upload_process"])         && $_POST["subm_metadata_upload_process"] == 1)
+ || 
+	(isset($_POST["submission_metadata_selected_process"]) && $_POST["submission_metadata_selected_process"] == 1)
+  )
+) 
   {
 //   	print_blue_message("HERE");
   	include_once 'step_subm_metadata_form_submission_metadata_validation.php';  	 

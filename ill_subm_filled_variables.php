@@ -224,12 +224,26 @@ $vamps_submission_info_show = make_arr_by_key_field_name($subm_field_names, $vam
 // -------
 $machine_names = array("ms" => "miseq", "hs" => "hiseq");
 
-$rundate       = $_SESSION["run_info"]["rundate"];
-$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
-$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
-$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
-$lanes         = $_SESSION["run_info"]["lanes"];
-
+if (isset($_SESSION["run_info"]))
+{
+	if (isset($_SESSION["run_info"]["rundate"]))
+	{
+		$rundate       = $_SESSION["run_info"]["rundate"];
+	}
+	if (isset($_SESSION["run_info"]["dna_region_0"]))
+	{
+		$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
+		$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
+	}
+	if (isset($_SESSION["run_info"]["path_to_raw_data"]))
+	{
+		$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
+	}
+	if (isset($_SESSION["run_info"]["lanes"]))
+	{
+		$lanes     = $_SESSION["run_info"]["lanes"];
+	}
+}
 // -----
 if (!$_SESSION['is_local'])
 {

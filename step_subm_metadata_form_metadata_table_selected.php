@@ -3,7 +3,7 @@
 //     print_out($_POST);
 ?>
             
-<form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_subm_metadata.php">
+<form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_upload_subm_metadata.php">
 <div id="submission_metadata">
   <fieldset id="submission_metadata">
     <legend id="submission_metadata-legend">Submission metadata</legend>
