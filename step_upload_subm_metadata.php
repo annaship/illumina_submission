@@ -81,18 +81,12 @@
   //4) create csv
   
   if ($_SERVER["REQUEST_METHOD"] == "POST" && 
-<<<<<<< HEAD
-	(isset($_POST["subm_metadata_upload_process"]) && $_POST["subm_metadata_upload_process"] == 1) 
-	|| 
-	(isset($_POST["submission_metadata_selected_process"]) && $_POST["submission_metadata_selected_process"] == 1)) 
-=======
   (
 	(isset($_POST["subm_metadata_upload_process"])         && $_POST["subm_metadata_upload_process"] == 1)
  || 
 	(isset($_POST["submission_metadata_selected_process"]) && $_POST["submission_metadata_selected_process"] == 1)
   )
 ) 
->>>>>>> d380e0a7b5a5cb1e8642c8145873898cb12f4663
   {
   	error_reporting(E_ALL);
   	ini_set('max_execution_time', 300);

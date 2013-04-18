@@ -5,13 +5,7 @@
 // print_out($run_info_results);
 // print "\$_SESSION[run_info]: ";
 // print_out($_SESSION["run_info"]);
-<<<<<<< HEAD
-	
-if (!check_var($run_info_errors))
-{
-	$run_info_errors = array();
-}
-=======
+
 if (!isset($run_info_errors))
 {
 	$run_info_errors = array();
@@ -20,7 +14,6 @@ if (!isset($run_info_results))
 {
 	$run_info_results = array();
 }
->>>>>>> d380e0a7b5a5cb1e8642c8145873898cb12f4663
 
 if (check_var($_SESSION["run_info"]))
 {
