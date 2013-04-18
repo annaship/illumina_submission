@@ -60,7 +60,7 @@
     ";
     
 //     print_out($insert_metadata_query);
-    $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill");
+    $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
    
     if ($new_run_info_ill_id)
     {

@@ -256,7 +256,7 @@ function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
   
   if(validate_new_contact($contact_info, $vamps_name) == 0)
   {
-    $new_contact_id = run_query($query, "contact");    
+    $new_contact_id = run_query($query, "contact", $connection);    
   }
   return $new_contact_id;
 }
@@ -494,8 +494,9 @@ function print_blue_message($message)
 }
 
 
-function run_query($query, $table_name)
+function run_query($query, $table_name, $connection)
 {
+	
   $success_insert = 0;
 //   TODO: Why return project with run_id?
   $data_id = 0;
@@ -510,10 +511,22 @@ function run_query($query, $table_name)
   }
   else
   {
-    $success_insert = mysql_query($query);
+/*
+ * set_error_handler("customError", E_USER_ERROR);
+  	$results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
+  
+ */
+  	$success_insert = mysql_query($query, $connection) or die(mysql_error());
     if ($success_insert)
     {
       $data_id = mysql_insert_id();
+      if ($data_id == 0)
+      {
+      	$query_get_last_id = "SELECT LAST_INSERT_ID() as last_id;";
+      	$select_result     = mysql_query($query_get_last_id, $connection) or die(mysql_error());
+      	$row = mysql_fetch_assoc($select_result);
+      	$data_id = $row["last_id"];
+      }
       print_insert_message_by_id($table_name, $data_id);
     }
   }
@@ -551,7 +564,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
               "($table_name) VALUES (\"". $$table_name . "\")";    
   }
-  $data_id = run_query($query, $table_name);
+  $data_id = run_query($query, $table_name, $connection);
   return $data_id;
 }
 
@@ -791,7 +804,6 @@ function customError($errno, $errstr)
 function create_csv_file($csv_data, $file_name) {
   //set error handler
   set_error_handler("customError", E_USER_ERROR);
-  print_blue_message("FROM create_csv_file");
 //   set_error_handler("E_ALL");
   $fp = fopen($file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
 

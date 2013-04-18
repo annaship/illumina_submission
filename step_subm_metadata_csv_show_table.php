@@ -74,8 +74,14 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               $selected_lane				= $csv_metadata_row["lane"];
               $selected_project				= $csv_metadata_row["project_name"];
               $selected_project_description	= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_description"];
-              $selected_project_title		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"];
-              $selected_run_key				= $csv_metadata_row["run_key"];
+              if (isset($vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"]))
+              {
+              	$selected_project_title		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"];
+              }
+              if (isset($csv_metadata_row["run_key"]))
+              {
+              	$selected_run_key				= $csv_metadata_row["run_key"];
+              }
               $selected_tubelabel			= $csv_metadata_row["tube_label"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
               
