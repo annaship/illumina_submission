@@ -178,7 +178,6 @@ function success_message($data_name)
 function get_one_value($query, $db_name, $connection)
 {
   set_error_handler("customError", E_USER_ERROR);
-print_blue_message("From get_one_value");  
   $row = array();
   if ($_SESSION['is_local'])
   {
@@ -194,12 +193,7 @@ print_blue_message("From get_one_value");
   }
   else
   {
-  	print_blue_message("HERE");
-  	print_blue_message($query);
-  	 
     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
-  	print_blue_message("HERE1: results");
-    print_out($results);
     $row     = mysql_fetch_assoc($results);
   }
   return $row;

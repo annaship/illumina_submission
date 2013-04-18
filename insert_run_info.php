@@ -25,7 +25,7 @@ if ($_SESSION['is_local'])
 }	
 foreach (array_unique($lane_dom_names) as $lane_dom_name)
 {
-	print_blue_message("FROM insert_run_info");
+// 	print_blue_message("FROM insert_run_info");
 	
 // 		$lane_name 			= $lane . "_" . $domain_letter;
 		$dir_name 			= $path_to_csv  . $rundate;
