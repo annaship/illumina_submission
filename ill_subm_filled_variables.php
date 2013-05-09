@@ -3,7 +3,7 @@
 
 if(!isset($_SESSION)) { session_start(); } 
 
-if ($_SESSION['is_local'])
+if (isset($_SESSION['is_local']))
 {
   include_once 'ill_subm_conn_local.php';  
   $db_name = "test";
@@ -71,7 +71,7 @@ if (!$_SESSION['is_local'])
 $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
             FROM ". $db_name . ".vamps_auth WHERE last_name <> \"\"";
             
-if ($_SESSION['is_local'])
+if (isset($_SESSION['is_local']))
 {
   $res = $local_mysqli->query($query);  
   for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -114,7 +114,7 @@ $arr_fields_add = array("tubelabel", "barcode", "amp_operator");
 
 $arr_fields_run = array("seq_operator", "insert_size", "read_length");
 // ---
-if ($_SESSION['is_local'])
+if (isset($_SESSION['is_local']))
 {
   $env_sample_source_table = "test.env_sample_source";
 }
@@ -124,7 +124,7 @@ else
 }
 
 $query = "SELECT DISTINCT env_sample_source_id, env_source_name FROM " . $env_sample_source_table;
-if ($_SESSION['is_local'])
+if (isset($_SESSION['is_local']))
 {
   $res_env = $local_mysqli->query($query);
 	for ($row_no = $res_env->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -162,7 +162,7 @@ JOIN " . $db_name . ".illumina_index USING(illumina_index_id)
 JOIN " . $db_name . ".illumina_run_key USING(illumina_run_key_id)
 JOIN " . $db_name . ".dna_region USING(dna_region_id)
 ";
-if ($_SESSION['is_local'])
+if (isset($_SESSION['is_local']))
 {
   $res_adaptor = $local_mysqli->query($query);
   for ($row_no = $res_adaptor->num_rows - 1; $row_no >= 0; $row_no--) 
@@ -247,7 +247,7 @@ if (isset($_SESSION["run_info"]))
 	}
 }
 // -----
-if (!$_SESSION['is_local'])
+if (!isset($_SESSION['is_local']))
 {
   $db_name = "env454";
   $connection = $newbpc2_connection;
