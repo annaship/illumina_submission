@@ -179,7 +179,7 @@ function get_one_value($query, $db_name, $connection)
 {
   set_error_handler("customError", E_USER_ERROR);
   $row = array();
-  if ($_SESSION['is_local'])
+  if (isset($_SESSION['is_local']))
   {
     $res = $connection->query($query);
   	if (isset($res) && isset($res->num_rows))
