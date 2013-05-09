@@ -949,8 +949,8 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	}
 	else
 	{
-		//   $db_name    = "env454";
-		$db_name    = "test";		
+		$db_name    = "env454";
+// 		$db_name    = "test";		
 	}
 	
 	$rundate     = "";
