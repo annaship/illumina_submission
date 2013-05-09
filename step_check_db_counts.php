@@ -23,19 +23,19 @@
 	$stat_check_command_name = "take_" . $machine_name . "_stats.py";
 
 	$suite_name = "";
-	print_blue_message('$machine_name');
-	print_blue_message($machine_name);
-	print_blue_message('$domain');
-	print_blue_message($domain);
-	print_blue_message('$dna_region');
-	print_blue_message($dna_region);
+// 	print_blue_message('$machine_name');
+// 	print_blue_message($machine_name);
+// 	print_blue_message('$domain');
+// 	print_blue_message($domain);
+// 	print_blue_message('$dna_region');
+// 	print_blue_message($dna_region);
 
-	print_blue_message("POST");
-	print_out($_POST);
-	print_blue_message('$_SESSION["run_info"]');
-	print_out($_SESSION["run_info"]);
-	print_blue_message('$run_info_ini');
-	print_out($run_info_ini);
+// 	print_blue_message("POST");
+// 	print_out($_POST);
+// 	print_blue_message('$_SESSION["run_info"]');
+// 	print_out($_SESSION["run_info"]);
+// 	print_blue_message('$run_info_ini');
+// 	print_out($run_info_ini);
 	
 // 	if (isset($run_info_ini))
 // 	{
