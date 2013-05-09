@@ -41,8 +41,8 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["run_info_process"]) && $_POST["run_info_process"] == 1) {
   	include_once 'step_subm_metadata_form_run_info_validation.php';
   }
-//   print_blue_message("\$_POST");
-//   print_out(sizeof($_POST));
+   //print_blue_message("\$_POST");
+   //print_out(sizeof($_POST));
   if (sizeof($_POST))
   {
   	include("step_subm_metadata_form_run_info.php");
@@ -67,6 +67,8 @@
           </td>
         </tr>
       </table>
+      <br />
+      
   <?php
       
   //3) show table

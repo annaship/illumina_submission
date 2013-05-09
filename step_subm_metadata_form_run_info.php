@@ -44,10 +44,22 @@ else
 {
 	$selected_path_to_raw_data = "";
 }
-if (!isset($selected_dna_region_base))
+// Hi Anna - I made this change cuz Joe was having rouble with the submission
+// form. The dna_region was saved but not recalled  2013-05-02; Andy
+if (isset($run_info_results["dna_region_0"]))
 {
-	$selected_dna_region_base = "";
+    $selected_dna_region_base = $run_info_results["dna_region_0"];
 }
+else 
+{
+	$selected_dna_region_base = "";  # this will make the combo revert to 'v6'
+}
+
+// if (!isset($selected_dna_region_base))
+// {
+// 	$selected_dna_region_base = "";
+// }
+//print_r($run_info_results);
 ?>
 
 <form method="post" name="run_info_form" id="run_info_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
@@ -117,26 +129,39 @@ if (!isset($selected_dna_region_base))
   <?php 
 
   foreach ($arr_fields_run as $field_name) {
+
     if (!isset($run_info_errors[$field_name]))
+
     {
+
       $run_info_errors[$field_name] = "";
     }
+
     $error_message = $run_info_errors[$field_name];
     $res_field     = "";
     if (isset($run_info_results[$field_name]))
     {
     	$res_field = $run_info_results[$field_name];
     }
+
     echo '
+
     <tr class="fields">
+
     <td class="fields"><label for="run_info_form_'.$field_name.'">'.$field_name.'</label></td>
+
     <td class="fields"><input class="text_inp size_abbr" type="text" name="'.$field_name.'" id="run_info_form_'.$field_name.'" value="'. $res_field .'"/></td>
+
     <td class="message">'.$error_message.'</td>
+
     </tr>
+
     ';
+
   }
  
   $_SESSION["run_info_errors"] = $run_info_errors;
+
   ?>
   
 </tbody></table>

@@ -555,16 +555,53 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     "($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";
   } 
-  elseif ($table_name == "project" || $table_name == "dna_region")
+  elseif ($table_name == "project")
   {
-    break;
+//   	TODO: move to a function
+  	$contact_query = "SELECT contact_id from " . $db_name . ".contact WHERE vamps_name = \"" . $data_array["user"] . "\"";
+//   	print_blue_message("contact query = $contact_query");
+  	$row = get_one_value($contact_query, $db_name, $connection);
+  	
+  	if (isset($row[key($row)]))
+  	{
+  		$contact_id = $row[key($row)];
+  	}
+  	else 
+  	{
+  		print_red_message("Please add the user to VAMPS");
+  	}
+  	
+  	$env_sample_source_query = "SELECT env_sample_source_id from " . $db_name . ".env_sample_source WHERE env_source_name = \"" . $data_array["env_source_name"] . "\"";
+  	$row = get_one_value($env_sample_source_query, $db_name, $connection);
+  	 
+  	if (isset($row[key($row)]))
+  	{
+  		$env_sample_source_id = $row[key($row)];
+  	}
+  	else
+  	{
+  		print_red_message("Please check the env_source_name");
+  	}
+  	 	 
+  	$project_name = $data_array['project'];
+  	$query = "INSERT IGNORE INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
+  	VALUES (\"" . $project_name . "\", \"" . $data_array['project_title'] . "\", \"" . $data_array['project_description'] . "\", REVERSE(\"$project_name\"), \"" . $data_array['funding'] . "\",
+  	$env_sample_source_id, $contact_id)";
+  	
   } 
+  elseif ($table_name == "dna_region")
+  {
+  	//   	TODO: print out dna_region and existing ones
+  	  
+  	print_red_message("Please check the dna_region");
+  }
   else
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
               "($table_name) VALUES (\"". $$table_name . "\")";    
   }
   $data_id = run_query($query, $table_name, $connection);
+  
   return $data_id;
 }
 
@@ -590,7 +627,6 @@ function get_id($data_array, $table_name, $db_name, $connection)
   }
  
   $row = get_one_value($query, $db_name, $connection);
-  
   if (isset($row[key($row)]))
   {
     $res_id = $row[key($row)];
@@ -600,6 +636,7 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {
     $res_id = add_new_data($data_array, $table_name, $db_name, $connection);
   }
+  
   return $res_id;
 }
 
