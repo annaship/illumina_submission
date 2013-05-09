@@ -196,7 +196,8 @@ function get_one_value($query, $db_name, $connection)
     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
   }
-  return $row;
+	error_reporting(E_ERROR | E_WARNING | E_PARSE);
+    return $row;
 }
 
 function get_contact_id($contact_full, $connection)
@@ -843,6 +844,8 @@ function create_csv_file($csv_data, $file_name) {
   set_error_handler("customError", E_USER_ERROR);
 //   set_error_handler("E_ALL");
   $fp = fopen($file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  
 
   foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
