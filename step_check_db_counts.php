@@ -25,8 +25,8 @@
 	$suite_name = "";
 // 	print_blue_message('$machine_name');
 // 	print_blue_message($machine_name);
-// 	print_blue_message('$domain');
-// 	print_blue_message($domain);
+	print_blue_message('$domain');
+	print_blue_message($domain);
 // 	print_blue_message('$dna_region');
 // 	print_blue_message($dna_region);
 
@@ -55,8 +55,8 @@
 		
 		if (!isset($_SESSION['is_local']))
 		{
-			//   $connection = $newbpc2_connection;
-			$connection = $vampsdev_connection;
+			$connection = $newbpc2_connection;
+// 			$connection = $vampsdev_connection;
 		
 		}
 		else
