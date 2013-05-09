@@ -977,7 +977,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		run = \"" . $rundate . "\"
 	 		AND lane = " . $lane . "			
 				";
-
+		print_blue_message("IN FUNC 1");
 		$suite_names[] = get_one_value($query, $db_name, $connection);
 	}
 	print_blue_message('$query = ' . $query);
