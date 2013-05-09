@@ -53,7 +53,7 @@
 // 	else
 // 	{
 		
-		if (!$_SESSION['is_local'])
+		if (!isset($_SESSION['is_local']))
 		{
 			//   $connection = $newbpc2_connection;
 			$connection = $vampsdev_connection;
