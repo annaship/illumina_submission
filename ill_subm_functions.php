@@ -177,7 +177,7 @@ function success_message($data_name)
 
 function get_one_value($query, $db_name, $connection)
 {
-  set_error_handler("customError", E_USER_ERROR);
+//   set_error_handler("customError", E_USER_ERROR);
   $row = array();
   if (isset($_SESSION['is_local']))
   {
@@ -193,10 +193,14 @@ function get_one_value($query, $db_name, $connection)
   }
   else
   {
-    $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
+  	print_blue_message("IN FUNC 2");
+  	$results = mysql_query($query, $connection);
+  	 
+//     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
   }
-	error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  	print_blue_message("IN FUNC 3");
+  	error_reporting(E_ERROR | E_WARNING | E_PARSE);
     return $row;
 }
 
