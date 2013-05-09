@@ -207,7 +207,7 @@ function get_contact_id($contact_full, $connection)
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
 
   
-  if ($_SESSION['is_local'])
+  if (isset($_SESSION['is_local']))
   {
     $db_name = "test";
   }
@@ -346,7 +346,7 @@ function print_out($array_name)
 
 function run_select_one_field($query, $connection) {
   $result_arr = array();
-  if ($_SESSION['is_local'])
+  if (isset($_SESSION['is_local']))
   {
     $local_mysqli = $connection;
     $results = $local_mysqli->query($query);
@@ -500,7 +500,7 @@ function run_query($query, $table_name, $connection)
   $success_insert = 0;
 //   TODO: Why return project with run_id?
   $data_id = 0;
-  if ($_SESSION['is_local'])
+  if (isset($_SESSION['is_local']))
   {
   	if (isset($local_mysqli))
   	{
@@ -675,7 +675,7 @@ function get_submission_info($connection, $db_name)
   
 //   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions JOIN " . $db_name . ".vamps_submissions_tubes USING(submit_code);";
   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions ORDER BY id DESC limit 3";
-  if ($_SESSION['is_local'])
+  if (isset($_SESSION['is_local']))
   {
     $local_mysqli = $connection;
     $results = $local_mysqli->query($query);
