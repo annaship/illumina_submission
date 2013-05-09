@@ -55,7 +55,7 @@
 		
 		if (!isset($_SESSION['is_local']))
 		{
-			$connection = $newbpc2_connection;
+			$connection = $newbpc2_connection_r;
 // 			$connection = $vampsdev_connection;
 		
 		}
@@ -70,29 +70,29 @@
 			print_blue_message("FROM isset(\$_POST)");
 				
 
-		print_out($suite_names);
-		print_blue_message("HERE1");
-		
-		$primer_suites = array();
-		foreach ($suite_names as $suite_name_row)
-		{
-			$primer_suites[] = $suite_name_row["primer_suite"];
-			print_blue_message("\$suite_name_row");
-			print_out($suite_name_row);
-				
-		}
-		 $suite_name_arr = array_unique($primer_suites);
-		 print_blue_message("HERE2 \$suite_name");
-		 $suite_name = $suite_name_arr[0];
-		 print_out($suite_name);
-		 	
-		 }
-		 else
-		 {
-		 $suite_name = $domain . " Suite";
-		 
-// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
-		 print_blue_message("FROM \$_SESSION");
+			print_out($suite_names);
+			print_blue_message("HERE1");
+			
+			$primer_suites = array();
+			foreach ($suite_names as $suite_name_row)
+			{
+				$primer_suites[] = $suite_name_row["primer_suite"];
+				print_blue_message("\$suite_name_row");
+				print_out($suite_name_row);
+					
+			}
+			 $suite_name_arr = array_unique($primer_suites);
+			 print_blue_message("HERE2 \$suite_name");
+			 $suite_name = $suite_name_arr[0];
+			 print_out($suite_name);
+			 	
+			 }
+			 else
+			 {
+			 $suite_name = $domain . " Suite";
+			 
+	// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
+			 print_blue_message("FROM \$_SESSION");
 		 
 		}
 // // 		SELECT DISTINCT primer_suite, dna_region
