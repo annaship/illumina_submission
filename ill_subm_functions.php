@@ -936,7 +936,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 {
 	print_blue_message('$data_arr');
 	print_out($data_arr);
-	if ($_SESSION['is_local'])
+	if (isset($_SESSION['is_local']))
 	{
 		$db_name = "test";
 	}
