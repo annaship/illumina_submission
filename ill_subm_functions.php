@@ -934,6 +934,8 @@ function get_val_from_arr($array, $field_name)
 
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
+	print_blue_message('$data_arr');
+	print_out($data_arr);
 	if ($_SESSION['is_local'])
 	{
 		$db_name = "test";
@@ -944,8 +946,8 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 		$db_name    = "test";		
 	}
 	
-	$rundate = "";
-	$lanes	 = array();
+	$rundate     = "";
+	$lanes	     = array();
 	$suite_names = array();
 	
 	if (isset($data_arr["find_rundate"]) && isset($data_arr["find_lane"]))
@@ -959,6 +961,9 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 		$lanes 	 = $data_arr["lanes"];
 		
 	}
+	
+	print_blue_message('$rundate = ' . $rundate);
+	print_blue_message('$lanes = ' . $lanes);
 	
 	foreach ($lanes as $lane)
 	{
@@ -975,6 +980,8 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 
 		$suite_names[] = get_one_value($query, $db_name, $connection);
 	}
+	print_blue_message('$query = ' . $query);
+	print_out($suite_names);
 	return $suite_names;
 }
 
