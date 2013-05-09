@@ -962,9 +962,6 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 		
 	}
 	
-	print_blue_message('$rundate = ' . $rundate);
-	print_blue_message('$lanes = ' . $lanes);
-	
 	foreach ($lanes as $lane)
 	{
 		$query = "
