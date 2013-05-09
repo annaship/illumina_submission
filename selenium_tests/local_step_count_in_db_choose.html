@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost/" />
-<title>step_count_in_db1</title>
+<title>local_step_count_in_db</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">step_count_in_db1</td></tr>
+<tr><td rowspan="1" colspan="3">local_step_count_in_db</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -51,7 +51,6 @@
 	<td>exact:mysql -h newbpcdb2 env454 -e 'select count(*) from sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V6 Suite&quot; AND run = &quot;20130322&quot; AND lane = &quot;1&quot;'</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

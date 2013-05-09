@@ -29,20 +29,29 @@
 	print_blue_message($domain);
 	print_blue_message('$dna_region');
 	print_blue_message($dna_region);
-	
-	print_blue_message("\$run_info_ini: ");
+
+	print_blue_message("POST");
+	print_out($_POST);
+	print_blue_message('$_SESSION["run_info"]');
+	print_out($_SESSION["run_info"]);
+	print_blue_message('$run_info_ini');
 	print_out($run_info_ini);
-	if (isset($run_info_ini))
-	{
-		print_out($run_info_ini);
-		$suite_name = get_primer_suite_name($run_info_ini["dna_region"], $domain);			
-	}
-	else
-	{
-		print_blue_message("POST");
-		print_out($_POST);
-		print_blue_message('$_SESSION["run_info"]');
-		print_out($_SESSION["run_info"]);
+	
+// 	if (isset($run_info_ini))
+// 	{
+// 		print_out($run_info_ini);
+// 		$suite_name = get_primer_suite_name($run_info_ini["dna_region"], $run_info_ini["domain"]);			
+// 		print_blue_message('HERE $domain = '. $domain);
+// 		print_blue_message('HERE $suite_name = ' . $suite_name . "\n");
+// 	}
+// 	else
+// 	if (isset($_SESSION["run_info"]))
+// 	{
+// 		$suite_name = $domain . " Suite";
+// 		print_blue_message('HERE1 $suite_name = ' . $suite_name . "\n");
+// 	}
+// 	else
+// 	{
 		
 		if (!$_SESSION['is_local'])
 		{
@@ -54,15 +63,13 @@
 		{
 			$connection = $local_mysqli;
 		}		
-		print_blue_message("HERE");
-		if (isset($_POST))
+		
+		if (isset($_POST) && !empty($_POST))
 		{
 			$suite_names = get_primer_suite_name_from_db($_POST, $connection);
-		}
-		else 
-		{
-			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
-		}
+			print_blue_message("FROM isset(\$_POST)");
+				
+
 		print_out($suite_names);
 		print_blue_message("HERE1");
 		
@@ -74,12 +81,20 @@
 			print_out($suite_name_row);
 				
 		}
-		 $suite_name = array_unique($primer_suites);
-		 print_blue_message("\$suite_name");
-		 print_out($suite_name[0]);
+		 $suite_name_arr = array_unique($primer_suites);
+		 print_blue_message("HERE2 \$suite_name");
+		 $suite_name = $suite_name_arr[0];
+		 print_out($suite_name);
 		 	
-		
-		
+		 }
+		 else
+		 {
+		 $suite_name = $domain . " Suite";
+		 
+// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
+		 print_blue_message("FROM \$_SESSION");
+		 
+		}
 // // 		SELECT DISTINCT primer_suite, dna_region
 // // 		FROM run_info_ill
 // // 		JOIN run USING(run_id)
@@ -90,8 +105,12 @@
 // // 		AND lane = 3
 		
 		
-	}
-	foreach ($lanes as $lane_name)
+// 	}
+	$lanes_uniq = array_unique($lanes);
+	print_out($lanes_uniq);
+	print_blue_message('HERE $suite_name = ' . $suite_name . "\n");
+	
+	foreach ($lanes_uniq as $lane_name)
 	{
 // 		TODO: 'Bacterial V6 Suite'
 		$seq_check = "mysql -h newbpcdb2 env454 -e 'select count(*) from sequence_pdr_info_ill 			
@@ -99,7 +118,7 @@
 			JOIN project using(project_id) 			
 			JOIN dataset using(dataset_id) 			
 			JOIN run using(run_id) 			
-			JOIN primer_suite using(primer_suite_id) WHERE primer_suite = \"" . $suite_name[0] . "\" AND run = \"" . $rundate . "\" AND lane = \"" . $lane_name . "\"'";
+			JOIN primer_suite using(primer_suite_id) WHERE primer_suite = \"" . $suite_name . "\" AND run = \"" . $rundate . "\" AND lane = \"" . $lane_name . "\"'";
 
 		/*
 		 select count(*) from run_info_ill
