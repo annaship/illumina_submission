@@ -19,10 +19,6 @@
 	          </p>
 	          <br/>
 	        ";
-	
-	print_blue_message("HERE");
-	print_blue_message($lane_dom_name);
-	
 	foreach ($lanes as $lane_num)
 	{
 		$lane_name = $lane_num . "_" . $domain_letter;	
