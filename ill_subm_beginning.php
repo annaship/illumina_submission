@@ -4,7 +4,7 @@ if(!isset($_SESSION)) { session_start(); }
 // ini_set('error_reporting', E_ALL);
 
 
-if ($_SESSION['is_local'])
+if (isset($_SESSION['is_local']))
 {  
     $docroot = $_SESSION['docroot'];
     include_once("ill_subm_functions.php");
