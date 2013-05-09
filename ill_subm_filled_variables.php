@@ -64,7 +64,7 @@ if (!isset($errors))
 }
 
 // ---
-if (!$_SESSION['is_local'])
+if (!isset($_SESSION['is_local']))
 {
   $db_name = "vamps";
 }
@@ -96,7 +96,7 @@ asort($contact);
 asort($contact_full);
 
 // ---
-if (!$_SESSION['is_local'])
+if (!isset($_SESSION['is_local']))
 {
   $connection = $newbpc2_connection;
   $db_name = "env454";
@@ -144,7 +144,7 @@ else
 asort($env_source_names);
 
 // ---
-if (!$_SESSION['is_local'])
+if (!isset($_SESSION['is_local']))
 {
   $db_name = "env454";
   $connection = $newbpc2_connection;
@@ -208,7 +208,7 @@ else
 }
 
 // -------
-if (!$_SESSION['is_local'])
+if (!isset($_SESSION['is_local']))
 {
   $connection = $vampsprod_connection;
   $db_name = "vamps";
