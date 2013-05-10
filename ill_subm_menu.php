@@ -17,7 +17,7 @@
   <li><a href="#here">Optional steps</a>
   <ul class="nav first"> 
     <li><a href="step_demultiplex.php">demultiplex</a></li>
-    <li><a href="step_overlap.php">overlap</a></li>
+    <li><a href="step_overlap_only.php">overlap</a></li>
     <li><a href="step_filter_mismatch.php">filtering mismatch</a></li>
     <li><a href="step_uniqueing.php">uniqueing</a></li>
     <li><a href="step_clear_db.php">clear db</a></li>
