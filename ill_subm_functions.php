@@ -194,11 +194,12 @@ function get_one_value($query, $db_name, $connection)
   else
   {
   	print_blue_message("IN FUNC 2");
-  	$query = "Select * from contact limit 1";
+//   	$query = "Select * from contact limit 1";
   	$results = mysql_query($query, $connection);
   	 
 //     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
+    print_out($row);
   }
   	print_blue_message("IN FUNC 3");
   	error_reporting(E_ERROR | E_WARNING | E_PARSE);
