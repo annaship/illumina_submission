@@ -18,7 +18,6 @@
 	          </p>
 	          <br/>
 	        ";
-	print_blue_message($machine_name);
 	$overlap_script_name = "";
 	$overlap_script_name = get_overlap_script_name($machine_name);
 	foreach ($lanes as $lane_num)

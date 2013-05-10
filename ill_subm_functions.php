@@ -1017,7 +1017,6 @@ function check_raw_path($dir_name)
 
 function get_overlap_script_name($machine_name)
 {
-	print_blue_message('$machine_name = ' . $machine_name);
 	
 	switch ($machine_name) {
 		case "hs":
@@ -1029,8 +1028,6 @@ function get_overlap_script_name($machine_name)
 		default:
 			echo "Please provide a machine name";
 	}
-	print_blue_message('$overlap_script_name = ');
-	print_blue_message($overlap_script_name);
 	return $overlap_script_name;
 }
 
