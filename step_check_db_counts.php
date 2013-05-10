@@ -113,12 +113,12 @@
 	foreach ($lanes_uniq as $lane_name)
 	{
 // 		TODO: 'Bacterial V6 Suite'
-		$seq_check = "mysql -h newbpcdb2 env454 -e 'select count(*) from " . $db_name . ".sequence_pdr_info_ill 			
-			JOIN " . $db_name . ".run_info_ill using(run_info_ill_id) 			
-			JOIN " . $db_name . ".project using(project_id) 			
-			JOIN " . $db_name . ".dataset using(dataset_id) 			
-			JOIN " . $db_name . ".run using(run_id) 			
-			JOIN " . $db_name . ".primer_suite using(primer_suite_id) WHERE primer_suite = \"" . $suite_name . "\" AND run = \"" . $rundate . "\" AND lane = \"" . $lane_name . "\"'";
+		$seq_check = "mysql -h newbpcdb2 env454 -e 'select count(*) from sequence_pdr_info_ill 			
+			JOIN run_info_ill using(run_info_ill_id) 			
+			JOIN project using(project_id) 			
+			JOIN dataset using(dataset_id) 			
+			JOIN run using(run_id) 			
+			JOIN primer_suite using(primer_suite_id) WHERE primer_suite = \"" . $suite_name . "\" AND run = \"" . $rundate . "\" AND lane = \"" . $lane_name . "\"'";
 
 		/*
 		 select count(*) from run_info_ill
