@@ -18,11 +18,14 @@
 	          </p>
 	          <br/>
 	        ";
+	print_blue_message($machine_name);
+	$overlap_script_name = "";
+	$overlap_script_name = get_overlap_script_name($machine_name);
 	foreach ($lanes as $lane_num)
 	{
 		$lane_name = $lane_num . "_" . $domain_letter;	
     	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-        					$lane_name . "/analysis/reads_overlap/; run_unique_fa.sh; date";
+        					$lane_name . "/analysis/reads_overlap/; " . $overlap_script_name . "; date";
         print_green_message($command_line_uniq);        
 	}
 	echo "</div>";

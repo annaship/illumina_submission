@@ -1014,4 +1014,25 @@ function check_raw_path($dir_name)
 	
 	return $raw_exists;
 }
+
+function get_overlap_script_name($machine_name)
+{
+	print_blue_message('$machine_name = ' . $machine_name);
+	
+	switch ($machine_name) {
+		case "hs":
+			$overlap_script_name = "run_perfect_overlap_clust.sh";
+			break;
+		case "ms":
+			$overlap_script_name = "run_partial_overlap_clust.sh";
+			break;
+		default:
+			echo "Please provide a machine name";
+	}
+	print_blue_message('$overlap_script_name = ');
+	print_blue_message($overlap_script_name);
+	return $overlap_script_name;
+}
+
+
 ?>
