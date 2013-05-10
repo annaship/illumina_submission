@@ -193,15 +193,11 @@ function get_one_value($query, $db_name, $connection)
   }
   else
   {
-  	print_blue_message("IN FUNC 2");
-//   	$query = "Select * from contact limit 1";
   	$results = mysql_query($query, $connection);
   	 
 //     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
-    print_out($row);
   }
-  	print_blue_message("IN FUNC 3");
   	error_reporting(E_ERROR | E_WARNING | E_PARSE);
     return $row;
 }
@@ -943,8 +939,6 @@ function get_val_from_arr($array, $field_name)
 
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
-	print_blue_message('$data_arr');
-	print_out($data_arr);
 	if (isset($_SESSION['is_local']))
 	{
 		$db_name = "test";
@@ -975,19 +969,17 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	{
 		$query = "
 	SELECT DISTINCT primer_suite, dna_region
-	 		FROM run_info_ill
-	 		JOIN run USING(run_id)
-	 		JOIN dna_region USING(dna_region_id)
-	 		JOIN primer_suite USING(primer_suite_id)
+	 		FROM " . $db_name . ".run_info_ill
+	 		JOIN " . $db_name . ".run USING(run_id)
+	 		JOIN " . $db_name . ".dna_region USING(dna_region_id)
+	 		JOIN " . $db_name . ".primer_suite USING(primer_suite_id)
 	 		WHERE
 	 		run = \"" . $rundate . "\"
 	 		AND lane = " . $lane . "			
 				";
-		print_blue_message("IN FUNC 1");
+
 		$suite_names[] = get_one_value($query, $db_name, $connection);
 	}
-	print_blue_message('$query = ' . $query);
-	print_out($suite_names);
 	return $suite_names;
 }
 
