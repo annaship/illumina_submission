@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-
+	echo "<h2>Check counts in fasta files</h2>";
 	$pipeline_command = "illumina_files";
 	
 	include_once("steps_command_line.php");
@@ -16,7 +16,6 @@
 ?>
 
 <div id="command_line_print">
-	check the overlap percentage by using
 <?php 
 	$file_ext = "";
 	if ($machine_name == "hs")

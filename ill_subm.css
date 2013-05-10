@@ -615,3 +615,18 @@ table#submission_metadata-fields tr.repeated_row td {
 {
 	padding-top: 40px;
 }
+
+h1, h2, h3 {
+	 font-size: larger;
+/*     margin: 0 2px 0 5px;
+     text-align: center;
+*/
+}
+/* h3 {
+    font-size: large;
+    font-weight: normal;
+} */
+
+h2 {
+	text-align: center;
+}

@@ -2,6 +2,7 @@
 <?php
   	include_once("ill_subm_functions.php");
   	include_once "ill_subm_filled_variables.php";
+  	echo "<h1>Illumina files processing</h1>";
 	include_once("ill_subm_menu.php");
 ?>
        

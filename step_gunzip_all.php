@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-
+	echo "<h2>Gunzip all files</h2>";
 	$pipeline_command = "illumina_files";
 	
 	include_once("steps_command_line.php");
@@ -22,7 +22,7 @@
 	foreach ($lanes as $lane_name)
 	{
     	$command_line_gzip = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-        					$lane_name . "/analysis/reads_overlap/; time gunzip *.gz";
+        					$lane_name . "/analysis/; time gunzip *.gz";
         print_green_message($command_line_gzip);        
 	}
 	echo "</div>";

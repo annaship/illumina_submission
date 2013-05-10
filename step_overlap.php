@@ -8,7 +8,7 @@
 <?php 
 	include_once("ill_subm_menu.php");
 // print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
-		
+	echo "<h2>Demultiplex and overlap reads</h2>";
 	$pipeline_command = "illumina_files";
 	
 	include_once("steps_command_line.php");
