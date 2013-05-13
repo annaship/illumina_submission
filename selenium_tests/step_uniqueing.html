@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost/~ashipunova/" />
-<title>step_overlap_only</title>
+<link rel="selenium.base" href="http://vampsdev.mbl.edu/" />
+<title>step_uniqueing</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">step_overlap_only</td></tr>
+<tr><td rowspan="1" colspan="3">step_uniqueing</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -18,22 +18,17 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=overlap</td>
+	<td>link=uniqueing</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20150000/lane_5_B/analysis/reads_overlap/; run_perfect_overlap_clust.sh; date</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20150000/lane_1_B/analysis/reads_overlap/; run_unique_fa.sh; date</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20150000/lane_1_B/analysis/reads_overlap/; take_hs_stats.py; date</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=overlap</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20150000/lane_5_B/analysis/reads_overlap/; run_unique_fa.sh; date</td>
 	<td></td>
 </tr>
 <tr>
@@ -44,7 +39,12 @@
 <tr>
 	<td>select</td>
 	<td>id=form_find_rundate</td>
-	<td>label=20130419</td>
+	<td>label=20130322</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_machine</td>
+	<td>label=hiseq</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -58,19 +58,10 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130419/lane_1_B/analysis/reads_overlap/; run_partial_overlap_clust.sh; date</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130322/lane_1_B/analysis/reads_overlap/; run_unique_fa.sh; date</td>
 	<td></td>
 </tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130419/lane_1_B/analysis/reads_overlap/; take_ms_stats.py; date</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextNotPresent</td>
-	<td>Sorry, there is no ini file. Please add a path to raw data.</td>
-	<td></td>
-</tr>
+
 </tbody></table>
 </body>
 </html>
