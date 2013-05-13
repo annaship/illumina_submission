@@ -21,16 +21,17 @@
 <?php 
 	$suite_name = "";
 		
-		if (!isset($_SESSION['is_local']))
-		{
-			$connection = $newbpc2_connection_r;
-// 			$connection = $vampsdev_connection;
+	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 		
-		}
-		else
 		{
 			$connection = $local_mysqli;
 		}		
+	else
+		{
+			$connection = $newbpc2_connection_r;
+			// 			$connection = $vampsdev_connection;
+		
+		}
 		
 		if (isset($_POST) && !empty($_POST))
 		{

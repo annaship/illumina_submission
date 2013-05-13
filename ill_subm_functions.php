@@ -179,7 +179,7 @@ function get_one_value($query, $db_name, $connection)
 {
 //   set_error_handler("customError", E_USER_ERROR);
   $row = array();
-  if (isset($_SESSION['is_local']))
+  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
     $res = $connection->query($query);
   	if (isset($res) && isset($res->num_rows))
@@ -210,7 +210,7 @@ function get_contact_id($contact_full, $connection)
   list($last_name, $first_name, $email, $institution) = array_map('trim', explode(',', $post_res));
 
   
-  if (isset($_SESSION['is_local']))
+  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
     $db_name = "test";
   }
@@ -349,7 +349,7 @@ function print_out($array_name)
 
 function run_select_one_field($query, $connection) {
   $result_arr = array();
-  if (isset($_SESSION['is_local']))
+  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
     $local_mysqli = $connection;
     $results = $local_mysqli->query($query);
@@ -503,7 +503,7 @@ function run_query($query, $table_name, $connection)
   $success_insert = 0;
 //   TODO: Why return project with run_id?
   $data_id = 0;
-  if (isset($_SESSION['is_local']))
+  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
   	if (isset($local_mysqli))
   	{
@@ -678,7 +678,7 @@ function get_submission_info($connection, $db_name)
   
 //   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions JOIN " . $db_name . ".vamps_submissions_tubes USING(submit_code);";
   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions ORDER BY id DESC limit 3";
-  if (isset($_SESSION['is_local']))
+  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
     $local_mysqli = $connection;
     $results = $local_mysqli->query($query);
@@ -939,7 +939,7 @@ function get_val_from_arr($array, $field_name)
 
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
-	if (isset($_SESSION['is_local']))
+	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$db_name = "test";
 	}

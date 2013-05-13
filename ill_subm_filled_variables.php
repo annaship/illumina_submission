@@ -3,7 +3,7 @@
 
 if(!isset($_SESSION)) { session_start(); } 
 
-if (isset($_SESSION['is_local']))
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
   include_once 'ill_subm_conn_local.php';  
   $db_name = "test";
@@ -64,14 +64,18 @@ if (!isset($errors))
 }
 
 // ---
-if (!isset($_SESSION['is_local']))
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-  $db_name = "vamps";
+  $db_name = "test";
+}
+else 
+{
+	$db_name = "vamps";	
 }
 $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
             FROM ". $db_name . ".vamps_auth WHERE last_name <> \"\"";
             
-if (isset($_SESSION['is_local']))
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
   $res = $local_mysqli->query($query);  
   for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -96,16 +100,17 @@ asort($contact);
 asort($contact_full);
 
 // ---
-if (!isset($_SESSION['is_local']))
-{
-  $connection = $newbpc2_connection;
-  $db_name = "env454";
-}
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+	{
+	//   $db_name = "env454";
+	  $db_name = "test";
+	}
 else
-{
-//   $db_name = "env454";
-  $db_name = "test";
-}
+	{
+		$connection = $newbpc2_connection;
+		$db_name = "env454";
+	}
+	
 $project = get_all_projects($connection, $db_name);
 
 // ---
@@ -114,7 +119,7 @@ $arr_fields_add = array("tubelabel", "barcode", "amp_operator");
 
 $arr_fields_run = array("seq_operator", "insert_size", "read_length");
 // ---
-if (isset($_SESSION['is_local']))
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
   $env_sample_source_table = "test.env_sample_source";
 }
@@ -124,7 +129,7 @@ else
 }
 
 $query = "SELECT DISTINCT env_sample_source_id, env_source_name FROM " . $env_sample_source_table;
-if (isset($_SESSION['is_local']))
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
   $res_env = $local_mysqli->query($query);
 	for ($row_no = $res_env->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -144,7 +149,11 @@ else
 asort($env_source_names);
 
 // ---
-if (!isset($_SESSION['is_local']))
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+{
+	;
+}
+else
 {
   $db_name = "env454";
   $connection = $newbpc2_connection;
@@ -162,7 +171,7 @@ JOIN " . $db_name . ".illumina_index USING(illumina_index_id)
 JOIN " . $db_name . ".illumina_run_key USING(illumina_run_key_id)
 JOIN " . $db_name . ".dna_region USING(dna_region_id)
 ";
-if (isset($_SESSION['is_local']))
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
   $res_adaptor = $local_mysqli->query($query);
   for ($row_no = $res_adaptor->num_rows - 1; $row_no >= 0; $row_no--) 
@@ -208,16 +217,17 @@ else
 }
 
 // -------
-if (!isset($_SESSION['is_local']))
-{
-  $connection = $vampsprod_connection;
-  $db_name = "vamps";
-}
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+	{
+	  //   $db_name = "env454";
+	  $db_name = "test";
+	}
 else
-{
-  //   $db_name = "env454";
-  $db_name = "test";
-}
+	{
+		$connection = $vampsprod_connection;
+		$db_name = "vamps";
+	}
+	
 list($subm_field_names, $vamps_submission_info) = get_submission_info($connection, $db_name);
 
 $vamps_submission_info_show = array();
@@ -247,17 +257,18 @@ if (isset($_SESSION["run_info"]))
 	}
 }
 // -----
-if (!isset($_SESSION['is_local']))
-{
-  $db_name = "env454";
-  $connection = $newbpc2_connection;
-}
-else 
-{
-  $db_name = "test";
-  $connection = $local_mysqli;
-
-}
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+	{
+	  $db_name = "test";
+	  $connection = $local_mysqli;
+	
+	}
+else
+	{
+		$db_name = "env454";
+		$connection = $newbpc2_connection;
+	}
+	
 $query = "SELECT DISTINCT run FROM " . $db_name . ".run";
 
 $runs = run_select_one_field($query, $connection);
