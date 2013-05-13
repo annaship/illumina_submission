@@ -62,6 +62,26 @@
 	<td></td>
 </tr>
 <tr>
+	<td>verifyTextPresent</td>
+	<td>/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_1.csv was created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Overlap Analyzing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Commits</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=run_info_form_add</td>
+	<td></td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=form_lane_1</td>
 	<td>2</td>
@@ -83,22 +103,27 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_1_B.csv -s illumina_files -l debug -p illumina -r 20150000 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_1_B&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_1.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_1&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_2_B.csv -s illumina_files -l debug -p illumina -r 20150000 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_2_B&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_2.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_2&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_3_B.csv -s illumina_files -l debug -p illumina -r 20150000 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_3_B&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_3.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_3&quot; -do_perfect True</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_5_B.csv -s illumina_files -l debug -p illumina -r 20150000 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/test -cp True -lane_name &quot;lane_5_B&quot; -do_perfect True</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20120315/lane_1/analysis/reads_overlap/; take_hs_stats.py; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20120315/lane_2/analysis/reads_overlap/; take_hs_stats.py; date</td>
 	<td></td>
 </tr>
 </tbody></table>

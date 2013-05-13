@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://vampsdev.mbl.edu/" />
+<title>step_overlap</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">step_overlap</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/illumina_submission/step_overlap.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Overlap Analyzing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20150000/metadata_20150000_1.csv -s illumina_files -l debug -p illumina -r 20150000 -ft fastq -i /xraid2-2/sequencing/Illumina/20150000/ -cp True -lane_name &quot;lane_1&quot; -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.hide_find_run</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_find_rundate</td>
+	<td>label=20150000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_rundate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_rundate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_csv_files</td>
+	<td>label=metadata_20150000_3.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>CHANGE command line</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
