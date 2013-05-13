@@ -20,11 +20,16 @@
 	          </p>
 	          <br/>
 	        ";
-	foreach ($lanes as $lane_num)
+// 	foreach ($lanes as $lane_num)
+// 	{
+// 		$lane_name = $lane_num . "_" . $domain_letter;	
+//     	$command_line_gast = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
+//         					$lane_name . "/analysis/reads_overlap/; run_gast_ill.sh; date";
+	foreach ($lane_dom_names as $lane_dom_name)
 	{
-		$lane_name = $lane_num . "_" . $domain_letter;	
-    	$command_line_gast = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-        					$lane_name . "/analysis/reads_overlap/; run_gast_ill.sh; date";
+    	$command_line_gast = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
+        					$lane_dom_name . "/analysis/reads_overlap/; run_gast_ill.sh; date";
+		
         print_green_message($command_line_gast);        
 	}
 	echo "</div>";
@@ -36,13 +41,18 @@
 	</p>
     <br/>
 <?php 
-	foreach ($lanes as $lane_num)
+// 	foreach ($lanes as $lane_num)
+// 	{
+// 		$lane_name = $lane_num . "_" . $domain_letter;	
+// // 		$check_gast_unknowns = "check_gast_unknowns.sh";
+// 		$check_gast_unknowns = "percent10_gast_unknowns.sh";
+// 		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
+// 									$lane_name . "/analysis/reads_overlap/; " . $check_gast_unknowns . "; date";
+	foreach ($lane_dom_names as $lane_dom_name)
 	{
-		$lane_name = $lane_num . "_" . $domain_letter;	
-// 		$check_gast_unknowns = "check_gast_unknowns.sh";
 		$check_gast_unknowns = "percent10_gast_unknowns.sh";
 		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
-									$lane_name . "/analysis/reads_overlap/; " . $check_gast_unknowns . "; date";
+									$lane_dom_name . "/analysis/reads_overlap/; " . $check_gast_unknowns . "; date";
 		print_green_message($command_line_gast_check);	
 	}	
 ?>

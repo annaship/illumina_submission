@@ -17,14 +17,14 @@
 	          <br/>
 	        ";
 		
-			print_blue_message("\$lanes = ");
-			print_out($lanes);
-			print_blue_message("\$domains = ");
-			print_out($domains);
+// 			print_blue_message("\$lanes = ");
+// 			print_out($lanes);
+// 			print_blue_message("\$domains = ");
+// 			print_out($domains);
 			$lane_dom_names = create_lane_dom_names($lanes, $domains);
-			print_blue_message("\$lane_dom_names = ");
-			print_out($lane_dom_names);
-			print_blue_message("===========");	
+// 			print_blue_message("\$lane_dom_names = ");
+// 			print_out($lane_dom_names);
+// 			print_blue_message("===========");	
 // 		TODO: change to $lane_dom_names
 // 		foreach ($lanes as $lane_num)
 // 		{
