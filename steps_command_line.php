@@ -97,6 +97,18 @@ elseif (check_var($_SESSION["run_info"]))
 $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
 $domain_letter = $domain[0];
 
+$lanes   = array_unique($lanes);
+$domains = array_unique($domains);
+
+$lane_dom_names = create_lane_dom_names($lanes, $domains);
+
+// print_blue_message("\$lanes");
+// print_out($lanes);
+// print_blue_message("\$domains");
+// print_out($domains);
+
+// print_blue_message("\$lane_dom_names");
+// print_out($lane_dom_names);
 
 ?>
 
