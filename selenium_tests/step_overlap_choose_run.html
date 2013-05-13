@@ -13,7 +13,7 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/illumina_submission/step_overlap.php</td>
+	<td>illumina_submission/step_overlap.php</td>
 	<td></td>
 </tr>
 <tr>
@@ -49,6 +49,21 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>id=choose_run_m_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Sorry, there is no ini file. Please add a path to raw data.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_infoForm_path to raw data</td>
+	<td>20130322/Project_JR_Av6/</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=choose_meta_w_path_form_add</td>
 	<td></td>
 </tr>
 <tr>
@@ -100,6 +115,11 @@
 <tr>
 	<td>verifyTextPresent</td>
 	<td>Path to raw data is empty!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130322/lane__B/analysis/reads_overlap/; take_hs_stats.py; date</td>
 	<td></td>
 </tr>
 </tbody></table>

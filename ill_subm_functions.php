@@ -993,7 +993,9 @@ function creat_dir_if_not_existst($dir_name)
 
 function create_lane_dom_names($lanes, $domains)
 {
+// 	NOT uniqued arrays!
 	$lane_dom_names = array();
+	$domain = $domains[$row_num][0];
 	foreach ($lanes as $row_num => $lane)
 	{
 		$lane_dom_names[] = $lane . "_" . $domains[$row_num][0];

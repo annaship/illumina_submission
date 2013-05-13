@@ -17,19 +17,26 @@
 	          <br/>
 	        ";
 		
-		// 	print_blue_message("\$lanes = ");
-		// 	print_out($lanes);
-		// 	print_blue_message("\$domains = ");
-		// 	print_out($domains);
-		// 	$lane_dom_names = create_lane_dom_names($lanes, $domains);
-		// 	print_blue_message("\$lane_dom_names = ");
-		// 	print_out($lane_dom_names);
-		// 	print_blue_message("===========");	
+			print_blue_message("\$lanes = ");
+			print_out($lanes);
+			print_blue_message("\$domains = ");
+			print_out($domains);
+			$lane_dom_names = create_lane_dom_names($lanes, $domains);
+			print_blue_message("\$lane_dom_names = ");
+			print_out($lane_dom_names);
+			print_blue_message("===========");	
 // 		TODO: change to $lane_dom_names
-		foreach ($lanes as $lane_num)
-		{
-			$lane_name     = $lane_num . "_" . $domain_letter;
-			$csv_name      = create_csv_name($rundate, $lane_name);
+// 		foreach ($lanes as $lane_num)
+// 		{
+// 			$lane_name     = $lane_num . "_" . $domain_letter;
+// 			$csv_name      = create_csv_name($rundate, $lane_name);
+// ...
+// 		$rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
+
+		foreach ($lane_dom_names as $lane_dom_name)
+		{			
+			
+			$csv_name      = create_csv_name($rundate, $lane_dom_name);				
 			$csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
 			
 // 			TODO: validation here, 1) if exists $csv_file_name, 2) raw_data
@@ -45,7 +52,7 @@
 				"; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
 			          -csv " . $csv_file_name .
 				          " -s " . $pipeline_command . " -l debug -p illumina -r " .
-				          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_name . "\" -do_perfect " . $do_perfect
+				          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_dom_name . "\" -do_perfect " . $do_perfect
 				          ;
 				print_green_message($command_line);
 				          
