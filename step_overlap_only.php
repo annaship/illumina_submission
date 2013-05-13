@@ -20,11 +20,15 @@
 	        ";
 	$overlap_script_name = "";
 	$overlap_script_name = get_overlap_script_name($machine_name);
-	foreach ($lanes as $lane_num)
+// 	foreach ($lanes as $lane_num)
+// 	{
+// 		$lane_name = $lane_num . "_" . $domain_letter;	
+//     	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
+//         					$lane_name . "/analysis/reads_overlap/; " . $overlap_script_name . "; date";
+	foreach ($lane_dom_names as $lane_dom_name)
 	{
-		$lane_name = $lane_num . "_" . $domain_letter;	
-    	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-        					$lane_name . "/analysis/reads_overlap/; " . $overlap_script_name . "; date";
+    	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
+        					$lane_dom_name . "/analysis/reads_overlap/; " . $overlap_script_name . "; date";
         print_green_message($command_line_uniq);        
 	}
 	echo "</div>";

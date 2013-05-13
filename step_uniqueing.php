@@ -18,12 +18,16 @@
 	          </p>
 	          <br/>
 	        ";
-	foreach ($lanes as $lane_num)
+// 	foreach ($lanes as $lane_num)
+// 	{
+// 		$lane_name = $lane_num . "_" . $domain_letter;	
+//     	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
+//         					$lane_name . "/analysis/reads_overlap/; run_unique_fa.sh; date";
+	foreach ($lane_dom_names as $lane_dom_name)
 	{
-		$lane_name = $lane_num . "_" . $domain_letter;	
     	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-        					$lane_name . "/analysis/reads_overlap/; run_unique_fa.sh; date";
-        print_green_message($command_line_uniq);        
+        					$lane_dom_name . "/analysis/reads_overlap/; run_unique_fa.sh; date";
+		print_green_message($command_line_uniq);        
 	}
 	echo "</div>";
 ?>
