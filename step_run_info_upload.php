@@ -17,7 +17,7 @@
 ?>
 <!-- 	</div> -->
 	
-</div>
+<!-- </div> -->
       
       <!-- end of content -->    
 <?php include_once("ill_subm_end.php"); ?>     
