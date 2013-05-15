@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-// 	print_blue_message("From ". $_SERVER["PHP_SELF"]);
+	print_blue_message("From ". $_SERVER["PHP_SELF"]);
 // 	print_blue_message("\$machine_name = $machine_name");
 	echo "<h2>Remove old data from db</h2>";
 		
@@ -34,29 +34,29 @@
 		
 		}
 		
-		if (isset($_POST) && !empty($_POST))
+	if (isset($_POST) && !empty($_POST))
+	{
+		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
+			
+		$primer_suites = array();
+		foreach ($suite_names as $suite_name_row)
 		{
-			$suite_names = get_primer_suite_name_from_db($_POST, $connection);
+			$primer_suites[] = $suite_name_row["primer_suite"];
 				
-			$primer_suites = array();
-			foreach ($suite_names as $suite_name_row)
-			{
-				$primer_suites[] = $suite_name_row["primer_suite"];
-					
-			}
-			 $suite_name_arr = array_unique($primer_suites);
-			 $suite_name = $suite_name_arr[0];
-			 	
-			 }
-			 else
-			 {
-			 $suite_name = $domain . " Suite";
-			 
-	// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
-		 
 		}
+		 $suite_name_arr = array_unique($primer_suites);
+		 $suite_name = $suite_name_arr[0];
+		 	
+		 }
+		 else
+		 {
+		 $suite_name = $domain . " Suite";
+		 
+// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
+	 
+	}
 	$lanes_uniq = array_unique($lanes);
-	
+	$query_del_sequence_pdr_info_ill = $query_del_run_info_ill = ""; 
 	foreach ($lanes_uniq as $lane_name)
 	{
 		$query_del_sequence_pdr_info_ill = "DELETE from sequence_pdr_info_ill   
@@ -125,7 +125,10 @@ USING sequence_ill
 LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) 
 WHERE sequence_pdr_info_ill_id IS NULL;
 		";
-print_green_message($query_clean_rest);
+if ($query_del_sequence_pdr_info_ill != "" AND $query_del_run_info_ill != "")
+{
+	print_green_message($query_clean_rest);
+}
 	?>
 </div>
       
