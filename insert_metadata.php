@@ -9,10 +9,10 @@
     
   if (!$_SESSION['is_local'])
   {
-    //   $connection = $newbpc2_connection;
-    //   $db_name    = "env454";
-    $connection = $vampsdev_connection;
-    $db_name    = "test";
+      $connection = $newbpc2_connection;
+      $db_name    = "env454";
+//     $connection = $vampsdev_connection;
+//     $db_name    = "test";
 
   }
   else
