@@ -1,8 +1,133 @@
 <?php include_once("ill_subm_beginning.php"); ?>
-       
-      <h1>Illumina files processing</h1>
-      <?php include_once("ill_subm_menu.php"); ?>
+<?php
+  	include_once("ill_subm_functions.php");
+  	include_once "ill_subm_filled_variables.php";
+?>
 
+      <h1>Illumina files processing</h1>
+<?php 
+	include_once("ill_subm_menu.php");
+// 	print_blue_message("From ". $_SERVER["PHP_SELF"]);
+// 	print_blue_message("\$machine_name = $machine_name");
+	echo "<h2>Remove old data from db</h2>";
+		
+	$pipeline_command = "illumina_files";
+	
+	include_once("steps_command_line.php");
+	
+?>
+
+<div id="command_line_print">
+	
+<?php 
+	$suite_name = "";
+		
+	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+		
+		{
+			$connection = $local_mysqli;
+		}		
+	else
+		{
+			$connection = $newbpc2_connection_r;
+			// 			$connection = $vampsdev_connection;
+		
+		}
+		
+		if (isset($_POST) && !empty($_POST))
+		{
+			$suite_names = get_primer_suite_name_from_db($_POST, $connection);
+				
+			$primer_suites = array();
+			foreach ($suite_names as $suite_name_row)
+			{
+				$primer_suites[] = $suite_name_row["primer_suite"];
+					
+			}
+			 $suite_name_arr = array_unique($primer_suites);
+			 $suite_name = $suite_name_arr[0];
+			 	
+			 }
+			 else
+			 {
+			 $suite_name = $domain . " Suite";
+			 
+	// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
+		 
+		}
+	$lanes_uniq = array_unique($lanes);
+	
+	foreach ($lanes_uniq as $lane_name)
+	{
+		$query_del_sequence_pdr_info_ill = "DELETE from sequence_pdr_info_ill   
+  USING sequence_pdr_info_ill 
+  JOIN run_info_ill using(run_info_ill_id) 
+  JOIN project using(project_id) 
+  JOIN dataset using(dataset_id) 
+  JOIN run using(run_id) 
+  JOIN primer_suite using(primer_suite_id) 
+  WHERE primer_suite = \"" . $suite_name . "\" 
+  AND run = \"" . $rundate . "\" 
+  AND lane = \"" . $lane_name . "\";"; 
+		
+		$query_del_run_info_ill = "DELETE 
+  FROM run_info_ill   
+  USING    run_info_ill   
+  JOIN project using(project_id)    
+  JOIN dataset using(dataset_id)    
+  JOIN run using(run_id)   
+  JOIN primer_suite using(primer_suite_id)   
+  WHERE primer_suite = \"" . $suite_name . "\"    
+  AND run = \"" . $rundate . "\"   
+  AND lane = \"" . $lane_name . "\";";
+
+		/*
+DELETE from sequence_pdr_info_ill   
+  USING sequence_pdr_info_ill 
+  JOIN run_info_ill using(run_info_ill_id) 
+  JOIN project using(project_id) 
+  JOIN dataset using(dataset_id) 
+  JOIN run using(run_id) 
+  JOIN primer_suite using(primer_suite_id) 
+  WHERE primer_suite = 'Bacterial V4-V5 Suite' 
+  AND run = '20130104' 
+  AND lane = '1';  
+
+DELETE 
+  FROM run_info_ill   
+  USING    run_info_ill   
+  JOIN project using(project_id)    
+  JOIN dataset using(dataset_id)    
+  JOIN run using(run_id)   
+  JOIN primer_suite using(primer_suite_id)   
+  WHERE primer_suite = 'Bacterial V4-V5 Suite'   
+  AND run = '20130104'  
+  AND lane = '1';
+
+		*/
+		
+
+		print_green_message($query_del_sequence_pdr_info_ill);	
+		echo "<br/>";
+		print_green_message($query_del_run_info_ill);
+		echo "<br/>";
+		echo "<br/>";
+  		
+	}
+
+$query_clean_rest = "DELETE FROM sequence_uniq_info_ill 
+USING sequence_uniq_info_ill 
+LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) 
+WHERE sequence_pdr_info_ill_id is NULL; 
+
+DELETE FROM sequence_ill 
+USING sequence_ill 
+LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) 
+WHERE sequence_pdr_info_ill_id IS NULL;
+		";
+print_green_message($query_clean_rest);
+	?>
+</div>
       
       <!-- end of content -->    
 <?php include_once("ill_subm_end.php"); ?>     
