@@ -70,6 +70,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 }
 else 
 {
+// 	TODO: get from env454!
 	$db_name = "vamps";	
 }
 $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
@@ -158,8 +159,13 @@ else
   $db_name = "env454";
   $connection = $newbpc2_connection;
 }
-$query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
-$overlaps = run_select_one_field($query, $connection);
+// $query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
+// $overlaps = run_select_one_field($query, $connection);
+// `overlap` enum('complete','partial','none') NOT NULL DEFAULT 'none',
+// $overlaps = array('complete','partial','none');
+// Array ( [0] => [2] => complete [1] => partial )
+
+$overlaps = array('','partial','complete');
 
 // $illumina_adaptor_ref 
 $adaptors_full = $adaptors = array();
