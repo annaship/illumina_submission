@@ -847,7 +847,6 @@ function create_csv_file($csv_data, $file_name) {
 //   set_error_handler("E_ALL");
   $fp = fopen($file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
-  
 
   foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
@@ -855,7 +854,6 @@ function create_csv_file($csv_data, $file_name) {
   fclose($fp);
   chmod($file_name, 0664);
   return $fp;
-  
 }
 
 function create_csv_name($rundate, $lane_name)

@@ -49,6 +49,7 @@
     $tubelabel 		  = $metadata_arr["tubelabel"];
        
 //   TODO: data_owner print by project, not choose
+// TODO: insert into vamps subm too! 
 
     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
