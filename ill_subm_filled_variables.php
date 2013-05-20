@@ -245,7 +245,18 @@ if (isset($_SESSION["run_info"]))
 	if (isset($_SESSION["run_info"]["dna_region_0"]))
 	{
 		$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
-		$path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
+		$pat_to_csv_root = "";
+		if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+		{
+			$pat_to_csv_root = "../illumina_submission_site_local_add/";
+		}
+		else 
+		{
+			$pat_to_csv_root   = "/xraid2-2/g454/run_new_pipeline/illumina/";
+				
+		}
+		$path_to_csv   = $pat_to_csv_root . $machine_names[$machine_name] . "_info/";
+		
 	}
 	if (isset($_SESSION["run_info"]["path_to_raw_data"]))
 	{
