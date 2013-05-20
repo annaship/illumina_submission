@@ -62,7 +62,7 @@
       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
     ";
     
-    /*
+    /* Upload metadata only from run_info_upload step for now
      * 
 +adaptor
 +amp_operator
@@ -84,51 +84,51 @@ tubelabel
 
      * 
      * */
-    if (
-    		($adaptor         == "") ||
-    		($amp_operator    == "") ||
-    		($barcode         == "") ||
-    		($barcode_index   == "") ||
-    		($dataset_id      == 0)  ||
-    		($dna_region_id   == 0)  ||
-    		($file_prefix     == "") ||
-    		($insert_size     == "") ||
-    		($lane            == "") ||
-    		($overlap         == "") ||
-    		($primer_suite_id == 0)  ||
-    		($project_id      == 0)  ||
-    		($read_length     == "") ||
-    		($run_id          == 0)  ||
-    		($run_key_id      == 0)  ||
-    		($seq_operator    == "") ||
-    		($tubelabel       == "")
-    )
-    {
-    	print_blue_message("One of the follow field is empty:
-    	run_key_id      = $run_key_id,<br/>
-    	run_id          = $run_id,<br/>
-    	lane            = $lane,<br/>
-    	dataset_id      = $dataset_id,<br/>
-    	project_id      = $project_id,<br/>
-    	tubelabel       = $tubelabel,<br/>
-    	barcode         = $barcode,<br/>
-    	adaptor         = $adaptor,<br/>
-    	dna_region_id   = $dna_region_id,<br/>
-    	amp_operator    = $amp_operator,<br/>
-    	seq_operator    = $seq_operator,<br/>
-    	barcode_index   = $barcode_index,<br/>
-    	overlap         = $overlap,<br/>
-    	insert_size     = $insert_size,<br/>
-    	file_prefix     = $file_prefix,<br/>
-    	read_length     = $read_length,<br/>
-    	primer_suite_id = $primer_suite_id,<br/>
-    	");
-    }
-    else
-    {
-//     print_out($insert_metadata_query);
-    	$new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
-    }
+//     if (
+//     		($adaptor         == "") ||
+//     		($amp_operator    == "") ||
+//     		($barcode         == "") ||
+//     		($barcode_index   == "") ||
+//     		($dataset_id      == 0)  ||
+//     		($dna_region_id   == 0)  ||
+//     		($file_prefix     == "") ||
+//     		($insert_size     == "") ||
+//     		($lane            == "") ||
+//     		($overlap         == "") ||
+//     		($primer_suite_id == 0)  ||
+//     		($project_id      == 0)  ||
+//     		($read_length     == "") ||
+//     		($run_id          == 0)  ||
+//     		($run_key_id      == 0)  ||
+//     		($seq_operator    == "") ||
+//     		($tubelabel       == "")
+//     )
+//     {
+//     	print_blue_message("One of the follow field is empty:
+//     	run_key_id      = $run_key_id,<br/>
+//     	run_id          = $run_id,<br/>
+//     	lane            = $lane,<br/>
+//     	dataset_id      = $dataset_id,<br/>
+//     	project_id      = $project_id,<br/>
+//     	tubelabel       = $tubelabel,<br/>
+//     	barcode         = $barcode,<br/>
+//     	adaptor         = $adaptor,<br/>
+//     	dna_region_id   = $dna_region_id,<br/>
+//     	amp_operator    = $amp_operator,<br/>
+//     	seq_operator    = $seq_operator,<br/>
+//     	barcode_index   = $barcode_index,<br/>
+//     	overlap         = $overlap,<br/>
+//     	insert_size     = $insert_size,<br/>
+//     	file_prefix     = $file_prefix,<br/>
+//     	read_length     = $read_length,<br/>
+//     	primer_suite_id = $primer_suite_id,<br/>
+//     	");
+//     }
+//     else
+//     {
+// //     print_out($insert_metadata_query);
+//     	$new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
+//     }
    
     if ($new_run_info_ill_id)
     {
