@@ -53,16 +53,42 @@ print_out($_SESSION["run_info"]);
     $tubelabel 		  = $metadata_arr["tubelabel"];
        
 //   TODO: data_owner print by project, not choose
-// TODO: insert into vamps subm too! 
+// TODO: insert into vamps subm only! 
 
-    $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
-      (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
-        dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
-        project_id, read_length, run_id, run_key_id, seq_operator, tubelabel)
-      VALUES (\"$adaptor\", \"$amp_operator\", \"$barcode\", \"$barcode_index\", \"$dataset_id\", 
-      \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
-      \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
-    ";
+    
+// // 	$date_initial        = date_initial;
+// 	$date_updated        = date("Y-m-d H:i:s");
+// 	$email               = email; // take by user from contact
+// 	$env_source_id       = env_source_id; // get by $result_metadata_arr["env_source_name"];
+// 	$environment         = $result_metadata_arr["env_source_name"];
+// 	$first_name          = first_name; // take by user from contact
+// 	$funding             = $result_metadata_arr["funding"];
+// 	$institution         = institution; // take by user from contact
+// 	$last_name           = last_name; // take by user from contact
+// // 	$locked              = locked;
+// // 	$num_of_tubes        = num_of_tubes;
+// 	$project_description = project_description;
+// 	$submit_code         = submit_code;
+// 	$temp_project        = temp_project;
+// 	$title               = title;
+// 	$user                = user;
+	    
+    
+//     $insert_metadata_query1 = "UPDATE " . $db_name . ".vamps_submissions
+//     		(submit_code, user, last_name, first_name, email, institution, temp_project, title, project_description, 
+//     			environment, env_source_id, funding, num_of_tubes, date_updated)
+//     		VALUES(\"$submit_code\", \"$user\", \"$last_name\", \"$first_name\", \"$email\", \"$institution\", \"$temp_project\", \"$title\", \"$project_description\", 
+//     			\"$environment\", \"$env_source_id\", \"$funding\", \"$num_of_tubes\", \"$date_updated\")    		
+//     		";
+    
+//     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
+//       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
+//         dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
+//         project_id, read_length, run_id, run_key_id, seq_operator, tubelabel)
+//       VALUES (\"$adaptor\", \"$amp_operator\", \"$barcode\", \"$barcode_index\", \"$dataset_id\", 
+//       \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
+//       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
+//     ";
     
     /* Upload metadata only from run_info_upload step for now
      * 
