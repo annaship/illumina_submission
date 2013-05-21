@@ -21,10 +21,13 @@
     $db_name    = "test";
   }
 
-//   print_red_message("From insert_metadata");
+  print_red_message("From insert_metadata");
   
-// print_red_message("\$result_metadata_arr");
-// print_out($result_metadata_arr);
+print_red_message("\$result_metadata_arr = ");
+print_out($result_metadata_arr);
+print_red_message("\$_SESSION[\"run_info\"] = ");
+print_out($_SESSION["run_info"]);
+
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
 
@@ -35,8 +38,9 @@
     $dataset_id 	  = get_id($metadata_arr, "dataset", $db_name, $connection); 
     $domain           = $metadata_arr["domain"];
     $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
-    $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection); 
-//     $file_prefix      = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
+    $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection);
+//     CAGATC_NNNNGACTC_4
+    $file_prefix      = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
     $insert_size 	  = $_SESSION["run_info"]["insert_size"];
     $lane 			  = $metadata_arr["lane"];
     $overlap 		  = $_SESSION["run_info"]["overlap"];
@@ -49,18 +53,110 @@
     $tubelabel 		  = $metadata_arr["tubelabel"];
        
 //   TODO: data_owner print by project, not choose
+// TODO: insert into vamps subm only! 
 
-    $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
-      (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
-        dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
-        project_id, read_length, run_id, run_key_id, seq_operator, tubelabel)
-      VALUES (\"$adaptor\", \"$amp_operator\", \"$barcode\", \"$barcode_index\", \"$dataset_id\", 
-      \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
-      \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
-    ";
     
-//     print_out($insert_metadata_query);
-    $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
+// // 	$date_initial        = date_initial;
+// 	$date_updated        = date("Y-m-d H:i:s");
+// 	$email               = email; // take by user from contact
+// 	$env_source_id       = env_source_id; // get by $result_metadata_arr["env_source_name"];
+// 	$environment         = $result_metadata_arr["env_source_name"];
+// 	$first_name          = first_name; // take by user from contact
+// 	$funding             = $result_metadata_arr["funding"];
+// 	$institution         = institution; // take by user from contact
+// 	$last_name           = last_name; // take by user from contact
+// // 	$locked              = locked;
+// // 	$num_of_tubes        = num_of_tubes;
+// 	$project_description = project_description;
+// 	$submit_code         = submit_code;
+// 	$temp_project        = temp_project;
+// 	$title               = title;
+// 	$user                = user;
+	    
+    
+//     $insert_metadata_query1 = "UPDATE " . $db_name . ".vamps_submissions
+//     		(submit_code, user, last_name, first_name, email, institution, temp_project, title, project_description, 
+//     			environment, env_source_id, funding, num_of_tubes, date_updated)
+//     		VALUES(\"$submit_code\", \"$user\", \"$last_name\", \"$first_name\", \"$email\", \"$institution\", \"$temp_project\", \"$title\", \"$project_description\", 
+//     			\"$environment\", \"$env_source_id\", \"$funding\", \"$num_of_tubes\", \"$date_updated\")    		
+//     		";
+    
+//     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
+//       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
+//         dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
+//         project_id, read_length, run_id, run_key_id, seq_operator, tubelabel)
+//       VALUES (\"$adaptor\", \"$amp_operator\", \"$barcode\", \"$barcode_index\", \"$dataset_id\", 
+//       \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
+//       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
+//     ";
+    
+    /* Upload metadata only from run_info_upload step for now
+     * 
++adaptor
++amp_operator
++barcode
++barcode_index
++dataset_id
++dna_region_id
+file_prefix
+insert_size
+lane
+overlap
+primer_suite_id
+project_id
+read_length
+run_id
+run_key_id
+seq_operator
+tubelabel
+
+     * 
+     * */
+//     if (
+//     		($adaptor         == "") ||
+//     		($amp_operator    == "") ||
+//     		($barcode         == "") ||
+//     		($barcode_index   == "") ||
+//     		($dataset_id      == 0)  ||
+//     		($dna_region_id   == 0)  ||
+//     		($file_prefix     == "") ||
+//     		($insert_size     == "") ||
+//     		($lane            == "") ||
+//     		($overlap         == "") ||
+//     		($primer_suite_id == 0)  ||
+//     		($project_id      == 0)  ||
+//     		($read_length     == "") ||
+//     		($run_id          == 0)  ||
+//     		($run_key_id      == 0)  ||
+//     		($seq_operator    == "") ||
+//     		($tubelabel       == "")
+//     )
+//     {
+//     	print_blue_message("One of the follow field is empty:
+//     	run_key_id      = $run_key_id,<br/>
+//     	run_id          = $run_id,<br/>
+//     	lane            = $lane,<br/>
+//     	dataset_id      = $dataset_id,<br/>
+//     	project_id      = $project_id,<br/>
+//     	tubelabel       = $tubelabel,<br/>
+//     	barcode         = $barcode,<br/>
+//     	adaptor         = $adaptor,<br/>
+//     	dna_region_id   = $dna_region_id,<br/>
+//     	amp_operator    = $amp_operator,<br/>
+//     	seq_operator    = $seq_operator,<br/>
+//     	barcode_index   = $barcode_index,<br/>
+//     	overlap         = $overlap,<br/>
+//     	insert_size     = $insert_size,<br/>
+//     	file_prefix     = $file_prefix,<br/>
+//     	read_length     = $read_length,<br/>
+//     	primer_suite_id = $primer_suite_id,<br/>
+//     	");
+//     }
+//     else
+//     {
+// //     print_out($insert_metadata_query);
+//     	 $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
+//     }
    
     if ($new_run_info_ill_id)
     {

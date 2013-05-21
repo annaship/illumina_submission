@@ -1,5 +1,5 @@
 <?php 
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; metadata_csv_show_table");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; metadata_csv_show_table");
 
 // print "\$_POST:";
 // print_out($_POST);
@@ -54,11 +54,6 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 [funding] => [num_of_tubes] => 6 [date_initial] => 2012-03-13 [date_updated] => 2012-03-13 [locked] => 1 ) ) --
 */		  $row_num = 0;
           foreach ($csv_metadata as $csv_metadata_row) {
-//           	print_red_message("\$csv_metadata_row");
-//           	print_out($csv_metadata_row);
-//           	print_red_message("\$vamps_submissions_arr");
-//           	print_out($vamps_submissions_arr);
-          	
               $selected_adaptor				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
 //               print_red_message("\$selected_adaptor = $selected_adaptor");
               $selected_amp_operator		= $csv_metadata_row["op_amp"];
@@ -84,7 +79,6 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               }
               $selected_tubelabel			= $csv_metadata_row["tube_label"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
-              
 //            dinamically add row number to any field name
               $row_num++;
               
@@ -96,6 +90,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
   <input type="submit" name="update" id="form_update_from_csv" value="Create submission metadata file"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="subm_metadata_upload_process" value="1">
+              print_blue_message("HERE02");
   
   </div>
 </form>

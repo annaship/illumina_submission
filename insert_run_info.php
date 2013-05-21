@@ -21,8 +21,9 @@ if ($_SESSION['is_local'])
 // 	print_blue_message("\$docroot = " . $docroot . "; \$path_to_csv = " . $path_to_csv);
 // 	print_out($_SESSION);
 // 	print_out($_SERVER);
-	$path_to_csv = $docroot . "/";
+// 	$path_to_csv = $docroot . "/";
 }	
+
 foreach (array_unique($lane_dom_names) as $lane_dom_name)
 {
 // 	print_blue_message("FROM insert_run_info");

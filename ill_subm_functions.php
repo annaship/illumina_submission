@@ -847,7 +847,6 @@ function create_csv_file($csv_data, $file_name) {
 //   set_error_handler("E_ALL");
   $fp = fopen($file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
-  
 
   foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
@@ -855,7 +854,6 @@ function create_csv_file($csv_data, $file_name) {
   fclose($fp);
   chmod($file_name, 0664);
   return $fp;
-  
 }
 
 function create_csv_name($rundate, $lane_name)
@@ -885,7 +883,9 @@ function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
     {
       $query = "SELECT * FROM " . $db_name . ".vamps_submissions WHERE
         submit_code = \"" . $submit_code. "\"";
+      
       $row = get_one_value($query, $db_name, $connection);
+      
       $vamps_submissions_arr[$submit_code] = $row;
       
     }

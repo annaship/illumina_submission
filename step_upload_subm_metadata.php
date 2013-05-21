@@ -81,7 +81,7 @@
   	include_once 'step_subm_metadata_csv_show_table.php';
   }  
   //4) create csv
-  
+//   phpinfo();
   if ($_SERVER["REQUEST_METHOD"] == "POST" && 
   (
 	(isset($_POST["subm_metadata_upload_process"])         && $_POST["subm_metadata_upload_process"] == 1)
