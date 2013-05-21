@@ -21,10 +21,13 @@
     $db_name    = "test";
   }
 
-//   print_red_message("From insert_metadata");
+  print_red_message("From insert_metadata");
   
-// print_red_message("\$result_metadata_arr");
-// print_out($result_metadata_arr);
+print_red_message("\$result_metadata_arr = ");
+print_out($result_metadata_arr);
+print_red_message("\$_SESSION[\"run_info\"] = ");
+print_out($_SESSION["run_info"]);
+
   foreach ($result_metadata_arr as $row_num => $metadata_arr)
   {
 
@@ -38,7 +41,6 @@
     $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection);
 //     CAGATC_NNNNGACTC_4
     $file_prefix      = $metadata_arr["barcode_index"] . "_NNNN" . $metadata_arr["run_key"] . "_" . $metadata_arr["lane"];
-    print_blue_message($file_prefix);
     $insert_size 	  = $_SESSION["run_info"]["insert_size"];
     $lane 			  = $metadata_arr["lane"];
     $overlap 		  = $_SESSION["run_info"]["overlap"];
@@ -127,7 +129,7 @@ tubelabel
 //     else
 //     {
 // //     print_out($insert_metadata_query);
-//     	$new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
+//     	 $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
 //     }
    
     if ($new_run_info_ill_id)

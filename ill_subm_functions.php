@@ -883,7 +883,9 @@ function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
     {
       $query = "SELECT * FROM " . $db_name . ".vamps_submissions WHERE
         submit_code = \"" . $submit_code. "\"";
+      
       $row = get_one_value($query, $db_name, $connection);
+      
       $vamps_submissions_arr[$submit_code] = $row;
       
     }
