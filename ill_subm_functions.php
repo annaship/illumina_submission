@@ -1032,6 +1032,7 @@ function get_overlap_script_name($machine_name)
 	}
 	return $overlap_script_name;
 }
-
-
+function add_env454_mysql_call($query) {
+	return "mysql -h newbpcdb2 env454 -e '" . $query . "'";
+}
 ?>

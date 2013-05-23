@@ -1,7 +1,7 @@
 <?php include_once("ill_subm_beginning.php"); ?>
 <?php
   	include_once("ill_subm_functions.php");
-  	include_once "ill_subm_filled_variables.php";
+  	include_once("ill_subm_filled_variables.php");
 ?>
 
       <h1>Illumina files processing</h1>
@@ -106,10 +106,9 @@ DELETE
 
 		*/
 		
-
-		print_green_message($query_del_sequence_pdr_info_ill);	
+		print_green_message(add_env454_mysql_call($query_del_sequence_pdr_info_ill));
 		echo "<br/>";
-		print_green_message($query_del_run_info_ill);
+		print_green_message(add_env454_mysql_call($query_del_run_info_ill));
 		echo "<br/>";
 		echo "<br/>";
   		
@@ -127,7 +126,7 @@ WHERE sequence_pdr_info_ill_id IS NULL;
 		";
 if ($query_del_sequence_pdr_info_ill != "" AND $query_del_run_info_ill != "")
 {
-	print_green_message($query_clean_rest);
+	print_green_message(add_env454_mysql_call($query_clean_rest));
 }
 	?>
 </div>
