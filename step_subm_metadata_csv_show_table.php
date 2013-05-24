@@ -3,11 +3,16 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; metadata_csv_show_table");
 
 // print "\$_POST:";
 // print_out($_POST);
-// // print "\$_SERVER:";
-// // print_out($_SERVER);
+// print "\$_SERVER:";
+// print_out($_SERVER);
 // print "\$_SESSION:";
 // print_out($_SESSION);
+// print "\$contact:";
+// print_out($contact);
 
+
+
+$combined_metadata = combine_metadata($_SESSION, $contact, $domains_array);
 
 if (isset($_SESSION["csv_content"])) {
 	$csv_metadata = $_SESSION["csv_content"];
@@ -90,7 +95,6 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
   <input type="submit" name="update" id="form_update_from_csv" value="Create submission metadata file"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
   <input type="hidden" name="subm_metadata_upload_process" value="1">
-              print_blue_message("HERE02");
   
   </div>
 </form>

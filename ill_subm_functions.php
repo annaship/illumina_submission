@@ -198,7 +198,7 @@ function get_one_value($query, $db_name, $connection)
 //     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
   }
-  	error_reporting(E_ERROR | E_WARNING | E_PARSE);
+//   	error_reporting(E_ERROR | E_WARNING | E_PARSE);
     return $row;
 }
 
@@ -846,7 +846,7 @@ function create_csv_file($csv_data, $file_name) {
   set_error_handler("customError", E_USER_ERROR);
 //   set_error_handler("E_ALL");
   $fp = fopen($file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
-  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  error_reporting(E_ERROR | E_PARSE);
 
   foreach ($csv_data as $fields) {
     fputcsv($fp, $fields);
@@ -939,6 +939,9 @@ function get_val_from_arr($array, $field_name)
 
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
+	print_blue_message($domain);
+	print_blue_message($dna_region);
+	
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$db_name = "test";
@@ -1032,7 +1035,62 @@ function get_overlap_script_name($machine_name)
 	}
 	return $overlap_script_name;
 }
+
 function add_env454_mysql_call($query) {
 	return "mysql -h newbpcdb2 env454 -e '" . $query . "'";
 }
+
+function combine_metadata($session, $contact, $domains_array) {
+	$num = 0;
+	$combined_metadata = "";
+	print_blue_message("FROM combine_metadata function");
+	print_blue_message("\$session: ");
+	print_out($session);
+	
+	if (isset($session["csv_content"])) {
+		$csv_metadata = $session["csv_content"];
+	}
+	if (isset($session["vamps_submissions_arr"])) {
+		$vamps_submissions_arr = $session["vamps_submissions_arr"];
+	}
+	
+	foreach ($csv_metadata as $csv_metadata_row) {
+		
+		$combined_metadata[$num]["adaptor"]				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
+		//               print_red_message("\$selected_$combined_metadata[$num]["$selected_adaptor");
+		$combined_metadata[$num]["amp_operator"]		= $csv_metadata_row["op_amp"];
+		$combined_metadata[$num]["barcode"]				= $csv_metadata_row["barcode"];
+		$combined_metadata[$num]["barcode_index"]		= $csv_metadata_row["barcode_index"];
+		$combined_metadata[$num]["user"]   			    = $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"];
+		$combined_metadata[$num]["data_owner"]			= $contact[$vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"]];
+		$combined_metadata[$num]["dataset"]				= $csv_metadata_row["dataset_name"];
+		$combined_metadata[$num]["dataset_description"]	= $csv_metadata_row["tube_description"];
+		$combined_metadata[$num]["domain"]				= get_domain_from_csv_data($csv_metadata_row["domain"], $domains_array);
+		$combined_metadata[$num]["env_source_name"]		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["environment"];
+		$combined_metadata[$num]["funding"]				= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["funding"];
+		$combined_metadata[$num]["lane"]				= $csv_metadata_row["lane"];
+		$combined_metadata[$num]["project"]				= $csv_metadata_row["project_name"];
+		$combined_metadata[$num]["project_description"]	= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_description"];
+		if (isset($vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"]))
+		{
+			$combined_metadata[$num]["project_title"]		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"];
+		}
+		if (isset($csv_metadata_row["run_key"]))
+		{
+			$combined_metadata[$num]["run_key"]				= $csv_metadata_row["run_key"];
+		}
+		$combined_metadata[$num]["tubelabel"]			= $csv_metadata_row["tube_label"];
+		$combined_metadata[$num]["submit_code"]			= $csv_metadata_row["submit_code"];
+		$combined_metadata[$num]["tube_description"]    = $csv_metadata_row["tube_description"];
+		$combined_metadata[$num]["op_empcr"]			= $csv_metadata_row["op_empcr"];
+		
+		
+		$num += 1;
+	}
+	
+	print_blue_message("\$combined_metadata");
+	print_out($combined_metadata);
+	
+}
+
 ?>
