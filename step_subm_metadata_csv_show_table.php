@@ -11,8 +11,22 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; metadata_csv_show_table");
 // print_out($contact);
 
 
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+{
+	$connection = $local_mysqli;
+	$db_name    = "test";
+}
+else
+{
+	$connection = $newbpc2_connection;
+	$db_name    = "env454";
+	//     $connection = $vampsdev_connection;
+	//     $db_name    = "test";
+}
 
-$combined_metadata = combine_metadata($_SESSION, $contact, $domains_array);
+$combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
+print_blue_message("\$combined_metadata");
+print_out($combined_metadata);
 
 if (isset($_SESSION["csv_content"])) {
 	$csv_metadata = $_SESSION["csv_content"];
