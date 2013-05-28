@@ -15,7 +15,7 @@ $lanes = $domains = array();
 $metadata_csv_good_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", "data_owner", 
         "dataset", "dataset_description", "dna_region", "email", "env_sample_source_id", "first_name", 
         "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
-        "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel"); 
+        "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tube_label"); 
 
 // print_blue_message("\$result_metadata_arr");
 // print_out($result_metadata_arr);
@@ -73,7 +73,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
   $data_for_csv["run"]  		 		= $_SESSION["run_info"]["rundate"];
   $data_for_csv["run_key"] 	     	    = "NNNN" . $metadata_arr["run_key"];
   $data_for_csv["seq_operator"]  		= $_SESSION["run_info"]["seq_operator"];
-  $data_for_csv["tubelabel"] 	 		= $metadata_arr["tubelabel"];
+  $data_for_csv["tube_label"] 	 		= $metadata_arr["tube_label"];
 
   $lanes[] = $data_for_csv["lane"];
   $data_all[] = $data_for_csv;
@@ -86,7 +86,7 @@ foreach ($result_metadata_arr as $row_num => $metadata_arr)
 $table_headers = array("adaptor", "amp_operator", "barcode", "barcode_index", 
     "data_owner", "dataset", "dataset_description", "dna_region", "email", "env_sample_source_id", 
     "first_name", "funding", "insert_size", "institution", "lane", "last_name", "overlap", "primer_suite", 
-    "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tubelabel");
+    "project", "project_description", "project_title", "read_length", "run", "run_key", "seq_operator", "tube_label");
 
 array_unshift($data_all, $table_headers);
 $csv_data = array_to_scv($data_all, false);

@@ -81,7 +81,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               $selected_project_description	= $metadata_row["project_description"];
               $metadata_row["title"];
 			  $selected_run_key				= $metadata_row["runkey"];              
-              $selected_tubelabel			= $metadata_row["tubelabel"];
+              $selected_tube_label			= $metadata_row["tube_label"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
 //            dinamically add row number to any field name
               $row_num++;

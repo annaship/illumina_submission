@@ -14,7 +14,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	$selected_lane = $selected_data_owner = $selected_run_key = 
 	$selected_barcode_index = $selected_project = $selected_dataset = 
 	$selected_dataset_description = $selected_env_source_name = 
-	$selected_tubelabel = $selected_barcode = $selected_adaptor = 
+	$selected_tube_label = $selected_barcode = $selected_adaptor = 
 	$selected_amp_operator = $selected_project_title = 
 	$selected_project_description = $selected_funding = "";
 
@@ -25,7 +25,7 @@ $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A");
 $domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea");
     
 $arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
-    "tubelabel", "barcode", "amp_operator");
+    "tube_label", "barcode", "amp_operator");
 
 $project_form_fields = array(
     "project_name1" => "required", "project_name2" => "required", "domain" => "select",
@@ -36,7 +36,7 @@ $project_form_fields = array(
 $submission_metadata_form_fields = array("domain"=> "required", "lane"=> "required", "data_owner"=> "required", 
     "run_key"=> "select", "barcode_index"=> "select", "adaptor"=> "required", "project"=> "required", 
     "dataset"=> "required", "dataset_description"=> "optional", "env_source_name"=> "required",
-    "tubelabel"=> "optional", "barcode"=> "optional", "amp_operator"=> "required");
+    "tube_label"=> "optional", "barcode"=> "optional", "amp_operator"=> "required");
 
 $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "required",  "read_length" => "required");
 // ---
@@ -130,7 +130,7 @@ $project = get_all_projects($connection, $db_name);
 
 // ---
 
-$arr_fields_add = array("tubelabel", "barcode", "amp_operator");
+$arr_fields_add = array("tube_label", "barcode", "amp_operator");
 
 $arr_fields_run = array("seq_operator", "insert_size", "read_length");
 // ---

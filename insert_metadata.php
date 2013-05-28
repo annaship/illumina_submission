@@ -4,7 +4,7 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
   $dna_region_id = $file_prefix = $insert_size = $lane = $overlap = $primer_suite_id = ""; 
-  $project_id = $read_length = $run_id = $run_key_id = $seq_operator = $tubelabel = "";
+  $project_id = $read_length = $run_id = $run_key_id = $seq_operator = $tube_label = "";
 
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))  
   {
@@ -157,10 +157,10 @@ $insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tube
 //     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
 //       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
 //         dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
-//         project_id, read_length, run_id, run_key_id, seq_operator, tubelabel)
+//         project_id, read_length, run_id, run_key_id, seq_operator, tube_label)
 //       VALUES (\"$adaptor\", \"$amp_operator\", \"$barcode\", \"$barcode_index\", \"$dataset_id\", 
 //       \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
-//       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
+//       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tube_label\")
 //     ";
     
     /* Upload metadata only from run_info_upload step for now
@@ -181,7 +181,7 @@ read_length
 run_id
 run_key_id
 seq_operator
-tubelabel
+tube_label
 
      * 
      * */
@@ -202,7 +202,7 @@ tubelabel
 //     		($run_id          == 0)  ||
 //     		($run_key_id      == 0)  ||
 //     		($seq_operator    == "") ||
-//     		($tubelabel       == "")
+//     		($tube_label       == "")
 //     )
 //     {
 //     	print_blue_message("One of the follow field is empty:
@@ -211,7 +211,7 @@ tubelabel
 //     	lane            = $lane,<br/>
 //     	dataset_id      = $dataset_id,<br/>
 //     	project_id      = $project_id,<br/>
-//     	tubelabel       = $tubelabel,<br/>
+//     	tube_label      = $tube_label,<br/>
 //     	barcode         = $barcode,<br/>
 //     	adaptor         = $adaptor,<br/>
 //     	dna_region_id   = $dna_region_id,<br/>
