@@ -426,19 +426,19 @@ function valid_is_number($field_name)
   return $isValid;
 }
 
-function get_run_key_by_adaptor($selected_arr, $adaptors_full, $selected_dna_region_base)
+function get_run_key_by_adaptor($selected_adaptor, $selected_domain, $adaptors_full, $selected_dna_region_base)
 {
   $return_array = array(); 
+
+//   $selected_adaptor = A01
+//   $selected_domain = Bacteria
+//   $selected_dna_region_base = v6
   
-// TODO: return selected run_key, barcode_index 
-  $selected_adaptor    = strtolower($selected_arr["adaptor"]);
-  $selected_dna_region = strtolower($selected_dna_region_base);
-  $selected_domain     = strtolower($selected_arr["domain"]);
   foreach ($adaptors_full as $adaptors_arr)
   {
-    if (($selected_adaptor    == strtolower($adaptors_arr["illumina_adaptor"]))
-     && ($selected_dna_region == strtolower($adaptors_arr["dna_region"]))
-     && ($selected_domain     == strtolower($adaptors_arr["domain"]))) 
+    if ((strtolower($selected_adaptor)         == strtolower($adaptors_arr["illumina_adaptor"]))
+     && (strtolower($selected_dna_region_base) == strtolower($adaptors_arr["dna_region"]))
+     && (strtolower($selected_domain)          == strtolower($adaptors_arr["domain"]))) 
     {
       $return_array["illumina_run_key"] = $adaptors_arr["illumina_run_key"];
       $return_array["illumina_index"]   = $adaptors_arr["illumina_index"];    
@@ -1040,10 +1040,13 @@ function add_env454_mysql_call($query) {
 	return "mysql -h newbpcdb2 env454 -e '" . $query . "'";
 }
 
-function combine_metadata($session, $contact, $domains_array, $db_name, $connection) {
+function combine_metadata($session, $contact, $domains_array, $adaptors_full, $db_name, $connection) {
 	$num = 0;
 	$combined_metadata = "";
-  
+// 	include 'ill_subm_filled_variables.php';
+// 	print_blue_message("adaptors_full from func = ");
+// 	print_out($adaptors_full);
+	
   // 	print_blue_message("FROM combine_metadata function");
 // 	print_blue_message("\$session: ");
 // 	print_out($session);
@@ -1051,68 +1054,73 @@ function combine_metadata($session, $contact, $domains_array, $db_name, $connect
 	foreach ($session["csv_content"] as $csv_metadata_row) {
 // 		print_blue_message("\$csv_metadata_row = ");
 // 		print_out($csv_metadata_row);
+// 				print_blue_message("\$_SESSION[\"run_info\"][\"dna_region_0\"] = ");
+// 				print_out($_SESSION["run_info"]["dna_region_0"]);
+		
+		if (check_var($_SESSION["run_info"]["dna_region_0"]))
+		{
+			$selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);
+		}
+// 		print_blue_message("\$csv_metadata_row = ");
+// 		print_out($csv_metadata_row);
+// 		print_blue_message("\$adaptors_full = ");
+// 		print_out($adaptors_full);
+// 		print_blue_message("\$selected_dna_region_base = ");
+// 		print_out($selected_dna_region_base);
+		
+		$key_ind = get_run_key_by_adaptor(add_zero(strtoupper($csv_metadata_row["adaptor"])), get_domain_from_csv_data($csv_metadata_row["domain"], $domains_array), $adaptors_full, $selected_dna_region_base);
+				print_blue_message("\$key_ind = ");
+				print_out($key_ind);
+		
 		$combined_metadata[$num]["adaptor"]				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
-		//               print_red_message("\$selected_$combined_metadata[$num]["$selected_adaptor");
 		$combined_metadata[$num]["amp_operator"]		= $csv_metadata_row["op_amp"];
 		$combined_metadata[$num]["barcode"]				= $csv_metadata_row["barcode"];
-		$combined_metadata[$num]["barcode_index"]		= $csv_metadata_row["barcode_index"];
-		$combined_metadata[$num]["user"]   			    = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"];
+		$combined_metadata[$num]["barcode_index"] 		= $key_ind["illumina_index"];
 		$combined_metadata[$num]["data_owner"]			= $contact[$session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"]];
 		$combined_metadata[$num]["dataset"]				= $csv_metadata_row["dataset_name"];
-		$combined_metadata[$num]["dataset_id"] 	        = get_id($csv_metadata_row, "dataset_name", $db_name, $connection);
-		
 		$combined_metadata[$num]["dataset_description"]	= $csv_metadata_row["tube_description"];
+		$combined_metadata[$num]["dataset_id"] 	        = get_id($csv_metadata_row, "dataset_name", $db_name, $connection);
+		$combined_metadata[$num]["date_initial"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["date_initial"];
+		$combined_metadata[$num]["date_updated"]        = date("Y-m-d");
+		$combined_metadata[$num]["dna_region"] 	  		= $session["run_info"]["dna_region_0"];
+		$combined_metadata[$num]["dna_region_id"]     	= get_id($session['run_info'], "dna_region_0", $db_name, $connection);
 		$combined_metadata[$num]["domain"]				= get_domain_from_csv_data($csv_metadata_row["domain"], $domains_array);
-		//$domain           = $csv_metadata_row["domain"];
+		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
+// 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
+		$combined_metadata[$num]["env_source_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["env_source_id"];
 		$combined_metadata[$num]["env_source_name"]		= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["environment"];
-		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
-		
+		$combined_metadata[$num]["file_prefix"]      	= $key_ind["illumina_index"] . "_NNNN" . $key_ind["illumina_run_key"] . "_" . $csv_metadata_row["lane"];
+		$combined_metadata[$num]["first_name"]          = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["first_name"];
 		$combined_metadata[$num]["funding"]				= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["funding"];
+		$combined_metadata[$num]["id"]                  = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
+		$combined_metadata[$num]["insert_size"] 	  	= $session["run_info"]["insert_size"];
+		$combined_metadata[$num]["institution"]         = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["institution"];
 		$combined_metadata[$num]["lane"]				= $csv_metadata_row["lane"];
+		$combined_metadata[$num]["last_name"]           = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["last_name"];
+		$combined_metadata[$num]["locked"]              = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["locked"];
+		$combined_metadata[$num]["num_of_tubes"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["num_of_tubes"];
+		$combined_metadata[$num]["op_empcr"]			= $csv_metadata_row["op_empcr"];
+		$combined_metadata[$num]["overlap"] 		  	= $session["run_info"]["overlap"];
+		$combined_metadata[$num]["primer_suite"]     	= get_primer_suite_name($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"]);
+		$combined_metadata[$num]["primer_suite_id"]  	= get_primer_suite_id($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"], $db_name, $connection);
 		$combined_metadata[$num]["project"]				= $csv_metadata_row["project_name"];
-		$combined_metadata[$num]["project_description"]	= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_description"];
 		if (isset($session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_title"]))
 		{
 			$combined_metadata[$num]["project_title"]		= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_title"];
 		}
-		if (isset($csv_metadata_row["run_key"]))
-		{
-			$combined_metadata[$num]["run_key"]				= $csv_metadata_row["run_key"];
-		}
-		$combined_metadata[$num]["tubelabel"]			= $csv_metadata_row["tube_label"];
-		$combined_metadata[$num]["submit_code"]			= $csv_metadata_row["submit_code"];
-		$combined_metadata[$num]["tube_description"]    = $csv_metadata_row["tube_description"];
-		$combined_metadata[$num]["op_empcr"]			= $csv_metadata_row["op_empcr"];
-		$combined_metadata[$num]["dna_region"] 	  		= $session["run_info"]["dna_region_0"];
-		$combined_metadata[$num]["dna_region_id"]     	= get_id($session['run_info'], "dna_region_0", $db_name, $connection);
-		$combined_metadata[$num]["file_prefix"]      	= $csv_metadata_row["barcode_index"] . "_NNNN" . $csv_metadata_row["runkey"] . "_" . $csv_metadata_row["lane"];
-		$combined_metadata[$num]["insert_size"] 	  	= $session["run_info"]["insert_size"];
-		
-		$combined_metadata[$num]["overlap"] 		  	= $session["run_info"]["overlap"];
-		$combined_metadata[$num]["primer_suite"]     	= get_primer_suite_name($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"]);
-		$combined_metadata[$num]["primer_suite_id"]  	= get_primer_suite_id($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"], $db_name, $connection);
+		$combined_metadata[$num]["project_description"]	= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_description"];
 		$combined_metadata[$num]["project_id"]       	= get_id($csv_metadata_row, "project_name", $db_name, $connection);
 		$combined_metadata[$num]["read_length"] 	  	= $session["run_info"]["read_length"];
 		$combined_metadata[$num]["run_id"] 		  		= get_id($session["run_info"], "run", $db_name, $connection);
-		$combined_metadata[$num]["run_key_id"] 	  		= get_id($csv_metadata_row, "runkey", $db_name, $connection);
-		$combined_metadata[$num]["runkey"] 		  		= $csv_metadata_row["runkey"];
+		$combined_metadata[$num]["runkey"]       		= $key_ind["illumina_run_key"];
+		$combined_metadata[$num]["runkey_id"] 	  		= get_id($csv_metadata_row, "runkey", $db_name, $connection);
 		$combined_metadata[$num]["seq_operator"] 	  	= $session["run_info"]["seq_operator"];
-		$combined_metadata[$num]["date_updated"]        = date("Y-m-d");
-		$combined_metadata[$num]["id"]                  = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
-		$combined_metadata[$num]["last_name"]           = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["last_name"];
-		$combined_metadata[$num]["first_name"]          = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["first_name"];
-		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
-		$combined_metadata[$num]["institution"]         = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["institution"];
+		$combined_metadata[$num]["submit_code"]			= $csv_metadata_row["submit_code"];
 		$combined_metadata[$num]["temp_project"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["temp_project"];
 		$combined_metadata[$num]["title"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["title"];
-		
-		$combined_metadata[$num]["env_source_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["env_source_id"];
-		
-		$combined_metadata[$num]["num_of_tubes"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["num_of_tubes"];
-		$combined_metadata[$num]["date_initial"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["date_initial"];
-		$combined_metadata[$num]["locked"]              = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["locked"];
-			
-		
+		$combined_metadata[$num]["tube_description"]    = $csv_metadata_row["tube_description"];
+		$combined_metadata[$num]["tube_label"]			= $csv_metadata_row["tube_label"];
+		$combined_metadata[$num]["user"]   			    = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"];
 		$num += 1;
 	}
 	
