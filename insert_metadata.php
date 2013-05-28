@@ -1,5 +1,5 @@
 <?php
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
@@ -19,7 +19,7 @@
   	//     $db_name    = "test";  
   }
     
-  $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
+//   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
   print_blue_message("\$combined_metadata");
   print_out($combined_metadata);
   

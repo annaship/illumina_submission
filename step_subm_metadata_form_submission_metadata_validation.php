@@ -1,5 +1,5 @@
 <?php
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_metadata_validation");
 
 include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
@@ -9,14 +9,15 @@ include_once("ill_subm_functions.php");
 $metadata_errors     = array();
 $metadata_errors_all = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
-$result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
+// $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
+// print_blue_message("\$_POST");
 // print_out($_POST);
 
 // remove array #0 == check_submission
-if (sizeof($result_metadata_arr) > 1 && isset($_POST["submission_metadata_process"]) && ($_POST["submission_metadata_process"] == 1))
-{
-  $result_metadata_arr_0 = array_shift($result_metadata_arr);
-}
+// if (sizeof($combined_metadata) > 1 && isset($_POST["submission_metadata_process"]) && ($_POST["submission_metadata_process"] == 1))
+// {
+//   $result_metadata_arr_0 = array_shift($result_metadata_arr);
+// }
   
 // TODO: 1) validate all data in foreach $result_metadata_arr
 // TODO: 2) populate index and runkey by adapter
@@ -34,15 +35,15 @@ array_push($required_fields, "funding", "project_description");
 //   print_blue_message("FROM valid1");
 //   print_out($result_metadata_arr);
 
-foreach ($result_metadata_arr as $result_metadata_arr1)
+foreach ($combined_metadata as $combined_metadata_row)
 {
-// 	print_blue_message("\$result_metadata_arr1");
-// 	print_out($result_metadata_arr1);
+// 	print_blue_message("\$combined_metadata_row");
+// 	print_out($combined_metadata_row);
 	
-  $metadata_errors = check_required_fields($result_metadata_arr1, $required_fields);
+  $metadata_errors = check_required_fields($combined_metadata_row, $required_fields);
   
   $field_name = "lane";
-    if( isset($result_metadata_arr1[$field_name]) && !valid_is_number($result_metadata_arr1[$field_name]))
+    if( isset($combined_metadata_row[$field_name]) && !valid_is_number($combined_metadata_row[$field_name]))
   {
     $metadata_errors[$field_name] = "The " . $field_name . " should be numbers.";
   }
@@ -50,18 +51,19 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
   
 
   // 2) populate index and runkey by adapter
-  if (check_var($_SESSION["run_info"]["dna_region_0"]))
-  {
-    $selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);      
-  }
+//   if (check_var($_SESSION["run_info"]["dna_region_0"]))
+//   {
+//     $selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);      
+//   }
   
-  $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
+//   $key_ind = get_run_key_by_adaptor($combined_metadata_row, $adaptors_full, $selected_dna_region_base);
 
 
-  $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
-  $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
-  $selected_metadata_arr[] = $result_metadata_arr1;
-    
+//   $combined_metadata_row["runkey"]       = $key_ind["illumina_run_key"];
+//   $combined_metadata_row["barcode_index"] = $key_ind["illumina_index"];    
+//   $selected_metadata_arr[] = $combined_metadata_row;
+//   print_blue_message("\$combined_metadata_row");
+//   print_out($combined_metadata_row);
 }
 // check for errors
 $all_errors_uniq       = flat_mult_array($metadata_errors_all);
@@ -93,7 +95,8 @@ if($metadata_errors_count == 0)
 {
 // 	TODO: change env_id and data_owner 
   $result_metadata_arr = $selected_metadata_arr;
-
+  print_blue_message("\$result_metadata_arr");
+  print_out($result_metadata_arr);
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';
 //   print_blue_message("FROM valid1");

@@ -24,8 +24,10 @@ else
 	//     $db_name    = "test";
 }
 
-$combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
-
+// $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
+// //   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
+// print_blue_message("\$combined_metadata");
+// print_out($combined_metadata);
 ?>
 <form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
 <div id="subm_metadata_upload">

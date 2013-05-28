@@ -70,7 +70,8 @@
       <br />
       
   <?php
-      
+  $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $db_name, $connection);
+  
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
   		&& !(isset($_POST["subm_metadata_upload_process"]) && $_POST["subm_metadata_upload_process"] == 1)
@@ -78,6 +79,8 @@
 		&& sizeof($_POST)
 	)
   {
+  	//   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
+  	 
   	include_once 'step_subm_metadata_csv_show_table.php';
   }  
   //4) create csv
