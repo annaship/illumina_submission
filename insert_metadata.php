@@ -1,5 +1,5 @@
 <?php
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
@@ -20,7 +20,7 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
   }
     
 
-  print_red_message("From insert_metadata");
+//   print_red_message("From insert_metadata");
   
 // print_red_message("\$result_metadata_arr = ");
 // print_out($result_metadata_arr);
@@ -227,8 +227,8 @@ tubelabel
 // //     print_out($insert_metadata_query);
 //     	 $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
 //     }
-    print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
-    print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
+//     print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
+//     print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
     
     if ($new_run_info_ill_id)
     {

@@ -939,8 +939,8 @@ function get_val_from_arr($array, $field_name)
 
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
-	print_blue_message($domain);
-	print_blue_message($dna_region);
+// 	print_blue_message($domain);
+// 	print_blue_message($dna_region);
 	
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
@@ -1049,8 +1049,8 @@ function combine_metadata($session, $contact, $domains_array, $db_name, $connect
 // 	print_out($session);
 	
 	foreach ($session["csv_content"] as $csv_metadata_row) {
-		print_blue_message("\$csv_metadata_row = ");
-		print_out($csv_metadata_row);
+// 		print_blue_message("\$csv_metadata_row = ");
+// 		print_out($csv_metadata_row);
 		$combined_metadata[$num]["adaptor"]				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
 		//               print_red_message("\$selected_$combined_metadata[$num]["$selected_adaptor");
 		$combined_metadata[$num]["amp_operator"]		= $csv_metadata_row["op_amp"];
