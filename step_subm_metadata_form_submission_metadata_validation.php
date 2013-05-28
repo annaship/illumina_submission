@@ -8,7 +8,6 @@ include_once("ill_subm_functions.php");
 
 $metadata_errors     = array();
 $metadata_errors_all = array();
-$result_metadata_arr_checked = $selected_metadata_arr = array();
 // $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
 // print_blue_message("\$_POST");
 // print_out($_POST);
@@ -43,7 +42,7 @@ foreach ($combined_metadata as $combined_metadata_row)
   $metadata_errors = check_required_fields($combined_metadata_row, $required_fields);
   
   $field_name = "lane";
-    if( isset($combined_metadata_row[$field_name]) && !valid_is_number($combined_metadata_row[$field_name]))
+  if( isset($combined_metadata_row[$field_name]) && !valid_is_number($combined_metadata_row[$field_name]))
   {
     $metadata_errors[$field_name] = "The " . $field_name . " should be numbers.";
   }
@@ -94,9 +93,9 @@ include_once "step_subm_metadata_form_metadata_table_selected.php";
 if($metadata_errors_count == 0)
 {
 // 	TODO: change env_id and data_owner 
-  $result_metadata_arr = $selected_metadata_arr;
-  print_blue_message("\$result_metadata_arr");
-  print_out($result_metadata_arr);
+//   $result_metadata_arr = $combined_metadata_row;
+//   print_blue_message("\$result_metadata_arr");
+//   print_out($result_metadata_arr);
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';
 //   print_blue_message("FROM valid1");

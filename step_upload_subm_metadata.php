@@ -16,7 +16,7 @@
 </div>
 
 <?php 
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata");
 
 // print_blue_message("\$_POST");
 // print_out($_POST);

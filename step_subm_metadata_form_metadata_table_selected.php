@@ -24,7 +24,7 @@
         <tbody>   
           <?php
           $row_num = 0;
-          foreach ($selected_metadata_arr as $num_key => $selected_metadata_arr1)
+          foreach ($combined_metadata as $num_key => $selected_metadata_arr1)
           {
             if(isset($selected_metadata_arr1["domain"]))
             {

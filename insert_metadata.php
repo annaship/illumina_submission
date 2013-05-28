@@ -1,10 +1,10 @@
 <?php
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
   $dna_region_id = $file_prefix = $insert_size = $lane = $overlap = $primer_suite_id = ""; 
-  $project_id = $read_length = $run_id = $run_key_id = $seq_operator = $tube_label = "";
+  $project_id = $read_length = $run_id = $run_key_id = $seq_operator = $tubelabel = "";
 
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))  
   {
@@ -20,8 +20,8 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
   }
     
 //   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
-  print_blue_message("\$combined_metadata");
-  print_out($combined_metadata);
+//   print_blue_message("\$combined_metadata");
+//   print_out($combined_metadata);
   
 //   print_red_message("From insert_metadata");
   
@@ -67,7 +67,7 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 //     $runkey 		  = $csv_content_arr["runkey"];
 //     $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
 //     $submit_code      = $csv_content_arr["submit_code"];
-//     $tube_label 		  = $csv_content_arr["tube_label"];
+//     $tubelabel 		  = $csv_content_arr["tubelabel"];
 //     $tube_description = $csv_content_arr["tube_description"];
     
 //   TODO: data_owner print by project, not choose
@@ -113,7 +113,7 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
     
 $insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes
   SET
-    tube_label = \"$tube_label\",
+    tubelabel = \"$tubelabel\",
     tube_description = \"$tube_description\",
     domain = \"$domain\",
     primer_suite = \"$primer_suite\",
@@ -138,13 +138,13 @@ $insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tube
     
     
 //     $insert_metadata_query2 = "UPDATE " . $db_name . ".vamps_submissions_tubes
-//     	(tube_number, tube_label, tube_description, duplicate, domain,
+//     	(tube_number, tubelabel, tube_description, duplicate, domain,
 //     		primer_suite, dna_region, project_name, dataset_name, runkey, 
 //     		barcode, pool, lane, direction, platform, op_amp, op_seq, 
 //     		op_empcr, enzyme, rundate, adaptor, date_initial, date_updated,
 //     		on_vamps, sample_received, concentration, quant_method, overlap, 
 //     		insert_size, barcode_index, file_prefix, read_length, trim_distal)
-// 		VALUES(\"$tube_number\", \"$tube_label\", \"$tube_description\", \"$duplicate\", \"$domain\",
+// 		VALUES(\"$tube_number\", \"$tubelabel\", \"$tube_description\", \"$duplicate\", \"$domain\",
 // 			\"$primer_suite\", \"$dna_region\", \"$project_name\", \"$dataset_name\", \"$runkey\",
 // 			\"$barcode\", \"$pool\", \"$lane\", \"$direction\", \"$platform\", \"$op_amp\", \"$op_seq\",
 // 			\"$op_empcr\", \"$enzyme\", \"$rundate\", \"$adaptor\", \"$date_initial\", \"$date_updated\",
@@ -157,10 +157,10 @@ $insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tube
 //     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
 //       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
 //         dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
-//         project_id, read_length, run_id, run_key_id, seq_operator, tube_label)
+//         project_id, read_length, run_id, run_key_id, seq_operator, tubelabel)
 //       VALUES (\"$adaptor\", \"$amp_operator\", \"$barcode\", \"$barcode_index\", \"$dataset_id\", 
 //       \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
-//       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tube_label\")
+//       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
 //     ";
     
     /* Upload metadata only from run_info_upload step for now
@@ -181,7 +181,7 @@ read_length
 run_id
 run_key_id
 seq_operator
-tube_label
+tubelabel
 
      * 
      * */
@@ -202,7 +202,7 @@ tube_label
 //     		($run_id          == 0)  ||
 //     		($run_key_id      == 0)  ||
 //     		($seq_operator    == "") ||
-//     		($tube_label       == "")
+//     		($tubelabel       == "")
 //     )
 //     {
 //     	print_blue_message("One of the follow field is empty:
@@ -211,7 +211,7 @@ tube_label
 //     	lane            = $lane,<br/>
 //     	dataset_id      = $dataset_id,<br/>
 //     	project_id      = $project_id,<br/>
-//     	tube_label      = $tube_label,<br/>
+//     	tubelabel      = $tubelabel,<br/>
 //     	barcode         = $barcode,<br/>
 //     	adaptor         = $adaptor,<br/>
 //     	dna_region_id   = $dna_region_id,<br/>
@@ -230,8 +230,8 @@ tube_label
 // //     print_out($insert_metadata_query);
 //     	 $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
 //     }
-    print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
-    print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
+//     print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
+//     print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
     
     if ($new_run_info_ill_id)
     {
