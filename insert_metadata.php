@@ -19,7 +19,10 @@
   	//     $db_name    = "test";  
   }
     
-
+  $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
+  print_blue_message("\$combined_metadata");
+  print_out($combined_metadata);
+  
 //   print_red_message("From insert_metadata");
   
 // print_red_message("\$result_metadata_arr = ");
@@ -37,35 +40,35 @@
 //   	print_red_message("\$csv_content_arr = ");
 // 	print_out($csv_content_arr);
   	
-    $adaptor 		  = $csv_content_arr["adaptor"];
-    $amp_operator     = $csv_content_arr["op_amp"];
-    $barcode 		  = $csv_content_arr["barcode"];
-    $barcode_index 	  = $csv_content_arr["barcode_index"];
-    $data_owner 	  = $csv_content_arr["data_owner"];
-    $dataset_name 	  = $csv_content_arr["dataset_name"];    
-    $dataset_id 	  = get_id($csv_content_arr, "dataset", $db_name, $connection); 
-    $domain           = $csv_content_arr["domain"];
-    $env_sample_source = $csv_content_arr["env_sample_source"];
-    $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
-    $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection);
-//     CAGATC_NNNNGACTC_4
-    $file_prefix      = $csv_content_arr["barcode_index"] . "_NNNN" . $csv_content_arr["run_key"] . "_" . $csv_content_arr["lane"];
-    $insert_size 	  = $_SESSION["run_info"]["insert_size"];
-    $lane 			  = $csv_content_arr["lane"];
-    $op_empcr		  = $csv_content_arr["op_empcr"];    
-    $overlap 		  = $_SESSION["run_info"]["overlap"];
-    $primer_suite     = get_primer_suite_name($dna_region, $domain);
-    $primer_suite_id  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);    
-    $project_id       = get_id($csv_content_arr, "project", $db_name, $connection); 
-    $project_name     = $csv_content_arr["project_name"];
-    $read_length 	  = $_SESSION["run_info"]["read_length"];
-    $run_id 		  = get_id($_SESSION["run_info"], "run", $db_name, $connection);
-    $run_key_id 	  = get_id($csv_content_arr, "run_key", $db_name, $connection);
-    $runkey 		  = $csv_content_arr["runkey"];
-    $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
-    $submit_code      = $csv_content_arr["submit_code"];
-    $tube_label 		  = $csv_content_arr["tube_label"];
-    $tube_description = $csv_content_arr["tube_description"];
+//     $adaptor 		  = $csv_content_arr["adaptor"];
+//     $amp_operator     = $csv_content_arr["op_amp"];
+//     $barcode 		  = $csv_content_arr["barcode"];
+//     $barcode_index 	  = $csv_content_arr["barcode_index"];
+//     $data_owner 	  = $csv_content_arr["data_owner"];
+//     $dataset_name 	  = $csv_content_arr["dataset_name"];    
+//     $dataset_id 	  = get_id($csv_content_arr, "dataset", $db_name, $connection); 
+//     $domain           = $csv_content_arr["domain"];
+//     $env_sample_source = $csv_content_arr["env_sample_source"];
+//     $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
+//     $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection);
+// //     CAGATC_NNNNGACTC_4
+//     $file_prefix      = $csv_content_arr["barcode_index"] . "_NNNN" . $csv_content_arr["run_key"] . "_" . $csv_content_arr["lane"];
+//     $insert_size 	  = $_SESSION["run_info"]["insert_size"];
+//     $lane 			  = $csv_content_arr["lane"];
+//     $op_empcr		  = $csv_content_arr["op_empcr"];    
+//     $overlap 		  = $_SESSION["run_info"]["overlap"];
+//     $primer_suite     = get_primer_suite_name($dna_region, $domain);
+//     $primer_suite_id  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);    
+//     $project_id       = get_id($csv_content_arr, "project", $db_name, $connection); 
+//     $project_name     = $csv_content_arr["project_name"];
+//     $read_length 	  = $_SESSION["run_info"]["read_length"];
+//     $run_id 		  = get_id($_SESSION["run_info"], "run", $db_name, $connection);
+//     $run_key_id 	  = get_id($csv_content_arr, "run_key", $db_name, $connection);
+//     $runkey 		  = $csv_content_arr["runkey"];
+//     $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
+//     $submit_code      = $csv_content_arr["submit_code"];
+//     $tube_label 		  = $csv_content_arr["tube_label"];
+//     $tube_description = $csv_content_arr["tube_description"];
     
 //   TODO: data_owner print by project, not choose
 // TODO: insert into vamps subm only! 
@@ -74,21 +77,21 @@
 	$date_updated        = date("Y-m-d");
 	
 	
-	$id                  = $_SESSION["vamps_submissions_arr"][$submit_code]["id"];
-	$user                = $_SESSION["vamps_submissions_arr"][$submit_code]["user"];
-	$last_name           = $_SESSION["vamps_submissions_arr"][$submit_code]["last_name"];
-	$first_name          = $_SESSION["vamps_submissions_arr"][$submit_code]["first_name"];
-	$email               = $_SESSION["vamps_submissions_arr"][$submit_code]["email"];
-	$institution         = $_SESSION["vamps_submissions_arr"][$submit_code]["institution"];
-	$temp_project        = $_SESSION["vamps_submissions_arr"][$submit_code]["temp_project"];
-	$title               = $_SESSION["vamps_submissions_arr"][$submit_code]["title"];
-	$project_description = $_SESSION["vamps_submissions_arr"][$submit_code]["project_description"];
-	$environment         = $_SESSION["vamps_submissions_arr"][$submit_code]["environment"];
-	$env_source_id       = $_SESSION["vamps_submissions_arr"][$submit_code]["env_source_id"];
-	$funding             = $_SESSION["vamps_submissions_arr"][$submit_code]["funding"];
-	$num_of_tubes        = $_SESSION["vamps_submissions_arr"][$submit_code]["num_of_tubes"];
-	$date_initial        = $_SESSION["vamps_submissions_arr"][$submit_code]["date_initial"];
-	$locked              = $_SESSION["vamps_submissions_arr"][$submit_code]["locked"];
+// 	$id                  = $_SESSION["vamps_submissions_arr"][$submit_code]["id"];
+// 	$user                = $_SESSION["vamps_submissions_arr"][$submit_code]["user"];
+// 	$last_name           = $_SESSION["vamps_submissions_arr"][$submit_code]["last_name"];
+// 	$first_name          = $_SESSION["vamps_submissions_arr"][$submit_code]["first_name"];
+// 	$email               = $_SESSION["vamps_submissions_arr"][$submit_code]["email"];
+// 	$institution         = $_SESSION["vamps_submissions_arr"][$submit_code]["institution"];
+// 	$temp_project        = $_SESSION["vamps_submissions_arr"][$submit_code]["temp_project"];
+// 	$title               = $_SESSION["vamps_submissions_arr"][$submit_code]["title"];
+// 	$project_description = $_SESSION["vamps_submissions_arr"][$submit_code]["project_description"];
+// 	$environment         = $_SESSION["vamps_submissions_arr"][$submit_code]["environment"];
+// 	$env_source_id       = $_SESSION["vamps_submissions_arr"][$submit_code]["env_source_id"];
+// 	$funding             = $_SESSION["vamps_submissions_arr"][$submit_code]["funding"];
+// 	$num_of_tubes        = $_SESSION["vamps_submissions_arr"][$submit_code]["num_of_tubes"];
+// 	$date_initial        = $_SESSION["vamps_submissions_arr"][$submit_code]["date_initial"];
+// 	$locked              = $_SESSION["vamps_submissions_arr"][$submit_code]["locked"];
     
 	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET 
@@ -129,7 +132,7 @@ $insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tube
     overlap = \"$overlap\",
     insert_size = \"$insert_size\",
     barcode_index = \"$barcode_index\",
-    read_length = \"$read_length\",
+    read_length = \"$read_length\"
   WHERE submit_code = \"$submit_code\"
 ";
     
@@ -227,8 +230,8 @@ tubelabel
 // //     print_out($insert_metadata_query);
 //     	 $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
 //     }
-//     print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
-//     print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
+    print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
+    print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
     
     if ($new_run_info_ill_id)
     {
