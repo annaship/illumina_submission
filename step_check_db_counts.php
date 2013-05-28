@@ -78,8 +78,8 @@
 		AND run = '20130322'  and lane = '1';
 		*/
 		
-		print_blue_message($seq_check);
-		print_green_message(add_env454_mysql_call($seq_check));	
+// 		print_blue_message($seq_check);
+		print_green_message(add_env454_mysql_call($seq_check_query));	
 	}	
 ?>
 </div>
