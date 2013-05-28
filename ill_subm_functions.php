@@ -630,6 +630,7 @@ function get_id($data_array, $table_name, $db_name, $connection)
   }
  
   $row = get_one_value($query, $db_name, $connection);
+
   if (isset($row[key($row)]))
   {
     $res_id = $row[key($row)];
@@ -1075,7 +1076,7 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $d
 		$combined_metadata[$num]["data_owner"]			= $contact[$session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"]];
 		$combined_metadata[$num]["dataset"]				= $csv_metadata_row["dataset_name"];
 		$combined_metadata[$num]["dataset_description"]	= $csv_metadata_row["tube_description"];
-		$combined_metadata[$num]["dataset_id"] 	        = get_id($csv_metadata_row, "dataset_name", $db_name, $connection);
+		$combined_metadata[$num]["dataset_id"] 	        = get_id($combined_metadata[$num], "dataset", $db_name, $connection);
 		$combined_metadata[$num]["date_initial"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["date_initial"];
 		$combined_metadata[$num]["date_updated"]        = date("Y-m-d");
 		$combined_metadata[$num]["dna_region"] 	  		= $session["run_info"]["dna_region_0"];
@@ -1086,7 +1087,6 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $d
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
 		$combined_metadata[$num]["env_source_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["env_source_id"];
 		$combined_metadata[$num]["env_source_name"]		= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["environment"];
-		$combined_metadata[$num]["file_prefix"]      	= $key_ind["illumina_index"] . "_NNNN" . $key_ind["illumina_run_key"] . "_" . $csv_metadata_row["lane"];
 		$combined_metadata[$num]["first_name"]          = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["first_name"];
 		$combined_metadata[$num]["funding"]				= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["funding"];
 		$combined_metadata[$num]["id"]                  = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
@@ -1106,10 +1106,9 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $d
 			$combined_metadata[$num]["project_title"]		= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_title"];
 		}
 		$combined_metadata[$num]["project_description"]	= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_description"];
-		$combined_metadata[$num]["project_id"]       	= get_id($csv_metadata_row, "project_name", $db_name, $connection);
+		$combined_metadata[$num]["project_id"]       	= get_id($combined_metadata[$num], "project", $db_name, $connection);
 		$combined_metadata[$num]["read_length"] 	  	= $session["run_info"]["read_length"];
 		$combined_metadata[$num]["run_id"] 		  		= get_id($session["run_info"], "run", $db_name, $connection);
-		$combined_metadata[$num]["runkey_id"] 	  		= get_id($csv_metadata_row, "runkey", $db_name, $connection);
 		$combined_metadata[$num]["seq_operator"] 	  	= $session["run_info"]["seq_operator"];
 		$combined_metadata[$num]["submit_code"]			= $csv_metadata_row["submit_code"];
 		$combined_metadata[$num]["temp_project"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["temp_project"];
@@ -1120,7 +1119,9 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $d
 		
 		$key_ind = get_run_key_by_adaptor($combined_metadata[$num]["adaptor"], $combined_metadata[$num]["domain"], $adaptors_full, $selected_dna_region_base);
 		$combined_metadata[$num]["barcode_index"] 		= $key_ind["illumina_index"];
-		$combined_metadata[$num]["runkey"]       		= $key_ind["illumina_run_key"];
+		$combined_metadata[$num]["run_key"]       		= $key_ind["illumina_run_key"];
+		$combined_metadata[$num]["run_key_id"] 	  		= get_id($combined_metadata[$num], "run_key", $db_name, $connection);
+		$combined_metadata[$num]["file_prefix"]      	= $key_ind["illumina_index"] . "_NNNN" . $key_ind["illumina_run_key"] . "_" . $csv_metadata_row["lane"];		
 		
 		$num += 1;
 	}

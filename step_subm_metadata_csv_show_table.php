@@ -1,5 +1,5 @@
 <?php 
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; metadata_csv_show_table");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; metadata_csv_show_table");
 
 // print "\$_POST:";
 // print_out($_POST);
@@ -26,8 +26,8 @@ else
 
 // $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
 // //   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
-// print_blue_message("\$combined_metadata");
-// print_out($combined_metadata);
+print_blue_message("\$combined_metadata");
+print_out($combined_metadata);
 ?>
 <form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
 <div id="subm_metadata_upload">
@@ -65,6 +65,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 [funding] => [num_of_tubes] => 6 [date_initial] => 2012-03-13 [date_updated] => 2012-03-13 [locked] => 1 ) ) --
 */		  $row_num = 0;
           foreach ($combined_metadata as $metadata_row) {
+
               $selected_adaptor				= $metadata_row["adaptor"];
               $selected_amp_operator		= $metadata_row["amp_operator"];
               $selected_barcode				= $metadata_row["barcode"];
@@ -80,7 +81,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               $selected_project				= $metadata_row["project"];
               $selected_project_description	= $metadata_row["project_description"];
               $metadata_row["title"];
-			  $selected_run_key				= $metadata_row["runkey"];              
+			  $selected_run_key				= $metadata_row["run_key"];              
               $selected_tube_label			= $metadata_row["tube_label"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
 //            dinamically add row number to any field name

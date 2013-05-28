@@ -16,7 +16,7 @@
 </div>
 
 <?php 
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata");
 
 // print_blue_message("\$_POST");
 // print_out($_POST);
@@ -71,7 +71,8 @@
       
   <?php
   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $db_name, $connection);
-  
+//   print_blue_message("\$combined_metadata from upload_subm");
+//   print_out($combined_metadata);
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
   		&& !(isset($_POST["subm_metadata_upload_process"]) && $_POST["subm_metadata_upload_process"] == 1)
