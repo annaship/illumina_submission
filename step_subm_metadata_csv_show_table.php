@@ -25,16 +25,6 @@ else
 }
 
 $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
-// print_blue_message("\$combined_metadata");
-// print_out($combined_metadata);
-
-if (isset($_SESSION["csv_content"])) {
-	$csv_metadata = $_SESSION["csv_content"];
-}
-if (isset($_SESSION["vamps_submissions_arr"])) {
-	$vamps_submissions_arr = $_SESSION["vamps_submissions_arr"];
-}
-
 
 ?>
 <form method="post" name="subm_metadata_upload_form" id="subm_metadata_upload_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
@@ -72,31 +62,24 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 [project_description] => Microbial diversity within sponge species Hexadella sp [environment] => host associated [env_source_id] => 30 
 [funding] => [num_of_tubes] => 6 [date_initial] => 2012-03-13 [date_updated] => 2012-03-13 [locked] => 1 ) ) --
 */		  $row_num = 0;
-          foreach ($csv_metadata as $csv_metadata_row) {
-              $selected_adaptor				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
-//               print_red_message("\$selected_adaptor = $selected_adaptor");
-              $selected_amp_operator		= $csv_metadata_row["op_amp"];
-              $selected_barcode				= $csv_metadata_row["barcode"];
-              $selected_barcode_index		= $csv_metadata_row["barcode_index"];
-              $selected_user   			    = $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"];              
-              $selected_data_owner			= $contact[$vamps_submissions_arr[$csv_metadata_row["submit_code"]]["user"]];
-              $selected_dataset				= $csv_metadata_row["dataset_name"];
-              $selected_dataset_description	= $csv_metadata_row["tube_description"];
-              $selected_domain				= get_domain_from_csv_data($csv_metadata_row["domain"], $domains_array);
-              $selected_env_source_name		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["environment"];
-              $selected_funding				= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["funding"];
-              $selected_lane				= $csv_metadata_row["lane"];
-              $selected_project				= $csv_metadata_row["project_name"];
-              $selected_project_description	= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_description"];
-              if (isset($vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"]))
-              {
-              	$selected_project_title		= $vamps_submissions_arr[$csv_metadata_row["submit_code"]]["project_title"];
-              }
-              if (isset($csv_metadata_row["run_key"]))
-              {
-              	$selected_run_key				= $csv_metadata_row["run_key"];
-              }
-              $selected_tubelabel			= $csv_metadata_row["tube_label"];
+          foreach ($combined_metadata as $metadata_row) {
+              $selected_adaptor				= $metadata_row["adaptor"];
+              $selected_amp_operator		= $metadata_row["amp_operator"];
+              $selected_barcode				= $metadata_row["barcode"];
+              $selected_barcode_index		= $metadata_row["barcode_index"];
+              $selected_user   			    = $metadata_row["user"];              
+              $selected_data_owner			= $metadata_row["data_owner"];
+              $selected_dataset				= $metadata_row["dataset"];
+              $selected_dataset_description	= $metadata_row["tube_description"];
+              $selected_domain				= $metadata_row["domain"];
+              $selected_env_source_name		= $metadata_row["env_source_name"];
+              $selected_funding				= $metadata_row["funding"];
+              $selected_lane				= $metadata_row["lane"];
+              $selected_project				= $metadata_row["project"];
+              $selected_project_description	= $metadata_row["project_description"];
+              $metadata_row["title"];
+			  $selected_run_key				= $metadata_row["runkey"];              
+              $selected_tubelabel			= $metadata_row["tubelabel"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
 //            dinamically add row number to any field name
               $row_num++;
