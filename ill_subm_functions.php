@@ -882,8 +882,10 @@ function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
     $submit_code_arr_uniq  = array_unique($submit_code_arr);
     foreach ($submit_code_arr_uniq as $submit_code)
     {
-      $query = "SELECT * FROM " . $db_name . ".vamps_submissions WHERE
-        submit_code = \"" . $submit_code. "\"";
+      $query = "SELECT * FROM " . $db_name . ".vamps_submissions
+      		JOIN " . $db_name . ".vamps_auth 
+      				ON (vamps_auth.id = vamps_submissions.vamps_auth_id)
+      		WHERE submit_code = \"" . $submit_code. "\"";
       
       $row = get_one_value($query, $db_name, $connection);
       
@@ -1049,8 +1051,10 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $d
 // 	print_out($adaptors_full);
 	
   // 	print_blue_message("FROM combine_metadata function");
-// 	print_blue_message("\$session: ");
-// 	print_out($session);
+	print_blue_message("\$session: ");
+	print_out($session);
+	print_blue_message("\$session: ");
+	print_out($session);
 	
 	foreach ($session["csv_content"] as $csv_metadata_row) {
 // 		print_blue_message("\$csv_metadata_row = ");
@@ -1127,6 +1131,12 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $d
 		$num += 1;
 	}
 	return $combined_metadata;
+}
+
+function to_underscore($my_string) {
+	$my_string1 = str_replace("_", "%", $my_string);
+	$my_string2  = str_replace(" ", "%", $my_string1);
+	return $my_string2;
 }
 
 ?>
