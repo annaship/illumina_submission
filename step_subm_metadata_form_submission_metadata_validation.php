@@ -8,16 +8,9 @@ include_once("ill_subm_functions.php");
 
 $metadata_errors     = array();
 $metadata_errors_all = array();
-// $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
 // print_blue_message("\$_POST");
 // print_out($_POST);
 
-// remove array #0 == check_submission
-// if (sizeof($combined_metadata) > 1 && isset($_POST["submission_metadata_process"]) && ($_POST["submission_metadata_process"] == 1))
-// {
-//   $result_metadata_arr_0 = array_shift($result_metadata_arr);
-// }
-  
 // TODO: 1) validate all data in foreach $result_metadata_arr
 // TODO: 2) populate index and runkey by adapter
 // TODO: 3) print out in table to show with errors in red and allow to change, 
@@ -50,19 +43,7 @@ foreach ($combined_metadata as $combined_metadata_row)
   
 
   // 2) populate index and runkey by adapter
-//   if (check_var($_SESSION["run_info"]["dna_region_0"]))
-//   {
-//     $selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);      
-//   }
-  
-//   $key_ind = get_run_key_by_adaptor($combined_metadata_row, $adaptors_full, $selected_dna_region_base);
 
-
-//   $combined_metadata_row["runkey"]       = $key_ind["illumina_run_key"];
-//   $combined_metadata_row["barcode_index"] = $key_ind["illumina_index"];    
-//   $selected_metadata_arr[] = $combined_metadata_row;
-//   print_blue_message("\$combined_metadata_row");
-//   print_out($combined_metadata_row);
 }
 // check for errors
 $all_errors_uniq       = flat_mult_array($metadata_errors_all);
@@ -93,7 +74,6 @@ include_once "step_subm_metadata_form_metadata_table_selected.php";
 if($metadata_errors_count == 0)
 {
 // 	TODO: change env_id and data_owner 
-//   $result_metadata_arr = $combined_metadata_row;
 //   print_blue_message("\$result_metadata_arr");
 //   print_out($result_metadata_arr);
   //   put data into the db and clean the table
