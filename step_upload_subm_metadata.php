@@ -70,6 +70,8 @@
       <br />
       
   <?php
+//   print_blue_message("\$_SESSION");
+//   print_out($_SESSION);
   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $db_name, $connection);
 //   print_blue_message("\$combined_metadata from upload_subm");
 //   print_out($combined_metadata);
