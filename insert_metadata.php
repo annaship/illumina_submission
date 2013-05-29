@@ -20,10 +20,10 @@
   }
     
 //   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
+//   print_blue_message("From insert_metadata");
 //   print_blue_message("\$combined_metadata");
 //   print_out($combined_metadata);
   
-//   print_red_message("From insert_metadata");
   
 // print_red_message("\$result_metadata_arr = ");
 // print_out($result_metadata_arr);
@@ -35,7 +35,27 @@
 // print_out($_SESSION["vamps_submissions_arr"]);
 //   $combine_session_data = combine_session_data($_SESSION);
 
-  foreach ($_SESSION["csv_content"] as $row_num => $csv_content_arr)
+  $date_updated        = date("Y-m-d");
+  $insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
+	 SET
+	    user = \"" . $combined_metadata[0]["user"] . "\",
+	    last_name = \"" . $combined_metadata[0]["last_name"] . "\",
+	    first_name = \"" . $combined_metadata[0]["first_name"] . "\",
+	    email = \"" . $combined_metadata[0]["email"] . "\",
+	    institution = \"" . $combined_metadata[0]["institution"] . "\",
+	    temp_project = \"" . $combined_metadata[0]["temp_project"] . "\",
+	    title = \"" . $combined_metadata[0]["title"] . "\",
+	    project_description = \"" . $combined_metadata[0]["project_description"] . "\",
+	    environment = \"" . $combined_metadata[0]["env_source_name"] . "\",
+	    env_source_id = \"" . $combined_metadata[0]["env_sample_source_id"] . "\",
+	    funding = \"" . $combined_metadata[0]["funding"] . "\",
+	    num_of_tubes = \"" . $combined_metadata[0]["num_of_tubes"] . "\",
+  	    date_updated = \"$date_updated\"
+  	    WHERE submit_code = \"" . $combined_metadata[0]["submit_code"] . "\"
+	AND id = \"" . $combined_metadata[0]["id"] . "\"
+	";
+  
+  foreach ($combined_metadata as $row_num => $combined_metadata_row)
   {
 //   	print_red_message("\$csv_content_arr = ");
 // 	print_out($csv_content_arr);
@@ -74,8 +94,7 @@
 // TODO: insert into vamps subm only! 
 
 // // 	$date_initial        = date_initial;
-	$date_updated        = date("Y-m-d");
-	
+
 	
 // 	$id                  = $_SESSION["vamps_submissions_arr"][$submit_code]["id"];
 // 	$user                = $_SESSION["vamps_submissions_arr"][$submit_code]["user"];
@@ -93,49 +112,34 @@
 // 	$date_initial        = $_SESSION["vamps_submissions_arr"][$submit_code]["date_initial"];
 // 	$locked              = $_SESSION["vamps_submissions_arr"][$submit_code]["locked"];
     
-	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
-	 SET 
-	    user = \"$user\",
-	    last_name = \"$last_name\",
-	    first_name = \"$first_name\",
-	    email = \"$email\",
-	    institution = \"$institution\",
-	    temp_project = \"$temp_project\",
-	    title = \"$title\",
-	    project_description = \"$project_description\",
-	    environment = \"$environment\",
-	    env_source_id = \"$env_source_id\",
-	    funding = \"$funding\",
-	    num_of_tubes = \"$num_of_tubes\",
-	    date_updated = \"$date_updated\"
-	WHERE submit_code = \"$submit_code\" AND id = \"$id\"      
-	";
+
     
 $insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes
-  SET
-    tubelabel = \"$tubelabel\",
-    tube_description = \"$tube_description\",
-    domain = \"$domain\",
-    primer_suite = \"$primer_suite\",
-    dna_region = \"$dna_region\",
-    project_name = \"$project_name\",
-    dataset_name = \"$dataset_name\",
-    runkey = \"$runkey\",
-    barcode = \"$barcode\",
-    lane = \"$lane\",
-    op_amp = \"$op_amp\",
-    op_empcr = \"$op_empcr\",
-    rundate = \"$rundate\",
-    adaptor = \"$adaptor\",
-    date_initial = \"$date_initial\",
-    date_updated = \"$date_updated\",
-    overlap = \"$overlap\",
-    insert_size = \"$insert_size\",
-    barcode_index = \"$barcode_index\",
-    read_length = \"$read_length\"
-  WHERE submit_code = \"$submit_code\"
+	  SET
+	  tubelabel = \"" . $combined_metadata_row["tubelabel"] . "\",
+	  tube_description = \"" . $combined_metadata_row["tube_description"] . "\",
+	  domain = \"" . $combined_metadata_row["domain"] . "\",
+	  primer_suite = \"" . $combined_metadata_row["primer_suite"] . "\",
+	  dna_region = \"" . $combined_metadata_row["dna_region"] . "\",
+	  project_name = \"" . $combined_metadata_row["project"] . "\",
+	  dataset_name = \"" . $combined_metadata_row["dataset"] . "\",
+	  runkey = \"" . $combined_metadata_row["run_key"] . "\",
+	  barcode = \"" . $combined_metadata_row["barcode"] . "\",
+	  lane = \"" . $combined_metadata_row["lane"] . "\",
+	  op_amp = \"" . $combined_metadata_row["amp_operator"] . "\",
+	  op_empcr = \"" . $combined_metadata_row["op_empcr"] . "\",
+	  rundate = \"" . $combined_metadata_row["run"] . "\",
+	  adaptor = \"" . $combined_metadata_row["adaptor"] . "\",
+	  date_initial = \"" . $combined_metadata_row["date_initial"] . "\",
+	  date_updated = \"$date_updated\",
+	  overlap = \"" . $combined_metadata_row["overlap"] . "\",
+	  insert_size = \"" . $combined_metadata_row["insert_size"] . "\",
+	  barcode_index = \"" . $combined_metadata_row["barcode_index"] . "\",
+	  read_length = \"" . $combined_metadata_row["read_length"] . "\"
+	WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
 ";
-    
+//     	 $new_vamps_submissions_tubes = run_query($insert_metadata_query1, "vamps_submissions_tubes", $connection);
+
     
 //     $insert_metadata_query2 = "UPDATE " . $db_name . ".vamps_submissions_tubes
 //     	(tube_number, tubelabel, tube_description, duplicate, domain,
@@ -230,8 +234,8 @@ tubelabel
 // //     print_out($insert_metadata_query);
 //     	 $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
 //     }
-//     print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
-//     print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
+    print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
+    print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
     
     if ($new_run_info_ill_id)
     {
