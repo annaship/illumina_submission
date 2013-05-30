@@ -72,9 +72,10 @@
   <?php
 //   print_blue_message("\$_SESSION");
 //   print_out($_SESSION);
-  $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection);
-//   print_blue_message("\$combined_metadata from upload_subm");
-//   print_out($combined_metadata);
+  $submission_tubes_id_arr     = get_submission_tubes_ids($_SESSION["csv_content"]);
+  $vamps_submissions_tubes_arr = get_tubes_info_by_submit_code($submission_tubes_id_arr, $vamps_submission_tubes_info, $db_name, $connection);
+  $combined_metadata           = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection);
+
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
   		&& !(isset($_POST["subm_metadata_upload_process"]) && $_POST["subm_metadata_upload_process"] == 1)

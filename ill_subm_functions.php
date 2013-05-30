@@ -1112,7 +1112,8 @@ function add_env454_mysql_call($query) {
 	return "mysql -h newbpcdb2 env454 -e '" . $query . "'";
 }
 
-function combine_metadata($session, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection) {
+function combine_metadata($session, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection) 
+{
 	$num = 0;
 	$combined_metadata = "";
 // 	include 'ill_subm_filled_variables.php';
@@ -1122,16 +1123,14 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
   // 	print_blue_message("FROM combine_metadata function");
 // 	print_blue_message("\$session: ");
 // 	print_out($session);
-	print_blue_message("\$vamps_submissions_tubes_arr: ");
-	print_out($vamps_submissions_tubes_arr);
-	
-	
+// 	print_blue_message("\$vamps_submissions_tubes_arr: ");
+// 	print_out($vamps_submissions_tubes_arr);
 	
 	foreach ($session["csv_content"] as $csv_metadata_row) {
 // 		print_blue_message("\$csv_metadata_row = ");
 // 		print_out($csv_metadata_row);
 // 		print_blue_message('$get_defined_vars');
-		print_blue_out_message('csv_metadata_row', $csv_metadata_row);
+// 		print_blue_out_message('csv_metadata_row', $csv_metadata_row);
 // 				print_blue_message("\$_SESSION[\"run_info\"][\"dna_region_0\"] = ");
 // 				print_out($_SESSION["run_info"]["dna_region_0"]);
 		
@@ -1164,6 +1163,7 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
 		$combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];
 		$combined_metadata[$num]["env_source_name"]		= $env_source_names[$combined_metadata[$num]["env_sample_source_id"]];
+// 		print_blue_out_message('$combined_metadata[$num]["env_source_name"]  = ', $combined_metadata[$num]["env_source_name"]);
 		$combined_metadata[$num]["first_name"]          = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["first_name"];
 		$combined_metadata[$num]["funding"]				= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["funding"];
 		$combined_metadata[$num]["id"]                  = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];

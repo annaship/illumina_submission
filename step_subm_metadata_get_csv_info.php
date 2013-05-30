@@ -23,7 +23,6 @@
   }
   
   $submit_code_arr         = get_submit_code($csv_metadata);
-  $submission_tubes_id_arr = get_submission_tubes_ids($csv_metadata);
   
   if (!$_SESSION['is_local'])
   {
@@ -37,7 +36,7 @@
   }
   
    $vamps_submissions_arr             = get_info_by_submit_code($submit_code_arr, $db_name, $connection);
-   $vamps_submissions_tubes_arr       = get_tubes_info_by_submit_code($submission_tubes_id_arr, $vamps_submission_tubes_info, $db_name, $connection);
+   
    $_SESSION["vamps_submissions_arr"] = $vamps_submissions_arr;
    $_SESSION["csv_content"]           = $csv_metadata;
     
