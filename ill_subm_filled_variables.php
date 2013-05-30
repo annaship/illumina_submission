@@ -42,6 +42,7 @@ $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "re
 // ---
 $dna_regions = array("v6", "v4v5");
 // ---
+// TODO: check what's needed after db change
 $need_names = array("user", "last_name", "first_name", "email", "institution", "temp_project", "title",
     "project_description", "environment", "env_source_id", "funding");
 // , "tubelabel", "tube_description", "domain", "primer_suite", "dna_region"
@@ -249,6 +250,12 @@ else
 	}
 	
 list($subm_field_names, $vamps_submission_info) = get_submission_info($connection, $db_name);
+list($subm_tubes_field_names, $vamps_submission_tubes_info) = get_submission_tubes_info($connection, $db_name);
+// print_blue_message("\$subm_tubes_field_names - ");
+// print_out($subm_tubes_field_names);
+// print_blue_message("\$vamps_submission_tubes_info - ");
+// print_out($vamps_submission_tubes_info);
+
 
 $vamps_submission_info_show = array();
 $vamps_submission_info_show = make_arr_by_key_field_name($subm_field_names, $vamps_submission_info, $need_names, "submit_code");
