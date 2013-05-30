@@ -496,6 +496,13 @@ function print_blue_message($message)
 	print ("<div class = \"blue_message\">$message</div>");
 }
 
+function print_blue_out_message($message, $array_name)
+{
+	print ("<div class = \"blue_message\">$message</div>");
+	print "<br/>UUU -";
+	print_r($array_name);
+	print " --<br/>";
+}
 
 function run_query($query, $table_name, $connection)
 {
@@ -1123,6 +1130,8 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 	foreach ($session["csv_content"] as $csv_metadata_row) {
 // 		print_blue_message("\$csv_metadata_row = ");
 // 		print_out($csv_metadata_row);
+// 		print_blue_message('$get_defined_vars');
+		print_blue_out_message('csv_metadata_row', $csv_metadata_row);
 // 				print_blue_message("\$_SESSION[\"run_info\"][\"dna_region_0\"] = ");
 // 				print_out($_SESSION["run_info"]["dna_region_0"]);
 		
