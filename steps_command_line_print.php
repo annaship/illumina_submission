@@ -52,7 +52,7 @@
 				"; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py
 			          -csv " . $csv_file_name .
 				          " -s " . $pipeline_command . " -l debug -p illumina -r " .
-				          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name \"lane_" . $lane_dom_name . "\" -do_perfect " . $do_perfect
+				          $rundate . " -ft fastq -i " . $raw_path . " -cp " . $is_compressed . " -lane_name lane_" . $lane_dom_name . " -do_perfect " . $do_perfect
 				          ;
 				print_green_message($command_line);
 				          

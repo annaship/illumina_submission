@@ -40,6 +40,10 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 	$machine_name  = array_search($_POST["find_machine"], $machine_names);
 	$csv_name      = create_csv_name($rundate, $lane_name);
 	$domains 	   = array($domain);
+	if ($machine_name == "ms")
+	{
+		$do_perfect = "False";
+	}
 	// 2) there is ini file
 	if (isset ($_POST["choose_run_m_process"]) && $_POST["choose_run_m_process"] == 1)
 	{
@@ -52,10 +56,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 		*
 		* */
 		$raw_path 	 = $run_info_ini["path_to_raw_data"];
-		if ($run_info_ini["overlap"] == "partial")
-		{
-			$do_perfect = "False";
-		}
+
 	}
 // 	3) not 1 nor 2	
 	elseif ($_POST["choose_meta_w_path_process"] == 1)
@@ -63,11 +64,6 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 // 		print_blue_message("HERE2");
 		// 	 UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 1 [path_to_raw_data] => 20130322 [add] => Submit [choose_run_w_path_process] => 1 ) --
 		$raw_path     = "/xraid2-2/sequencing/Illumina/" . $_POST["path_to_raw_data"];
-		if ($_POST["find_machine"] == "miseq")
-		{
-			$do_perfect = "False";
-		}
-	
 	}
 } #no session
 elseif (check_var($_SESSION["run_info"]))
@@ -88,10 +84,6 @@ elseif (check_var($_SESSION["run_info"]))
 	$rundate       = $_SESSION["run_info"]["rundate"];
 	$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
 	$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
-	if ($_SESSION["run_info"]["overlap"] == "partial")
-	{
-		$do_perfect = "False";
-	}
 	$lanes = $_SESSION["run_info"]["lanes"];
 }
 $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
