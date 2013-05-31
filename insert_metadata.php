@@ -38,21 +38,21 @@
   $date_updated        = date("Y-m-d");
   $insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
-	    user = \"" . $combined_metadata[0]["user"] . "\",
-	    last_name = \"" . $combined_metadata[0]["last_name"] . "\",
-	    first_name = \"" . $combined_metadata[0]["first_name"] . "\",
-	    email = \"" . $combined_metadata[0]["email"] . "\",
-	    institution = \"" . $combined_metadata[0]["institution"] . "\",
-	    temp_project = \"" . $combined_metadata[0]["temp_project"] . "\",
-	    title = \"" . $combined_metadata[0]["title"] . "\",
-	    project_description = \"" . $combined_metadata[0]["project_description"] . "\",
-	    environment = \"" . $combined_metadata[0]["env_source_name"] . "\",
-	    env_source_id = \"" . $combined_metadata[0]["env_sample_source_id"] . "\",
-	    funding = \"" . $combined_metadata[0]["funding"] . "\",
-	    num_of_tubes = \"" . $combined_metadata[0]["num_of_tubes"] . "\",
-  	    date_updated = \"$date_updated\"
-  	    WHERE submit_code = \"" . $combined_metadata[0]["submit_code"] . "\"
-	AND id = \"" . $combined_metadata[0]["id"] . "\"
+	    user				= \"" . $combined_metadata[0]["user"] . "\",
+	    last_name			= \"" . $combined_metadata[0]["last_name"] . "\",
+	    first_name			= \"" . $combined_metadata[0]["first_name"] . "\",
+	    email				= \"" . $combined_metadata[0]["email"] . "\",
+	    institution			= \"" . $combined_metadata[0]["institution"] . "\",
+	    temp_project		= \"" . $combined_metadata[0]["temp_project"] . "\",
+	    title				= \"" . $combined_metadata[0]["title"] . "\",
+	    project_description	= \"" . $combined_metadata[0]["project_description"] . "\",
+	    environment			= \"" . $combined_metadata[0]["env_source_name"] . "\",
+	    env_source_id		= \"" . $combined_metadata[0]["env_sample_source_id"] . "\",
+	    funding				= \"" . $combined_metadata[0]["funding"] . "\",
+	    num_of_tubes		= \"" . $combined_metadata[0]["num_of_tubes"] . "\",
+  	    date_updated		= \"$date_updated\"
+  	    WHERE submit_code	= \"" . $combined_metadata[0]["submit_code"] . "\"
+			AND id 			= \"" . $combined_metadata[0]["id"] . "\"
 	";
   $new_vamps_submissions = run_query($insert_metadata_query1, "vamps_submissions_tubes", $connection);
 //   print_blue_message("\$new_vamps_submissions");

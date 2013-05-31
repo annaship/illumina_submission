@@ -36,7 +36,9 @@
   }
   
    $vamps_submissions_arr             = get_info_by_submit_code($submit_code_arr, $db_name, $connection);
-   
+//    $vamps_submissions_arr_full        = get_info_by_submit_code($csv_data_row, $db_name, $connection);
+//    print_blue_out_message('$vamps_submissions_arr_full =', $vamps_submissions_arr_full);
+    
    $_SESSION["vamps_submissions_arr"] = $vamps_submissions_arr;
    $_SESSION["csv_content"]           = $csv_metadata;
     
