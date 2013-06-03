@@ -36,25 +36,28 @@
 //   $combine_session_data = combine_session_data($_SESSION);
   $db_name = "test";
   $date_updated        = date("Y-m-d");
+//   TODO: change to new table structure:
+// vamps_submissions <- submit_code, vamps_auth_id, temp_project, title, project_description, funding, num_of_tubes, date_initial, date_updated, locked,
+//   vamps_auth: (do not update, take a new id, if needed!)
+// TODO: how to change vamps_auth_id?
+//   user				= \"" . $combined_metadata[0]["user"] . "\",
+// 	    last_name			= \"" . $combined_metadata[0]["last_name"] . "\",
+// 	    first_name			= \"" . $combined_metadata[0]["first_name"] . "\",
+// 	    email				= \"" . $combined_metadata[0]["email"] . "\",
+// 	    institution			= \"" . $combined_metadata[0]["institution"] . "\",
   $insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
-	    user				= \"" . $combined_metadata[0]["user"] . "\",
-	    last_name			= \"" . $combined_metadata[0]["last_name"] . "\",
-	    first_name			= \"" . $combined_metadata[0]["first_name"] . "\",
-	    email				= \"" . $combined_metadata[0]["email"] . "\",
-	    institution			= \"" . $combined_metadata[0]["institution"] . "\",
 	    temp_project		= \"" . $combined_metadata[0]["temp_project"] . "\",
 	    title				= \"" . $combined_metadata[0]["title"] . "\",
 	    project_description	= \"" . $combined_metadata[0]["project_description"] . "\",
-	    environment			= \"" . $combined_metadata[0]["env_source_name"] . "\",
-	    env_source_id		= \"" . $combined_metadata[0]["env_sample_source_id"] . "\",
 	    funding				= \"" . $combined_metadata[0]["funding"] . "\",
 	    num_of_tubes		= \"" . $combined_metadata[0]["num_of_tubes"] . "\",
-  	    date_updated		= \"$date_updated\"
+  	    date_updated		= \"$date_updated\",
+  	    locked				= \"" . $combined_metadata[0]["locked"] . "\"
   	    WHERE submit_code	= \"" . $combined_metadata[0]["submit_code"] . "\"
-			AND id 			= \"" . $combined_metadata[0]["id"] . "\"
+			AND id 			= \"" . $combined_metadata[0]["vamps_submissions_id"] . "\"
 	";
-  $new_vamps_submissions = run_query($insert_metadata_query1, "vamps_submissions_tubes", $connection);
+//   $new_vamps_submissions = run_query($insert_metadata_query1, "vamps_submissions_tubes", $connection);
 //   print_blue_message("\$new_vamps_submissions");
 //   print_out($new_vamps_submissions);
   
@@ -140,10 +143,9 @@ $insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tube
 		  barcode_index = \"" . $combined_metadata_row["barcode_index"] . "\",
 		  read_length = \"" . $combined_metadata_row["read_length"] . "\"
 		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
-			AND tube_label LIKE \"" . to_underscore($combined_metadata_row["tubelabel"]) . "\"
-			AND tube_description LIKE \"" . to_underscore($combined_metadata_row["tube_description"]) . "\"
+			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\"
 ";
-    	 $new_vamps_submissions_tubes = run_query($insert_metadata_query2, "vamps_submissions_tubes", $connection);
+//     	 $new_vamps_submissions_tubes = run_query($insert_metadata_query2, "vamps_submissions_tubes", $connection);
 //     	 print_blue_message("\$new_vamps_submissions_tubes");
 //     	 print_out($new_vamps_submissions_tubes);
     
