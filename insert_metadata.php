@@ -40,86 +40,32 @@
 // vamps_submissions <- submit_code, vamps_auth_id, temp_project, title, project_description, funding, num_of_tubes, date_initial, date_updated, locked,
 //   vamps_auth: (do not update, take a new id, if needed!)
 // TODO: how to change vamps_auth_id?
-//   user				= \"" . $combined_metadata[0]["user"] . "\",
-// 	    last_name			= \"" . $combined_metadata[0]["last_name"] . "\",
-// 	    first_name			= \"" . $combined_metadata[0]["first_name"] . "\",
-// 	    email				= \"" . $combined_metadata[0]["email"] . "\",
-// 	    institution			= \"" . $combined_metadata[0]["institution"] . "\",
-  $insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
-	 SET
-	    temp_project		= \"" . $combined_metadata[0]["temp_project"] . "\",
-	    title				= \"" . $combined_metadata[0]["title"] . "\",
-	    project_description	= \"" . $combined_metadata[0]["project_description"] . "\",
-	    funding				= \"" . $combined_metadata[0]["funding"] . "\",
-	    num_of_tubes		= \"" . $combined_metadata[0]["num_of_tubes"] . "\",
-  	    date_updated		= \"$date_updated\",
-  	    locked				= \"" . $combined_metadata[0]["locked"] . "\"
-  	    WHERE submit_code	= \"" . $combined_metadata[0]["submit_code"] . "\"
-			AND id 			= \"" . $combined_metadata[0]["vamps_submissions_id"] . "\"
-	";
+//   user				= \"" . $combined_metadata_row["user"] . "\",
+// 	    last_name			= \"" . $combined_metadata_row["last_name"] . "\",
+// 	    first_name			= \"" . $combined_metadata_row["first_name"] . "\",
+// 	    email				= \"" . $combined_metadata_row["email"] . "\",
+// 	    institution			= \"" . $combined_metadata_row["institution"] . "\",
+
 //   $new_vamps_submissions = run_query($insert_metadata_query1, "vamps_submissions_tubes", $connection);
 //   print_blue_message("\$new_vamps_submissions");
 //   print_out($new_vamps_submissions);
   
   foreach ($combined_metadata as $row_num => $combined_metadata_row)
   {
-//   	print_red_message("\$csv_content_arr = ");
-// 	print_out($csv_content_arr);
-  	
-//     $adaptor 		  = $csv_content_arr["adaptor"];
-//     $amp_operator     = $csv_content_arr["op_amp"];
-//     $barcode 		  = $csv_content_arr["barcode"];
-//     $barcode_index 	  = $csv_content_arr["barcode_index"];
-//     $data_owner 	  = $csv_content_arr["data_owner"];
-//     $dataset_name 	  = $csv_content_arr["dataset_name"];    
-//     $dataset_id 	  = get_id($csv_content_arr, "dataset", $db_name, $connection); 
-//     $domain           = $csv_content_arr["domain"];
-//     $env_sample_source = $csv_content_arr["env_sample_source"];
-//     $dna_region 	  = $_SESSION["run_info"]["dna_region_0"]; 
-//     $dna_region_id     = get_id($_SESSION['run_info'], "dna_region_0", $db_name, $connection);
-// //     CAGATC_NNNNGACTC_4
-//     $file_prefix      = $csv_content_arr["barcode_index"] . "_NNNN" . $csv_content_arr["run_key"] . "_" . $csv_content_arr["lane"];
-//     $insert_size 	  = $_SESSION["run_info"]["insert_size"];
-//     $lane 			  = $csv_content_arr["lane"];
-//     $op_empcr		  = $csv_content_arr["op_empcr"];    
-//     $overlap 		  = $_SESSION["run_info"]["overlap"];
-//     $primer_suite     = get_primer_suite_name($dna_region, $domain);
-//     $primer_suite_id  = get_primer_suite_id($dna_region, $domain, $db_name, $connection);    
-//     $project_id       = get_id($csv_content_arr, "project", $db_name, $connection); 
-//     $project_name     = $csv_content_arr["project_name"];
-//     $read_length 	  = $_SESSION["run_info"]["read_length"];
-//     $run_id 		  = get_id($_SESSION["run_info"], "run", $db_name, $connection);
-//     $run_key_id 	  = get_id($csv_content_arr, "run_key", $db_name, $connection);
-//     $runkey 		  = $csv_content_arr["runkey"];
-//     $seq_operator 	  = $_SESSION["run_info"]["seq_operator"];
-//     $submit_code      = $csv_content_arr["submit_code"];
-//     $tubelabel 		  = $csv_content_arr["tubelabel"];
-//     $tube_description = $csv_content_arr["tube_description"];
     
-//   TODO: data_owner print by project, not choose
-// TODO: insert into vamps subm only! 
-
-// // 	$date_initial        = date_initial;
-
-	
-// 	$id                  = $_SESSION["vamps_submissions_arr"][$submit_code]["id"];
-// 	$user                = $_SESSION["vamps_submissions_arr"][$submit_code]["user"];
-// 	$last_name           = $_SESSION["vamps_submissions_arr"][$submit_code]["last_name"];
-// 	$first_name          = $_SESSION["vamps_submissions_arr"][$submit_code]["first_name"];
-// 	$email               = $_SESSION["vamps_submissions_arr"][$submit_code]["email"];
-// 	$institution         = $_SESSION["vamps_submissions_arr"][$submit_code]["institution"];
-// 	$temp_project        = $_SESSION["vamps_submissions_arr"][$submit_code]["temp_project"];
-// 	$title               = $_SESSION["vamps_submissions_arr"][$submit_code]["title"];
-// 	$project_description = $_SESSION["vamps_submissions_arr"][$submit_code]["project_description"];
-// 	$environment         = $_SESSION["vamps_submissions_arr"][$submit_code]["environment"];
-// 	$env_source_id       = $_SESSION["vamps_submissions_arr"][$submit_code]["env_source_id"];
-// 	$funding             = $_SESSION["vamps_submissions_arr"][$submit_code]["funding"];
-// 	$num_of_tubes        = $_SESSION["vamps_submissions_arr"][$submit_code]["num_of_tubes"];
-// 	$date_initial        = $_SESSION["vamps_submissions_arr"][$submit_code]["date_initial"];
-// 	$locked              = $_SESSION["vamps_submissions_arr"][$submit_code]["locked"];
-    
-
-$insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes
+  	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
+	 SET
+	    temp_project		= \"" . $combined_metadata_row["temp_project"] . "\",
+	    title				= \"" . $combined_metadata_row["project_title"] . "\",
+	    project_description	= \"" . $combined_metadata_row["project_description"] . "\",
+	    funding				= \"" . $combined_metadata_row["funding"] . "\",
+	    num_of_tubes		= \"" . $combined_metadata_row["num_of_tubes"] . "\",
+  		    date_updated		= \"$date_updated\",
+  		    locked				= \"" . $combined_metadata_row["locked"] . "\"
+  	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
+			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\"
+	";
+	$insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes
 	  SET
  		  tube_label = \"" . $combined_metadata_row["tubelabel"] . "\",
 		  tube_description = \"" . $combined_metadata_row["tube_description"] . "\",
