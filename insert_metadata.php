@@ -91,103 +91,55 @@
 		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
 			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\"
 ";
+// 	TODO:
+// 	1) create copy of the line,
+// 	2) update the old one
+	$res = "";
+	$backup_subm_metadata_query1 = "";
+	$backup_subm_metadata_query1 = "CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
+  	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
+			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\";
+		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymd") . "\");
+		UPDATE tmptable_1 SET id = 0;				
+		INSERT INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_1 LIMIT 1;
+		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
+	";
+	print_blue_message('<br/>============<br/>1) $backup_subm_metadata_query1 = ' . $backup_subm_metadata_query1);
+	
+	$res = $local_mysqli->multi_query($backup_subm_metadata_query1);
+	print_blue_out_message('res', $res);
+// 	$data_id = $local_mysqli->insert_id;
+// 	print_blue_out_message('$data_id', $data_id);
+// 	print_blue_message($data_id);
+	
+// 	$a = run_multi_query($backup_subm_metadata_query1, $table_name, $connection);
+// 	print_blue_out_message('$a', $a);
+// 	$backup_subm_metadata_query1 =
+// 	"CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
+//   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
+// 			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\";
+// 		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymd") . "\");
+// 		UPDATE tmptable_1 SET id = 0;
+// 		INSERT INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_1 LIMIT 1;
+// 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
+// 	";
+	
+
+// 	print_blue_out_message('$backup_metadata_query1', $backup_metadata_query1);
+// 	$copy_metadata_query1 = "SELECT * FROM " . $db_name . ".vamps_submissions
+//   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
+// 			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\"
+// 	";
+	
+// 	INSERT INTO table (col1, col2, col3, ...)
+// 	SELECT col1, col2, col3, ... FROM table
+// 	WHERE primarykey = 1
+	
 //     	 $new_vamps_submissions_tubes = run_query($insert_metadata_query2, "vamps_submissions_tubes", $connection);
 //     	 print_blue_message("\$new_vamps_submissions_tubes");
 //     	 print_out($new_vamps_submissions_tubes);
     
-//     $insert_metadata_query2 = "UPDATE " . $db_name . ".vamps_submissions_tubes
-//     	(tube_number, tubelabel, tube_description, duplicate, domain,
-//     		primer_suite, dna_region, project_name, dataset_name, runkey, 
-//     		barcode, pool, lane, direction, platform, op_amp, op_seq, 
-//     		op_empcr, enzyme, rundate, adaptor, date_initial, date_updated,
-//     		on_vamps, sample_received, concentration, quant_method, overlap, 
-//     		insert_size, barcode_index, file_prefix, read_length, trim_distal)
-// 		VALUES(\"$tube_number\", \"$tubelabel\", \"$tube_description\", \"$duplicate\", \"$domain\",
-// 			\"$primer_suite\", \"$dna_region\", \"$project_name\", \"$dataset_name\", \"$runkey\",
-// 			\"$barcode\", \"$pool\", \"$lane\", \"$direction\", \"$platform\", \"$op_amp\", \"$op_seq\",
-// 			\"$op_empcr\", \"$enzyme\", \"$rundate\", \"$adaptor\", \"$date_initial\", \"$date_updated\",
-// 			\"$on_vamps\", \"$sample_received\", \"$concentration\", \"$quant_method\", \"$overlap\",
-// 			\"$insert_size\", \"$barcode_index\", \"$file_prefix\", \"$read_length\", \"$trim_distal\"
-// 		)    		
-// 		WHERE submit_code = \"$submit_code\"
-//     ";
-    
-//     $insert_metadata_query = "INSERT IGNORE INTO " . $db_name . ".run_info_ill
-//       (adaptor, amp_operator, barcode, barcode_index, dataset_id, 
-//         dna_region_id, file_prefix, insert_size, lane, overlap, primer_suite_id, 
-//         project_id, read_length, run_id, run_key_id, seq_operator, tubelabel)
-//       VALUES (\"$adaptor\", \"$amp_operator\", \"$barcode\", \"$barcode_index\", \"$dataset_id\", 
-//       \"$dna_region_id\", \"$file_prefix\", \"$insert_size\", \"$lane\", \"$overlap\", \"$primer_suite_id\", 
-//       \"$project_id\", \"$read_length\", \"$run_id\", \"$run_key_id\", \"$seq_operator\", \"$tubelabel\")
-//     ";
-    
-    /* Upload metadata only from run_info_upload step for now
-     * 
-+adaptor
-+amp_operator
-+barcode
-+barcode_index
-+dataset_id
-+dna_region_id
-file_prefix
-insert_size
-lane
-overlap
-primer_suite_id
-project_id
-read_length
-run_id
-run_key_id
-seq_operator
-tubelabel
 
-     * 
-     * */
-//     if (
-//     		($adaptor         == "") ||
-//     		($amp_operator    == "") ||
-//     		($barcode         == "") ||
-//     		($barcode_index   == "") ||
-//     		($dataset_id      == 0)  ||
-//     		($dna_region_id   == 0)  ||
-//     		($file_prefix     == "") ||
-//     		($insert_size     == "") ||
-//     		($lane            == "") ||
-//     		($overlap         == "") ||
-//     		($primer_suite_id == 0)  ||
-//     		($project_id      == 0)  ||
-//     		($read_length     == "") ||
-//     		($run_id          == 0)  ||
-//     		($run_key_id      == 0)  ||
-//     		($seq_operator    == "") ||
-//     		($tubelabel       == "")
-//     )
-//     {
-//     	print_blue_message("One of the follow field is empty:
-//     	run_key_id      = $run_key_id,<br/>
-//     	run_id          = $run_id,<br/>
-//     	lane            = $lane,<br/>
-//     	dataset_id      = $dataset_id,<br/>
-//     	project_id      = $project_id,<br/>
-//     	tubelabel      = $tubelabel,<br/>
-//     	barcode         = $barcode,<br/>
-//     	adaptor         = $adaptor,<br/>
-//     	dna_region_id   = $dna_region_id,<br/>
-//     	amp_operator    = $amp_operator,<br/>
-//     	seq_operator    = $seq_operator,<br/>
-//     	barcode_index   = $barcode_index,<br/>
-//     	overlap         = $overlap,<br/>
-//     	insert_size     = $insert_size,<br/>
-//     	file_prefix     = $file_prefix,<br/>
-//     	read_length     = $read_length,<br/>
-//     	primer_suite_id = $primer_suite_id,<br/>
-//     	");
-//     }
-//     else
-//     {
-// //     print_out($insert_metadata_query);
-//     	 $new_run_info_ill_id = run_query($insert_metadata_query, "run_info_ill", $connection);
-//     }
     print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
     print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
     
