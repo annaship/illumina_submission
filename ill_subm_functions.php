@@ -545,40 +545,30 @@ function run_query($query, $table_name, $connection)
 
 function run_multi_query($multi_query, $connection)
 {
-
-	$success_insert = 0;
-	//   TODO: Why return project with run_id?
-	$data_id = 0;
+	
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
-		if (isset($local_mysqli))
-		{
-			$res = $local_mysqli->multi_query($multi_query);
-			$data_id = $local_mysqli->insert_id;				
-		}
+		$connection->multi_query($multi_query) or die("Multi query failed. The last error: (" . $connection->errno . ") " . $connection->error);
+		do {
+			if ($res = $connection->store_result()) 
+			{
+				var_dump($res->fetch_all(MYSQLI_ASSOC));
+				$res->free();
+			}
+		} while ($connection->more_results() && $connection->next_result());
 	}
 	else
 	{
-		/*
-		 * set_error_handler("customError", E_USER_ERROR);
-		$results = mysql_query($multi_query, $connection) or trigger_error($multi_query . ": ", E_USER_ERROR);
-
-		*/
-		$success_insert = mysqli_multi_query($multi_query, $connection) or die(mysql_error());
-		if ($success_insert)
-		{
-			$data_id = mysql_insert_id();
-			if ($data_id == 0)
-			{
-				$query_get_last_id = "SELECT LAST_INSERT_ID() as last_id;";
-				$select_result     = mysql_query($query_get_last_id, $connection) or die(mysql_error());
-				$row = mysql_fetch_assoc($select_result);
-				$data_id = $row["last_id"];
-			}
-			print_blue_message($data_id);
-		}
+		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. The last error: " . mysqli_error( $connection ));
+	    do {
+	        /* store first result set */
+	        if ($result = mysqli_store_result($connection)) 
+	        {
+	        	$subresult = mysqli_fetch_assoc( $result );
+	            mysqli_free_result($result);
+	        }
+	    } while (mysqli_more_results($connection) && mysqli_next_result($connection));
 	}
-	return $data_id;
 }
 
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
