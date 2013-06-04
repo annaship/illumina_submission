@@ -63,7 +63,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 //           		print_blue_out_message('$$combined_metadata  = ', $combined_metadata);
           
           foreach ($combined_metadata as $metadata_row) {
-			print_blue_out_message('$metadata_row', $metadata_row);
+			
               $selected_adaptor				= $metadata_row["adaptor"];
               $selected_amp_operator		= $metadata_row["amp_operator"];
               $selected_barcode				= $metadata_row["barcode"];

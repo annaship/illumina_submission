@@ -544,11 +544,9 @@ function run_query($query, $table_name, $connection)
 
 function run_multi_query($multi_query, $connection)
 {
-	print_blue_out_message('$multi_query', $multi_query);
+	
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
-		print_blue_message("HERE1");
-		
 		$connection->multi_query($multi_query) or die("Multi query failed. The last error: (" . $connection->errno . ") " . $connection->error);
 		do {
 			if ($res = $connection->store_result()) 
@@ -560,9 +558,6 @@ function run_multi_query($multi_query, $connection)
 	}
 	else
 	{
-		print_blue_message("HERE2");
-		
-		print_blue_out_message('2) $multi_query', $multi_query);
 		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. The last error: " . mysqli_error( $connection ));
 	    do {
 	        /* store first result set */
@@ -979,11 +974,7 @@ function get_submission_tubes_ids($csv_metadata)
 }
 
 function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
-{      
-print_blue_out_message('$submit_code_arr', $submit_code_arr);
-	
-	$connection = $vampsdev_connection;
-	$db_name = "test";
+{
     $vamps_submissions_arr = array();
     $submit_code_arr_uniq  = array_unique($submit_code_arr);
     foreach ($submit_code_arr_uniq as $submit_code)
@@ -993,14 +984,11 @@ print_blue_out_message('$submit_code_arr', $submit_code_arr);
       		JOIN " . $db_name . ".vamps_auth AS auth
       			ON (auth.id = subm.vamps_auth_id)
       		WHERE submit_code = \"" . $submit_code. "\"";
-      print_blue_out_message('$query', $query);
       
       $row = get_one_value($query, $db_name, $connection);
       $vamps_submissions_arr[$submit_code] = $row;
       
     }
-    print_blue_out_message('$vamps_submissions_arr', $vamps_submissions_arr);
-    
     return $vamps_submissions_arr;
 }
 
@@ -1201,11 +1189,7 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		
 		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
-print_blue_out_message('$session["vamps_submissions_arr"][$csv_metadata_row["id"]]', $session["vamps_submissions_arr"][$csv_metadata_row["id"]]);
-print_blue_out_message('$session["vamps_submissions_arr"]', $session["vamps_submissions_arr"]);
-print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
-
-$combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];
+		$combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];
 		$combined_metadata[$num]["env_source_name"]		= $env_source_names[$combined_metadata[$num]["env_sample_source_id"]];
 // 		print_blue_out_message('$combined_metadata[$num]["env_source_name"]  = ', $combined_metadata[$num]["env_source_name"]);
 		$combined_metadata[$num]["first_name"]          = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["first_name"];

@@ -18,8 +18,7 @@
   	    $connection = $vampsdev_connection;
   	    $db_name    = "test";  
   }
-  $db_name = "test";
-  
+    
 //   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
 //   print_blue_message("From insert_metadata");
 //   print_blue_message("\$combined_metadata");
