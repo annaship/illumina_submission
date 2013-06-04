@@ -24,7 +24,7 @@ array_push($required_fields, "funding", "project_description");
 
 // 1) validate all data in foreach $result_metadata_arr
 // print_blue_message("from metadata validation");
-//   print_blue_message("FROM valid1");
+  print_blue_message("FROM valid1");
 //   print_out($result_metadata_arr);
 
 foreach ($combined_metadata as $combined_metadata_row)
@@ -77,8 +77,10 @@ if($metadata_errors_count == 0)
 //   print_blue_message("\$result_metadata_arr");
 //   print_out($result_metadata_arr);
   //   put data into the db and clean the table
+	print_blue_message("FROM valid10");
+	
   include_once 'insert_metadata.php';
-//   print_blue_message("FROM valid1");
+  print_blue_message("FROM valid11");
 //   print_out($result_metadata_arr);
   success_message('Metadata');
 }

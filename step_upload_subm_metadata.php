@@ -99,7 +99,9 @@
   {
 //   	error_reporting(E_ALL);
 //   	ini_set('max_execution_time', 300);
+	print_blue_message("HERE11");
   	include_once 'step_subm_metadata_form_submission_metadata_validation.php';  	 
+	print_blue_message("HERE12");
   }
   
 ?>

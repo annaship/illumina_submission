@@ -1,5 +1,5 @@
 <?php
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
@@ -49,7 +49,8 @@
 //   $new_vamps_submissions = run_query($insert_metadata_query1, "vamps_submissions_tubes", $connection);
 //   print_blue_message("\$new_vamps_submissions");
 //   print_out($new_vamps_submissions);
-  
+
+  $all_insert_metadata_queries = $all_backup_metadata_queries = Array();
   foreach ($combined_metadata as $row_num => $combined_metadata_row)
   {
     
@@ -91,10 +92,12 @@
 		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
 			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\"
 ";
+	array_push($all_insert_metadata_queries, $insert_metadata_query1, $insert_metadata_query2);
+	
 // 	TODO:
 // 	1) create copy of the line,
 // 	2) update the old one
-	$res = "";
+// 	$res = "";
 	$backup_subm_metadata_query1 = "";
 	$backup_subm_metadata_query1 = "CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
@@ -104,10 +107,22 @@
 		INSERT INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_1 LIMIT 1;
 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
 	";
-	print_blue_message('<br/>============<br/>1) $backup_subm_metadata_query1 = ' . $backup_subm_metadata_query1);
+	$backup_subm_metadata_query2 = "";
+// 	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
+//   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
+// 			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\";
+// 		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymd") . "\");
+// 		UPDATE tmptable_1 SET id = 0;
+// 		INSERT INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_1 LIMIT 1;
+// 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
+// 	";
+	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
 	
-	$res = $local_mysqli->multi_query($backup_subm_metadata_query1);
-	print_blue_out_message('res', $res);
+	
+// 	print_blue_message('<br/>============<br/>1) $backup_subm_metadata_query1 = ' . $backup_subm_metadata_query1);
+	
+// 	$res = $local_mysqli->multi_query($backup_subm_metadata_query1);
+// 	print_blue_out_message('res', $res);
 // 	$data_id = $local_mysqli->insert_id;
 // 	print_blue_out_message('$data_id', $data_id);
 // 	print_blue_message($data_id);
@@ -140,14 +155,17 @@
 //     	 print_out($new_vamps_submissions_tubes);
     
 
-    print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
-    print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
+//     print_blue_message('$insert_metadata_query1 = ' . $insert_metadata_query1);
+//     print_blue_message('$insert_metadata_query2 = ' . $insert_metadata_query2);
     
     if ($new_run_info_ill_id)
     {
       print("==========================================");      
     }
   }
+  print_blue_out_message('$all_insert_metadata_queries = ', array_unique($all_insert_metadata_queries));
+  print_blue_out_message('$all_backup_metadata_queries = ', array_unique($all_backup_metadata_queries));
+  
   
 //   ====
   include_once 'step_subm_metadata_create_csv.php';
