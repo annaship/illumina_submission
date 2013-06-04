@@ -545,6 +545,7 @@ function run_query($query, $table_name, $connection)
 function run_multi_query($multi_query, $connection)
 {
 	print_blue_message("HERE");
+	print_blue_out_message('$multi_query', $multi_query);
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$connection->multi_query($multi_query) or die("Multi query failed. The last error: (" . $connection->errno . ") " . $connection->error);
