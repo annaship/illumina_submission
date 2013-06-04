@@ -313,5 +313,6 @@ $runs = run_select_one_field($query, $connection);
 rsort($runs);
 
 // print_blue_message("From ". $_SERVER["PHP_SELF"] . "; ill_subm_filled_variables; END");
+$merge_filter_suffix = "-MAX-MISMATCH-3";
 
 ?>

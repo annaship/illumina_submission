@@ -24,14 +24,14 @@
 	}
 	else 
 	{
-		$file_ext = "*_MERGED_FILTERED.unique";
+		$file_ext = "*_MERGED" . $merge_filter_suffix . ".unique";
 	}
 	
-	foreach ($lanes as $lane_name)
+	foreach ($lane_dom_names as $lane_dom_name)
 	{
 		$fa_count_command = "grep '>' " . $file_ext . " | wc -l";
 		$fa_count_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
-						$lane_name . "/analysis/reads_overlap/; " . $fa_count_command . "; date";
+						$lane_dom_name . "/analysis/reads_overlap/; " . $fa_count_command . "; date";
 		print_green_message($fa_count_check);	
 	}	
 ?>
