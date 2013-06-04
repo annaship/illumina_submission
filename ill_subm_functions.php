@@ -1194,8 +1194,8 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		
 		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
-print_blue_out_message('vamps_submissions_tubes_arr[$csv_metadata_row["id"]]', $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]);
-print_blue_out_message('vamps_submissions_tubes_arr', $vamps_submissions_tubes_arr);
+print_blue_out_message('$session["vamps_submissions_arr"][$csv_metadata_row["id"]]', $session["vamps_submissions_arr"][$csv_metadata_row["id"]]);
+print_blue_out_message('$session["vamps_submissions_arr"]', $session["vamps_submissions_arr"]);
 print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
 
 $combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];
