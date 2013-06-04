@@ -544,10 +544,11 @@ function run_query($query, $table_name, $connection)
 
 function run_multi_query($multi_query, $connection)
 {
-	print_blue_message("HERE");
 	print_blue_out_message('$multi_query', $multi_query);
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
+		print_blue_message("HERE1");
+		
 		$connection->multi_query($multi_query) or die("Multi query failed. The last error: (" . $connection->errno . ") " . $connection->error);
 		do {
 			if ($res = $connection->store_result()) 
@@ -559,7 +560,9 @@ function run_multi_query($multi_query, $connection)
 	}
 	else
 	{
-		print_blue_out_message('$multi_query', $multi_query);
+		print_blue_message("HERE2");
+		
+		print_blue_out_message('2) $multi_query', $multi_query);
 		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. The last error: " . mysqli_error( $connection ));
 	    do {
 	        /* store first result set */
