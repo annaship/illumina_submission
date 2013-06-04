@@ -979,7 +979,9 @@ function get_submission_tubes_ids($csv_metadata)
 }
 
 function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
-{
+{      
+print_blue_out_message('$submit_code_arr', $submit_code_arr);
+	
 	$connection = $vampsdev_connection;
 	$db_name = "test";
     $vamps_submissions_arr = array();
@@ -991,11 +993,14 @@ function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
       		JOIN " . $db_name . ".vamps_auth AS auth
       			ON (auth.id = subm.vamps_auth_id)
       		WHERE submit_code = \"" . $submit_code. "\"";
+      print_blue_out_message('$query', $query);
       
       $row = get_one_value($query, $db_name, $connection);
       $vamps_submissions_arr[$submit_code] = $row;
       
     }
+    print_blue_out_message('$vamps_submissions_arr', $vamps_submissions_arr);
+    
     return $vamps_submissions_arr;
 }
 
