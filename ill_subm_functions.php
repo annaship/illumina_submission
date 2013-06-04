@@ -980,6 +980,7 @@ function get_submission_tubes_ids($csv_metadata)
 
 function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
 {
+	$db_name = "test";
     $vamps_submissions_arr = array();
     $submit_code_arr_uniq  = array_unique($submit_code_arr);
     foreach ($submit_code_arr_uniq as $submit_code)
