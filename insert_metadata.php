@@ -108,17 +108,18 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
 	";
 	$backup_subm_metadata_query2 = "";
-// 	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
-//   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
-// 			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\";
-// 		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymd") . "\");
-// 		UPDATE tmptable_1 SET id = 0;
-// 		INSERT INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_1 LIMIT 1;
-// 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
-// 	";
-// 	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
+	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE tmptable_2 SELECT * FROM " . $db_name . ".vamps_submissions_tubes
+		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
+			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\";
+		UPDATE tmptable_2 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymd") . "\");
+		UPDATE tmptable_2 SET id = 0;
+		INSERT INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_2 LIMIT 1;
+		DROP TEMPORARY TABLE IF EXISTS tmptable_2;
+	";
 	
-	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1);
+	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
+	
+// 	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1);
 	
 // 	print_blue_message('<br/>============<br/>1) $backup_subm_metadata_query1 = ' . $backup_subm_metadata_query1);
 	
@@ -167,13 +168,14 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
   
   $all_insert_metadata_queries_u = array_unique($all_insert_metadata_queries);
   $all_backup_metadata_queries_u = array_unique($all_backup_metadata_queries);
-  print_blue_out_message('$all_insert_metadata_queries_u = ', $all_insert_metadata_queries_u);
-  print_blue_out_message('$all_backup_metadata_queries_u = ', $all_backup_metadata_queries_u);
+//   print_blue_out_message('$all_insert_metadata_queries_u = ', $all_insert_metadata_queries_u);
+//   print_blue_out_message('$all_backup_metadata_queries_u = ', $all_backup_metadata_queries_u);
   
   foreach ($all_backup_metadata_queries_u as $all_backup_metadata_query)
   {
 //   		$res = $local_mysqli->multi_query($all_backup_metadata_query);
 //   		print_blue_out_message('res', $res);
+  	print_blue_out_message('$all_backup_metadata_query = ', $all_backup_metadata_query);
   	if (!$local_mysqli->multi_query($all_backup_metadata_query)) {
   		echo "Multi query failed: (" . $local_mysqli->errno . ") " . $local_mysqli->error;
   	}
