@@ -13,12 +13,13 @@
   }
   else
   {
-  	$connection = $newbpc2_connection;
-  	$db_name    = "env454";
-  	//     $connection = $vampsdev_connection;
-  	//     $db_name    = "test";  
+//   	$connection = $newbpc2_connection;
+//   	$db_name    = "env454";
+  	    $connection = $vampsdev_connection;
+  	    $db_name    = "test";  
   }
-    
+  $db_name = "test";
+  
 //   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
 //   print_blue_message("From insert_metadata");
 //   print_blue_message("\$combined_metadata");
@@ -34,7 +35,6 @@
 // print_red_message("\$_SESSION[\"vamps_submissions_arr\"] = ");
 // print_out($_SESSION["vamps_submissions_arr"]);
 //   $combine_session_data = combine_session_data($_SESSION);
-  $db_name = "test";
   $date_updated        = date("Y-m-d");
 //   TODO: change to new table structure:
 // vamps_submissions <- submit_code, vamps_auth_id, temp_project, title, project_description, funding, num_of_tubes, date_initial, date_updated, locked,
