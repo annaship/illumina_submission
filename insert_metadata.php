@@ -116,8 +116,9 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 // 		INSERT INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_1 LIMIT 1;
 // 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
 // 	";
-	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
+// 	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
 	
+	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1);
 	
 // 	print_blue_message('<br/>============<br/>1) $backup_subm_metadata_query1 = ' . $backup_subm_metadata_query1);
 	
@@ -163,9 +164,28 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
       print("==========================================");      
     }
   }
-  print_blue_out_message('$all_insert_metadata_queries = ', array_unique($all_insert_metadata_queries));
-  print_blue_out_message('$all_backup_metadata_queries = ', array_unique($all_backup_metadata_queries));
   
+  $all_insert_metadata_queries_u = array_unique($all_insert_metadata_queries);
+  $all_backup_metadata_queries_u = array_unique($all_backup_metadata_queries);
+  print_blue_out_message('$all_insert_metadata_queries_u = ', $all_insert_metadata_queries_u);
+  print_blue_out_message('$all_backup_metadata_queries_u = ', $all_backup_metadata_queries_u);
+  
+  foreach ($all_backup_metadata_queries_u as $all_backup_metadata_query)
+  {
+//   		$res = $local_mysqli->multi_query($all_backup_metadata_query);
+//   		print_blue_out_message('res', $res);
+  	if (!$local_mysqli->multi_query($all_backup_metadata_query)) {
+  		echo "Multi query failed: (" . $local_mysqli->errno . ") " . $local_mysqli->error;
+  	}
+  	
+  	do {
+  		if ($res = $local_mysqli->store_result()) {
+  			var_dump($res->fetch_all(MYSQLI_ASSOC));
+  			$res->free();
+  		}
+  	} while ($local_mysqli->more_results() && $local_mysqli->next_result());
+  	 
+  }
   
 //   ====
   include_once 'step_subm_metadata_create_csv.php';
