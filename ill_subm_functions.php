@@ -181,7 +181,7 @@ function get_one_value($query, $db_name, $connection)
   $row = array();
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-    $res = $connection->query($query);
+    $res = $connection->query($query); //or die("Query failed. The last error: (" . $connection->errno . ") " . $connection->error);
   	if (isset($res) && isset($res->num_rows))
   	{
 	    for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) 
@@ -506,18 +506,17 @@ function print_blue_out_message($message, $array_name)
 
 function run_query($query, $table_name, $connection)
 {
-	
   $success_insert = 0;
 //   TODO: Why return project with run_id?
   $data_id = 0;
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-  	if (isset($local_mysqli))
-  	{
-	    $res = $local_mysqli->query($query);
+//   	if (isset($local_mysqli))
+//   	{
+	    $res = $connection->query($query);
 	    $data_id = $local_mysqli->insert_id;
 	    print_insert_message_by_id($table_name, $data_id);
-  	}
+//   	}
   }
   else
   {

@@ -1,5 +1,5 @@
 <?php
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
 
 
   $adaptor = $amp_operator = $barcode = $barcode_index = $dataset_id = "";
@@ -126,15 +126,12 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_metadata");
   
   foreach ($all_backup_metadata_queries_u as $all_backup_metadata_query)
   {
-  	print_blue_out_message('$all_backup_metadata_query = ', $all_backup_metadata_query);
-//   	$local_mysqli->multi_query($all_backup_metadata_query) or die("Multi query failed. The last error: (" . $local_mysqli->errno . ") " . $local_mysqli->error);	
-//   	do {
-//   		if ($res = $local_mysqli->store_result()) {
-//   			var_dump($res->fetch_all(MYSQLI_ASSOC));
-//   			$res->free();
-//   		}
-//   	} while ($local_mysqli->more_results() && $local_mysqli->next_result());
+//   	print_blue_out_message('$all_backup_metadata_query = ', $all_backup_metadata_query);
   	run_multi_query($all_backup_metadata_query, $connection);
+  }
+  foreach ($all_insert_metadata_queries_u as $insert_metadata_query)
+  {
+  	get_one_value($insert_metadata_query, $db_name, $connection);
   }
   
 //   ====
