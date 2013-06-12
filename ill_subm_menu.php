@@ -11,6 +11,7 @@
 <!--   </li>       -->
   
   <li><a href="step_overlap.php">Overlap Analyzing</a></li>
+  <li><a href="step_chimera_checking_only.php">Chimera checking</a></li>
   <li><a href="step_gast.php">Gast</a></li>
   <li><a href="step_run_info_upload.php">Run_info upload</a></li>
   <li><a href="step_data_upload.php">Data upload</a></li>
@@ -20,7 +21,7 @@
     <li><a href="step_overlap_only.php">overlap</a></li>
     <li><a href="step_filter_mismatch.php">filtering mismatch</a></li>
     <li><a href="step_uniqueing.php">uniqueing</a></li>
-    <li><a href="step_chimera_checking_only.php">chimera_checking</a></li>
+    <li><a href="step_chimera_checking_only.php">chimera checking</a></li>
     <li><a href="step_clear_db.php">clear db</a></li>
     <li><a href="step_check_fa_counts.php">check counts in fa files</a></li>
     <li><a href="step_check_db_counts.php">check counts in db</a></li>
