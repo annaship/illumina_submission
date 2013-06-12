@@ -10,12 +10,7 @@
 	else
 	{
 		echo "<div id=\"command_line_print\">";
-		echo "
-	          <p>
-	            This command line(s) can be run on any server:
-	          </p>
-	          <br/>
-	        ";
+
 		
 // 			print_blue_message("\$lanes = ");
 // 			print_out($lanes);

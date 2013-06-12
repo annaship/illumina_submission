@@ -7,24 +7,24 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-	echo "<h2>Run info upload to db</h2>";
-	$pipeline_command = "env454run_info_upload";
+	echo "<h2>Chimera checking</h2>";
+	$pipeline_command = "illumina_chimera_only";
 	
 	include_once("steps_command_line.php");
+	
 	echo "
-	        <br/>
+			<br/>
       		<br/>
       		<p>
-	            This command line(s) can be run on any server:
-	        </p>
-	        ";	
+	            This command line(s) should be run on <strong>grendel</strong>:
+	          </p>
+	        ";
 	include_once("steps_command_line_print.php");
 	
 
 ?>
-<!-- 	</div> -->
 	
-<!-- </div> -->
+</div>
       
       <!-- end of content -->    
 <?php include_once("ill_subm_end.php"); ?>     
