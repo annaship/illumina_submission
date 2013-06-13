@@ -1186,9 +1186,9 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 // 				print_blue_message("\$_SESSION[\"run_info\"][\"dna_region_0\"] = ");
 // 				print_out($_SESSION["run_info"]["dna_region_0"]);
 		
-		if (check_var($_SESSION["run_info"]["dna_region_0"]))
+		if (check_var($session["run_info"]["dna_region_0"]))
 		{
-			$selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);
+			$selected_dna_region_base = strtolower($session["run_info"]["dna_region_0"]);
 		}
 // 		print_blue_message("\$csv_metadata_row = ");
 // 		print_out($csv_metadata_row);
