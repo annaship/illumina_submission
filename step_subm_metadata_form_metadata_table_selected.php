@@ -25,19 +25,25 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
           <?php
 			$row_num = 0;
 			$separate_post_val = separate_post_vars($_POST);
-			print_blue_out_message('$separate_post_val', $separate_post_val);
+// 			print_blue_out_message('$separate_post_val', $separate_post_val);
+
 			          
+
+// 			renew $combined_metadata
+			foreach ($combined_metadata as $num => $combined_metadata_arr)
+			{
+				foreach ($combined_metadata_arr as $field_name => $filed_value)
+				{
+// 					print_blue_out_message('$field_name', $field_name);
+// 					print_blue_out_message('$filed_value', $filed_value);
+// 					print_blue_out_message('$separate_post_val[$num][$field_name]', $separate_post_val[$num][$field_name]);
+				}
+			}
+			
+			
 //           foreach ($_POST as )
-          foreach ($separate_post_val as $num_key => $selected_metadata_arr1)
+          foreach ($combined_metadata as $num_key => $selected_metadata_arr1)
           {
-          	
-          	$key_ind = get_run_key_by_adaptor($selected_metadata_arr1["adaptor"], $selected_metadata_arr1["domain"], $adaptors_full, $selected_dna_region_base);
-          	$selected_metadata_arr1["barcode_index"] 		= $key_ind["illumina_index"];
-          	$selected_metadata_arr1["run_key"]       		= $key_ind["illumina_run_key"];
-          	$selected_metadata_arr1["run_key_id"] 	  		= get_id($separate_post_val[$num_key], "run_key", $db_name, $connection);
-          	$selected_metadata_arr1["file_prefix"]      	= $key_ind["illumina_index"] . "_NNNN" . $key_ind["illumina_run_key"] . "_" . $csv_metadata_row["lane"];
-          	
-          	
 //           	print_blue_out_message('$selected_metadata_arr1', $selected_metadata_arr1);
             if(isset($selected_metadata_arr1["domain"]))
             {
