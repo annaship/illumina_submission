@@ -148,11 +148,13 @@ function separate_post_vars($post_array)
 		$subject = $key;
 		$pattern = '/(.+)_(\d+)/';
 		preg_match($pattern, $subject, $matches);
-		print_blue_out_message('$key', $key);
-		print_blue_out_message('$matches[2]', $matches[2]);
+// 		print_blue_out_message('$key', $key);
+// 		print_blue_out_message('$matches[2]', $matches[2]);
 		
-		$$key = $value;
-		$result_post[$key] = htmlspecialchars($value);
+// 		$$key = $value;
+		if (isset($matches[2])) {
+			$result_post[$matches[2]][$matches[1]] = htmlspecialchars($value);
+		}
 	}
 	return $result_post;
 }
@@ -519,6 +521,7 @@ function print_blue_message($message)
 
 function print_blue_out_message($message, $array_name)
 {
+	echo "<br/>";
 	print ("<div class = \"blue_message\">$message</div>");
 	print "<br/>UUU -";
 	print_r($array_name);
