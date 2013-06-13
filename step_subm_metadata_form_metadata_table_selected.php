@@ -1,6 +1,19 @@
 <?php 
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
+	print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
     print_out($_POST);
+    
+    if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+    {
+    	$connection = $local_mysqli;
+    	$db_name    = "test";
+    }
+    else
+    {
+    	$connection = $newbpc2_connection;
+    	$db_name    = "env454";
+    	//     $connection = $vampsdev_connection;
+    	//     $db_name    = "test";
+    }    
 ?>
             
 <form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_upload_subm_metadata.php">
@@ -25,18 +38,24 @@ print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
           <?php
 			$row_num = 0;
 			$separate_post_val = separate_post_vars($_POST);
-// 			print_blue_out_message('$separate_post_val', $separate_post_val);
+// 			print_blue_out_message('$_SESSION', $_SESSION);
 
 			          
 
 // 			renew $combined_metadata
 			foreach ($combined_metadata as $num => $combined_metadata_arr)
 			{
+				print_blue_out_message('$separate_post_val[$num]', $separate_post_val[$num]);
+					
+				$separate_post_val[$num] = populate_key_ind($separate_post_val[$num], $adaptors_full, $_SESSION["run_info"]["dna_region_0"], $db_name, $connection);
+				
 				foreach ($combined_metadata_arr as $field_name => $filed_value)
 				{
 // 					print_blue_out_message('$field_name', $field_name);
 // 					print_blue_out_message('$filed_value', $filed_value);
 // 					print_blue_out_message('$separate_post_val[$num][$field_name]', $separate_post_val[$num][$field_name]);
+					$combined_metadata[$num][$field_name] = $separate_post_val[$num][$field_name];
+						
 				}
 			}
 			
