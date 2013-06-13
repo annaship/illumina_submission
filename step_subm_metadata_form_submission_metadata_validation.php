@@ -10,7 +10,7 @@ $metadata_errors     = array();
 $metadata_errors_all = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
 $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
-// print_out($_POST);
+// print_blue_out_message('$_POST', $_POST);
 
 // remove array #0 == check_submission
 if (sizeof($result_metadata_arr) > 1 && isset($_POST["submission_metadata_process"]) && ($_POST["submission_metadata_process"] == 1))

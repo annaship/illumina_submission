@@ -1,6 +1,6 @@
 <?php 
-// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
-//     print_out($_POST);
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
+    print_out($_POST);
 ?>
             
 <form method="post" name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_upload_subm_metadata.php">
@@ -24,8 +24,12 @@
         <tbody>   
           <?php
           $row_num = 0;
+          $a = separate_post_vars($_POST);
+          print_blue_out_message('separate_post_vars', $a);
+//           foreach ($_POST as )
           foreach ($combined_metadata as $num_key => $selected_metadata_arr1)
           {
+//           	print_blue_out_message('$selected_metadata_arr1', $selected_metadata_arr1);
             if(isset($selected_metadata_arr1["domain"]))
             {
               foreach($selected_metadata_arr1 AS $key => $value)

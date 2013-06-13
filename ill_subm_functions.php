@@ -136,6 +136,27 @@ function populate_post_vars($post_array)
   return $result_post;
 }
 
+function separate_post_vars($post_array)
+{
+	$result_post = array();
+	// Loop through the $_POST array, which comes from the form...
+	foreach($post_array AS $key => $value)
+	{
+// 		print_blue_out_message('$key', $key);
+// 		print_blue_out_message('$value', $value);
+		
+		$subject = $key;
+		$pattern = '/(.+)_(\d+)/';
+		preg_match($pattern, $subject, $matches);
+		print_blue_out_message('$key', $key);
+		print_blue_out_message('$matches[2]', $matches[2]);
+		
+		$$key = $value;
+		$result_post[$key] = htmlspecialchars($value);
+	}
+	return $result_post;
+}
+
 function create_require_arr($form_fields)
 {
   $i = 0;

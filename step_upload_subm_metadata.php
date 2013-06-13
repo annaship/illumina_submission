@@ -83,7 +83,6 @@
 		&& sizeof($_POST)
 	)
   {
-  	//   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);
   	 
   	include_once 'step_subm_metadata_csv_show_table.php';
   }  

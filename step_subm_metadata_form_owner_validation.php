@@ -18,8 +18,7 @@ $required_fields = array(
 $allowed_fields = $required_fields;
 
 // Loop through the $_POST array, which comes from the form...
-$owner_post_array = $_POST;
-$owner_results    = populate_post_vars($owner_post_array);
+$owner_results    = populate_post_vars($_POST);
 $errors           = check_required_fields($owner_post_array, $required_fields);
 if( !validEmail( $owner_results["email"] ) ) {
   $errors["email"] = "Please provide a valid email address.";

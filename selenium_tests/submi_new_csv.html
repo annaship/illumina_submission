@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>submi_new_csv</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">submi_new_csv</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/~ashipunova/illumina_submission/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Upload Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv</td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/SUBMITCODE_test_new.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=Submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=run_info_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_adaptor_1</td>
+	<td>label=B01</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_env_source_name_1</td>
+	<td>label=wastewater/sludge</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form_dataset_description_1</td>
+	<td>ssss</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_update_from_csv</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
