@@ -9,7 +9,7 @@ Have the user create a submisson on VAMPS (<a href="http://vamps.mbl.edu/utils/s
 <li>
 After you log into <a href="http://vamps.mbl.edu" target="_blank">VAMPS</a>, 
 click on the link 
-"<a href="http://vamps.mbl.edu/utils/submissions/csv_table.php" target="_blank">TEST CSV File Download/Upload</a>".
+"<a href="http://vampsdev.mbl.edu/utils/submissions/admin_submission.php" target="_blank">CSV File Download/Upload</a>".
 <p/>
 (If you go from VAMPS it will be on the 
 "<a href="http://vamps.mbl.edu/utils/submissions/admin_submission.php" target="_blank">Project Submission-ADMIN</a>" page.)
