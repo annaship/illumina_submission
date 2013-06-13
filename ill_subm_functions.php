@@ -1252,21 +1252,9 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		$combined_metadata[$num]["vamps_auth_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["vamps_auth_id"];
 		$combined_metadata[$num]["vamps_submissions_id"] = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
 
-		$key_ind_arr = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
-		
-		$combined_metadata[$num]["barcode_index"] 		= $key_ind_arr["barcode_index"];
-		$combined_metadata[$num]["run_key"]       		= $key_ind_arr["run_key"];
-		$combined_metadata[$num]["run_key_id"] 	  		= $key_ind_arr["run_key_id"];
-		$combined_metadata[$num]["file_prefix"]      	= $key_ind_arr["file_prefix"];		
-		
-// 		print_blue_out_message('$combined_metadata[$num]["barcode_index"]', $combined_metadata[$num]["barcode_index"]);
-// 		print_blue_out_message('$combined_metadata[$num]["run_key"]', $combined_metadata[$num]["run_key"]);
-// 		print_blue_out_message('$combined_metadata[$num]["run_key_id"]', $combined_metadata[$num]["run_key_id"]);
-// 		print_blue_out_message('$combined_metadata[$num]["file_prefix"]', $combined_metadata[$num]["file_prefix"]);
-		
+		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		$num += 1;
 	}
-// 	print_blue_out_message("\$combined_metadata", $combined_metadata);
 	return $combined_metadata;
 }
 
