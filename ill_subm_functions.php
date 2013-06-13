@@ -1251,24 +1251,18 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		$combined_metadata[$num]["user"]   			    = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"];
 		$combined_metadata[$num]["vamps_auth_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["vamps_auth_id"];
 		$combined_metadata[$num]["vamps_submissions_id"] = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
+
+		$key_ind_arr = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		
-		$key_ind = get_run_key_by_adaptor($combined_metadata[$num]["adaptor"], $combined_metadata[$num]["domain"], $adaptors_full, $selected_dna_region_base);
-		$combined_metadata[$num]["barcode_index"] 		= $key_ind["illumina_index"];
-		$combined_metadata[$num]["run_key"]       		= $key_ind["illumina_run_key"];
-		$combined_metadata[$num]["run_key_id"] 	  		= get_id($combined_metadata[$num], "run_key", $db_name, $connection);
-		$combined_metadata[$num]["file_prefix"]      	= $key_ind["illumina_index"] . "_NNNN" . $key_ind["illumina_run_key"] . "_" . $combined_metadata[$num]["lane"];		
+		$combined_metadata[$num]["barcode_index"] 		= $key_ind_arr["barcode_index"];
+		$combined_metadata[$num]["run_key"]       		= $key_ind_arr["run_key"];
+		$combined_metadata[$num]["run_key_id"] 	  		= $key_ind_arr["run_key_id"];
+		$combined_metadata[$num]["file_prefix"]      	= $key_ind_arr["file_prefix"];		
 		
-		print_blue_out_message('$combined_metadata[$num]["barcode_index"]', $combined_metadata[$num]["barcode_index"]);
-		print_blue_out_message('$combined_metadata[$num]["run_key"]', $combined_metadata[$num]["run_key"]);
-		print_blue_out_message('$combined_metadata[$num]["run_key_id"]', $combined_metadata[$num]["run_key_id"]);
-		print_blue_out_message('$combined_metadata[$num]["file_prefix"]', $combined_metadata[$num]["file_prefix"]);
-		
-		$arr_name = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
-		print_blue_out_message('$arr_name["barcode_index"]', $arr_name["barcode_index"]);
-		print_blue_out_message('$arr_name["run_key"]', $arr_name["run_key"]);
-		print_blue_out_message('$arr_name["run_key_id"]', $arr_name["run_key_id"]);
-		print_blue_out_message('$arr_name["file_prefix"]', $arr_name["file_prefix"]);
-		
+// 		print_blue_out_message('$combined_metadata[$num]["barcode_index"]', $combined_metadata[$num]["barcode_index"]);
+// 		print_blue_out_message('$combined_metadata[$num]["run_key"]', $combined_metadata[$num]["run_key"]);
+// 		print_blue_out_message('$combined_metadata[$num]["run_key_id"]', $combined_metadata[$num]["run_key_id"]);
+// 		print_blue_out_message('$combined_metadata[$num]["file_prefix"]', $combined_metadata[$num]["file_prefix"]);
 		
 		$num += 1;
 	}
