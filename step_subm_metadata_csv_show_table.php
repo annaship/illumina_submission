@@ -61,6 +61,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 [funding] => [num_of_tubes] => 6 [date_initial] => 2012-03-13 [date_updated] => 2012-03-13 [locked] => 1 ) ) --
 */		  $row_num = 0;
 //           		print_blue_out_message('$$combined_metadata  = ', $combined_metadata);
+//           print_blue_out_message('3) metadata_csv_show_table: $combined_metadata', $combined_metadata);
           
           foreach ($combined_metadata as $metadata_row) {
 			
@@ -71,7 +72,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               $selected_user   			    = $metadata_row["user"];              
               $selected_data_owner			= $metadata_row["data_owner"];
               $selected_dataset				= $metadata_row["dataset"];
-              $selected_dataset_description	= $metadata_row["tube_description"];
+              $selected_dataset_description	= $metadata_row["dataset_description"];
               $selected_domain				= $metadata_row["domain"];
               $selected_env_source_name		= $metadata_row["env_source_name"];
               $selected_funding				= $metadata_row["funding"];
