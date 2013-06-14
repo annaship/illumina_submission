@@ -13,7 +13,9 @@
           <input type="hidden" name="user_<?php echo $row_num;?>" id="form_user_<?php echo $row_num;?>" value="<?php echo $selected_user ?>"/>
           <input type="hidden" name="funding_<?php echo $row_num;?>" id="form_funding_<?php echo $row_num;?>" value="<?php echo $selected_funding ?>"/>
           <input type="hidden" name="project_description_<?php echo $row_num;?>" id="form_project_description_<?php echo $row_num;?>" value="<?php echo $selected_project_description ?>"/>
-          <input type="hidden" name="project_title_<?php echo $row_num;?>" id="form_project_title_<?php echo $row_num;?>" value="<?php echo $selected_project_title ?>"/>
+<!--           <input type="hidden" name="project_title_<?php //echo $row_num;?>" id="form_project_title_<?php //echo $row_num;?>"
+ value="<?php //echo $selected_project_title ?>"/>
+  -->
           
           <select name="domain_<?php echo $row_num;?>" id="form_domain_<?php echo $row_num;?>">
            <?php 
