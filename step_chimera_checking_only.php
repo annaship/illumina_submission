@@ -12,15 +12,21 @@
 	
 	include_once("steps_command_line.php");
 	
-	echo "
-			<br/>
-      		<br/>
-      		<p>
-	            This command line(s) should be run on <strong>grendel</strong>:
-	          </p>
-	        ";
+	server_message("grendel");
 	include_once("steps_command_line_print.php");
+
+	print "<br/>";
+	print "<br/>";
+	print "Afterwards you can run the following command(s) to get chimera checking statistics.";
+	server_message("any");
 	
+	foreach ($lane_dom_names as $lane_dom_name)
+	{
+		$check_chimera_stat = "run_chimera_stat.sh";
+		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
+				$lane_dom_name . "/analysis/chimera/; " . $check_chimera_stat . "; date";
+		print_green_message($command_line_gast_check);
+	}
 
 ?>
 	

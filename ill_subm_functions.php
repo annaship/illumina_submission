@@ -1164,6 +1164,30 @@ function add_env454_mysql_call($query) {
 	return "mysql -h newbpcdb2 env454 -e '" . $query . "'";
 }
 
+function server_message($server_name)
+{
+	if ($server_name == "grendel")
+	{
+		$server_name = "<strong>grendel</strong>";
+	}
+	else
+	{
+		$server_name = "any server";
+	}
+
+	echo "
+	<br/>
+	<br/>
+	<p>
+	This command line(s) can be run on " . $server_name .
+
+	":
+	</p>
+	";
+
+}
+
+
 function combine_metadata($session, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection) 
 {
 	$num = 0;
