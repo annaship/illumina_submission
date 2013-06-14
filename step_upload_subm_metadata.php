@@ -75,7 +75,9 @@
   $submission_tubes_id_arr     = get_submission_tubes_ids($_SESSION["csv_content"]);
   $vamps_submissions_tubes_arr = get_tubes_info_by_submit_code($submission_tubes_id_arr, $vamps_submission_tubes_info, $db_name, $connection);
   $combined_metadata           = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection);
-
+//     print_blue_message("2) step_upload_subm_metadata, \$combined_metadata");
+//     print_out($combined_metadata);
+  
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
   		&& !(isset($_POST["subm_metadata_upload_process"]) && $_POST["subm_metadata_upload_process"] == 1)
@@ -85,7 +87,8 @@
   {
   	 
   	include_once 'step_subm_metadata_csv_show_table.php';
-  }  
+  }
+
   //4) create csv
 //   phpinfo();
   if ($_SERVER["REQUEST_METHOD"] == "POST" && 
@@ -96,7 +99,9 @@
   )
 ) 
   {
-//   	error_reporting(E_ALL);
+//   	print_blue_message("2a) step_upload_subm_metadata before step_subm_metadata_form_submission_metadata_validation.php, \$combined_metadata");
+  	  
+  	//   	error_reporting(E_ALL);
 //   	ini_set('max_execution_time', 300);
 // 	print_blue_message("HERE11");
   	include_once 'step_subm_metadata_form_submission_metadata_validation.php';  	 
