@@ -1279,6 +1279,8 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		$num += 1;
 	}
+	print_blue_out_message('functions: $combined_metadata', $combined_metadata);
+	
 	return $combined_metadata;
 }
 

@@ -17,54 +17,242 @@
     *) ill_subm_beginning.php includes header, db connections and the array of queries for the drop-down menu.
 	*) Other files contain header, footer, left menu, connection info, common php functions, java scripts, css and other additional stuff, should be obvious by the name of a file.
 	*) local mysql connection is in ill_subm_conn_local.php
-Includes:
-  index 
-	ill_subm_index_local.php | ill_subm_index.php
-		ill_subm_menu.php (submission pipeline steps)
-		  Submit Metadata:
-  		  step_upload_subm_metadata.php
-  		    step_upload_csv_instruction.php
-			step_subm_metadata_get_csv_info.php
-			step_subm_metadata_form_run_info.php
-			step_subm_metadata_form_run_info_validation.php
-				insert_run_info.php
-			step_subm_metadata_csv_show_table.php
-				step_subm_metadata_form_metadata_table_rows.php
-			step_subm_metadata_form_submission_metadata_validation.php
-				insert_metadata.php
-					step_subm_metadata_create_csv.php
-				step_subm_metadata_form_metadata_table_selected.php
-					step_subm_metadata_form_metadata_table_rows.php
-						
-  			step_subm_metadata.php
-  				step_subm_metadata_form_run_info.php
-  			  step_subm_metadata_form_run_info_validation.php
-  			    insert_run_info.php
-          step_subm_metadata_form_project.php
-          step_subm_metadata_form_project_validation.php
-          	insert_project.php
-          step_subm_metadata_form_metadata_table.php
-          	step_subm_metadata_form_metadata_table_rows.php
-          step_subm_metadata_form_submission_metadata_validation.php
-            step_subm_metadata_form_metadata_table_selected.php
-              step_subm_metadata_form_metadata_table_rows.php
-            insert_metadata.php
-  				  
-  	  step_overlap.php
-          steps_command_line.php
-              choose_metadata.php
-                step_form_get_run_info.php
-          steps_command_line_print.php
-  	    
-  	  step_gast.php
-    	  steps_command_line.php
-				
+	
+Most important includes:
+(see list of all includes down below)
+ - index 
+ -- ill_subm_index_local.php | ill_subm_index.php
+ --- ill_subm_menu.php (submission pipeline steps)
+ 
+ ---- Submit Metadata:
+ ---- step_upload_subm_metadata.php
+ ----- step_upload_csv_instruction.php
+ ----- step_subm_metadata_get_csv_info.php
+ ----- step_subm_metadata_form_run_info.php
+ ----- step_subm_metadata_form_run_info_validation.php
+ ------ insert_run_info.php
+ ----- step_subm_metadata_form_project.php				
+ ----- step_subm_metadata_form_project_validation.php				
+ ----- step_subm_metadata_csv_show_table.php
+ ------ step_subm_metadata_form_metadata_table_rows.php
+ ----- step_subm_metadata_form_submission_metadata_validation.php
+ ------ step_subm_metadata_form_metadata_table_selected.php
+ ------- step_subm_metadata_form_metadata_table_rows.php
+ ------ insert_metadata.php
+ ------- step_subm_metadata_create_csv.php
+
+These two files:  
+ ----- steps_command_line.php
+ ----- steps_command_line_print.php
+are included in 
+ ---- step_chimera_checking_only.php
+ ---- step_data_upload.php
+ ---- step_demultiplex.php
+ ---- step_overlap.php
+ ---- step_run_info_upload.php
+
+These:
+ ----- steps_command_line.php
+is included also in 
+ ---- step_check_db_counts.php
+ ---- step_check_fa_counts.php
+ ---- step_clear_db.php
+ ---- step_filter_mismatch.php
+ ---- step_gast.php
+ ---- step_gunzip_all.php
+ ---- step_gzip_all.php
+ ---- step_overlap_only.php
+ ---- step_ungzip_all.php
+ ---- step_uniqueing.php
+
+ ----- steps_command_line.php 
+ includes 
+ ------ choose_metadata.php;
+ ------- step_form_get_metadata.php 
+ ------- step_form_get_run_info.php
+			
+step_subm_metadata_form_owner_validation.php
+ - insert_owner.php
+ -- ill_subm_conn_local.php
+
 Forms:
-	step_subm_metadata_form_metadata_table.php: <form method="post" name="submission_metadata_form" id="submission_metadata_form" action="step_subm_metadata.php">
-	step_subm_metadata_form_project.php:        <form method="post" name="project_form"             id="project_form"             action="step_subm_metadata.php">
-	step_subm_metadata_form_run_info.php:       <form method="post" name="run_info_form"            id="run_info_form"            action="step_subm_metadata.php">
-  step_upload_subm_metadata.php               <form method="POST" name="form_upload_csv"          id="form_upload_csv"          action="step_take_subm_metadata.php"  enctype="multipart/form-data" >
-  
-TODO: add all forms
-        
+/usr/local/www/vamps/docs/illumina_submission$ grep "<form" *php
+choose_metadata_form.php:                            <form         method="post"    name="find_metadata_form"           id="find_metadata_form"        action="<?php echo $_SESSION["meta_from"]; ?>">
+left_menu.php:                                       <form         id='portal_form' name='portal_form' enctype='text/html'>
+step_form_get_metadata.php:                          <form         method="post"    name="choose_meta_w_path_form"      id="choose_meta_w_path_form"   action="<?php echo $_SERVER["PHP_SELF"]?>">
+step_form_get_run_info.php:                          <form         method="post"    name="choose_run_m_form"            id="choose_run_m_form"         action="<?php echo $_SERVER["PHP_SELF"]?>">
+step_subm_metadata_csv_show_table.php:               <form         method="post"    name="subm_metadata_upload_form"    id="subm_metadata_upload_form" action="<?php echo $_SERVER["PHP_SELF"]?>">
+step_subm_metadata_form_metadata_table.php:          <form         method="post"    name="submission_metadata_form"     id="submission_metadata_form"  action="step_subm_metadata.php">
+step_subm_metadata_form_metadata_table_selected.php: <form         method="post"    name="submission_metadata_selected_form" id="submission_metadata_selected_form" action="step_upload_subm_metadata.php">
+step_subm_metadata_form_owner.php:                   <form         method="post"    name="data_ownerForm"               id="data_ownerForm"            action="step_upload_subm_metadata.php">
+step_subm_metadata_form_project.php:                 <form         method="post"    name="project_form"                 id="project_form"              action="step_upload_subm_metadata.php">
+step_subm_metadata_form_run_info.php:                <form         method="post"    name="run_info_form"                id="run_info_form"             action="<?php echo $_SERVER["PHP_SELF"]?>">
+step_take_subm_metadata.php:                         <form         method="post"    name="vamps_subm_info_form"         id="vamps_subm_info_form"      action="step_subm_metadata.php">
+step_upload_subm_metadata.php:                       <form         method="POST"    name="form_upload_csv"              id="form_upload_csv"           action="step_upload_subm_metadata.php" enctype="multipart/form-data">
+
+All includes as on Jun 14 2013  
+/usr/local/www/vamps/docs/illumina_submission$ green_grep -- *php
+choose_metadata.php: -- step_form_get_metadata.php 
+choose_metadata.php: -- step_form_get_run_info.php 
+ill_subm_beginning.php: -- ill_subm_functions.php 
+ill_subm_beginning.php: -- left_menu.php 
+ill_subm_beginning.php: -- vamps_virtual_setup.php 
+ill_subm_beginning.php: -- ill_subm_functions.php 
+ill_subm_beginning.php: -- $application_data[config][paths][root]./docs/includes/debug_header.php 
+ill_subm_beginning.php: -- left_menu.php 
+ill_subm_beginning.php: -- $docroot/templates/includes/extras.php 
+ill_subm_beginning.php: -- db_connect.php 
+ill_subm_end.php: -- $docroot/templates/includes/footer.php 
+ill_subm_filled_variables.php: -- ill_subm_conn_local.php 
+ill_subm_index_local.php: -- ill_subm_beginning.php 
+ill_subm_index_local.php: -- ill_subm_menu.php 
+ill_subm_index_local.php: -- ill_subm_end.php 
+ill_subm_index.php: -- ill_subm_beginning.php 
+ill_subm_index.php: -- ill_subm_menu.php 
+ill_subm_index.php: -- ill_subm_end.php 
+index.php: -- ill_subm_index_local.php 
+index.php: -- ill_subm_index.php 
+insert_metadata.php: -- step_subm_metadata_create_csv.php
+insert_owner.php: -- ill_subm_conn_local.php
+step_check_db_counts.php: -- ill_subm_beginning.php 
+step_check_db_counts.php: -- ill_subm_functions.php 
+step_check_db_counts.php: -- ill_subm_filled_variables.php
+step_check_db_counts.php: -- ill_subm_menu.php 
+step_check_db_counts.php: -- steps_command_line.php 
+step_check_db_counts.php: -- ill_subm_end.php 
+step_check_fa_counts.php: -- ill_subm_beginning.php 
+step_check_fa_counts.php: -- ill_subm_functions.php 
+step_check_fa_counts.php: -- ill_subm_filled_variables.php
+step_check_fa_counts.php: -- ill_subm_menu.php 
+step_check_fa_counts.php: -- steps_command_line.php 
+step_check_fa_counts.php: -- ill_subm_end.php 
+step_chimera_checking_only.php: -- ill_subm_beginning.php 
+step_chimera_checking_only.php: -- ill_subm_functions.php 
+step_chimera_checking_only.php: -- ill_subm_filled_variables.php
+step_chimera_checking_only.php: -- ill_subm_menu.php 
+step_chimera_checking_only.php: -- steps_command_line.php 
+step_chimera_checking_only.php: -- steps_command_line_print.php 
+step_chimera_checking_only.php: -- ill_subm_end.php 
+step_clear_db.php: -- ill_subm_beginning.php 
+step_clear_db.php: -- ill_subm_functions.php 
+step_clear_db.php: -- ill_subm_filled_variables.php 
+step_clear_db.php: -- ill_subm_menu.php 
+step_clear_db.php: -- steps_command_line.php 
+step_clear_db.php: -- ill_subm_end.php 
+step_data_upload.php: -- ill_subm_beginning.php 
+step_data_upload.php: -- ill_subm_functions.php 
+step_data_upload.php: -- ill_subm_filled_variables.php
+step_data_upload.php: -- ill_subm_menu.php 
+step_data_upload.php: -- steps_command_line.php 
+step_data_upload.php: -- steps_command_line_print.php 
+step_data_upload.php: -- ill_subm_end.php 
+step_demultiplex.php: -- ill_subm_beginning.php 
+step_demultiplex.php: -- ill_subm_functions.php 
+step_demultiplex.php: -- ill_subm_filled_variables.php
+step_demultiplex.php: -- ill_subm_menu.php 
+step_demultiplex.php: -- steps_command_line.php 
+step_demultiplex.php: -- steps_command_line_print.php 
+step_demultiplex.php: -- ill_subm_end.php 
+step_demultiplex.php: -- ill_subm_beginning.php 
+step_demultiplex.php: -- ill_subm_menu.php 
+step_demultiplex.php: -- ill_subm_end.php 
+step_filter_mismatch.php: -- ill_subm_beginning.php 
+step_filter_mismatch.php: -- ill_subm_functions.php 
+step_filter_mismatch.php: -- ill_subm_filled_variables.php
+step_filter_mismatch.php: -- ill_subm_menu.php 
+step_filter_mismatch.php: -- steps_command_line.php 
+step_filter_mismatch.php: -- ill_subm_end.php 
+step_gast.php: -- ill_subm_beginning.php 
+step_gast.php: -- ill_subm_functions.php 
+step_gast.php: -- ill_subm_filled_variables.php
+step_gast.php: -- ill_subm_menu.php 
+step_gast.php: -- steps_command_line.php 
+step_gast.php: -- ill_subm_end.php 
+step_gunzip_all.php: -- ill_subm_beginning.php 
+step_gunzip_all.php: -- ill_subm_functions.php 
+step_gunzip_all.php: -- ill_subm_filled_variables.php
+step_gunzip_all.php: -- ill_subm_menu.php 
+step_gunzip_all.php: -- steps_command_line.php 
+step_gunzip_all.php: -- ill_subm_end.php 
+step_gzip_all.php: -- ill_subm_beginning.php 
+step_gzip_all.php: -- ill_subm_functions.php 
+step_gzip_all.php: -- ill_subm_filled_variables.php
+step_gzip_all.php: -- ill_subm_menu.php 
+step_gzip_all.php: -- steps_command_line.php 
+step_gzip_all.php: -- ill_subm_end.php 
+step_overlap_only.php: -- ill_subm_beginning.php 
+step_overlap_only.php: -- ill_subm_functions.php 
+step_overlap_only.php: -- ill_subm_filled_variables.php
+step_overlap_only.php: -- ill_subm_menu.php 
+step_overlap_only.php: -- steps_command_line.php 
+step_overlap_only.php: -- ill_subm_end.php 
+step_overlap.php: -- ill_subm_beginning.php 
+step_overlap.php: -- ill_subm_functions.php 
+step_overlap.php: -- ill_subm_filled_variables.php
+step_overlap.php: -- ill_subm_menu.php 
+step_overlap.php: -- steps_command_line.php 
+step_overlap.php: -- steps_command_line_print.php 
+step_overlap.php: -- ill_subm_end.php 
+step_run_info_upload.php: -- ill_subm_beginning.php 
+step_run_info_upload.php: -- ill_subm_functions.php 
+step_run_info_upload.php: -- ill_subm_filled_variables.php
+step_run_info_upload.php: -- ill_subm_menu.php 
+step_run_info_upload.php: -- steps_command_line.php 
+step_run_info_upload.php: -- steps_command_line_print.php 
+step_run_info_upload.php: -- ill_subm_end.php 
+steps_command_line.php: -- choose_metadata.php
+step_subm_metadata_csv_show_run_info.php: -- step_subm_metadata_form_run_info_validation.php
+step_subm_metadata_csv_show_run_info.php: -- step_subm_metadata_form_run_info.php 
+step_subm_metadata_csv_show_table.php: -- step_subm_metadata_form_metadata_table_rows.php
+step_subm_metadata_form_metadata_table.php: -- step_subm_metadata_form_metadata_table_rows.php 
+step_subm_metadata_form_metadata_table_selected.php: -- step_subm_metadata_form_metadata_table_rows.php 
+step_subm_metadata_form_owner_validation.php: -- ill_subm_functions.php 
+step_subm_metadata_form_owner_validation.php: -- insert_owner.php
+step_subm_metadata_form_project_validation.php: -- ill_subm_functions.php 
+step_subm_metadata_form_project_validation.php: -- insert_project.php
+step_subm_metadata_form_run_info_validation.php: -- ill_subm_functions.php 
+step_subm_metadata_form_run_info_validation.php: -- insert_run_info.php
+step_subm_metadata_form_submission_metadata_validation.php: -- ill_subm_filled_variables.php 
+step_subm_metadata_form_submission_metadata_validation.php: -- ill_subm_functions.php 
+step_subm_metadata_form_submission_metadata_validation.php: -- step_subm_metadata_form_metadata_table_selected.php
+step_subm_metadata_form_submission_metadata_validation.php: -- insert_metadata.php
+step_subm_metadata.php: -- ill_subm_beginning.php 
+step_subm_metadata.php: -- ill_subm_filled_variables.php 
+step_subm_metadata.php: -- ill_subm_menu.php 
+step_subm_metadata.php: -- step_subm_metadata_form_run_info_validation.php
+step_subm_metadata.php: -- step_subm_metadata_form_run_info.php 
+step_subm_metadata.php: -- step_subm_metadata_form_project_validation.php
+step_subm_metadata.php: -- step_subm_metadata_form_project.php 
+step_subm_metadata.php: -- step_subm_metadata_form_metadata_table.php 
+step_subm_metadata.php: -- step_subm_metadata_form_submission_metadata_validation.php
+step_subm_metadata.php: -- step_subm_metadata_form_submission_metadata_validation.php
+step_subm_metadata.php: -- ill_subm_end.php 
+step_take_subm_metadata.php: -- ill_subm_beginning.php 
+step_take_subm_metadata.php: -- ill_subm_filled_variables.php 
+step_take_subm_metadata.php: -- ill_subm_menu.php 
+step_take_subm_metadata.php: -- ill_subm_end.php 
+step_ungzip_all.php: -- ill_subm_beginning.php 
+step_ungzip_all.php: -- ill_subm_functions.php 
+step_ungzip_all.php: -- ill_subm_filled_variables.php
+step_ungzip_all.php: -- ill_subm_menu.php 
+step_ungzip_all.php: -- steps_command_line.php 
+step_ungzip_all.php: -- ill_subm_end.php 
+step_uniqueing.php: -- ill_subm_beginning.php 
+step_uniqueing.php: -- ill_subm_functions.php 
+step_uniqueing.php: -- ill_subm_filled_variables.php
+step_uniqueing.php: -- ill_subm_menu.php 
+step_uniqueing.php: -- steps_command_line.php 
+step_uniqueing.php: -- ill_subm_end.php 
+step_upload_subm_metadata.php: -- ill_subm_beginning.php 
+step_upload_subm_metadata.php: -- ill_subm_filled_variables.php 
+step_upload_subm_metadata.php: -- ill_subm_menu.php 
+step_upload_subm_metadata.php: -- step_upload_csv_instruction.php 
+step_upload_subm_metadata.php: -- step_subm_metadata_get_csv_info.php
+step_upload_subm_metadata.php: -- step_subm_metadata_form_run_info_validation.php
+step_upload_subm_metadata.php: -- step_subm_metadata_form_run_info.php 
+step_upload_subm_metadata.php: -- step_subm_metadata_form_project_validation.php
+step_upload_subm_metadata.php: -- step_subm_metadata_form_project.php 
+step_upload_subm_metadata.php: -- step_subm_metadata_csv_show_table.php
+step_upload_subm_metadata.php: -- step_subm_metadata_form_submission_metadata_validation.php 
+step_upload_subm_metadata.php: -- ill_subm_end.php 
 

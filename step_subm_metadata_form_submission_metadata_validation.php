@@ -87,10 +87,13 @@ if ($error_field_names != "")
 // 3) print out in table to show with errors in red and allow to change,
 include_once "step_subm_metadata_form_metadata_table_selected.php";
 
+print_blue_out_message('$selected_metadata_arr', $selected_metadata_arr);
+print_blue_out_message('$combined_metadata', $combined_metadata);
+
 if($metadata_errors_count == 0)
 {
 // 	TODO: change env_id and data_owner 
-  $result_metadata_arr = $selected_metadata_arr;
+  $result_metadata_arr = $combined_metadata;
 
   //   put data into the db and clean the table
   include_once 'insert_metadata.php';

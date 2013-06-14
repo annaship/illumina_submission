@@ -93,7 +93,9 @@
           ?>     
         </tbody>
     </table>
-    
+    <?php 
+    	print_blue_out_message('submission_metadata_selected_process: $combined_metadata', $combined_metadata);
+    ?>
   </fieldset>
   <input type="submit" name="update" id="form_update_selected" value="Update submission metadata file"/> 
   <input type="submit" name="cancel" id="form_cancel" value="Cancel"/> 
