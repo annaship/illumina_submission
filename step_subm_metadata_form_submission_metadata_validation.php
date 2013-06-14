@@ -10,7 +10,6 @@ $metadata_errors     = array();
 $metadata_errors_all = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
 $result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
-// print_blue_out_message('$_POST', $_POST);
 
 // remove array #0 == check_submission
 if (sizeof($result_metadata_arr) > 1 && isset($_POST["submission_metadata_process"]) && ($_POST["submission_metadata_process"] == 1))
@@ -49,18 +48,18 @@ foreach ($result_metadata_arr as $result_metadata_arr1)
   $metadata_errors_all[] = $metadata_errors;
   
 
-  // 2) populate index and runkey by adapter
-  if (check_var($_SESSION["run_info"]["dna_region_0"]))
-  {
-    $selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);      
-  }
+//   // 2) populate index and runkey by adapter
+//   if (check_var($_SESSION["run_info"]["dna_region_0"]))
+//   {
+//     $selected_dna_region_base = strtolower($_SESSION["run_info"]["dna_region_0"]);      
+//   }
   
-  $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
+//   $key_ind = get_run_key_by_adaptor($result_metadata_arr1, $adaptors_full, $selected_dna_region_base);
 
 
-  $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
-  $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
-  $selected_metadata_arr[] = $result_metadata_arr1;
+//   $result_metadata_arr1["run_key"]       = $key_ind["illumina_run_key"];
+//   $result_metadata_arr1["barcode_index"] = $key_ind["illumina_index"];    
+//   $selected_metadata_arr[] = $result_metadata_arr1;
     
 }
 // check for errors
@@ -83,12 +82,13 @@ if ($error_field_names != "")
 	<br/>
 	");
 }
+// print_blue_out_message('4a) BEFORE selected, step_subm_metadata_form_submission_metadata_validation, $combined_metadata', $combined_metadata);
 
 // 3) print out in table to show with errors in red and allow to change,
 include_once "step_subm_metadata_form_metadata_table_selected.php";
 
-print_blue_out_message('$selected_metadata_arr', $selected_metadata_arr);
-print_blue_out_message('$combined_metadata', $combined_metadata);
+// print_blue_out_message('$selected_metadata_arr', $selected_metadata_arr);
+// print_blue_out_message('4) step_subm_metadata_form_submission_metadata_validation, $combined_metadata', $combined_metadata);
 
 if($metadata_errors_count == 0)
 {
