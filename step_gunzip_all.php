@@ -13,12 +13,9 @@
 	include_once("steps_command_line.php");
 
 	echo "<div id=\"command_line_print\">";
-	echo "
-	          <p>
-	            This command line(s) can be run on any server:
-	          </p>
-	          <br/>
-	        ";
+	
+	server_message("any");
+	
 	foreach ($lanes as $lane_name)
 	{
     	$command_line_gzip = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 

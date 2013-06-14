@@ -12,12 +12,8 @@
 	include_once("steps_command_line.php");
 
 	echo "<div id=\"command_line_print\">";
-	echo "
-	          <p>
-	            This command line(s) should be run on <strong>grendel</strong>:
-	          </p>
-	          <br/>
-	        ";
+	server_message("grendel");
+	
 	$overlap_script_name = "";
 	$overlap_script_name = get_overlap_script_name($machine_name);
 // 	foreach ($lanes as $lane_num)

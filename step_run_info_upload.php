@@ -11,13 +11,7 @@
 	$pipeline_command = "env454run_info_upload";
 	
 	include_once("steps_command_line.php");
-	echo "
-	        <br/>
-      		<br/>
-      		<p>
-	            This command line(s) can be run on any server:
-	        </p>
-	        ";	
+	server_message("any");	
 	include_once("steps_command_line_print.php");
 	
 

@@ -12,13 +12,7 @@
 	$pipeline_command = "illumina_files";
 	
 	include_once("steps_command_line.php");
-	echo "
-	        <br/>
-      		<br/>
-      		<p>
-	            This command line(s) can be run on any server:
-	        </p>
-	        ";
+	server_message("any");
 	include_once("steps_command_line_print.php");
 
 // 	if (check_var($csv_path_error) == 1)

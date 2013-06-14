@@ -23,9 +23,9 @@
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
 		$check_chimera_stat = "run_chimera_stat.sh";
-		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
+		$command_line_check_chimera_stat = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
 				$lane_dom_name . "/analysis/chimera/; " . $check_chimera_stat . "; date";
-		print_green_message($command_line_gast_check);
+		print_green_message($command_line_check_chimera_stat);
 	}
 
 ?>

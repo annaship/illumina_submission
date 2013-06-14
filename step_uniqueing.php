@@ -12,17 +12,9 @@
 	include_once("steps_command_line.php");
 
 	echo "<div id=\"command_line_print\">";
-	echo "
-	          <p>
-	            This command line(s) should be run on <strong>grendel</strong>:
-	          </p>
-	          <br/>
-	        ";
-// 	foreach ($lanes as $lane_num)
-// 	{
-// 		$lane_name = $lane_num . "_" . $domain_letter;	
-//     	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-//         					$lane_name . "/analysis/reads_overlap/; run_unique_fa.sh; date";
+	server_message("grendel");
+	
+	
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
     	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
