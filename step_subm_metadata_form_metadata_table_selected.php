@@ -1,7 +1,8 @@
 <?php 
-	print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
-    print_out($_POST);
-    
+// 	print_blue_message("From ". $_SERVER["PHP_SELF"] . "; subm_meta_selected");
+// print_blue_out_message('$_POST', $_POST);
+// print_blue_out_message('5a) BEGIN step_subm_metadata_form_metadata_table_selected, $combined_metadata', $combined_metadata);
+
     if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
     {
     	$connection = $local_mysqli;
@@ -45,16 +46,19 @@
 // 			renew $combined_metadata
 			foreach ($combined_metadata as $num => $combined_metadata_arr)
 			{
-				print_blue_out_message('$separate_post_val[$num]', $separate_post_val[$num]);
 					
 				$separate_post_val[$num] = populate_key_ind($separate_post_val[$num], $adaptors_full, $_SESSION["run_info"]["dna_region_0"], $db_name, $connection);
+// 				print_blue_out_message('$separate_post_val[$num]', $separate_post_val[$num]);
 				
 				foreach ($combined_metadata_arr as $field_name => $filed_value)
 				{
+					if (isset($separate_post_val[$num][$field_name]))
+					{
 // 					print_blue_out_message('$field_name', $field_name);
 // 					print_blue_out_message('$filed_value', $filed_value);
 // 					print_blue_out_message('$separate_post_val[$num][$field_name]', $separate_post_val[$num][$field_name]);
-					$combined_metadata[$num][$field_name] = $separate_post_val[$num][$field_name];
+						$combined_metadata[$num][$field_name] = $separate_post_val[$num][$field_name];
+					}
 						
 				}
 			}
@@ -94,7 +98,7 @@
         </tbody>
     </table>
     <?php 
-    	print_blue_out_message('submission_metadata_selected_process: $combined_metadata', $combined_metadata);
+//     	print_blue_out_message('5) step_subm_metadata_form_metadata_table_selected: $combined_metadata', $combined_metadata);
     ?>
   </fieldset>
   <input type="submit" name="update" id="form_update_selected" value="Update submission metadata file"/> 
