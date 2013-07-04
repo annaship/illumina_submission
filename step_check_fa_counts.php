@@ -24,7 +24,7 @@
 	}
 	else 
 	{
-		$file_ext = "*_MERGED" . $merge_filter_suffix . ".unique";
+		$file_ext = "*_MERGED" . $merge_filter_suffix . ".unique.nonchimeric.fa";
 	}
 	
 	foreach ($lane_dom_names as $lane_dom_name)
