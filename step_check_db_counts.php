@@ -60,20 +60,20 @@
 	foreach ($lanes_uniq as $lane_name)
 	{
 // 		TODO: 'Bacterial V6 Suite'
-		$seq_check_query = "select count(*) from sequence_pdr_info_ill 			
-			JOIN run_info_ill using(run_info_ill_id) 			
-			JOIN project using(project_id) 			
-			JOIN dataset using(dataset_id) 			
-			JOIN run using(run_id) 			
-			JOIN primer_suite using(primer_suite_id) WHERE primer_suite = \"" . 
-		$suite_name . "\" AND run = \"" . $rundate . "\" AND lane = \"" . $lane_name;
+		$seq_check_query = "SELECT count(*) FROM sequence_pdr_info_ill 			
+			JOIN run_info_ill USING(run_info_ill_id) 			
+			JOIN project USING(project_id) 			
+			JOIN dataset USING(dataset_id) 			
+			JOIN run USING(run_id) 			
+			JOIN primer_suite USING(primer_suite_id) WHERE primer_suite = \"" . 
+		$suite_name . "\" AND run = \"" . $rundate . "\" AND lane = \"" . $lane_name . "\"";
 
 		/*
-		 select count(*) from run_info_ill
-		JOIN project using(project_id)
-		JOIN dataset using(dataset_id)
-		JOIN run using(run_id)
-		JOIN primer_suite using(primer_suite_id)
+		 SELECT count(*) from run_info_ill
+		JOIN project USING(project_id)
+		JOIN dataset USING(dataset_id)
+		JOIN run USING(run_id)
+		JOIN primer_suite USING(primer_suite_id)
 		WHERE primer_suite = 'Bacterial V6 Suite'
 		AND run = '20130322'  and lane = '1';
 		*/
