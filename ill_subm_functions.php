@@ -1187,6 +1187,19 @@ function server_message($server_name)
 
 }
 
+function check_domain($current_domain, $domains_array)
+{	
+	$csv_domain_1 = explode(" ", $current_domain);
+	$domain_1     = $domains_array[$csv_domain_1[0]];
+	if (in_array($domain_1, $domains_array))
+	{
+// 		print_blue_message("HERE!!!");
+		$domain_correct = $domain_1;
+// 		print_blue_out_message('$domain_correct', $domain_correct);
+		$current_domain = $domain_correct;
+	}
+	return $current_domain;
+}
 
 function combine_metadata($session, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection) 
 {
@@ -1237,8 +1250,7 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 // 		$session["run_info"]["dna_region_0"];
 		$combined_metadata[$num]["dna_region_id"]     	= get_id($session["run_info"], "dna_region_0", $db_name, $connection);
 		$combined_metadata[$num]["domain"]				= $csv_metadata_row["domain"];
-// 		get_domain_from_csv_data($csv_metadata_row["domain"], $domains_array);
-		
+		$combined_metadata[$num]["domain"]              = check_domain($combined_metadata[$num]["domain"], $domains_array);		
 		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
 		$combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];
@@ -1255,6 +1267,8 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		$combined_metadata[$num]["op_empcr"]			= $csv_metadata_row["op_empcr"];
 		$combined_metadata[$num]["overlap"] 		  	= $session["run_info"]["overlap"];
 		$combined_metadata[$num]["primer_suite"]     	= get_primer_suite_name($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"]);
+		print_blue_out_message('$combined_metadata[$num]["dna_region"]', $combined_metadata[$num]["dna_region"]);
+		print_blue_out_message('$combined_metadata[$num]["domain"]', $combined_metadata[$num]["domain"]);
 		$combined_metadata[$num]["primer_suite_id"]  	= get_primer_suite_id($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"], $db_name, $connection);
 		$combined_metadata[$num]["project"]				= $csv_metadata_row["project_name"];
 		$combined_metadata[$num]["project_title"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["title"];
