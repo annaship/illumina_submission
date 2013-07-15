@@ -74,6 +74,13 @@
 //   print_out($_SESSION);
   $submission_tubes_id_arr     = get_submission_tubes_ids($_SESSION["csv_content"]);
   $vamps_submissions_tubes_arr = get_tubes_info_by_submit_code($submission_tubes_id_arr, $vamps_submission_tubes_info, $db_name, $connection);
+	print_blue_out_message('$vamps_submissions_tubes_arr', $vamps_submissions_tubes_arr); 
+	print_blue_out_message('$submission_tubes_id_arr', $submission_tubes_id_arr);
+	
+	$submission_tubes_info_by_id = get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name, $connection);
+	
+// 	print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
+	print_blue_out_message('$db_name', $db_name); 
   $combined_metadata           = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection);
 //     print_blue_message("2) step_upload_subm_metadata, \$combined_metadata");
 //     print_out($combined_metadata);

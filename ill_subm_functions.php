@@ -528,6 +528,43 @@ function print_blue_out_message($message, $array_name)
 	print " --<br/>";
 }
 
+
+function run_query_and_get_all($query, $connection)
+{
+	print_blue_out_message('$_SESSION[\'is_local\']', $_SESSION['is_local']);
+	$result_arr = array();
+	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+	{
+		$local_mysqli = $connection;
+		$results = $local_mysqli->query($query);
+		print_blue_out_message('$results', $results);
+		print_blue_out_message('$results->fetch_assoc()', $results->fetch_assoc());
+		if (isset($results->num_rows))
+		{
+			for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--)
+			{
+			$results->data_seek($row_no);
+			$row                     = $results->fetch_assoc();
+			print_blue_out_message('$row', $row);
+			$subm_field_names        = array_keys($row);
+			$vamps_submission_tubes_info[] = $row;
+			}
+		}
+	}
+	else
+	{
+		$results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+		$subm_field_names = get_field_names($results);
+		while($row = mysql_fetch_row($results))
+		{
+			$vamps_submission_tubes_info[] = $row;
+		}
+	}
+	print_blue_out_message('HERE: $result_arr', $result_arr);
+	return $result_arr;	
+}
+
+
 function run_query($query, $table_name, $connection)
 {
   $success_insert = 0;
@@ -796,6 +833,20 @@ function get_submission_tubes_info($connection, $db_name)
 		}
 	}
 	return array($subm_field_names, $vamps_submission_tubes_info);
+}
+
+function get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name, $connection)
+{
+	$vamps_submission_tubes_info_by_id = array();
+	$submission_tubes_ids              = join(", ", $submission_tubes_id_arr);
+	print_blue_out_message('$submission_tubes_ids', $submission_tubes_ids);
+	
+	
+	//   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submission_tubess JOIN " . $db_name . ".vamps_submission_tubess_tubes USING(submit_code);";
+	$query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions_tubes WHERE id IN (" .  $submission_tubes_ids . ")";
+	print_blue_out_message('$query', $query);
+	$res = run_query_and_get_all($query, $connection);
+	print_blue_out_message('run_query_and_get_all res', $res);
 }
 
 function get_tubes_info_by_submit_code($submission_tubes_id_arr, $vamps_submission_tubes_info, $db_name, $connection)
@@ -1205,6 +1256,7 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 {
 	$num = 0;
 	$combined_metadata = "";
+	
 // 	include 'ill_subm_filled_variables.php';
 // 	print_blue_message("adaptors_full from func = ");
 // 	print_out($adaptors_full);
@@ -1234,8 +1286,7 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 // 		print_blue_message("$session["vamps_submissions_arr"][\$csv_metadata_row[\"submit_code\"]] = ");
 // print_blue_out_message('$session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]', $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]);
 // 		print_out($session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]);
-// print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
-		
+// 		print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
 		$combined_metadata[$num]["adaptor"]				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
 		$combined_metadata[$num]["amp_operator"]		= $csv_metadata_row["op_amp"];
 		$combined_metadata[$num]["barcode"]				= $csv_metadata_row["barcode"];
@@ -1253,6 +1304,10 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		$combined_metadata[$num]["domain"]              = check_domain($combined_metadata[$num]["domain"], $domains_array);		
 		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
+print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
+print_blue_out_message('$vamps_submissions_tubes_arr[$csv_metadata_row["id"]]', $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]);
+print_blue_out_message('$vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"]', $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"]);
+// print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
 		$combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];
 		$combined_metadata[$num]["env_source_name"]		= $env_source_names[$combined_metadata[$num]["env_sample_source_id"]];
 // 		print_blue_out_message('$combined_metadata[$num]["env_source_name"]  = ', $combined_metadata[$num]["env_source_name"]);
@@ -1267,8 +1322,8 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		$combined_metadata[$num]["op_empcr"]			= $csv_metadata_row["op_empcr"];
 		$combined_metadata[$num]["overlap"] 		  	= $session["run_info"]["overlap"];
 		$combined_metadata[$num]["primer_suite"]     	= get_primer_suite_name($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"]);
-		print_blue_out_message('$combined_metadata[$num]["dna_region"]', $combined_metadata[$num]["dna_region"]);
-		print_blue_out_message('$combined_metadata[$num]["domain"]', $combined_metadata[$num]["domain"]);
+// 		print_blue_out_message('$combined_metadata[$num]["dna_region"]', $combined_metadata[$num]["dna_region"]);
+// 		print_blue_out_message('$combined_metadata[$num]["domain"]', $combined_metadata[$num]["domain"]);
 		$combined_metadata[$num]["primer_suite_id"]  	= get_primer_suite_id($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"], $db_name, $connection);
 		$combined_metadata[$num]["project"]				= $csv_metadata_row["project_name"];
 		$combined_metadata[$num]["project_title"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["title"];

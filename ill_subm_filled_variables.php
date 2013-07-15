@@ -67,12 +67,10 @@ if (!isset($errors))
 // ---
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-  $db_name = "test";
+	$db_name = "test";
 }
 else 
 {
-// 	TODO: get from env454!
-// 	$db_name = "vamps";	
 	$db_name = "env454";
 }
 // $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
@@ -111,9 +109,15 @@ else
 		$contact_full[$row[0]] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6];
 	}
 }
+// print_blue_message('$contact BEFORE = ');
+// print_out($contact);
+
 asort($contact);
 asort($contact_full);
-// print_blue_message('$contact = ');
+
+
+
+// print_blue_message('$contact AFTER sort = ');
 // print_out($contact);
 // ---
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))

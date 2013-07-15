@@ -1,2 +1,0 @@
-KEEP_AS_ZEROS,submit_code,tube_number,tube_label,tube_description,duplicate,domain,primer_suite,dna_region,project_name,dataset_name,runkey,barcode,pool,lane,direction,platform,op_amp,op_seq,op_empcr,enzyme,rundate,adaptor,date_initial,date_updated,on_vamps,sample_received,concentration,quant_method,overlap,insert_size,barcode_index,file_prefix,read_length,trim_distal
-0,jreveillaud819833,1,FS851,FS851_3,no,Archaeal v6,Archaeal V6 Suite,v6,JAH_MCR_Av6,FS851_3,,,,1,,,,JHV,,,20130322,c1,2013-04-10,2013-04-10,,,10,3,0,0,,,,
