@@ -531,21 +531,17 @@ function print_blue_out_message($message, $array_name)
 
 function run_query_and_get_all($query, $connection)
 {
-	print_blue_out_message('$_SESSION[\'is_local\']', $_SESSION['is_local']);
 	$result_arr = array();
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$local_mysqli = $connection;
 		$results = $local_mysqli->query($query);
-		print_blue_out_message('$results', $results);
-		print_blue_out_message('$results->fetch_assoc()', $results->fetch_assoc());
 		if (isset($results->num_rows))
 		{
 			for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--)
 			{
 			$results->data_seek($row_no);
 			$row                     = $results->fetch_assoc();
-			print_blue_out_message('$row', $row);
 			$subm_field_names        = array_keys($row);
 			$vamps_submission_tubes_info[] = $row;
 			}
@@ -560,8 +556,7 @@ function run_query_and_get_all($query, $connection)
 			$vamps_submission_tubes_info[] = $row;
 		}
 	}
-	print_blue_out_message('HERE: $result_arr', $result_arr);
-	return $result_arr;	
+	return $vamps_submission_tubes_info;	
 }
 
 
@@ -839,14 +834,21 @@ function get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name,
 {
 	$vamps_submission_tubes_info_by_id = array();
 	$submission_tubes_ids              = join(", ", $submission_tubes_id_arr);
-	print_blue_out_message('$submission_tubes_ids', $submission_tubes_ids);
-	
-	
-	//   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submission_tubess JOIN " . $db_name . ".vamps_submission_tubess_tubes USING(submit_code);";
 	$query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions_tubes WHERE id IN (" .  $submission_tubes_ids . ")";
-	print_blue_out_message('$query', $query);
-	$res = run_query_and_get_all($query, $connection);
-	print_blue_out_message('run_query_and_get_all res', $res);
+	$vamps_submission_tubes_info_by_id = run_query_and_get_all($query, $connection);
+
+	$id_hash   = make_id_hash($vamps_submission_tubes_info_by_id); 
+	return $id_hash;
+}
+
+function make_id_hash($multi_array)
+{
+	$id_hash = array();
+	foreach ($multi_array as $array)
+	{
+		$id_hash[$array["id"]] = $array;
+	}
+	return $id_hash;
 }
 
 function get_tubes_info_by_submit_code($submission_tubes_id_arr, $vamps_submission_tubes_info, $db_name, $connection)
@@ -1304,10 +1306,12 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 		$combined_metadata[$num]["domain"]              = check_domain($combined_metadata[$num]["domain"], $domains_array);		
 		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
-print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
-print_blue_out_message('$vamps_submissions_tubes_arr[$csv_metadata_row["id"]]', $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]);
-print_blue_out_message('$vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"]', $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"]);
 // print_blue_out_message('$csv_metadata_row', $csv_metadata_row);
+// print_blue_out_message('$csv_metadata_row["id"]', $csv_metadata_row["id"]);
+// print_blue_out_message('$vamps_submissions_tubes_arr', $vamps_submissions_tubes_arr);
+// print_blue_out_message('$vamps_submissions_tubes_arr[0', $vamps_submissions_tubes_arr[0]);
+// print_blue_out_message('$vamps_submissions_tubes_arr[$csv_metadata_row["id"]]', $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]);
+// print_blue_out_message('$vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"]', $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"]);
 		$combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];
 		$combined_metadata[$num]["env_source_name"]		= $env_source_names[$combined_metadata[$num]["env_sample_source_id"]];
 // 		print_blue_out_message('$combined_metadata[$num]["env_source_name"]  = ', $combined_metadata[$num]["env_source_name"]);
@@ -1367,6 +1371,25 @@ function to_underscore($my_string) {
 	$my_string1 = str_replace("_", "%", $my_string);
 	$my_string2  = str_replace(" ", "%", $my_string1);
 	return $my_string2;
+}
+
+// http://php.net/manual/en/function.in-array.php
+function in_multiarray($elem, $array)
+{
+	$top = sizeof($array) - 1;
+	$bottom = 0;
+	while($bottom <= $top)
+	{
+		if($array[$bottom] == $elem)
+			return true;
+		else
+			if(is_array($array[$bottom]))
+			if(in_multiarray($elem, ($array[$bottom])))
+			return true;
+		 
+		$bottom++;
+	}
+	return false;
 }
 
 ?>
