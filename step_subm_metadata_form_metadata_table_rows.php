@@ -5,8 +5,6 @@
 // print_out(array_values($adaptors));
 // print_out($selected_adaptor);
  
-
-
 ?>
       <tr class="odd">
         <td>
@@ -19,8 +17,10 @@
           
           <select name="domain_<?php echo $row_num;?>" id="form_domain_<?php echo $row_num;?>">
            <?php 
-             print_options(array_values($domains_array), $selected_domain);
-            ?>
+//            <option selected="selected" value="Post, Anton">Post, Anton</option>
+//              print_options(array_values($domains_array), $selected_domain);
+             print_options($domains_array, $selected_domain);
+           ?>
           </select>                
         </td>
       
@@ -33,7 +33,7 @@
          <?php 
       //   TODO: how to chose if 2 the same name?
 //          $selected_data_owner = "Anderson, Rika";
-		print_blue_out_message('$_POST', $_POST);
+// 		print_blue_out_message('$_POST', $_POST);
          if (!isset($selected_data_owner) or $selected_data_owner == "")
          {
            $contact_full_selected = $_POST['project_form_contact'];

@@ -1303,8 +1303,8 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 // 		$session["run_info"]["dna_region_0"];
 		$combined_metadata[$num]["dna_region_id"]     	= get_id($session["run_info"], "dna_region_0", $db_name, $connection);
 		$combined_metadata[$num]["domain"]				= $csv_metadata_row["domain"];
-		print_blue_out_message('$combined_metadata[$num]["domain"]', $combined_metadata[$num]["domain"]);
-		$combined_metadata[$num]["domain"]              = check_domain($combined_metadata[$num]["domain"], $domains_array);		
+		$combined_metadata[$num]["domain"]              = check_domain($combined_metadata[$num]["domain"], $domains_array);
+		$combined_metadata[$num]["domain"]              =  ucfirst(strtolower($combined_metadata[$num]["domain"]));		
 		$combined_metadata[$num]["email"]               = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["email"];
 // 		$combined_metadata[$num]["env_sample_source"]   = $csv_metadata_row["env_sample_source"];
 		$combined_metadata[$num]["env_sample_source_id"] = $vamps_submissions_tubes_arr[$csv_metadata_row["id"]]["env_sample_source_id"];

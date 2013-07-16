@@ -46,7 +46,7 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 	$data_all[] = $result_arr;
 	
 }
-print_blue_out_message('7) step_subm_metadata_create_csv, $combined_metadata', $combined_metadata);
+// print_blue_out_message('7) step_subm_metadata_create_csv, $combined_metadata', $combined_metadata);
 
 // {
 //   $contact_info   = array_map('trim', explode(',', $contact_full[$metadata_arr["user"]])); 
