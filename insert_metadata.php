@@ -53,6 +53,7 @@
   $all_insert_metadata_queries = $all_backup_metadata_queries = Array();
   foreach ($combined_metadata as $row_num => $combined_metadata_row)
   {
+  	print_blue_out_message('$combined_metadata_row', $combined_metadata_row);
     
   	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
@@ -69,7 +70,7 @@
 	$insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes
 	  SET
  		  tube_label = \"" . $combined_metadata_row["tubelabel"] . "\",
-		  tube_description = \"" . $combined_metadata_row["tube_description"] . "\",
+		  tube_description = \"" . $combined_metadata_row["dataset_description"] . "\",
 		  domain = \"" . $combined_metadata_row["domain"] . "\",
 		  primer_suite = \"" . $combined_metadata_row["primer_suite"] . "\",
 		  dna_region = \"" . $combined_metadata_row["dna_region"] . "\",
@@ -93,7 +94,8 @@
 			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\"
 ";
 	array_push($all_insert_metadata_queries, $insert_metadata_query1, $insert_metadata_query2);
-	
+	print_blue_out_message('$insert_metadata_query1', $insert_metadata_query1);
+	print_blue_out_message('$insert_metadata_query2', $insert_metadata_query2);
 // 	TODO:
 // 	1) create copy of the line,
 // 	2) update the old one
@@ -121,8 +123,8 @@
 
   }
   
-  $all_insert_metadata_queries_u = array_unique($all_insert_metadata_queries);
   $all_backup_metadata_queries_u = array_unique($all_backup_metadata_queries);
+  $all_insert_metadata_queries_u = array_unique($all_insert_metadata_queries);
   
   foreach ($all_backup_metadata_queries_u as $all_backup_metadata_query)
   {
@@ -131,7 +133,8 @@
   }
   foreach ($all_insert_metadata_queries_u as $insert_metadata_query)
   {
-  	get_one_value($insert_metadata_query, $db_name, $connection);
+  	print_blue_out_message('$insert_metadata_query = ', $insert_metadata_query);
+  	run_multi_query($insert_metadata_query, $db_name, $connection);
   }
   
 //   ====
