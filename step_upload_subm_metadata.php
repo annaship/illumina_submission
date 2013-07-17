@@ -105,7 +105,8 @@
 ) 
   {
 //   	print_blue_message("2a) step_upload_subm_metadata before step_subm_metadata_form_submission_metadata_validation.php, \$combined_metadata");
-  	  
+//   	print_blue_out_message('$combined_metadata', $combined_metadata);
+//   	print_blue_out_message('$_POST', $_POST);
   	//   	error_reporting(E_ALL);
 //   	ini_set('max_execution_time', 300);
 // 	print_blue_message("HERE11");

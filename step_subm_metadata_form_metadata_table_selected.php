@@ -39,30 +39,30 @@
           <?php
 			$row_num = 0;
 			$separate_post_val = separate_post_vars($_POST);
-// 			print_blue_out_message('$_SESSION', $_SESSION);
-
-			          
-
+// 			TODO: data_owner didn't change!'
 // 			renew $combined_metadata
 // 			print_blue_out_message('1) $combined_metadata', $combined_metadata);
-// 			foreach ($combined_metadata as $num => $combined_metadata_arr)
-// 			{
-					
-// 				$separate_post_val[$num] = populate_key_ind($separate_post_val[$num], $adaptors_full, $_SESSION["run_info"]["dna_region_0"], $db_name, $connection);
-// // 				print_blue_out_message('$separate_post_val[$num]', $separate_post_val[$num]);
+// 			print_blue_out_message('$separate_post_val', $separate_post_val);
+// 			print_blue_out_message('$_POST', $_POST);
+			foreach ($combined_metadata as $num => $combined_metadata_arr)
+			{
+									
+				$separate_post_val[$num] = populate_key_ind($separate_post_val[$num], $adaptors_full, $_SESSION["run_info"]["dna_region_0"], $db_name, $connection);
+// 				print_blue_out_message('$separate_post_val[$num]', $separate_post_val[$num]);
+// 				print_blue_out_message('$combined_metadata_arr', $combined_metadata[$num]);
 				
-// 				foreach ($combined_metadata_arr as $field_name => $filed_value)
-// 				{
+				foreach ($combined_metadata_arr as $field_name => $filed_value)
+				{
 // 					if (isset($separate_post_val[$num][$field_name]))
 // 					{
 // // 					print_blue_out_message('$field_name', $field_name);
 // // 					print_blue_out_message('$filed_value', $filed_value);
 // // 					print_blue_out_message('$separate_post_val[$num][$field_name]', $separate_post_val[$num][$field_name]);
-// 						$combined_metadata[$num][$field_name] = $separate_post_val[$num][$field_name];
+						$combined_metadata[$num][$field_name] = $separate_post_val[$num][$field_name];
 // 					}
 						
-// 				}
-// 			}
+				}
+			}
 			
 // 			print_blue_out_message('2) $combined_metadata', $combined_metadata);
 				
