@@ -14,10 +14,11 @@
 
 	echo "<div id=\"command_line_print\">";
 	server_message("any");
-	foreach ($lanes as $lane_name)
+
+	foreach ($lane_dom_names as $lane_dom_name)
 	{
     	$command_line_gzip = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-        					$lane_name . "/analysis/; time gzip -r *";
+        					$lane_dom_name . "/analysis/; time gzip -r *";
         print_green_message($command_line_gzip);        
 	}
 	echo "</div>";
