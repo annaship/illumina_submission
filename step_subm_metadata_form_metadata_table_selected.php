@@ -73,10 +73,6 @@
             {
               foreach($selected_metadata_arr1 AS $key => $value)
               {
-//               	print_blue_out_message('$key', $key);
-//               	print_blue_out_message('$value', $value);
-              	 
-//               	ucfirst(strtolower($bar))
                 ${"selected_" . $key} = $value;
               }
               include("step_subm_metadata_form_metadata_table_rows.php");

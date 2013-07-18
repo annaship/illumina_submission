@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/~ashipunova/" />
+<title>full_new_test_on_vampsdev</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">full_new_test_on_vampsdev</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>illumina_submission/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Upload Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv</td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/submission_test_new.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=Submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=run_info_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Something is wrong with the Primer Suite name: &quot;Bacterial v6l v6 Suite&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Something is wrong with the Primer Suite name: &quot;Archaeal v6l v6 Suite&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_lane_0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_lane_2</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>BacteriaArchaea</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_4</td>
+	<td>TAGCA</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_dataset_4</td>
+	<td>FS851_3</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>There is no data for: &quot;funding&quot;, &quot;project_description&quot;, &quot;env_source_name&quot;. Probably the metadata were not properly submitted via Project Submission on VAMPS.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_dataset_description_4</td>
+	<td>FS851_3</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_tubelabel_4</td>
+	<td>FS851</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_amp_operator_3</td>
+	<td>KH</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=run_info_form_read_length</td>
+	<td>101</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=run_info_form_insert_size</td>
+	<td>230</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=run_info_form_seq_operator</td>
+	<td>JHV</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=run_infoForm_path to raw data</td>
+	<td>20150000hs/</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=run_infoForm_rundate</td>
+	<td>20150000</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_update_from_csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>../illumina_submission_site_local_add/hiseq_info/20150000/metadata_20150000_1_A.csv was created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>../illumina_submission_site_local_add/hiseq_info/20150000/metadata_20150000_1_B.csv was created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>../illumina_submission_site_local_add/hiseq_info/20150000/metadata_20150000_3_B.csv was created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>../illumina_submission_site_local_add/hiseq_info/20150000/metadata_20150000_5_B.csv was created</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_0</td>
+	<td>TCAGC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_1</td>
+	<td>TCAGC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_2</td>
+	<td>TCAGC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_3</td>
+	<td>TCAGC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_4</td>
+	<td>TAGCA</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_0</td>
+	<td>ATCACG</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_1</td>
+	<td>TAGCTT</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_2</td>
+	<td>GGCTAC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_3</td>
+	<td>CTTGTA</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_4</td>
+	<td>GCGGTA</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_dataset_0</td>
+	<td>Ant1_Shelf_Break_Surface</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_update_selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=clear db</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Remove old data from db</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial v6 Suite&quot; AND run = &quot;20150000&quot; AND lane = &quot;1&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial v6 Suite&quot; AND run = &quot;20150000&quot; AND lane = &quot;1&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial v6 Suite&quot; AND run = &quot;20150000&quot; AND lane = &quot;3&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial v6 Suite&quot; AND run = &quot;20150000&quot; AND lane = &quot;3&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial v6 Suite&quot; AND run = &quot;20150000&quot; AND lane = &quot;5&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial v6 Suite&quot; AND run = &quot;20150000&quot; AND lane = &quot;5&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM sequence_uniq_info_ill USING sequence_uniq_info_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id is NULL; DELETE FROM sequence_ill USING sequence_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id IS NULL; '</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.hide_find_run</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_find_rundate</td>
+	<td>label=20130514</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_machine</td>
+	<td>label=hiseq</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=form_lane</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=choose_run_m_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=run_infoForm_path to raw data</td>
+	<td>20130514hs</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=choose_meta_w_path_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V4-V5 Suite&quot; AND run = &quot;20130514&quot; AND lane = &quot;1&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V4-V5 Suite&quot; AND run = &quot;20130514&quot; AND lane = &quot;1&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM sequence_uniq_info_ill USING sequence_uniq_info_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id is NULL; DELETE FROM sequence_ill USING sequence_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id IS NULL; '</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V4-V5 Suite&quot; AND run = &quot;20130514&quot; AND lane = &quot;1&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V4-V5 Suite&quot; AND run = &quot;20130514&quot; AND lane = &quot;1&quot;;'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM sequence_uniq_info_ill USING sequence_uniq_info_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id is NULL; DELETE FROM sequence_ill USING sequence_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id IS NULL; '</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

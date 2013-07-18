@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-// 	print_blue_message("From ". $_SERVER["PHP_SELF"]);
+	print_blue_message("From ". $_SERVER["PHP_SELF"]);
 // 	print_blue_message("\$machine_name = $machine_name");
 	echo "<h2>Remove old data from db</h2>";
 		
@@ -34,8 +34,15 @@
 		
 		}
 		
+print_blue_out_message('$_POST', $_POST);		
+print_blue_out_message('$_SESSION', $_SESSION);
+print_blue_out_message('$dna_region', $dna_region);
+print_blue_out_message('$domain', $domain);
+
 	if (isset($_POST) && !empty($_POST))
 	{
+		print_green_message("HERE1");
+		
 		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
 			
 		$primer_suites = array();
@@ -47,14 +54,25 @@
 		 $suite_name_arr = array_unique($primer_suites);
 		 $suite_name = $suite_name_arr[0];
 		 	
-		 }
-		 else
-		 {
-		 $suite_name = $domain . " Suite";
-		 
-// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);
-	 
 	}
+	elseif (isset($dna_region) && isset($domain)) 
+	{
+		print_green_message("HERE2: $dna_region, $domain");
+		$suite_name = get_primer_suite_name($dna_region, $domain);
+		
+// 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);	 
+	}
+	elseif (isset($_SESSION[run_info]) && !empty($_SESSION[run_info]) && isset($_SESSION[run_info][dna_region_0])) {
+		print_green_message("HERE3");
+		
+		$dna_region = $_SESSION[run_info][dna_region_0];
+		$suite_name = get_primer_suite_name($dna_region, $domain);
+	}
+	else 
+	{
+		print_red_message("Problems with domain and dna_region: domain = $domain; dna_region = $dna_region");
+	}
+	
 	$lanes_uniq = array_unique($lanes);
 	$query_del_sequence_pdr_info_ill = $query_del_run_info_ill = ""; 
 	foreach ($lanes_uniq as $lane_name)
