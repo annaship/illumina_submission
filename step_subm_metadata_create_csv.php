@@ -118,7 +118,12 @@ $_SESSION["run_info"]["lanes"] = array_unique($lanes);
 // print_out($metadata_arr["domain"]);
 // $domain_letter = $metadata_arr["domain"][0];
 
-$lane_dom_names = create_lane_dom_names($lanes, $domains);
+// $lane_dom_names = create_lane_dom_names($lanes, $domains);
+print_blue_out_message('$_SESSION["csv_content"] from step_subm_metadata_create_csv', $_SESSION["csv_content"]);
+$lane_dom_names 		 = create_lane_dom_names($_SESSION["csv_content"]);
+
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_subm_metadata_create_csv");
+print_blue_out_message('4) $lane_dom_names', $lane_dom_names);
 
 foreach ($lane_dom_names as $lane_dom_name)
 {

@@ -16,7 +16,12 @@
 // 			print_out($lanes);
 // 			print_blue_message("\$domains = ");
 // 			print_out($domains);
-			$lane_dom_names = create_lane_dom_names($lanes, $domains);
+// 			$lane_dom_names = create_lane_dom_names($lanes, $domains);
+print_blue_out_message('$_SESSION["csv_content"] from steps_command_line_print', $_SESSION["csv_content"]);
+$lane_dom_names 		 = create_lane_dom_names($_SESSION["csv_content"]);
+		print_blue_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line_print");
+			print_blue_out_message('02) $lane_dom_names', $lane_dom_names);
+				
 // 			print_blue_message("\$lane_dom_names = ");
 // 			print_out($lane_dom_names);
 // 			print_blue_message("===========");	

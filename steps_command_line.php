@@ -92,7 +92,12 @@ $domain_letter = $domain[0];
 // $lanes   = array_unique($lanes);
 // $domains = array_unique($domains);
 
-$lane_dom_names = create_lane_dom_names($lanes, $domains);
+// $lane_dom_names = create_lane_dom_names($lanes, $domains);
+print_blue_out_message('$_SESSION["csv_content"] from steps_command_line', $_SESSION["csv_content"]);
+$lane_dom_names 		 = create_lane_dom_names($_SESSION["csv_content"]);
+
+print_blue_message("From ". $_SERVER["PHP_SELF"] . "; steps_command_line");
+print_blue_out_message('01) $lane_dom_names', $lane_dom_names);
 
 // print_blue_message("\$lanes");
 // print_out($lanes);

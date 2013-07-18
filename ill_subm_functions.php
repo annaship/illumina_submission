@@ -1173,15 +1173,24 @@ function creat_dir_if_not_existst($dir_name)
 	chmod($dir_name, 02775);
 }
 
-function create_lane_dom_names($lanes, $domains)
+function create_lane_dom_names($session_csv_content)
 {
 // 	NOT uniqued arrays!
 	$lane_dom_names = array();
-	$domain = $domains[$row_num][0];
-	foreach ($lanes as $row_num => $lane)
+	foreach ($session_csv_content as $session_csv_content_arr)
 	{
-		$lane_dom_names[] = $lane . "_" . $domains[$row_num][0];
-	}		
+		$lane_dom_names[] = $session_csv_content_arr[lane] . "_" . strtoupper($session_csv_content_arr[domain][0]);		
+	}
+// 	print_blue_out_message('$lane_dom_names', $lane_dom_names);
+// 	$lane_dom_names = array();
+// 	$domain = strtoupper($domains[$row_num][0]);
+// 	foreach ($lanes as $row_num => $lane)
+// 	{
+// 		foreach ($domains as $domain)
+// 		{
+// 			$lane_dom_names[] = $lane . "_" . strtoupper($domain[0]);
+// 		}
+// 	}		
 	return array_unique($lane_dom_names);
 	
 }

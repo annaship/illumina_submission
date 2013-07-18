@@ -34,7 +34,11 @@
 	Afterwards you can check the overlap percentage by using
 <?php 
 	$stat_check_command_name = "take_" . $machine_name . "_stats.py";
-	$lane_dom_names 		 = create_lane_dom_names($lanes, $domains);
+// 	$lane_dom_names 		 = create_lane_dom_names($lanes, $domains);
+print_blue_out_message('$_SESSION["csv_content"] from step_overlap_only', $_SESSION["csv_content"]);
+	$lane_dom_names 		 = create_lane_dom_names($_SESSION["csv_content"]);
+	print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap_only");
+	print_blue_out_message('2) $lane_dom_names', $lane_dom_names);
 	
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
