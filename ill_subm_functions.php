@@ -1178,28 +1178,72 @@ function creat_dir_if_not_existst($dir_name)
 	chmod($dir_name, 02775);
 }
 
-function create_lane_dom_names($session_csv_content)
-{
-// 	NOT uniqued arrays!
-	$lane_dom_names = array();
-	foreach ($session_csv_content as $session_csv_content_arr)
-	{
-		$lane_dom_names[] = $session_csv_content_arr[lane] . "_" . strtoupper($session_csv_content_arr[domain][0]);		
-	}
-// 	print_blue_out_message('$lane_dom_names', $lane_dom_names);
+// function create_lane_dom_names($session_csv_content)
+// {
+// // 	NOT uniqued arrays!
 // 	$lane_dom_names = array();
-// 	$domain = strtoupper($domains[$row_num][0]);
-// 	foreach ($lanes as $row_num => $lane)
+// 	foreach ($session_csv_content as $session_or_posr_content_arr)
 // 	{
-// 		foreach ($domains as $domain)
-// 		{
-// 			$lane_dom_names[] = $lane . "_" . strtoupper($domain[0]);
-// 		}
-// 	}		
-	return array_unique($lane_dom_names);
+// 		$lane_dom_names[] = $session_or_posr_content_arr[lane] . "_" . strtoupper($session_or_posr_content_arr[domain][0]);		
+// 	}
+// // 	print_blue_out_message('$lane_dom_names', $lane_dom_names);
+// // 	$lane_dom_names = array();
+// // 	$domain = strtoupper($domains[$row_num][0]);
+// // 	foreach ($lanes as $row_num => $lane)
+// // 	{
+// // 		foreach ($domains as $domain)
+// // 		{
+// // 			$lane_dom_names[] = $lane . "_" . strtoupper($domain[0]);
+// // 		}
+// // 	}		
+// 	return array_unique($lane_dom_names);
 	
-}
+// }
 
+function create_lane_dom_names($session_or_posr_content)
+{
+	// 	NOT uniqued arrays!
+	$lane_dom_names = array();
+	foreach ($session_or_posr_content as $session_or_posr_content_arr)
+	{
+		$lane   = '';
+		$domain = '';
+		if (isset($session_or_posr_content_arr["domain"]))
+		{
+// 			print_green_message("HERE1");
+// 			print_blue_out_message('FROM func: 1) $session_or_posr_content_arr', $session_or_posr_content_arr);
+// 			print_blue_out_message('$session_or_posr_content_arr["domain"]', $session_or_posr_content_arr["domain"]);
+			$lane   = $session_or_posr_content_arr["lane"];
+			$domain = strtoupper($session_or_posr_content_arr["domain"][0]);
+// 			print_blue_out_message('1 $lane', $lane);
+// 			print_blue_out_message('1 $domain', $domain);
+		}
+		if (isset($session_or_posr_content_arr["find_domain"]))		
+		{
+// 			print_green_message("HERE2");
+// 			print_blue_out_message('FROM func: 2) $session_or_posr_content_arr', $session_or_posr_content_arr);
+				
+			$lane   = $session_or_posr_content_arr["find_lane"];
+			$domain = strtoupper($session_or_posr_content_arr["find_domain"][0]);
+// 			print_blue_out_message('2 $lane', $lane);
+// 			print_blue_out_message('2 $domain', $domain);
+		}
+		
+		$lane_dom_names[] = $lane . "_" . $domain;
+	}
+	// 	print_blue_out_message('$lane_dom_names', $lane_dom_names);
+	// 	$lane_dom_names = array();
+	// 	$domain = strtoupper($domains[$row_num][0]);
+	// 	foreach ($lanes as $row_num => $lane)
+		// 	{
+		// 		foreach ($domains as $domain)
+			// 		{
+		// 			$lane_dom_names[] = $lane . "_" . strtoupper($domain[0]);
+		// 		}
+		// 	}
+		return array_unique($lane_dom_names);
+
+}
 function check_raw_path($dir_name)
 {
 // That will not work, because vampsdev has no permission to look into /xraid2-2/sequencing/Illumina
