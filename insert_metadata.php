@@ -16,8 +16,10 @@
   {
 //   	$connection = $newbpc2_connection;
 //   	$db_name    = "env454";
-  	    $connection = $vampsdev_connection;
-  	    $db_name    = "test";  
+//   	    $connection = $vampsdev_connection;
+//   	    $db_name    = "test";  
+  	    $connection = $vampsprod_connection;
+  	    $db_name    = "vamps";  
   }
     
 //   $combined_metadata = combine_metadata($_SESSION, $contact, $domains_array, $db_name, $connection);

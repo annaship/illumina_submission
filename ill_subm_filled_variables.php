@@ -102,7 +102,7 @@ else
 	$result_env454_user = mysql_query($query, $newbpc2_connection_r) or die("SELECT Error: $result_env454_user: ".mysql_error());
 	while($row = mysql_fetch_row($result_env454_user))
 	{
-// 		print_blue_message('$row = ');
+		print_blue_out_message('$row = ', $row);
 // 		print_out($row);
 		
 		$contact[$row[0]]      = $row[2].', '.$row[1];

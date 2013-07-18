@@ -1,5 +1,5 @@
 <?php
-print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
+// print_blue_message("From ". $_SERVER["PHP_SELF"] . "; insert_run_info");
 
 $run_info_results = populate_post_vars($_POST);
 if (!isset($_SESSION)) {
@@ -10,21 +10,12 @@ $_SESSION["run_info"]["path_to_raw_data"] = $selected_path_to_raw_data;
 $_SESSION["run_info_valid"] = 1;
 
 // insert into ini file
-print_blue_out_message('$_SESSION["csv_content"]', $_SESSION["csv_content"]);
 // todo: check if lines and domains are used somewhere but create_lane_dom_names
 $lanes = get_val_from_arr($_SESSION["csv_content"], "lane");
 $_SESSION["run_info"]["lanes"] = $lanes;
 $domains = get_val_from_arr($_SESSION["csv_content"], "domain");
 $rundate = $_SESSION["run_info"]["rundate"];
 $lane_dom_names = create_lane_dom_names($_SESSION["csv_content"]);
-print_blue_out_message('1) $lane_dom_names', $lane_dom_names);
-if ($_SESSION['is_local'])
-{
-// 	print_blue_message("\$docroot = " . $docroot . "; \$path_to_csv = " . $path_to_csv);
-// 	print_out($_SESSION);
-// 	print_out($_SERVER);
-// 	$path_to_csv = $docroot . "/";
-}	
 
 foreach (array_unique($lane_dom_names) as $lane_dom_name)
 {
