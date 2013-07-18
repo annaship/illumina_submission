@@ -34,11 +34,6 @@
 		
 		}
 		
-print_blue_out_message('$_POST', $_POST);		
-print_blue_out_message('$_SESSION', $_SESSION);
-print_blue_out_message('$dna_region', $dna_region);
-print_blue_out_message('$domain', $domain);
-
 	if (isset($_POST) && !empty($_POST))
 	{
 		print_green_message("HERE1");

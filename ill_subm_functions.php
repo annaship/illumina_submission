@@ -1140,6 +1140,11 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 		$rundate = $data_arr["find_rundate"];
 		$lanes 	 = array($data_arr["find_lane"]);
 	}
+	elseif (isset($data_arr["rundate"]) && isset($data_arr["lane"]))
+	{
+		$rundate = $data_arr["rundate"];
+		$lanes 	 = $data_arr["lanes"];		
+	}
 	else 
 	{
 		$rundate = $data_arr["rundate"];
