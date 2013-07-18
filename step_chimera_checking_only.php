@@ -20,7 +20,7 @@
 	print "Afterwards you can run the following command(s) to get chimera checking statistics.";
 	server_message("any");
 	
-	print_blue_out_message('$lane_dom_names', $lane_dom_names);
+// 	print_blue_out_message('$lane_dom_names', $lane_dom_names);
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
 		$check_chimera_stat = "chimera_stats.py";

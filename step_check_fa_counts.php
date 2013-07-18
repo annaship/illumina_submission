@@ -30,9 +30,9 @@
 // 	print_blue_out_message('$POST from fa_counts', $_POST);
 // 	print_blue_out_message('$SESSION from fa_counts', $_SESSION);
 // 	print_blue_out_message('4) $lane_dom_names', $lane_dom_names);
-	if (isset($_POST) && !empty($_POST)) {
-		$lane_dom_names = create_lane_dom_names(array($_POST));
-	}
+// 	if (isset($_POST) && !empty($_POST)) {
+// 		$lane_dom_names = create_lane_dom_names(array($_POST));
+// 	}
 // 	print_blue_out_message('$lane_dom_names from fa count', $lane_dom_names);
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
