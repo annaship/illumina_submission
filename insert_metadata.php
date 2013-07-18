@@ -53,7 +53,6 @@
   $all_insert_metadata_queries = $all_backup_metadata_queries = Array();
   foreach ($combined_metadata as $row_num => $combined_metadata_row)
   {
-  	print_blue_out_message('$combined_metadata_row', $combined_metadata_row);
     
   	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
@@ -66,6 +65,7 @@
   		    locked				= \"" . $combined_metadata_row["locked"] . "\"
   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
 			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\"
+		;					
 	";
 	$insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes
 	  SET
@@ -92,10 +92,12 @@
 		  read_length = \"" . $combined_metadata_row["read_length"] . "\"
 		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
 			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\"
+		;
 ";
 	array_push($all_insert_metadata_queries, $insert_metadata_query1, $insert_metadata_query2);
-	print_blue_out_message('$insert_metadata_query1', $insert_metadata_query1);
-	print_blue_out_message('$insert_metadata_query2', $insert_metadata_query2);
+// 	print_blue_out_message('$insert_metadata_query1', $insert_metadata_query1);
+// 	print_blue_out_message('$insert_metadata_query2', $insert_metadata_query2);
+
 // 	TODO:
 // 	1) create copy of the line,
 // 	2) update the old one
@@ -104,7 +106,7 @@
 	$backup_subm_metadata_query1 = "CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
 			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\";
-		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymd") . "\");
+		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
 		UPDATE tmptable_1 SET id = 0;				
 		INSERT IGNORE INTO " . $db_name . ".vamps_submissions SELECT * FROM tmptable_1 LIMIT 1;
 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
@@ -113,7 +115,7 @@
 	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions_tubes
 		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
 			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\";
-		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymd") . "\");
+		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
 		UPDATE tmptable_1 SET id = 0;
 		INSERT IGNORE INTO " . $db_name . ".vamps_submissions_tubes SELECT * FROM tmptable_1 LIMIT 1;
 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
@@ -125,16 +127,18 @@
   
   $all_backup_metadata_queries_u = array_unique($all_backup_metadata_queries);
   $all_insert_metadata_queries_u = array_unique($all_insert_metadata_queries);
+//   print_blue_out_message('$$all_insert_metadata_queries_u = ', $all_insert_metadata_queries_u);
   
   foreach ($all_backup_metadata_queries_u as $all_backup_metadata_query)
   {
 //   	print_blue_out_message('$all_backup_metadata_query = ', $all_backup_metadata_query);
   	run_multi_query($all_backup_metadata_query, $connection);
+;
   }
-  foreach ($all_insert_metadata_queries_u as $insert_metadata_query)
+  foreach ($all_insert_metadata_queries_u as $all_insert_metadata_query)
   {
-  	print_blue_out_message('$insert_metadata_query = ', $insert_metadata_query);
-  	run_multi_query($insert_metadata_query, $db_name, $connection);
+//   	print_blue_out_message('1) $all_insert_metadata_query', $all_insert_metadata_query);
+  	run_query($all_insert_metadata_query, $db_name, $connection);
   }
   
 //   ====

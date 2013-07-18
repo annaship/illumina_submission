@@ -53,13 +53,13 @@
 				
 				foreach ($combined_metadata_arr as $field_name => $filed_value)
 				{
-// 					if (isset($separate_post_val[$num][$field_name]))
-// 					{
+					if (isset($separate_post_val[$num][$field_name]))
+					{
 // // 					print_blue_out_message('$field_name', $field_name);
 // // 					print_blue_out_message('$filed_value', $filed_value);
 // // 					print_blue_out_message('$separate_post_val[$num][$field_name]', $separate_post_val[$num][$field_name]);
 						$combined_metadata[$num][$field_name] = $separate_post_val[$num][$field_name];
-// 					}
+					}
 						
 				}
 			}
