@@ -615,7 +615,7 @@ function run_multi_query($multi_query, $connection)
 	}
 	else
 	{
-		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysqli_error( $connection ));
+		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysqli_error( $connection ) . mysqli_error());
 	    do {
 	        /* store first result set */
 	        if ($result = mysqli_store_result($connection)) 
