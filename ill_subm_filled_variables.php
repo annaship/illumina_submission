@@ -92,7 +92,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 else
 {
   
-//   $result_vamps_user = mysql_query($query, $vampsprod_connection) or die("SELECT Error: $result_vamps_user: ".mysql_error());
+//   $result_vamps_user = mysql_query($query, $vampsprod_connection_r) or die("SELECT Error: $result_vamps_user: ".mysql_error());
 //   while($row = mysql_fetch_row($result_vamps_user))
 //   {
 //     $contact[$row[0]]      = $row[2].', '.$row[1];
@@ -249,7 +249,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	}
 else
 	{
-		$connection = $vampsprod_connection;
+		$connection = $vampsprod_connection_r;
 		$db_name = "vamps";
 	}
 	

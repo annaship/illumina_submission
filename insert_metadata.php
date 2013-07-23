@@ -18,7 +18,7 @@
 //   	$db_name    = "env454";
 //   	    $connection = $vampsdev_connection;
 //   	    $db_name    = "test";  
-  	    $connection = $vampsprod_connection;
+  	    $connection = $vampsprod_connection_w;
   	    $db_name    = "vamps";  
   }
     

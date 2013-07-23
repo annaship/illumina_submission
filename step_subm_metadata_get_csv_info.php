@@ -35,7 +35,7 @@
   
   if (!$_SESSION['is_local'])
   {
-    $connection = $vampsprod_connection;
+    $connection = $vampsprod_connection_r;
     $db_name    = "vamps";
   }
   else

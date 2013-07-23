@@ -1,10 +1,7 @@
 <?php 
 // production
 $application_data['config'] = $config;
-// $password_w = $application_data['config']['databases']['vamps']['users']['readwrite']['password'];
-// $username_w = $application_data['config']['databases']['vamps']['users']['readwrite']['username'];
-// $database = $application_data['config']['databases']['vamps']['name'];
-// $hostname = $application_data['config']['databases']['vamps']['host'];
+
 $hostname   = $config['databases']['vamps_production']['host'];
 $database   = $config['databases']['vamps_production']['name'];
 $port_v     = $config['databases']['vamps_production']['port'];
@@ -12,7 +9,14 @@ $username_v = $config['databases']['vamps_production']['users']['readonly']['use
 $password_v = $config['databases']['vamps_production']['users']['readonly']['password'];
 $application_data['modules']['logger']->debug(__FILE__.":".__LINE__.":".__FUNCTION__, "USERNAME: $username_v, PASSWORD: $password_v, 
         HOSTNAME: $hostname, DATABASE: $database.");
-$vampsprod_connection = mysql_connect($hostname, $username_v, $password_v) or die("Not connected with $hostname: " . mysql_error());
+$vampsprod_connection_r = mysql_connect($hostname, $username_v, $password_v) or die("Not connected with $hostname: " . mysql_error());
+
+// production read and wright
+$password_w = $application_data['config']['databases']['vamps']['users']['readwrite']['password'];
+$username_w = $application_data['config']['databases']['vamps']['users']['readwrite']['username'];
+$application_data['modules']['logger']->debug(__FILE__.":".__LINE__.":".__FUNCTION__, "USERNAME: $username_w, PASSWORD: $password_w,
+		HOSTNAME: $hostname, DATABASE: $database.");
+$vampsprod_connection_w = mysql_connect($hostname, $username_w, $password_w) or die("Not connected with $hostname: " . mysql_error());
 
 // $db_vamps = mysql_select_db('vamps', $vampsdev_connection);
 

@@ -84,8 +84,7 @@
   else
   {
   	$db_name    = "vamps";
-  	$connection = $vampsprod_connection;
-  	//     $db_name = "test";
+  	$connection = $vampsprod_connection_r;
   }
   $submission_tubes_info_by_id = get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name, $connection);
 	
