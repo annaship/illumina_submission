@@ -7,8 +7,8 @@
 // print_out($_SERVER);
 // print "\$_SESSION:";
 // print_out($_SESSION);
-print "\$contact:";
-print_out($contact);
+// print "\$contact:";
+print_blue_out_message('$contact', $contact);
 
 
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
