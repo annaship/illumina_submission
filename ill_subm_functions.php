@@ -388,7 +388,7 @@ function run_select_one_field($query, $connection) {
   }
   else
   {
-    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+    $results = mysql_query($query, $connection) or die("SELECT Error: $query. $results: ".mysql_error());
     while($row = mysql_fetch_row($results))
     {
       $result_arr[] = $row[0];
@@ -549,7 +549,7 @@ function run_query_and_get_all($query, $connection)
 	}
 	else
 	{
-		$results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+		$results = mysql_query($query, $connection) or die("SELECT Error: $query. $results: ".mysql_error());
 		$subm_field_names = get_field_names($results);
 		while($row = mysql_fetch_row($results))
 		{
@@ -786,7 +786,7 @@ function get_submission_info($connection, $db_name)
   }
   else
   {
-    $results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+    $results = mysql_query($query, $connection) or die("SELECT Error: $query. $results: ".mysql_error());
     $subm_field_names = get_field_names($results);
     while($row = mysql_fetch_row($results))
     {      
@@ -820,7 +820,7 @@ function get_submission_tubes_info($connection, $db_name)
 	}
 	else
 	{
-		$results = mysql_query($query, $connection) or die("SELECT Error: $results: ".mysql_error());
+		$results = mysql_query($query, $connection) or die("SELECT Error: $query. $results: ".mysql_error());
 		$subm_field_names = get_field_names($results);
 		while($row = mysql_fetch_row($results))
 		{

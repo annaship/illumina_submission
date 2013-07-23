@@ -99,10 +99,10 @@ else
 //     $contact_full[$row[0]] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6]; 
 //   }
 
-	$result_env454_user = mysql_query($query, $newbpc2_connection_r) or die("SELECT Error: $result_env454_user: ".mysql_error());
+	$result_env454_user = mysql_query($query, $newbpc2_connection_r) or die("SELECT Error: $query. $result_env454_user: ".mysql_error());
 	while($row = mysql_fetch_row($result_env454_user))
 	{
-		print_blue_out_message('$row = ', $row);
+// 		print_blue_out_message('$row = ', $row);
 // 		print_out($row);
 		
 		$contact[$row[0]]      = $row[2].', '.$row[1];
@@ -160,7 +160,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 }
 else
 {
-  $result_env_source_name = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $result_env_source_name: ".mysql_error());
+  $result_env_source_name = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $query. $result_env_source_name: ".mysql_error());
   while($row = mysql_fetch_row($result_env_source_name))
   {
     $env_source_names[$row[0]] = $row[1];
@@ -221,7 +221,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 }
 else
 {
-  $res_adaptor = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $res_adaptor: ".mysql_error());
+  $res_adaptor = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $query. $res_adaptor: ".mysql_error());
   while($row = mysql_fetch_row($res_adaptor))
   {
     $adaptors_full[] = array(
