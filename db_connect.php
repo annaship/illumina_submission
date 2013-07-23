@@ -11,7 +11,7 @@ $application_data['modules']['logger']->debug(__FILE__.":".__LINE__.":".__FUNCTI
         HOSTNAME: $hostname, DATABASE: $database.");
 $vampsprod_connection_r = mysql_connect($hostname, $username_v, $password_v) or die("Not connected with $hostname: " . mysql_error());
 
-print_blue_out_message('$username_w = $application_data["config"]["databases"]["vamps_production"]', $username_w = $application_data['config']['databases']['vamps_production'])
+print_blue_out_message('$username_w = $application_data["config"]["databases"]["vamps_production"]', $username_w = $application_data['config']['databases']['vamps_production']);
 
 // production read and wright
 $password_w = $application_data['config']['databases']['vamps_production']['users']['readwrite']['password'];
