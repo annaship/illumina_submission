@@ -1,6 +1,8 @@
 <div class="how_to">
 
-print_red_message("This page is under construction, please do not upload any metadata yet.");
+<?php 
+	print_red_message("This page is under construction, please do not upload any metadata yet.");
+?>
 
 <H1>How to download a user filled submission form from VAMPS</H1>
 <ol>
