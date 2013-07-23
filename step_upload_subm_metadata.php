@@ -77,6 +77,16 @@
 // 	print_blue_out_message('$vamps_submissions_tubes_arr', $vamps_submissions_tubes_arr); 
 // 	print_blue_out_message('$submission_tubes_id_arr', $submission_tubes_id_arr);
 	
+  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+  {
+  	$db_name = "test";
+  }
+  else
+  {
+  	$db_name    = "vamps";
+  	$connection = $vampsprod_connection;
+  	//     $db_name = "test";
+  }
   $submission_tubes_info_by_id = get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name, $connection);
 	
   $combined_metadata           = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name, $connection);
