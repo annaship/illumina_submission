@@ -839,19 +839,68 @@ function get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name,
 	$submission_tubes_ids              = join(", ", $submission_tubes_id_arr);
 	$query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions_tubes WHERE id IN (" .  $submission_tubes_ids . ")";
 	$vamps_submission_tubes_info_by_id = run_query_and_get_all($query, $connection);
-
 	$id_hash   = make_id_hash($vamps_submission_tubes_info_by_id); 
 	return $id_hash;
 }
 
 function make_id_hash($multi_array)
 {
-	$id_hash = array();
+	$id_hash   = array();
+	$named_arr = array();
 	foreach ($multi_array as $array)
 	{
-		$id_hash[$array["id"]] = $array;
+		if (isset($array["id"]))
+		{
+			$id_hash[$array["id"]] = $array;
+		}
+		else 
+		{
+			$named_arr = rename_vamps_submissions_tubes_arr_to_hash($array);
+			$id_hash[$array[0]]    = $named_arr;
+		}
 	}
 	return $id_hash;
+}
+
+function rename_vamps_submissions_tubes_arr_to_hash($array)
+{
+	$named_arr = array();
+	$named_arr["id"]               = $array[0];
+	$named_arr["submit_code"]      = $array[1];
+	$named_arr["tube_number"]      = $array[2];
+	$named_arr["tube_label"]       = $array[3];
+	$named_arr["tube_description"] = $array[4];
+	$named_arr["duplicate"]        = $array[5];
+	$named_arr["domain"]           = $array[6];
+	$named_arr["primer_suite"]     = $array[7];
+	$named_arr["dna_region"]       = $array[8];
+	$named_arr["project_name"]     = $array[9];
+	$named_arr["dataset_name"]     = $array[10];
+	$named_arr["runkey"]           = $array[11];
+	$named_arr["barcode"]          = $array[12];
+	$named_arr["pool"]             = $array[13];
+	$named_arr["lane"]             = $array[14];
+	$named_arr["direction"]        = $array[15];
+	$named_arr["platform"]         = $array[16];
+	$named_arr["op_amp"]           = $array[17];
+	$named_arr["op_seq"]           = $array[18];
+	$named_arr["op_empcr"]         = $array[19];
+	$named_arr["enzyme"]           = $array[20];
+	$named_arr["rundate"]          = $array[21];
+	$named_arr["adaptor"]          = $array[22];
+	$named_arr["date_initial"]     = $array[23];
+	$named_arr["date_updated"]     = $array[24];
+	$named_arr["on_vamps"]         = $array[25];
+	$named_arr["sample_received"]  = $array[26];
+	$named_arr["concentration"]    = $array[27];
+	$named_arr["quant_method"]     = $array[28];
+	$named_arr["overlap"]          = $array[29];
+	$named_arr["insert_size"]      = $array[30];
+	$named_arr["barcode_index"]    = $array[31];
+	$named_arr["read_length"]      = $array[32];
+	$named_arr["trim_distal"]      = $array[33];
+	$named_arr["env_sample_source_id"] = $array[34];
+	return $named_arr;
 }
 
 function get_tubes_info_by_submit_code($submission_tubes_id_arr, $vamps_submission_tubes_info, $db_name, $connection)
@@ -1321,7 +1370,6 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 {
 	$num = 0;
 	$combined_metadata = "";
-	print_blue_out_message('$env_source_names', $env_source_names);
 	
 // 	include 'ill_subm_filled_variables.php';
 // 	print_blue_message("adaptors_full from func = ");
