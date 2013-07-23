@@ -719,6 +719,9 @@ function get_id($data_array, $table_name, $db_name, $connection)
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
   }
  
+  print_blue_out_message('$query', $query);
+  print_blue_out_message('$db_name', $db_name);
+  print_blue_out_message('$connection', $connection);
   $row = get_one_value($query, $db_name, $connection);
 
   if (isset($row[key($row)]))
