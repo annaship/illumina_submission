@@ -102,7 +102,9 @@ else
 	$result_env454_user = mysql_query($query, $newbpc2_connection_r) or die("SELECT Error: $query. $result_env454_user: ".mysql_error());
 	while($row = mysql_fetch_row($result_env454_user))
 	{
-		print_blue_out_message('$row = ', $row);
+// 		print_blue_out_message('$row = ', $row);
+// UUU -Array ( [0] => 24 [1] => Jan Pawlowski [2] => Jan.Pawlowski@zoo.unige.ch [3] => University of Geneva [4] => pawlowski [5] => Jan [6] => Pawlowski ) --
+		
 		$contact[$row[4]]      = $row[6].', '.$row[5];
 		$contact_full[$row[4]] = $row[6].', '.$row[5].', '.$row[2].', '.$row[3];		
 		

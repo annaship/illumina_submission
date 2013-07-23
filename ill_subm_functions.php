@@ -1321,6 +1321,7 @@ function combine_metadata($session, $contact, $domains_array, $adaptors_full, $v
 {
 	$num = 0;
 	$combined_metadata = "";
+	print_blue_out_message('$env_source_names', $env_source_names);
 	
 // 	include 'ill_subm_filled_variables.php';
 // 	print_blue_message("adaptors_full from func = ");
