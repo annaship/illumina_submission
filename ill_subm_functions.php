@@ -627,7 +627,7 @@ function run_multi_query($multi_query, $connection)
 		
 		foreach ($my_queries as $my_query)
 		{
-			$result = mysql_query($my_query) or die("Query failed. Query: $my_query. The last error: " . mysql_error( ));
+			$result = mysql_query($my_query) or die("Query failed. Query: $my_queries_ok. The last error: " . mysql_error( ));
 			while($row = mysql_fetch_row($result))
 			{
 				print_blue_out_message('$row 625 func', $row);
