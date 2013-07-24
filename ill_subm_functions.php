@@ -626,16 +626,8 @@ function run_multi_query($multi_query, $connection)
 		$db_name = "vamps";
 		foreach ($my_queries_ok as $my_query)
 		{
-			print_blue_out_message('$my_query', $my_query);
 // 			$result = mysql_query($my_query) or die("Query failed. Query: $my_query. The last error: " . mysql_error( ));
-			$result = run_query($my_query, $db_name, $connection);
-			print_blue_out_message('$result', $result);
-			print_blue_out_message('mysql_affected_rows()', mysql_affected_rows());
-			
-			while($row = mysql_fetch_row($result))
-			{
-				print_blue_out_message('$row 625 func', $row);
-			}			
+			$result = run_query($my_query, $db_name, $connection);			
 		}
 		
 // 		$results = mysql_query($multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
