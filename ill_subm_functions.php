@@ -623,11 +623,11 @@ function run_multi_query($multi_query, $connection)
 		$my_queries    = split(';', $multi_query);
 		$trimmed_queries = array_map('trim', $my_queries);
 		$my_queries_ok = array_filter($trimmed_queries);
-		print_blue_out_message('$my_queries_ok', $my_queries_ok);
 		
 		foreach ($my_queries_ok as $my_query)
 		{
 			$result = mysql_query($my_query) or die("Query failed. Query: $my_query. The last error: " . mysql_error( ));
+			print_blue_out_message('$result', $result);
 			while($row = mysql_fetch_row($result))
 			{
 				print_blue_out_message('$row 625 func', $row);
