@@ -620,8 +620,10 @@ function run_multi_query($multi_query, $connection)
 		
 // 		mysql_connect($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
 
-		$my_queries = split(';', $multi_query);
-		print_blue_out_message('$$my_queries', $my_queries);
+		$my_queries    = split(';', $multi_query);
+		$my_queries_ok = array_filter($my_queries);
+		print_blue_out_message('$my_queries_ok', $my_queries_ok);
+		
 		foreach ($my_queries as $my_query)
 		{
 			print_blue_out_message('$my_query', $my_query);
