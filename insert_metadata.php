@@ -114,13 +114,13 @@
 		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
 	";
 	$backup_subm_metadata_query2 = "";
-	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions_tubes
+	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE " . $db_name . ".tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions_tubes
 		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
 			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\";
-		UPDATE tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
-		UPDATE tmptable_1 SET id = 0;
-		INSERT IGNORE INTO " . $db_name . ".vamps_submissions_tubes SELECT * FROM tmptable_1 LIMIT 1;
-		DROP TEMPORARY TABLE IF EXISTS tmptable_1;
+		UPDATE " . $db_name . ".tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
+		UPDATE " . $db_name . ".tmptable_1 SET id = 0;
+		INSERT IGNORE INTO " . $db_name . ".vamps_submissions_tubes SELECT * FROM " . $db_name . ".tmptable_1 LIMIT 1;
+		DROP TEMPORARY TABLE IF EXISTS " . $db_name . ".tmptable_1;
 	";
 	
 	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
