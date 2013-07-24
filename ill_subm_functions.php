@@ -623,12 +623,12 @@ function run_multi_query($multi_query, $connection)
 		$my_queries    = split(';', $multi_query);
 		$trimmed_queries = array_map('trim', $my_queries);
 		$my_queries_ok = array_filter($trimmed_queries);
-		
+		$db_name = "vamps";
 		foreach ($my_queries_ok as $my_query)
 		{
 			print_blue_out_message('$my_query', $my_query);
 // 			$result = mysql_query($my_query) or die("Query failed. Query: $my_query. The last error: " . mysql_error( ));
-			$result = run_query($my_query);
+			$result = run_query($my_query, $db_name, $connection);
 			print_blue_out_message('$result', $result);
 			print_blue_out_message('mysql_affected_rows()', mysql_affected_rows());
 			
