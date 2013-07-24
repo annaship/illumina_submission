@@ -111,7 +111,7 @@
 		UPDATE " . $db_name . ".tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
 		UPDATE " . $db_name . ".tmptable_1 SET id = 0;				
 		INSERT IGNORE INTO " . $db_name . ".vamps_submissions SELECT * FROM " . $db_name . ".tmptable_1 LIMIT 1;
-		DROP TEMPORARY TABLE IF EXISTS " . $db_name . ".mptable_1;
+		DROP TEMPORARY TABLE IF EXISTS " . $db_name . ".tmptable_1;
 	";
 	$backup_subm_metadata_query2 = "";
 	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE " . $db_name . ".tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions_tubes
