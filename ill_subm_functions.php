@@ -615,15 +615,25 @@ function run_multi_query($multi_query, $connection)
 	}
 	else
 	{
-		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysqli_error( $connection ) . mysqli_error());
-	    do {
-	        /* store first result set */
-	        if ($result = mysqli_store_result($connection)) 
-	        {
-	        	$subresult = mysqli_fetch_assoc( $result );
-	            mysqli_free_result($result);
-	        }
-	    } while (mysqli_more_results($connection) && mysqli_next_result($connection));
+// 		mysql_connect() or die(mysql_error());
+// 		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysqli_error( $connection ) . mysqli_error());
+		
+		mysql_connect($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
+		$result = mysql_query($multi_query);
+		while($row = mysql_fetch_row($results))
+		{
+			print_blue_out_message('$row 625 func', $row);
+		}
+				
+// 	    do {
+// 	        /* store first result set */
+	    	
+// 	        if ($result = mysqli_store_result($connection)) 
+// 	        {
+// 	        	$subresult = mysqli_fetch_assoc( $result );
+// 	            mysqli_free_result($result);
+// 	        }
+// 	    } while (mysqli_more_results($connection) && mysqli_next_result($connection));
 	}
 }
 
