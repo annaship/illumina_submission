@@ -620,21 +620,22 @@ function run_multi_query($multi_query, $connection)
 		
 // 		mysql_connect($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
 
-// 		$my_queries = split(';', $multi_query);
-// 		foreach ($my_queries as $my_query)
-// 		{
-// 			$result = mysql_query($my_query) or die("Query failed. Query: $my_query. The last error: " . mysql_error( ));
-// 			while($row = mysql_fetch_row($result))
-// 			{
-// 				print_blue_out_message('$row 625 func', $row);
-// 			}			
-// 		}
-		
-		$results = mysql_query($multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
-		while($row = mysql_fetch_row($results))
+		$my_queries = split(';', $multi_query);
+		foreach ($my_queries as $my_query)
 		{
-			print_blue_out_message('$row 625 func', $row);
+			print_blue_out_message('$my_query', $my_query);
+			$result = mysql_query($my_query) or die("Query failed. Query: $my_query. The last error: " . mysql_error( ));
+			while($row = mysql_fetch_row($result))
+			{
+				print_blue_out_message('$row 625 func', $row);
+			}			
 		}
+		
+// 		$results = mysql_query($multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
+// 		while($row = mysql_fetch_row($results))
+// 		{
+// 			print_blue_out_message('$row 625 func', $row);
+// 		}
 // 		Multi query failed. Query: CREATE TEMPORARY TABLE vamps.tmptable_1 SELECT * FROM vamps.vamps_submissions WHERE submit_code = "tdelmont433407" AND id = "697"; UPDATE vamps.tmptable_1 SET submit_code = CONCAT(submit_code, "_backup_", "20130724120850"); UPDATE vamps.tmptable_1 SET id = 0; INSERT IGNORE INTO vamps.vamps_submissions SELECT * FROM vamps.tmptable_1 LIMIT 1; DROP TEMPORARY TABLE IF EXISTS vamps.tmptable_1; . The last error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE vamps.tmptable_1 SET submit_code = CONCAT(submit_code, "_backup_", "20130' at line 4				
 // 	    do {
 // 	        /* store first result set */
