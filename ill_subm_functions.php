@@ -592,7 +592,7 @@ function run_query($query, $table_name, $connection)
       	$row = mysql_fetch_assoc($select_result);
       	$data_id = $row["last_id"];
       }
-      print_insert_message_by_id($table_name, $data_id);
+//       print_insert_message_by_id($table_name, $data_id);
     }
   }
   return $data_id;
@@ -600,7 +600,7 @@ function run_query($query, $table_name, $connection)
 
 function run_multi_query($multi_query, $connection)
 {
-	print_blue_out_message('$connection', $connection);
+// 	print_blue_out_message('$connection', $connection);
 	
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
@@ -618,8 +618,6 @@ function run_multi_query($multi_query, $connection)
 // 		mysql_connect() or die(mysql_error());
 // 		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysqli_error( $connection ) . mysqli_error());
 		
-// 		mysql_connect($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
-
 		$my_queries    = split(';', $multi_query);
 		$trimmed_queries = array_map('trim', $my_queries);
 		$my_queries_ok = array_filter($trimmed_queries);
@@ -627,7 +625,7 @@ function run_multi_query($multi_query, $connection)
 		foreach ($my_queries_ok as $my_query)
 		{
 // 			$result = mysql_query($my_query) or die("Query failed. Query: $my_query. The last error: " . mysql_error( ));
-			$result = run_query($my_query, $db_name, $connection);			
+			run_query($my_query, $db_name, $connection);			
 		}
 		
 // 		$results = mysql_query($multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysql_error( ));
