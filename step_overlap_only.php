@@ -34,7 +34,7 @@
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
     	$command_line_uniq = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
-        					$lane_dom_name . "/analysis/reads_overlap/; " . $overlap_script_name . "; date";
+        					$lane_dom_name . "/analysis/; " . $overlap_script_name . "; date";
         print_green_message($command_line_uniq);        
 	}
 	echo "</div>";
