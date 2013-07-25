@@ -12,7 +12,17 @@
 	include_once("steps_command_line.php");
 
 	echo "<div id=\"command_line_print\">";
-	server_message("grendel");
+	
+	switch ($machine_name) {
+		case "hs":
+			server_message("grendel");
+			break;
+		case "ms":
+			server_message("domino or minnie");
+			break;
+		default:
+			echo "Please provide a machine name";
+	}
 	
 	$overlap_script_name = "";
 	$overlap_script_name = get_overlap_script_name($machine_name);
