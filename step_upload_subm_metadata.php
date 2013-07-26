@@ -86,7 +86,11 @@
   	$db_name    = "vamps";
   	$connection = $vampsprod_connection_r;
   }
-  $submission_tubes_info_by_id = get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name, $connection);
+  
+  if (isset($submission_tubes_id_arr) && !empty($submission_tubes_id_arr))
+  {
+  	$submission_tubes_info_by_id = get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name, $connection);
+  }
 	
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
@@ -98,9 +102,13 @@
   	$connection = $newbpc2_connection_r;
   }
 
-  $combined_metadata           = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name, $connection);
+  
+  if (isset($submission_tubes_info_by_id) && !empty($submission_tubes_info_by_id))
+  {
+  	$combined_metadata           = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name, $connection);
 //     print_blue_message("2) step_upload_subm_metadata, \$combined_metadata");
 //     print_out($combined_metadata);
+  }
   
   //3) show table
   if (isset($_SESSION["run_info_valid"]) && $_SESSION["run_info_valid"] == 1
