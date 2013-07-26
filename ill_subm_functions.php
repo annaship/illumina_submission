@@ -889,7 +889,7 @@ function rename_vamps_submissions_tubes_arr_to_hash($array)
 	$named_arr["submit_code"]      = $array[1];
 	$named_arr["tube_number"]      = $array[2];
 	$named_arr["tube_label"]       = $array[3];
-	$named_arr["tube_description"] = $array[4];
+	$named_arr["dataset_description"] = $array[4];
 	$named_arr["duplicate"]        = $array[5];
 	$named_arr["domain"]           = $array[6];
 	$named_arr["primer_suite"]     = $array[7];
