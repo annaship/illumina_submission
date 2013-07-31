@@ -739,11 +739,12 @@ function get_id($data_array, $table_name, $db_name, $connection)
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
   }
  
-//   print_blue_out_message('$query', $query);
-//   print_blue_out_message('$db_name', $db_name);
-//   print_blue_out_message('$connection', $connection);
+  print_blue_out_message('$query', $query);
+  print_blue_out_message('$db_name', $db_name);
+  print_blue_out_message('$connection', $connection);
   $row = get_one_value($query, $db_name, $connection);
-
+  print_blue_out_message('$row', $row);
+  
   if (isset($row[key($row)]))
   {
     $res_id = $row[key($row)];
@@ -753,6 +754,7 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {
     $res_id = add_new_data($data_array, $table_name, $db_name, $connection);
   }
+  print_blue_out_message('$res_id', $res_id);
   
   return $res_id;
 }
@@ -1380,8 +1382,6 @@ function server_message($server_name)
 function check_domain($current_domain, $domains_array)
 {	
 	$csv_domain_1 = explode(" ", $current_domain);
-	print_blue_out_message('$csv_domain_1', $csv_domain_1);
-	print_blue_out_message('$domains_array', $domains_array);
 	$domain_1     = $domains_array[$csv_domain_1[0]];
 	if (in_array($domain_1, $domains_array))
 	{
