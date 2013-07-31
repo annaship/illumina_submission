@@ -667,7 +667,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     "($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";
-    print_blue_out_message('$query', $query);
+    print_blue_out_message('$connection from insert run', $connection);
   } 
   elseif ($table_name == "project")
   {
