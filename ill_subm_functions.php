@@ -1380,6 +1380,8 @@ function server_message($server_name)
 function check_domain($current_domain, $domains_array)
 {	
 	$csv_domain_1 = explode(" ", $current_domain);
+	print_blue_out_message('$csv_domain_1', $csv_domain_1);
+	print_blue_out_message('$domains_array', $domains_array);
 	$domain_1     = $domains_array[$csv_domain_1[0]];
 	if (in_array($domain_1, $domains_array))
 	{
