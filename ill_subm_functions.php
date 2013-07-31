@@ -667,7 +667,6 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   {
     $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
     "($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";
-    print_blue_out_message('$connection from insert run', $connection);
   } 
   elseif ($table_name == "project")
   {
@@ -740,12 +739,11 @@ function get_id($data_array, $table_name, $db_name, $connection)
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
   }
  
-  print_blue_out_message('$query', $query);
-  print_blue_out_message('$db_name', $db_name);
-  print_blue_out_message('$connection', $connection);
+//   print_blue_out_message('$query', $query);
+//   print_blue_out_message('$db_name', $db_name);
+//   print_blue_out_message('$connection', $connection);
   $row = get_one_value($query, $db_name, $connection);
-  print_blue_out_message('$row', $row);
-  
+
   if (isset($row[key($row)]))
   {
     $res_id = $row[key($row)];
@@ -755,7 +753,6 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {
     $res_id = add_new_data($data_array, $table_name, $db_name, $connection);
   }
-  print_blue_out_message('$res_id', $res_id);
   
   return $res_id;
 }
