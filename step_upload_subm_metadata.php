@@ -99,7 +99,7 @@
   else
   {
   	$db_name    = "env454";
-  	$connection = $newbpc2_connection_r;
+  	$connection = $newbpc2_connection;
   }
 
   
