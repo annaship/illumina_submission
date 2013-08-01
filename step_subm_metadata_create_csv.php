@@ -39,10 +39,9 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 
 	
 	$result_arr = array_intersect_key($combined_metadata_row, $table_headers_arr);
-// 	print_blue_message("\$result_arr - array_intersect_key = ");
-// 	print_out($result_arr);
 	$domains[]	= $combined_metadata_row["domain"];
 	$lanes[]    = $combined_metadata_row["lane"];
+	$result_arr["run_key"] = "NNNN" . $combined_metadata_row["run_key"]; 
 	$data_all[] = $result_arr;
 	
 }
