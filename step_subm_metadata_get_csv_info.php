@@ -4,9 +4,15 @@
   $csv_data = get_data_from_csv($file_name);
   
   $row_num = 0;
-  $csv_headers_needed = array("adaptor", "barcode", "barcode_index", "dataset_description", "dataset_name", "dna_region", "domain", 
-  		"id", "insert_size", "lane", "op_amp", "op_empcr", "overlap", "project_name", "read_length", "rundate", "runkey",
-		"submit_code", "tube_label");
+  $csv_headers_needed = array("adaptor", "barcode", "barcode_index", "concentration", "dataset_description", "dataset_name", "date_initial", "date_updated", "direction",
+ "dna_region", "domain", "duplicate", "env_sample_source_id", "enzyme", "id", "insert_size", "lane", 
+ "on_vamps", "op_amp", "op_empcr", "op_seq", "overlap", "platform", "pool", "primer_suite", "project_name", 
+ "quant_method", "read_length", "rundate", "runkey", "sample_received", "submit_code", "trim_distal", 
+ "tube_label", "tube_number"); 
+  
+//   array("adaptor", "barcode", "barcode_index", "dataset_description", "dataset_name", "dna_region", "domain", 
+//   		"id", "insert_size", "lane", "op_amp", "op_empcr", "overlap", "project_name", "read_length", "rundate", "runkey",
+// 		"submit_code", "tube_label");
   
   /*
    * all fields on Jun 13 2013
@@ -15,6 +21,13 @@
   *  "domain", "duplicate", "enzyme", "id", "insert_size", "lane", "on_vamps", "op_amp", "op_empcr", "op_seq", "overlap", "platform", "pool", "primer_suite",
   *  "project_name", "quant_method", "read_length", "rundate", "runkey", "sample_received", "submit_code", "trim_distal", "tube_label", "tube_number"
   *
+  *
+  *  all fields on Aug 5 2013
+  * "adaptor", "barcode", "barcode_index", "concentration", "dataset_description", "dataset_name", "date_initial", "date_updated", "direction",
+  *  "dna_region", "domain", "duplicate", "env_sample_source_id", "enzyme", "id", "insert_size", "lane", 
+  *  "on_vamps", "op_amp", "op_empcr", "op_seq", "overlap", "platform", "pool", "primer_suite", "project_name", 
+  *  "quant_method", "read_length", "rundate", "runkey", "sample_received", "submit_code", "trim_distal", 
+  *  "tube_label", "tube_number"
   * */
   
   $csv_headers_run_info_needed = array("dna_region", "insert_size", "op_seq", "overlap", "read_length", "rundate");
