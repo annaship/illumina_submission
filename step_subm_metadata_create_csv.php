@@ -41,11 +41,10 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 	$result_arr = array_intersect_key($combined_metadata_row, $table_headers_arr);
 // 	print_blue_message("\$result_arr - array_intersect_key = ");
 // 	print_out($result_arr);
-print_blue_out_message('$combined_metadata_row["domain"]', $combined_metadata_row["domain"]);
 	$domains[]	= $combined_metadata_row["domain"];
 	$lanes[]    = $combined_metadata_row["lane"];
 	$data_all[] = $result_arr;
-	$lane_dom  = $combined_metadata_row["domain"][0] . "_" . $combined_metadata_row["lane"];
+	$lane_dom  = $combined_metadata_row["lane"] . "_" . $combined_metadata_row["domain"][0];
 	$data_all_dom[$lane_dom][] = $result_arr;
 	
 }
@@ -58,12 +57,11 @@ $is_created = array();
 
 $_SESSION["run_info"]["lanes"] = array_unique($lanes);
 $lane_dom_names 		       = create_lane_dom_names($_SESSION["csv_content"]);
-
 foreach ($lane_dom_names as $lane_dom_name)
 {
   $csv_name  = create_csv_name($rundate, $lane_dom_name);
   $file_name = $path_to_csv  . $rundate . "/" . $csv_name;  
-  $is_created[$file_name] = create_csv_file($data_all, $file_name);
+  $is_created[$file_name] = create_csv_file($data_all_dom[$lane_dom_name], $file_name);
 }
 
 if (check_var($is_created)) {
