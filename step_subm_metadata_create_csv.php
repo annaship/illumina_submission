@@ -49,7 +49,6 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 }
 
 // print_blue_out_message('$data_all before unshift', $data_all);
-array_unshift($data_all, $table_headers);
 // print_blue_out_message('$data_all after unshift', $data_all);
 // $csv_data = array_to_scv($data_all, false);
 $is_created = array();
@@ -58,6 +57,8 @@ $_SESSION["run_info"]["lanes"] = array_unique($lanes);
 $lane_dom_names 		       = create_lane_dom_names($_SESSION["csv_content"]);
 foreach ($lane_dom_names as $lane_dom_name)
 {
+  array_unshift($data_all_dom[$lane_dom_name], $table_headers);
+	
   $csv_name  = create_csv_name($rundate, $lane_dom_name);
   $file_name = $path_to_csv  . $rundate . "/" . $csv_name;  
   $is_created[$file_name] = create_csv_file($data_all_dom[$lane_dom_name], $file_name);
