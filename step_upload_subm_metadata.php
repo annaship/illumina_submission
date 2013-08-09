@@ -105,7 +105,7 @@
   
   if (isset($submission_tubes_info_by_id) && !empty($submission_tubes_info_by_id))
   {
-  	$combined_metadata           = combine_metadata($_SESSION, $contact, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name, $connection);
+  	$combined_metadata           = combine_metadata($_SESSION, $contact_full, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name, $connection);
 //     print_blue_message("2) step_upload_subm_metadata, \$combined_metadata");
 //     print_out($combined_metadata);
   }
