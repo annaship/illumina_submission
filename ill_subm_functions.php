@@ -1431,6 +1431,15 @@ function get_user_info($user_info)
 	return split(', ', $user_info);
 }
 
+function get_vamps_auth_id($vamps_username, $db_name, $connection)
+{
+	$query = "SELECT auth.id
+    		FROM " . $db_name . ".vamps_auth AS auth
+      		WHERE auth.user = \"" . $vamps_username. "\"";
+	$row = get_one_value($query, $db_name, $connection);
+	return $row;
+}
+
 
 function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection) 
 {
@@ -1450,8 +1459,8 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 // 	print_out($_POST);
 	
 	foreach ($session["csv_content"] as $csv_metadata_row) {
-		$user_info_arr = get_user_info($contact_full[$csv_metadata_row["user"]]);
-		
+		$vamps_username = $csv_metadata_row["user"];
+		$user_info_arr  = get_user_info($contact_full[$vamps_username]);
 		if (check_var($session["run_info"]["dna_region_0"]))
 		{
 			$selected_dna_region_base = strtolower($session["run_info"]["dna_region_0"]);
@@ -1513,7 +1522,9 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num]["tubelabel"]			= $csv_metadata_row["tube_label"];
 // 		$combined_metadata[$num]["user"]   			    = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"];
 		$combined_metadata[$num]["user"]   			    = $username;
-		$combined_metadata[$num]["vamps_auth_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["vamps_auth_id"];
+// 		$combined_metadata[$num]["vamps_auth_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["vamps_auth_id"];
+		$combined_metadata[$num]["vamps_auth_id"]       = get_vamps_auth_id($vamps_username, $db_name, $connection);
+		print_blue_out_message('$combined_metadata[$num]["vamps_auth_id"]', $combined_metadata[$num]["vamps_auth_id"]);
 		$combined_metadata[$num]["vamps_submissions_id"] = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
 
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
