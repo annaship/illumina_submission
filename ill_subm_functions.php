@@ -1437,7 +1437,7 @@ function get_vamps_auth_id($vamps_username, $db_name, $connection)
     		FROM " . $db_name . ".vamps_auth AS auth
       		WHERE auth.user = \"" . $vamps_username. "\"";
 	$row = get_one_value($query, $db_name, $connection);
-	return $row;
+	return $row["id"];
 }
 
 
@@ -1460,6 +1460,8 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 	
 	foreach ($session["csv_content"] as $csv_metadata_row) {
 		$vamps_username = $csv_metadata_row["user"];
+		$contact_name   = $user_info_arr[0].', '.$user_info_arr[1];
+		
 		$user_info_arr  = get_user_info($contact_full[$vamps_username]);
 		if (check_var($session["run_info"]["dna_region_0"]))
 		{
@@ -1468,8 +1470,7 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num]["adaptor"]				= add_zero(strtoupper($csv_metadata_row["adaptor"]));
 		$combined_metadata[$num]["amp_operator"]		= $csv_metadata_row["op_amp"];
 		$combined_metadata[$num]["barcode"]				= $csv_metadata_row["barcode"];
-		$user_names = $user_info_arr[0].', '.$user_info_arr[1];
-		$combined_metadata[$num]["data_owner"]			= $user_names;
+		$combined_metadata[$num]["contact_name"]		= $contact_name;
 // 		$combined_metadata[$num]["data_owner"]			= $contact[$csv_metadata_row["user"]];
 		
 		$combined_metadata[$num]["dataset"]				= $csv_metadata_row["dataset_name"];
@@ -1521,10 +1522,11 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num]["temp_project"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["temp_project"];
 		$combined_metadata[$num]["tubelabel"]			= $csv_metadata_row["tube_label"];
 // 		$combined_metadata[$num]["user"]   			    = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"];
-		$combined_metadata[$num]["user"]   			    = $username;
+		$combined_metadata[$num]["data_owner"]		    = $vamps_username;
 // 		$combined_metadata[$num]["vamps_auth_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["vamps_auth_id"];
 		$combined_metadata[$num]["vamps_auth_id"]       = get_vamps_auth_id($vamps_username, $db_name, $connection);
 		print_blue_out_message('$combined_metadata[$num]["vamps_auth_id"]', $combined_metadata[$num]["vamps_auth_id"]);
+		
 		$combined_metadata[$num]["vamps_submissions_id"] = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
 
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);

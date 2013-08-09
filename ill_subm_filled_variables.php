@@ -11,7 +11,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 }
 
     $selected_overlap = $selected_contact_full = $selected_domain = 
-	$selected_lane = $selected_data_owner = $selected_run_key = 
+	$selected_lane = $selected_contact_name = $selected_run_key = 
 	$selected_barcode_index = $selected_project = $selected_dataset = 
 	$selected_dataset_description = $selected_env_source_name = 
 	$selected_tubelabel = $selected_barcode = $selected_adaptor = 
@@ -24,7 +24,7 @@ $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A");
 
 $domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea");
     
-$arr_fields_headers = array("domain", "lane", "data_owner", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
+$arr_fields_headers = array("domain", "lane", "contact_name", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
     "tubelabel", "barcode", "amp_operator");
 
 $project_form_fields = array(
@@ -33,7 +33,7 @@ $project_form_fields = array(
     "funding" => "required", "env_source_name" => "required", "project_form_contact" => "select"
 );
 
-$submission_metadata_form_fields = array("domain"=> "required", "lane"=> "required", "data_owner"=> "required", 
+$submission_metadata_form_fields = array("domain"=> "required", "lane"=> "required", "contact_name"=> "required", 
     "run_key"=> "select", "barcode_index"=> "select", "adaptor"=> "required", "project"=> "required", 
     "dataset"=> "required", "dataset_description"=> "optional", "env_source_name"=> "required",
     "tubelabel"=> "optional", "barcode"=> "optional", "amp_operator"=> "required");

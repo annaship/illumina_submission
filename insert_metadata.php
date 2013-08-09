@@ -55,18 +55,21 @@
   $all_insert_metadata_queries = $all_backup_metadata_queries = Array();
   foreach ($combined_metadata as $row_num => $combined_metadata_row)
   {
-    
+    print_blue_out_message(' $combined_metadata_row["submit_code"] ',  $combined_metadata_row["submit_code"] );
+  	print_blue_out_message(' $combined_metadata_row["temp_project"] ',  $combined_metadata_row["temp_project"] );
+  	print_blue_out_message(' $combined_metadata_row["vamps_auth_id"] ',  $combined_metadata_row["vamps_auth_id"] );
   	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
 	    temp_project		= \"" . $combined_metadata_row["temp_project"] . "\",
 	    title				= \"" . $combined_metadata_row["project_title"] . "\",
 	    project_description	= \"" . $combined_metadata_row["project_description"] . "\",
 	    funding				= \"" . $combined_metadata_row["funding"] . "\",
+	    vamps_auth_id		= \"" . $combined_metadata_row["vamps_auth_id"] . "\",	    		
 	    num_of_tubes		= \"" . $combined_metadata_row["num_of_tubes"] . "\",
-  		    date_updated		= \"$date_updated\",
-  		    locked				= \"" . $combined_metadata_row["locked"] . "\"
-  	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
-			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\"
+  		date_updated		= \"$date_updated\",
+  		locked				= \"" . $combined_metadata_row["locked"] . "\"
+  	 WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
+		AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\"
 		;					
 	";
 	$insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes

@@ -70,7 +70,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               $selected_barcode				= $metadata_row["barcode"];
               $selected_barcode_index		= $metadata_row["barcode_index"];
               $selected_user   			    = $metadata_row["user"];              
-              $selected_data_owner			= $metadata_row["data_owner"];
+              $selected_contact_name		= $metadata_row["contact_name"];
               $selected_dataset				= $metadata_row["dataset"];
               $selected_dataset_description	= $metadata_row["dataset_description"];
               $selected_domain				= $metadata_row["domain"];

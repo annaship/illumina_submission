@@ -36,7 +36,8 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 // 	print_blue_message("\$combined_metadata_row = ");
 // 	print_out($combined_metadata_row);
 // 	print "<br/>";
-
+	print_blue_out_message('$combined_metadata_row', $combined_metadata_row);
+	
 	
 	$result_arr = array_intersect_key($combined_metadata_row, $table_headers_arr);
 	$domains[]	= $combined_metadata_row["domain"];
@@ -45,7 +46,6 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 	$data_all[] = $result_arr;
 	$lane_dom  = $combined_metadata_row["lane"] . "_" . $combined_metadata_row["domain"][0];
 	$data_all_dom[$lane_dom][] = $result_arr;
-	
 }
 
 // print_blue_out_message('$data_all before unshift', $data_all);
@@ -57,8 +57,8 @@ $_SESSION["run_info"]["lanes"] = array_unique($lanes);
 $lane_dom_names 		       = create_lane_dom_names($_SESSION["csv_content"]);
 foreach ($lane_dom_names as $lane_dom_name)
 {
-  array_unshift($data_all_dom[$lane_dom_name], $table_headers);
-	
+  array_unshift($data_all_dom[$lane_dom_name], $table_headers); 
+  
   $csv_name  = create_csv_name($rundate, $lane_dom_name);
   $file_name = $path_to_csv  . $rundate . "/" . $csv_name;  
   $is_created[$file_name] = create_csv_file($data_all_dom[$lane_dom_name], $file_name);

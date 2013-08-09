@@ -10,7 +10,7 @@
     list($user, $last_name, $first_name, $email, $institution, $selected_project, $selected_project_title, $selected_project_description, 
             $selected_env_source_name, $selected_env_source_name_id, $selected_funding) = array_map('trim', explode(', ', $_POST["project_form_vamps_submission_info"]));
     
-    $selected_data_owner = $last_name . ", " . $first_name;
+    $selected_contact_name = $last_name . ", " . $first_name;
     $selected_contact_full = $contact_full[$user];
     
 //     TODO: $_POST[project_form_vamps_submission_info] to selected variables

@@ -29,18 +29,18 @@
         <!-- Show Suite by dna_region plus domain -->     
         <td>
 
-        <select name="data_owner_<?php echo $row_num;?>" id="form_data_owner_<?php echo $row_num;?>">
+        <select name="contact_name_<?php echo $row_num;?>" id="form_contact_name_<?php echo $row_num;?>">
          <?php 
       //   TODO: how to chose if 2 the same name?
-//          $selected_data_owner = "Anderson, Rika";
+//          $selected_contact_name = "Anderson, Rika";
 // 		print_blue_out_message('$_POST', $_POST);
-         if (!isset($selected_data_owner) or $selected_data_owner == "")
+         if (!isset($selected_contact_name) or $selected_contact_name == "")
          {
            $contact_full_selected = $_POST['project_form_contact'];
            $vamps_name = array_search($contact_full_selected, $contact_full);
-           $selected_data_owner = $contact[$vamps_name];
+           $selected_contact_name = $contact[$vamps_name];
          }
-         print_options($contact, $selected_data_owner);
+         print_options($contact, $selected_contact_name);
           
         ?>
         </select></td>
