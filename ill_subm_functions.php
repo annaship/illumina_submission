@@ -1437,7 +1437,16 @@ function get_vamps_auth_id($vamps_username, $db_name, $connection)
     		FROM " . $db_name . ".vamps_auth AS auth
       		WHERE auth.user = \"" . $vamps_username. "\"";
 	$row = get_one_value($query, $db_name, $connection);
-	return $row["id"];
+	$id = "";
+	if (isset($row["id"])) 
+	{
+		$id = $row["id"];
+	}
+	elseif (isset($row[0]))
+	{
+		$id = $row[0];
+	}	
+	return $id;
 }
 
 
@@ -1459,10 +1468,10 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 // 	print_out($_POST);
 	
 	foreach ($session["csv_content"] as $csv_metadata_row) {
-		$vamps_username = $csv_metadata_row["user"];
+		$vamps_username = $csv_metadata_row["user"];		
+		$user_info_arr  = get_user_info($contact_full[$vamps_username]);
 		$contact_name   = $user_info_arr[0].', '.$user_info_arr[1];
 		
-		$user_info_arr  = get_user_info($contact_full[$vamps_username]);
 		if (check_var($session["run_info"]["dna_region_0"]))
 		{
 			$selected_dna_region_base = strtolower($session["run_info"]["dna_region_0"]);
@@ -1502,8 +1511,6 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num]["op_empcr"]			= $csv_metadata_row["op_empcr"];
 		$combined_metadata[$num]["overlap"] 		  	= $session["run_info"]["overlap"];
 		$combined_metadata[$num]["primer_suite"]     	= get_primer_suite_name($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"]);
-// 		print_blue_out_message('$combined_metadata[$num]["dna_region"]', $combined_metadata[$num]["dna_region"]);
-// 		print_blue_out_message('$combined_metadata[$num]["domain"]', $combined_metadata[$num]["domain"]);
 		$combined_metadata[$num]["primer_suite_id"]  	= get_primer_suite_id($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"], $db_name, $connection);
 		$combined_metadata[$num]["project"]				= $csv_metadata_row["project_name"];
 		$combined_metadata[$num]["project_title"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["title"];
@@ -1525,7 +1532,6 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num]["data_owner"]		    = $vamps_username;
 // 		$combined_metadata[$num]["vamps_auth_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["vamps_auth_id"];
 		$combined_metadata[$num]["vamps_auth_id"]       = get_vamps_auth_id($vamps_username, $db_name, $connection);
-		print_blue_out_message('$combined_metadata[$num]["vamps_auth_id"]', $combined_metadata[$num]["vamps_auth_id"]);
 		
 		$combined_metadata[$num]["vamps_submissions_id"] = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
 

@@ -55,9 +55,7 @@
   $all_insert_metadata_queries = $all_backup_metadata_queries = Array();
   foreach ($combined_metadata as $row_num => $combined_metadata_row)
   {
-    print_blue_out_message(' $combined_metadata_row["submit_code"] ',  $combined_metadata_row["submit_code"] );
-  	print_blue_out_message(' $combined_metadata_row["temp_project"] ',  $combined_metadata_row["temp_project"] );
-  	print_blue_out_message(' $combined_metadata_row["vamps_auth_id"] ',  $combined_metadata_row["vamps_auth_id"] );
+  	
   	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
 	    temp_project		= \"" . $combined_metadata_row["temp_project"] . "\",
