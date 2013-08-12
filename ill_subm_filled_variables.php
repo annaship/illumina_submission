@@ -6,8 +6,8 @@ if(!isset($_SESSION)) { session_start(); }
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
   include_once 'ill_subm_conn_local.php';  
-  $db_name = "test";
-  $connection = $local_mysqli;
+  $db_name = "test_env454";
+  $connection = $local_mysqli_env454;
 }
 
     $selected_overlap = $selected_contact_full = $selected_domain = 
@@ -67,11 +67,13 @@ if (!isset($errors))
 // ---
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-	$db_name = "test";
+	$db_name = "test_env454";
+	$connection = $local_mysqli_env454;
 }
 else 
 {
 	$db_name = "env454";
+	$connection = $newbpc2_connection_r;
 }
 // $query = "SELECT DISTINCT user, first_name, last_name, active, security_level, email, institution, id, date_added
 //             FROM ". $db_name . ".vamps_auth WHERE last_name <> \"\"";
@@ -80,7 +82,7 @@ $query = "SELECT DISTINCT contact_id, contact, email, institution, vamps_name as
             
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-  $res = $local_mysqli->query($query);  
+  $res = $connection->query($query);  
   for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
     $res->data_seek($row_no);
     $row = $res->fetch_assoc();
@@ -99,7 +101,7 @@ else
 //     $contact_full[$row[0]] = $row[2].', '.$row[1].', '.$row[5].', '.$row[6]; 
 //   }
 
-	$result_env454_user = mysql_query($query, $newbpc2_connection_r) or die("SELECT Error: $query. $result_env454_user: ".mysql_error());
+	$result_env454_user = mysql_query($query, $connection) or die("SELECT Error: $query. $result_env454_user: ".mysql_error());
 	while($row = mysql_fetch_row($result_env454_user))
 	{
 // 		print_blue_out_message('$row = ', $row);
@@ -127,7 +129,8 @@ asort($contact_full);
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 	//   $db_name = "env454";
-	  $db_name = "test";
+		$connection = $local_mysqli_env454;
+		$db_name = "test_env454";
 	}
 else
 	{
@@ -143,19 +146,12 @@ $arr_fields_add = array("tubelabel", "barcode", "amp_operator");
 
 $arr_fields_run = array("seq_operator", "insert_size", "read_length");
 // ---
-if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
-{
-  $env_sample_source_table = "test.env_sample_source";
-}
-else
-{
-  $env_sample_source_table = "env454.env_sample_source";  
-}
+  $env_sample_source_table = $db_name . ".env_sample_source";
 
 $query = "SELECT DISTINCT env_sample_source_id, env_source_name FROM " . $env_sample_source_table;
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-  $res_env = $local_mysqli->query($query);
+  $res_env = $connection->query($query);
 	for ($row_no = $res_env->num_rows - 1; $row_no >= 0; $row_no--) {
 		$res_env->data_seek($row_no);
 		$row = $res_env->fetch_assoc();
@@ -164,7 +160,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 }
 else
 {
-  $result_env_source_name = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $query. $result_env_source_name: ".mysql_error());
+  $result_env_source_name = mysql_query($query, $connection) or die("SELECT Error: $query. $result_env_source_name: ".mysql_error());
   while($row = mysql_fetch_row($result_env_source_name))
   {
     $env_source_names[$row[0]] = $row[1];
@@ -175,12 +171,13 @@ asort($env_source_names);
 // ---
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-	;
+	$db_name = "test_env454";
+	$connection = $local_mysqli_env454;		
 }
 else
 {
-  $db_name = "env454";
-  $connection = $newbpc2_connection;
+	$db_name = "env454";
+	$connection = $newbpc2_connection;
 }
 // $query = "SELECT DISTINCT overlap FROM " . $db_name . ".run_info_ill";
 // $overlaps = run_select_one_field($query, $connection);
@@ -202,7 +199,7 @@ JOIN " . $db_name . ".dna_region USING(dna_region_id)
 ";
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-  $res_adaptor = $local_mysqli->query($query);
+  $res_adaptor = $connection->query($query);
   for ($row_no = $res_adaptor->num_rows - 1; $row_no >= 0; $row_no--) 
   {
     $res_adaptor->data_seek($row_no);
@@ -225,7 +222,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 }
 else
 {
-  $res_adaptor = mysql_query($query, $newbpc2_connection) or die("SELECT Error: $query. $res_adaptor: ".mysql_error());
+  $res_adaptor = mysql_query($query, $connection) or die("SELECT Error: $query. $res_adaptor: ".mysql_error());
   while($row = mysql_fetch_row($res_adaptor))
   {
     $adaptors_full[] = array(
@@ -249,7 +246,9 @@ else
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 	  //   $db_name = "env454";
-	  $db_name = "test";
+		$connection = $local_mysqli_vamps;
+		$db_name = "test_vamps";	  
+// 	  $db_name = "test";
 	}
 else
 	{
@@ -305,9 +304,10 @@ if (isset($_SESSION["run_info"]))
 // -----
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
-	  $db_name = "test";
-	  $connection = $local_mysqli;
-	
+// 	  $db_name = "test";
+// 	  $connection = $local_mysqli;
+		$connection = $local_mysqli_env454;
+		$db_name = "test_env454";	
 	}
 else
 	{

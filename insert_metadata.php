@@ -9,8 +9,8 @@
 
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))  
   {
-    $connection = $local_mysqli;
-    $db_name    = "test";
+		$connection = $local_mysqli_vamps;
+		$db_name = "test_vamps";    
   }
   else
   {

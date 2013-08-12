@@ -238,7 +238,7 @@ function get_contact_id($contact_full, $connection)
   
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-    $db_name = "test";
+    $db_name = "test_env454";    
   }
   else
   {
@@ -377,8 +377,8 @@ function run_select_one_field($query, $connection) {
   $result_arr = array();
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-    $local_mysqli = $connection;
-    $results = $local_mysqli->query($query);
+//     $local_mysqli = $connection;
+    $results = $connection->query($query);
     if (isset($results) && isset($results->num_rows))
     {
 	    for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) 
@@ -537,8 +537,8 @@ function run_query_and_get_all($query, $connection)
 	$result_arr = array();
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
-		$local_mysqli = $connection;
-		$results = $local_mysqli->query($query);
+// 		$local_mysqli = $connection;
+		$results = $connection->query($query);
 		if (isset($results->num_rows))
 		{
 			for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--)
@@ -570,12 +570,9 @@ function run_query($query, $table_name, $connection)
   $data_id = 0;
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-//   	if (isset($local_mysqli))
-//   	{
 	    $res = $connection->query($query);
 	    $data_id = $local_mysqli->insert_id;
 	    print_insert_message_by_id($table_name, $data_id);
-//   	}
   }
   else
   {
@@ -797,8 +794,8 @@ function get_submission_info($connection, $db_name)
   $query = "SELECT DISTINCT * FROM " . $db_name . ".vamps_submissions ORDER BY id DESC limit 3";
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-    $local_mysqli = $connection;
-    $results = $local_mysqli->query($query);
+//     $local_mysqli = $connection;
+    $results = $connection->query($query);
     if (isset($results->num_rows))
     {
 	    for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--) 
@@ -831,8 +828,8 @@ function get_submission_tubes_info($connection, $db_name)
 
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
-		$local_mysqli = $connection;
-		$results = $local_mysqli->query($query);
+// 		$local_mysqli = $connection;
+		$results = $connection->query($query);
 		if (isset($results->num_rows))
 		{
 			for ($row_no = $results->num_rows - 1; $row_no >= 0; $row_no--)
@@ -1198,7 +1195,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
-		$db_name = "test";
+		$db_name = "test_env454";
 	}
 	else
 	{

@@ -25,7 +25,7 @@
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 		
 		{
-			$connection = $local_mysqli;
+			$connection = $local_mysqli_env454;
 		}		
 	else
 		{

@@ -79,7 +79,8 @@
 	
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-  	$db_name = "test";
+	$connection = $local_mysqli_vamps;
+	$db_name = "test_vamps";
   }
   else
   {
@@ -94,7 +95,8 @@
 	
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
-  	$db_name = "test";
+	$connection = $local_mysqli_env454;
+	$db_name = "test_env454";
   }
   else
   {

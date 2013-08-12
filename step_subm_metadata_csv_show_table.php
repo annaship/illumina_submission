@@ -13,8 +13,8 @@
 
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-	$connection = $local_mysqli;
-	$db_name    = "test";
+	$connection = $local_mysqli_env454;
+	$db_name = "test_env454";
 }
 else
 {

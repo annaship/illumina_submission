@@ -12,8 +12,8 @@ if (!$_SESSION['is_local'])
 }
 else
 {
-  $connection = $local_mysqli;
-  $db_name    = "test";
+	$connection = $local_mysqli_env454;
+	$db_name = "test_env454";	
 }
 
 $contact_id = get_contact_id($contact_full, $connection);

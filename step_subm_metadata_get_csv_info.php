@@ -53,8 +53,8 @@
   }
   else
   {
-    $connection = $local_mysqli;
-    $db_name    = "test";
+		$connection = $local_mysqli_vamps;
+		$db_name = "test_vamps";
   }
   
    $vamps_submissions_arr             = get_info_by_submit_code($submit_code_arr, $db_name, $connection);
