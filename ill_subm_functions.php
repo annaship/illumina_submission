@@ -200,6 +200,7 @@ function success_message($data_name)
 
 function get_one_value($query, $db_name, $connection)
 {
+	print_blue_out_message('$query', $query);
 //   set_error_handler("customError", E_USER_ERROR);
   $row = array();
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
@@ -216,9 +217,11 @@ function get_one_value($query, $db_name, $connection)
   }
   else
   {
+  	
   	$results = mysql_query($query, $connection);
-  	 
-//     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
+  	print_blue_out_message('$results', $results); 
+  	print_blue_out_message('$connection', $connection); 
+  	//     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
   }
 //   	error_reporting(E_ERROR | E_WARNING | E_PARSE);
@@ -1428,7 +1431,7 @@ function in_multiarray($elem, $array)
 
 function get_user_info($user_info)
 {
-	return split(', ', $user_info);
+	return preg_split("/, /", $user_info);
 }
 
 function get_vamps_auth_id($vamps_username, $db_name, $connection)
