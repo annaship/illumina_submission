@@ -618,9 +618,9 @@ function run_multi_query($multi_query, $connection)
 // 		mysql_connect() or die(mysql_error());
 // 		mysqli_multi_query($connection, $multi_query) or die("Multi query failed. Query: $multi_query. The last error: " . mysqli_error( $connection ) . mysqli_error());
 		
-		$my_queries    = split(';', $multi_query);
+		$my_queries      = preg_split("/;/", $multi_query);
 		$trimmed_queries = array_map('trim', $my_queries);
-		$my_queries_ok = array_filter($trimmed_queries);
+		$my_queries_ok   = array_filter($trimmed_queries);
 		$db_name = "vamps";
 		foreach ($my_queries_ok as $my_query)
 		{
