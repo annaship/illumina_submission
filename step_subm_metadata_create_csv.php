@@ -36,7 +36,7 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 // 	print_blue_message("\$combined_metadata_row = ");
 // 	print_out($combined_metadata_row);
 // 	print "<br/>";
-// 	print_blue_out_message('$combined_metadata_row', $combined_metadata_row);
+	print_blue_out_message('$combined_metadata_row', $combined_metadata_row);
 	
 	
 	$result_arr = array_intersect_key($combined_metadata_row, $table_headers_arr);
