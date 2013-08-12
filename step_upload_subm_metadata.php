@@ -25,6 +25,20 @@
 // print_blue_message("\$_SESSION[run_info_valid]");
 // print_out($_SESSION["run_info_valid"]);
 
+if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
+{
+	$connection_env454 = $local_mysqli_env454;
+	$db_name_env454    = "test_env454";
+	$connection_vamps  = $local_mysqli_vamps;
+	$db_name_vamps     = "test_vamps";
+}
+else
+{
+	$connection_env454 = $newbpc2_connection;
+	$db_name_env454    = "env454";
+	$connection_vamps  = $vampsprod_connection_r;
+	$db_name_vamps     = "vamps";
+}
 ?>
 
 <div>
@@ -77,39 +91,17 @@
 // 	print_blue_out_message('$vamps_submissions_tubes_arr', $vamps_submissions_tubes_arr); 
 // 	print_blue_out_message('$submission_tubes_id_arr', $submission_tubes_id_arr);
 	
-  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
-  {
-	$connection = $local_mysqli_vamps;
-	$db_name = "test_vamps";
-  }
-  else
-  {
-  	$db_name    = "vamps";
-  	$connection = $vampsprod_connection_r;
-  }
-  
   if (isset($submission_tubes_id_arr) && !empty($submission_tubes_id_arr))
   {
-  	$submission_tubes_info_by_id = get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name, $connection);
+  	$submission_tubes_info_by_id = get_tubes_info_by_submit_code_by_id($submission_tubes_id_arr, $db_name_vamps, $connection_vamps);
   }
-	
-  if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
-  {
-	$connection = $local_mysqli_env454;
-	$db_name = "test_env454";
-  }
-  else
-  {
-  	$db_name    = "env454";
-  	$connection = $newbpc2_connection;
-  }
-
-  
+	  
   if (isset($submission_tubes_info_by_id) && !empty($submission_tubes_info_by_id))
   {
-  	$combined_metadata           = combine_metadata($_SESSION, $contact_full, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name, $connection);
-//     print_blue_message("2) step_upload_subm_metadata, \$combined_metadata");
-//     print_out($combined_metadata);
+  	 
+  	$combined_metadata = combine_metadata($_SESSION, $contact_full, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps);
+  	 
+    print_blue_out_message('$combined_metadata', $combined_metadata);
   }
   
   //3) show table

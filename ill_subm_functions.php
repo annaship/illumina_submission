@@ -225,6 +225,8 @@ function get_one_value($query, $db_name, $connection)
     $row     = mysql_fetch_assoc($results);
   }
 //   	error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  print_blue_out_message('$row', $row);
+  
     return $row;
 }
 
@@ -1124,7 +1126,7 @@ function get_submission_tubes_ids($csv_metadata)
 
 function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
 {
-// 	print_blue_out_message('$connection', $connection);
+	print_blue_out_message('$$db_name', $db_name);
     $vamps_submissions_arr = array();
     $submit_code_arr_uniq  = array_unique($submit_code_arr);
     foreach ($submit_code_arr_uniq as $submit_code)
@@ -1433,6 +1435,7 @@ function get_user_info($user_info)
 
 function get_vamps_auth_id($vamps_username, $db_name, $connection)
 {
+	
 	$query = "SELECT auth.id
     		FROM " . $db_name . ".vamps_auth AS auth
       		WHERE auth.user = \"" . $vamps_username. "\"";
@@ -1449,11 +1452,12 @@ function get_vamps_auth_id($vamps_username, $db_name, $connection)
 	return $id;
 }
 
-
-function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name, $connection) 
+function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps) 
 {
-	$num = 0;
+	$num               = 0;
 	$combined_metadata = "";
+	$db_name           = $db_name_env454;
+	$connection        = $connection_env454;
 	
 // 	include 'ill_subm_filled_variables.php';
 // 	print_blue_message("adaptors_full from func = ");
@@ -1531,14 +1535,14 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 // 		$combined_metadata[$num]["user"]   			    = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["user"];
 		$combined_metadata[$num]["data_owner"]		    = $vamps_username;
 // 		$combined_metadata[$num]["vamps_auth_id"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["vamps_auth_id"];
-		$combined_metadata[$num]["vamps_auth_id"]       = get_vamps_auth_id($vamps_username, $db_name, $connection);
+		$combined_metadata[$num]["vamps_auth_id"]       = get_vamps_auth_id($vamps_username, $db_name_vamps, $connection_vamps);
 		
 		$combined_metadata[$num]["vamps_submissions_id"] = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["id"];
 
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		$num += 1;
 	}
-// 	print_blue_out_message('1) functions: $combined_metadata', $combined_metadata);
+	print_blue_out_message('1) functions: $combined_metadata', $combined_metadata);
 	
 	return $combined_metadata;
 }
