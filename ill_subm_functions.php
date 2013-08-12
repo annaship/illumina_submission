@@ -1447,6 +1447,23 @@ function get_vamps_auth_id($vamps_username, $db_name, $connection)
 	return $id;
 }
 
+function get_gast_command_name($lane_dom_name, $machine_name)
+{
+	$lane_domain_arr  = preg_split("/_/", $lane_dom_name);
+	if ($lane_domain_arr[1] == "A" && $machine_name == "ms")
+	{
+		$gast_command_name = "run_gast_ill_nonchim_v4v5a.sh";
+	}
+	else 
+	{
+		$gast_command_name = "run_gast_ill_nonchim.sh";		
+	}
+	return $gast_command_name;
+}
+
+
+
+
 function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps) 
 {
 	$num               = 0;

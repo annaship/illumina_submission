@@ -19,8 +19,10 @@
 	
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
+		$gast_command_name = get_gast_command_name($lane_dom_name, $machine_name);
+		
     	$command_line_gast = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
-        					$lane_dom_name . "/analysis/reads_overlap/; run_gast_ill_nonchim.sh; date";
+        					$lane_dom_name . "/analysis/reads_overlap/; " . $gast_command_name . "; date";
 		
         print_green_message($command_line_gast);        
 	}
