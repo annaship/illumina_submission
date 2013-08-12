@@ -200,7 +200,6 @@ function success_message($data_name)
 
 function get_one_value($query, $db_name, $connection)
 {
-	print_blue_out_message('$query', $query);
 //   set_error_handler("customError", E_USER_ERROR);
   $row = array();
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
@@ -219,13 +218,10 @@ function get_one_value($query, $db_name, $connection)
   {
   	
   	$results = mysql_query($query, $connection);
-  	print_blue_out_message('$results', $results); 
-  	print_blue_out_message('$connection', $connection); 
   	//     $results = mysql_query($query, $connection) or trigger_error($query . ": ", E_USER_ERROR);
     $row     = mysql_fetch_assoc($results);
   }
 //   	error_reporting(E_ERROR | E_WARNING | E_PARSE);
-  print_blue_out_message('$row', $row);
   
     return $row;
 }
@@ -1126,7 +1122,6 @@ function get_submission_tubes_ids($csv_metadata)
 
 function get_info_by_submit_code($submit_code_arr, $db_name, $connection)
 {
-	print_blue_out_message('$$db_name', $db_name);
     $vamps_submissions_arr = array();
     $submit_code_arr_uniq  = array_unique($submit_code_arr);
     foreach ($submit_code_arr_uniq as $submit_code)
@@ -1542,7 +1537,7 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		$num += 1;
 	}
-	print_blue_out_message('1) functions: $combined_metadata', $combined_metadata);
+// 	print_blue_out_message('1) functions: $combined_metadata', $combined_metadata);
 	
 	return $combined_metadata;
 }
