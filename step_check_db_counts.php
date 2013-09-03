@@ -73,10 +73,10 @@
 	{
 		$seq_check_query = "SELECT count(*) FROM sequence_pdr_info_ill 			
 			JOIN run_info_ill USING(run_info_ill_id) 			
-			JOIN project USING(project_id) 			
-			JOIN dataset USING(dataset_id) 			
 			JOIN run USING(run_id) 			
-			JOIN primer_suite USING(primer_suite_id) WHERE primer_suite = \"" . 
+			JOIN primer_suite USING(primer_suite_id) 
+      JOIN sequence_uniq_info_ill USING(sequence_ill_id)
+			WHERE primer_suite = \"" . 
 		$suite_lanes_rundate_one["suite_name"] . "\" AND run = \"" . $suite_lanes_rundate_one["rundate"] . "\" AND lane = \"" . $suite_lanes_rundate_one["lane"] . "\"";
 
 		/*
