@@ -86,7 +86,10 @@ elseif (check_var($_SESSION["run_info"]))
 }
 $path_to_csv   = "/xraid2-2/g454/run_new_pipeline/illumina/" . $machine_names[$machine_name] . "_info/";
 $domain_letter = $domain[0];
-
+if ($machine_name == "ms")
+{
+	$do_perfect = "False";
+}
 $lane_dom_names 		 = create_lane_dom_names($_SESSION["csv_content"]);
 if (isset($_POST) && !empty($_POST)) {
 	$lane_dom_names = create_lane_dom_names(array($_POST));

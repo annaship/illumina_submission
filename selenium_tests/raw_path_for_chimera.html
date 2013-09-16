@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>raw_path_for_chimera</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">raw_path_for_chimera</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/~ashipunova/illumina_submission/step_upload_subm_metadata.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Chimera checking</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.hide_find_run</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=form_find_rundate</td>
+	<td>label=20130721</td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>id=form_lane</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=choose_run_m_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>id=run_infoForm_path to raw data</td>
+	<td>ms</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=choose_meta_w_path_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=#content &gt; div.green_message</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20130721/lane_1_B/analysis/chimera/; chimera_stats.py; date</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.green_message</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20130721; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20130721/metadata_20130721_1_B.csv -s illumina_chimera_only -l debug -p illumina -r 20130721 -ft fastq -i /xraid2-2/sequencing/Illumina/20130721ms -cp True -lane_name lane_1_B -do_perfect False</td>
+</tr>
+</tbody></table>
+</body>
+</html>
