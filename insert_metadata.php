@@ -58,43 +58,43 @@
   	
   	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
-	    temp_project		= \"" . $combined_metadata_row["temp_project"] . "\",
-	    title				= \"" . $combined_metadata_row["project_title"] . "\",
-	    project_description	= \"" . $combined_metadata_row["project_description"] . "\",
-	    funding				= \"" . $combined_metadata_row["funding"] . "\",
-	    vamps_auth_id		= \"" . $combined_metadata_row["vamps_auth_id"] . "\",	    		
-	    num_of_tubes		= \"" . $combined_metadata_row["num_of_tubes"] . "\",
+	    temp_project		= \"" . trim($combined_metadata_row["temp_project"]) . "\",
+// 	    title				= \"" . trim($combined_metadata_row["project_title"]) . "\",
+	    project_description	= \"" . trim($combined_metadata_row["project_description"]) . "\",
+	    funding				= \"" . trim($combined_metadata_row["funding"]) . "\",
+	    vamps_auth_id		= \"" . trim($combined_metadata_row["vamps_auth_id"]) . "\",	    		
+	    num_of_tubes		= \"" . trim($combined_metadata_row["num_of_tubes"]) . "\",
   		date_updated		= \"$date_updated\",
-  		locked				= \"" . $combined_metadata_row["locked"] . "\"
-  	 WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
-		AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\"
+  		locked				= \"" . trim($combined_metadata_row["locked"]) . "\"
+  	 WHERE submit_code	= \"" . trim($combined_metadata_row["submit_code"]) . "\"
+		AND id 			= \"" . trim($combined_metadata_row["vamps_submissions_id"]) . "\"
 		;					
 	";
 	$insert_metadata_query2 = "UPDATE IGNORE " . $db_name . ".vamps_submissions_tubes
 	  SET
- 		  tube_label          = \"" . $combined_metadata_row["tubelabel"] . "\",
-		  dataset_description = \"" . $combined_metadata_row["dataset_description"] . "\",
-		  domain              = \"" . $combined_metadata_row["domain"] . "\",
-		  primer_suite        = \"" . $combined_metadata_row["primer_suite"] . "\",
-		  dna_region          = \"" . $combined_metadata_row["dna_region"] . "\",
-		  project_name        = \"" . $combined_metadata_row["project"] . "\",
-		  dataset_name        = \"" . $combined_metadata_row["dataset"] . "\",
-		  runkey              = \"" . $combined_metadata_row["run_key"] . "\",
-		  barcode             = \"" . $combined_metadata_row["barcode"] . "\",
-		  lane                = \"" . $combined_metadata_row["lane"] . "\",
-		  op_amp              = \"" . $combined_metadata_row["amp_operator"] . "\",
-		  op_empcr            = \"" . $combined_metadata_row["op_empcr"] . "\",
-		  op_seq              = \"" . $combined_metadata_row["seq_operator"] . "\",	  		
-		  rundate             = \"" . $combined_metadata_row["run"] . "\",
-		  adaptor             = \"" . $combined_metadata_row["adaptor"] . "\",
-		  date_initial        = \"" . $combined_metadata_row["date_initial"] . "\",
+ 		  tube_label          = \"" . trim($combined_metadata_row["tubelabel"]) . "\",
+		  dataset_description = \"" . trim($combined_metadata_row["dataset_description"]) . "\",
+		  domain              = \"" . trim($combined_metadata_row["domain"]) . "\",
+		  primer_suite        = \"" . trim($combined_metadata_row["primer_suite"]) . "\",
+		  dna_region          = \"" . trim($combined_metadata_row["dna_region"]) . "\",
+		  project_name        = \"" . trim($combined_metadata_row["project"]) . "\",
+		  dataset_name        = \"" . trim($combined_metadata_row["dataset"]) . "\",
+		  runkey              = \"" . trim($combined_metadata_row["run_key"]) . "\",
+		  barcode             = \"" . trim($combined_metadata_row["barcode"]) . "\",
+		  lane                = \"" . trim($combined_metadata_row["lane"]) . "\",
+		  op_amp              = \"" . trim($combined_metadata_row["amp_operator"]) . "\",
+		  op_empcr            = \"" . trim($combined_metadata_row["op_empcr"]) . "\",
+		  op_seq              = \"" . trim($combined_metadata_row["seq_operator"]) . "\",	  		
+		  rundate             = \"" . trim($combined_metadata_row["run"]) . "\",
+		  adaptor             = \"" . trim($combined_metadata_row["adaptor"]) . "\",
+		  date_initial        = \"" . trim($combined_metadata_row["date_initial"]) . "\",
 		  date_updated        = \"$date_updated\",
-		  overlap             = \"" . $combined_metadata_row["overlap"] . "\",
-		  insert_size         = \"" . $combined_metadata_row["insert_size"] . "\",
-		  barcode_index       = \"" . $combined_metadata_row["barcode_index"] . "\",
-		  read_length         = \"" . $combined_metadata_row["read_length"] . "\"
-		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
-			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\"
+		  overlap             = \"" . trim($combined_metadata_row["overlap"]) . "\",
+		  insert_size         = \"" . trim($combined_metadata_row["insert_size"]) . "\",
+		  barcode_index       = \"" . trim($combined_metadata_row["barcode_index"]) . "\",
+		  read_length         = \"" . trim($combined_metadata_row["read_length"]) . "\"
+		WHERE submit_code = \"" . trim($combined_metadata_row["submit_code"]) . "\"
+			AND id = \"" . trim($combined_metadata_row["submissions_tubes_id"]) . "\"
 		;
 ";
 	array_push($all_insert_metadata_queries, $insert_metadata_query1, $insert_metadata_query2);
