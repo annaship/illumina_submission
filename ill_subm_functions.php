@@ -757,12 +757,11 @@ function get_id($data_array, $table_name, $db_name, $connection)
 
 function get_primer_suite_name($dna_region, $domain) 
 {
-  if ($dna_region == "v4v5")
-  {
-    $dna_region = "V4-V5";
-  }
+	
+  $dna_region = preg_replace("/v(\d)v(\d)/i", "V$1-V$2", $dna_region);
   $primer_domain = ucfirst($domain) . "l";
   $suite_name    = $primer_domain . " " . $dna_region . " Suite";
+  
   return $suite_name;
 }
 
