@@ -99,7 +99,7 @@ else
   if (isset($submission_tubes_info_by_id) && !empty($submission_tubes_info_by_id))
   {
   	 
-  	$combined_metadata = combine_metadata($_SESSION, $contact_full, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps);  	 
+  	$combined_metadata = combine_metadata($_SESSION, $contact_full, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps, $dna_regions);  	 
   }
   
   //3) show table

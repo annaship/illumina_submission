@@ -285,6 +285,7 @@ function add_new_contact($post_res, $vamps_name, $connection, $db_name) {
   {
     $new_contact_id = run_query($query, "contact", $connection);    
   }
+// TODO:  else
   return $new_contact_id;
 }
 
@@ -664,34 +665,47 @@ function validate_rundate($rundate)
 	return $res1 && $dt !== false;
 }
 
+function validate_dna_region($dna_region_to_check, $dna_regions)
+{
+	return in_array($dna_region_to_check, $dna_regions);
+}
 
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
   $data_id = 0;
-  foreach ( $data_array as $key => $value ) {
+  foreach ( $data_array as $key => $value ) 
+  {
     $$key = $value;
   }
- 
-  
+   
   $table_name_is_valid = validate($$table_name); 
   if ($table_name_is_valid == 0)
   {
   	print_red_message("There is something wrong with this value in your csv file: $table_name = " . $$table_name);
   	letter_valid_message();
+  	exit;  	 
   }
   elseif ($table_name_is_valid == 1)
   {
 	  if ($table_name == "dataset")
 	  {
-	  	if (validate($dataset_description) ==  1)
+	  	print_blue_out_message('valid_dataset($$table_name) = ', valid_dataset($$table_name));
+// 	  	if (validate($dataset_description) ==  1 && valid_dataset($$table_name))
+	  	if (validate($dataset_description) !=  1)
+  		{
+  			print_red_message("dataset_description: \"$dataset_description\" is not valid");
+  			letter_valid_message();
+  		}
+  		elseif (!valid_dataset($$table_name))
+  		{
+  			print_red_message("dataset: " . $$table_name . " is not valid");
+  			print_red_message("Only word characters (letter, number, underscore) are allowed");
+  		}
+  		elseif (validate($dataset_description) ==  1 && valid_dataset($$table_name))
 	  	{
+	  		print_blue_message("HERE");
 	  		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
 	  		" ($table_name, dataset_description) VALUES (\"". $$table_name . "\", \"$dataset_description\")";	  		 
-	  	}
-	  	else 
-	  	{
-	  		print_red_message("dataset_description: \"$dataset_description\" is not valid");
-	  		letter_valid_message();	  		 
 	  	}
 	  }
 	  elseif ($table_name == "run_key")
@@ -725,7 +739,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	}
 	  	else 
 	  	{
-	  		print_red_message("Please add the user to VAMPS");
+	  		print_red_message("Please add the user ". $data_array["user"] ." to VAMPS");
 	  	}
 	  	
 	  	$env_sample_source_query = "SELECT env_sample_source_id from " . $db_name . ".env_sample_source WHERE env_source_name = \"" . $data_array["env_source_name"] . "\"";
@@ -753,8 +767,8 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  		print_red_message("Please add the new project to env454 using the form above");
 	  	}
 	  	
-	  	$e = new Exception;
-	  	var_dump($e->getTraceAsString());
+// 	  	$e = new Exception;
+// 	  	var_dump($e->getTraceAsString());
 	  	 
 	  	
 	//   	that lead to a lot of projects with wrong contact (id = 1) 
@@ -766,9 +780,13 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  } 
 	  elseif ($table_name == "dna_region")
 	  {
+	  	$is_valid = validate_dna_region($$table_name, $dna_regions);
+	  	if ($is_valid != 1)
+	  	{
+	  		print_red_message("Please check the dna_region");	  		 
+	  	}	  		
 	  	//   	TODO: print out dna_region and existing ones
 	  	  
-	  	print_red_message("Please check the dna_region");
 	  }
 	  else
 	  {
@@ -1537,7 +1555,7 @@ function get_gast_command_name($lane_dom_name, $machine_name)
 
 
 
-function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps) 
+function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps, $dna_regions) 
 {
 	$num               = 0;
 	$combined_metadata = "";
@@ -1619,7 +1637,8 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		}
 		else 
 		{
-			print_red_message("rundate: ". $session["run_info"]["rundate"] ." is not valid. Only date in format YYYYMMDD is allowed");			
+			print_red_message("rundate: ". $session["run_info"]["rundate"] ." is not valid. Only date in format YYYYMMDD is allowed");	
+			exit;		
 		}
 		$combined_metadata[$num]["seq_operator"] 	  	= $session["run_info"]["seq_operator"];
 		$combined_metadata[$num]["submit_code"]			= $csv_metadata_row["submit_code"];
@@ -1636,7 +1655,7 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		$num += 1;
 	}
-
+	
 	return $combined_metadata;
 }
 
