@@ -670,6 +670,27 @@ function validate_dna_region($dna_region_to_check, $dna_regions)
 	return in_array($dna_region_to_check, $dna_regions);
 }
 
+function add_new_dataset($dataset_name, $dataset_description)
+{
+	if (!valid_dataset($dataset_name))
+	{
+		print_red_message("dataset: " . $dataset_name . " is not valid");
+		print_red_message("Only word characters (letter, number, underscore) are allowed");
+	}
+	elseif (validate($dataset_description) !=  1)
+	{
+		print_red_message("dataset_description: \"$dataset_description\" is not valid");
+		letter_valid_message();
+	}
+	elseif (validate($dataset_description) ==  1 && valid_dataset($dataset_name))
+	{
+		$table_name = "dataset";
+		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
+		" ($table_name, dataset_description) VALUES (\"". $dataset_name . "\", \"$dataset_description\")";
+	}
+	return $query;
+}
+
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
   $data_id = 0;
@@ -689,24 +710,8 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   {
 	  if ($table_name == "dataset")
 	  {
-	  	print_blue_out_message('valid_dataset($$table_name) = ', valid_dataset($$table_name));
-// 	  	if (validate($dataset_description) ==  1 && valid_dataset($$table_name))
-	  	if (validate($dataset_description) !=  1)
-  		{
-  			print_red_message("dataset_description: \"$dataset_description\" is not valid");
-  			letter_valid_message();
-  		}
-  		elseif (!valid_dataset($$table_name))
-  		{
-  			print_red_message("dataset: " . $$table_name . " is not valid");
-  			print_red_message("Only word characters (letter, number, underscore) are allowed");
-  		}
-  		elseif (validate($dataset_description) ==  1 && valid_dataset($$table_name))
-	  	{
-	  		print_blue_message("HERE");
-	  		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
-	  		" ($table_name, dataset_description) VALUES (\"". $$table_name . "\", \"$dataset_description\")";	  		 
-	  	}
+	  	$query = add_new_dataset($$table_name, $dataset_description);
+	  	print_blue_out_message('add_new_dataset $query', $query);
 	  }
 	  elseif ($table_name == "run_key")
 	  {
