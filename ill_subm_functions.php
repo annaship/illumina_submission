@@ -644,6 +644,30 @@ function run_multi_query($multi_query, $connection)
 	}
 }
 
+function validate($input)
+{
+	print_blue_out_message('validate $input:', $input);
+	$res = preg_match_all("/\A[\w -]+\Z/", $input, $output_array);
+	print_blue_out_message('validate $res:', $res);
+	return $res;
+}
+
+function letter_valid_message()
+{
+	print_red_message("Only word characters (letter, number, underscore), spaces and hyphens are allowed");	
+}
+
+function validate_rundate($rundate)
+{
+	print_blue_out_message('validate_rundate $rundate:', $rundate);
+	
+	$res = preg_match_all("/\A20\d\d[01][0123]\d\Z/", $rundate, $output_array);
+	print_blue_out_message('validate_rundate $res:', $res);
+	
+	return $res;
+	
+}
+
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
   $data_id = 0;
@@ -651,73 +675,120 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     $$key = $value;
   }
   
-  if ($table_name == "dataset")
+  $table_name_is_valid = validate($$table_name); 
+  if ($table_name_is_valid == 0)
   {
-    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
-    " ($table_name, dataset_description) VALUES (\"". $$table_name . "\", \"$dataset_description\")";
+  	print_red_message("There is something wrong with this value in your csv file: $table_name = " . $$table_name);
+  	letter_valid_message();
   }
-  elseif ($table_name == "run_key")
+  elseif ($table_name_is_valid == 1)
   {
-    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
-    " ($table_name) VALUES (\"NNNN". $$table_name . "\")";
-  }  
-  elseif ($table_name == "run")
-  {
-    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
-    "($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";
-  } 
-  elseif ($table_name == "project")
-  {
-//   	TODO: move to a function
-  	$contact_query = "SELECT contact_id from " . $db_name . ".contact WHERE vamps_name = \"" . $data_array["user"] . "\"";
-//   	print_blue_message("contact query = $contact_query");
-  	$row = get_one_value($contact_query, $db_name, $connection);
-  	
-  	if (isset($row[key($row)]))
-  	{
-  		$contact_id = $row[key($row)];
-  	}
-  	else 
-  	{
-  		print_red_message("Please add the user to VAMPS");
-  	}
-  	
-  	$env_sample_source_query = "SELECT env_sample_source_id from " . $db_name . ".env_sample_source WHERE env_source_name = \"" . $data_array["env_source_name"] . "\"";
-  	$row = get_one_value($env_sample_source_query, $db_name, $connection);
-  	 
-  	if (isset($row[key($row)]))
-  	{
-  		$env_sample_source_id = $row[key($row)];
-  	}
-  	else
-  	{
-  		print_red_message("Please check the env_source_name");
-  	}
-  	 	 
-  	$project_name = $data_array['project'];
-  	$query = "INSERT IGNORE INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
-  	VALUES (\"" . $project_name . "\", \"" . $data_array['project_title'] . "\", \"" . $data_array['project_description'] . "\", REVERSE(\"$project_name\"), \"" . $data_array['funding'] . "\",
-  	$env_sample_source_id, $contact_id)";
-  	
-  } 
-  elseif ($table_name == "dna_region")
-  {
-  	//   	TODO: print out dna_region and existing ones
-  	  
-  	print_red_message("Please check the dna_region");
+	  if ($table_name == "dataset")
+	  {
+	  	if (validate($dataset_description) ==  1)
+	  	{
+	  		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
+	  		" ($table_name, dataset_description) VALUES (\"". $$table_name . "\", \"$dataset_description\")";	  		 
+	  	}
+	  	else 
+	  	{
+	  		print_red_message("dataset_description: \"$dataset_description\" is not valid");
+	  		letter_valid_message();	  		 
+	  	}
+	  }
+	  elseif ($table_name == "run_key")
+	  {
+	  	 
+	    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
+	    " ($table_name) VALUES (\"NNNN". $$table_name . "\")";
+	  }  
+	  elseif ($table_name == "run")
+	  {
+	  	if (validate_run_date($data_array["rundate"]) == 1)
+	  	{
+	  		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
+	  		"($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";	  		 
+	  	}
+	  	else
+	  	{
+	  		print_red_message("rundate: ". $data_array["rundate"] ."is not valid. Only date in format YYYYMMDD is allowed");
+	  	}
+	  } 
+	  elseif ($table_name == "project")
+	  {
+	//   	TODO: move to a function
+	  	$contact_query = "SELECT contact_id from " . $db_name . ".contact WHERE vamps_name = \"" . $data_array["user"] . "\"";
+	//   	print_blue_message("contact query = $contact_query");
+	  	$row = get_one_value($contact_query, $db_name, $connection);
+	  	
+	  	if (isset($row[key($row)]))
+	  	{
+	  		$contact_id = $row[key($row)];
+	  	}
+	  	else 
+	  	{
+	  		print_red_message("Please add the user to VAMPS");
+	  	}
+	  	
+	  	$env_sample_source_query = "SELECT env_sample_source_id from " . $db_name . ".env_sample_source WHERE env_source_name = \"" . $data_array["env_source_name"] . "\"";
+	  	$row = get_one_value($env_sample_source_query, $db_name, $connection);
+	  	 
+	  	if (isset($row[key($row)]))
+	  	{
+	  		$env_sample_source_id = $row[key($row)];
+	  	}
+	  	else
+	  	{
+	  		print_red_message("Please check the env_source_name");
+	  	}
+	  	
+	  	$project_query = "SELECT project_id from " . $db_name . ".project WHERE project = \"" . $data_array["project"] . "\"";
+	//   	print_blue_message("\$project_query = $project_query");
+	  	$row = get_one_value($project_query, $db_name, $connection);  	 	 
+	  	
+	  	if (isset($row[key($row)]))
+	  	{  		
+	  		$project_id = $row[key($row)];
+	  	}
+	  	else
+	  	{
+	  		print_red_message("Please add the new project to env454 using the form above");
+	  	}
+	  	
+	  	$e = new Exception;
+	  	var_dump($e->getTraceAsString());
+	  	 
+	  	
+	//   	that lead to a lot of projects with wrong contact (id = 1) 
+	//   	$project_name = $data_array['project'];
+	//   	$query = "INSERT IGNORE INTO " . $db_name . ".project (project, title, project_description, rev_project_name, funding, env_sample_source_id, contact_id)
+	//   	VALUES (\"" . $project_name . "\", \"" . $data_array['project_title'] . "\", \"" . $data_array['project_description'] . "\", REVERSE(\"$project_name\"), \"" . $data_array['funding'] . "\",
+	//   	$env_sample_source_id, $contact_id)";
+	  	
+	  } 
+	  elseif ($table_name == "dna_region")
+	  {
+	  	//   	TODO: print out dna_region and existing ones
+	  	  
+	  	print_red_message("Please check the dna_region");
+	  }
+	  else
+	  {
+	    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
+	              "($table_name) VALUES (\"". $$table_name . "\")";    
+	  }
+	  $data_id = run_query($query, $table_name, $connection);
   }
-  else
+  else 
   {
-    $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name . 
-              "($table_name) VALUES (\"". $$table_name . "\")";    
+  	print_red_message("Something went wrong, sorry, please ask for help.");
   }
-  $data_id = run_query($query, $table_name, $connection);
-  
   return $data_id;
 }
 
 function get_id($data_array, $table_name, $db_name, $connection) 
 {
+	
   $res_id = 0;
   if ($table_name == "run_key")
   {
@@ -736,7 +807,12 @@ function get_id($data_array, $table_name, $db_name, $connection)
   {    
     $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $data_array[$table_name] . "\"";
   }
- 
+
+//   var_dump(debug_backtrace());
+//   debug_print_backtrace();
+  
+//     print_blue_out_message('debug_backtrace()', debug_backtrace());
+  
 //   print_blue_out_message('$query', $query);
 //   print_blue_out_message('$db_name', $db_name);
 //   print_blue_out_message('$connection', $connection);
@@ -1535,6 +1611,8 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		}
 		$combined_metadata[$num]["project_description"]	= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_description"];
 		$combined_metadata[$num]["project_id"]       	= get_id($combined_metadata[$num], "project", $db_name, $connection);
+		print_blue_out_message('$combined_metadata', $combined_metadata);
+		
 		$combined_metadata[$num]["read_length"] 	  	= $session["run_info"]["read_length"];
 		$combined_metadata[$num]["run"] 		  		= $session["run_info"]["rundate"];
 		$combined_metadata[$num]["run_id"] 		  		= get_id($session["run_info"], "run", $db_name, $connection);
