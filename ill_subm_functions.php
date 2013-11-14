@@ -659,14 +659,11 @@ function letter_valid_message()
 
 function validate_rundate($rundate)
 {
-	print_blue_out_message('validate_rundate $rundate:', $rundate);
-	
-	$res = preg_match_all("/\A20\d\d[01][0123]\d\Z/", $rundate, $output_array);
-	print_blue_out_message('validate_rundate $res:', $res);
-	
-	return $res;
-	
+	$res1 = preg_match_all("/\A[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\Z/", $rundate, $output_array);
+	$dt   = DateTime::createFromFormat("Ymd", $rundate);
+	return $res1 && $dt !== false;
 }
+
 
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
@@ -674,6 +671,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   foreach ( $data_array as $key => $value ) {
     $$key = $value;
   }
+ 
   
   $table_name_is_valid = validate($$table_name); 
   if ($table_name_is_valid == 0)
@@ -1614,8 +1612,15 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		print_blue_out_message('$combined_metadata', $combined_metadata);
 		
 		$combined_metadata[$num]["read_length"] 	  	= $session["run_info"]["read_length"];
-		$combined_metadata[$num]["run"] 		  		= $session["run_info"]["rundate"];
-		$combined_metadata[$num]["run_id"] 		  		= get_id($session["run_info"], "run", $db_name, $connection);
+		if (validate_rundate($session["run_info"]["rundate"]))
+		{
+			$combined_metadata[$num]["run"] 		  		= $session["run_info"]["rundate"];
+			$combined_metadata[$num]["run_id"] 		  		= get_id($session["run_info"], "run", $db_name, $connection);
+		}
+		else 
+		{
+			print_red_message("rundate: ". $session["run_info"]["rundate"] ." is not valid. Only date in format YYYYMMDD is allowed");			
+		}
 		$combined_metadata[$num]["seq_operator"] 	  	= $session["run_info"]["seq_operator"];
 		$combined_metadata[$num]["submit_code"]			= $csv_metadata_row["submit_code"];
 		$combined_metadata[$num]["submissions_tubes_id"] = $csv_metadata_row["id"];
@@ -1631,8 +1636,7 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		$num += 1;
 	}
-// 	print_blue_out_message('1) functions: $combined_metadata', $combined_metadata);
-	
+
 	return $combined_metadata;
 }
 
