@@ -670,23 +670,26 @@ function validate_dna_region($dna_region_to_check, $dna_regions)
 	return in_array($dna_region_to_check, $dna_regions);
 }
 
-function add_new_dataset($dataset_name, $dataset_description)
+function add_new_dataset($dataset_name, $dataset_description, $db_name)
 {
 	if (!valid_dataset($dataset_name))
 	{
 		print_red_message("dataset: " . $dataset_name . " is not valid");
 		print_red_message("Only word characters (letter, number, underscore) are allowed");
+		exit;		
 	}
 	elseif (validate($dataset_description) !=  1)
 	{
 		print_red_message("dataset_description: \"$dataset_description\" is not valid");
 		letter_valid_message();
+		exit;
 	}
 	elseif (validate($dataset_description) ==  1 && valid_dataset($dataset_name))
 	{
 		$table_name = "dataset";
 		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
 		" ($table_name, dataset_description) VALUES (\"". $dataset_name . "\", \"$dataset_description\")";
+		print_blue_out_message('$query', $query);
 	}
 	return $query;
 }
@@ -710,7 +713,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   {
 	  if ($table_name == "dataset")
 	  {
-	  	$query = add_new_dataset($$table_name, $dataset_description);
+	  	$query = add_new_dataset($$table_name, $dataset_description, $db_name);
 	  	print_blue_out_message('add_new_dataset $query', $query);
 	  }
 	  elseif ($table_name == "run_key")
@@ -729,6 +732,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	else
 	  	{
 	  		print_red_message("rundate: ". $data_array["rundate"] ."is not valid. Only date in format YYYYMMDD is allowed");
+	  		exit;
 	  	}
 	  } 
 	  elseif ($table_name == "project")
@@ -745,6 +749,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	else 
 	  	{
 	  		print_red_message("Please add the user ". $data_array["user"] ." to VAMPS");
+	  		exit;
 	  	}
 	  	
 	  	$env_sample_source_query = "SELECT env_sample_source_id from " . $db_name . ".env_sample_source WHERE env_source_name = \"" . $data_array["env_source_name"] . "\"";
@@ -757,6 +762,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	else
 	  	{
 	  		print_red_message("Please check the env_source_name");
+	  		exit;
 	  	}
 	  	
 	  	$project_query = "SELECT project_id from " . $db_name . ".project WHERE project = \"" . $data_array["project"] . "\"";
@@ -769,7 +775,8 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	}
 	  	else
 	  	{
-	  		print_red_message("Please add the new project to env454 using the form above");
+	  		print_red_message("Please add the new project \"" . $data_array["project"] . "\" to the database using the form above");
+// 	  		exit;
 	  	}
 	  	
 // 	  	$e = new Exception;
@@ -788,7 +795,8 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	$is_valid = validate_dna_region($$table_name, $dna_regions);
 	  	if ($is_valid != 1)
 	  	{
-	  		print_red_message("Please check the dna_region");	  		 
+	  		print_red_message("Please check the dna_region");	
+	  		exit;  		 
 	  	}	  		
 	  	//   	TODO: print out dna_region and existing ones
 	  	  
@@ -802,7 +810,8 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   }
   else 
   {
-  	print_red_message("Something went wrong, sorry, please ask for help.");
+  	print_red_message("Something went wrong, sorry, please save the screen and ask for help.");
+  	exit;
   }
   return $data_id;
 }
