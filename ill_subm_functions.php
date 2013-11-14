@@ -647,9 +647,9 @@ function run_multi_query($multi_query, $connection)
 
 function validate($input)
 {
-	print_blue_out_message('validate $input:', $input);
+// 	print_blue_out_message('validate $input:', $input);
 	$res = preg_match_all("/\A[\w -]+\Z/", $input, $output_array);
-	print_blue_out_message('validate $res:', $res);
+// 	print_blue_out_message('validate $res:', $res);
 	return $res;
 }
 
@@ -689,7 +689,7 @@ function add_new_dataset($dataset_name, $dataset_description, $db_name)
 		$table_name = "dataset";
 		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
 		" ($table_name, dataset_description) VALUES (\"". $dataset_name . "\", \"$dataset_description\")";
-		print_blue_out_message('$query', $query);
+// 		print_blue_out_message('$query', $query);
 	}
 	return $query;
 }
@@ -701,8 +701,14 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   {
     $$key = $value;
   }
-   
+  
   $table_name_is_valid = validate($$table_name); 
+  
+  if ($table_name == "run")
+  {
+  	$table_name_is_valid = validate($data_array["rundate"]);  	 
+  }
+
   if ($table_name_is_valid == 0)
   {
   	print_red_message("There is something wrong with this value in your csv file: $table_name = " . $$table_name);
@@ -711,10 +717,9 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
   }
   elseif ($table_name_is_valid == 1)
   {
-	  if ($table_name == "dataset")
+  	if ($table_name == "dataset")
 	  {
 	  	$query = add_new_dataset($$table_name, $dataset_description, $db_name);
-	  	print_blue_out_message('add_new_dataset $query', $query);
 	  }
 	  elseif ($table_name == "run_key")
 	  {
@@ -724,7 +729,8 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  }  
 	  elseif ($table_name == "run")
 	  {
-	  	if (validate_run_date($data_array["rundate"]) == 1)
+	  	
+	  	if (validate_rundate($data_array["rundate"]) == 1)
 	  	{
 	  		$query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
 	  		"($table_name, run_prefix, date_trimmed) VALUES (\"". $data_array["rundate"] . "\", \"illumin\", \"0000-00-00\")";	  		 
@@ -1641,7 +1647,7 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		}
 		$combined_metadata[$num]["project_description"]	= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_description"];
 		$combined_metadata[$num]["project_id"]       	= get_id($combined_metadata[$num], "project", $db_name, $connection);
-		print_blue_out_message('$combined_metadata', $combined_metadata);
+// 		print_blue_out_message('$combined_metadata', $combined_metadata);
 		
 		$combined_metadata[$num]["read_length"] 	  	= $session["run_info"]["read_length"];
 		if (validate_rundate($session["run_info"]["rundate"]))
