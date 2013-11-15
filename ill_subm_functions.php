@@ -226,6 +226,20 @@ function get_one_value($query, $db_name, $connection)
     return $row;
 }
 
+function contact_id_query($db_name, $connection, $contact, $email, $institution)
+{
+	print_green_message("HERE: $contact, $email, $institution");
+	$query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
+	  institution = \"" . $institution. "\" AND
+	  contact = \"" . $contact. "\"";
+
+	print_blue_out_message('$query', $query);
+	
+	$row = get_one_value($query, $db_name, $connection);	
+	print_blue_out_message('$row', $row);
+	return $row;
+}
+
 function get_contact_id($contact_full, $connection)
 {
   $contact_id = 0;
@@ -244,15 +258,16 @@ function get_contact_id($contact_full, $connection)
 //     $db_name = "test";    
   }
   $vamps_name = array_search($post_res, $contact_full);
- 
-  $query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
-  institution = \"" . $institution. "\" AND
-  vamps_name = \"" . $vamps_name. "\" AND
-  first_name like \"" . $first_name. "%\" AND
-  last_name = \"" . $last_name. "\"";
+  $contact    = $first_name . " " . $last_name;
+  $row = contact_id_query($db_name, $connection, $contact, $email, $institution);
+//   $query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
+//   institution = \"" . $institution. "\" AND
+//   vamps_name = \"" . $vamps_name. "\" AND
+//   first_name like \"" . $first_name. "%\" AND
+//   last_name = \"" . $last_name. "\"";
 
-  $row = get_one_value($query, $db_name, $connection);
-  
+//   $row = get_one_value($query, $db_name, $connection);
+  print_blue_out_message('HERE in get_contact_id!!! $row', $row);
   if (isset($row[key($row)]))
   {
     $contact_id = $row[key($row)];
@@ -261,6 +276,8 @@ function get_contact_id($contact_full, $connection)
   {
     $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
   }
+  print_blue_out_message('$vamps_name', $vamps_name);
+  print_blue_out_message('$contact_id', $contact_id);
   return $contact_id;
 }
 
@@ -298,16 +315,24 @@ function validate_new_contact($contact_info, $vamps_name) {
   {
     if (!$value)
     {
+      print_blue_out_message('$value', $value);
       print "</br>";
       $n = $i - 1;
+      print_blue_out_message('$field_names[$n]', $field_names[$n]);
       print "<br>Please provide all contact info; <strong>$field_names[$n]</strong> cannot be empty!<br/>";
       $contact_valid_err = 1;
+    }
+    elseif( !validate( $value ) ) {
+    	print "<br/>---<br/>Please provide a valid of \"<strong>" . $field_names[$n] . "</strong>\".";
+    	$contact_valid_err = 1;
     }
   }
   if( !validEmail( $contact_info[2] ) ) {
     print "<br/>---<br/>Please provide a valid email address instead of \"<strong>" . $contact_info[2] . "</strong>\".";
     $contact_valid_err = 1;
   }
+
+  
   
   if ($contact_valid_err)
   {
@@ -744,13 +769,17 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  elseif ($table_name == "project")
 	  {
 	//   	TODO: move to a function
-	  	$contact_query = "SELECT contact_id from " . $db_name . ".contact WHERE vamps_name = \"" . $data_array["user"] . "\"";
-	//   	print_blue_message("contact query = $contact_query");
+	  	print_blue_out_message('$data_array', $data_array);
+	  	$contact_query = "SELECT contact_id from " . $db_name . ".contact WHERE contact_name = \"" . $data_array["contact_name"] . "\"";
+	  	print_blue_out_message('$contact_query', $contact_query);
 	  	$row = get_one_value($contact_query, $db_name, $connection);
+	  	print_blue_out_message('$row', $row);
 	  	
 	  	if (isset($row[key($row)]))
 	  	{
 	  		$contact_id = $row[key($row)];
+	  		print_blue_message("\$contact_id = $contact_id");
+	  		 
 	  	}
 	  	else 
 	  	{
@@ -772,8 +801,9 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	}
 	  	
 	  	$project_query = "SELECT project_id from " . $db_name . ".project WHERE project = \"" . $data_array["project"] . "\"";
-	//   	print_blue_message("\$project_query = $project_query");
+	  	print_blue_message("\$project_query = $project_query");
 	  	$row = get_one_value($project_query, $db_name, $connection);  	 	 
+	  	print_blue_out_message('$row', $row);
 	  	
 	  	if (isset($row[key($row)]))
 	  	{  		
@@ -1593,11 +1623,16 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 // 	print_out($vamps_submissions_tubes_arr);
 // 	print_blue_message("\$POST: ");
 // 	print_out($_POST);
+// 	print_blue_out_message('$session["csv_content"]', $session["csv_content"]);
 	
 	foreach ($session["csv_content"] as $csv_metadata_row) {
 		$vamps_username = $csv_metadata_row["user"];		
 		$user_info_arr  = get_user_info($contact_full[$vamps_username]);
 		$contact_name   = $user_info_arr[0].', '.$user_info_arr[1];
+// 		print_blue_out_message('$vamps_username', $vamps_username);
+// 		print_blue_out_message('$contact_full', $contact_full);
+// 		print_blue_out_message('$user_info_arr', $user_info_arr);
+// 		print_blue_out_message('$contact_name', $contact_name);
 		
 		if (check_var($session["run_info"]["dna_region_0"]))
 		{

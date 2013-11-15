@@ -1,3 +1,0 @@
-id,submit_code,tube_number,tube_label,dataset_description,duplicate,domain,primer_suite,dna_region,project_name,dataset_name,runkey,barcode,pool,lane,direction,platform,op_amp,op_seq,op_empcr,enzyme,rundate,adaptor,date_initial,date_updated,on_vamps,sample_received,concentration,quant_method,overlap,insert_size,barcode_index,read_length,trim_distal
-5768,ashipunova354276,1,AAA test 1,AAA_1 Dataset  descr,,bacteria,Bacterial V4-V6 Suite,v4v5,AAA_AAA_Bv4v5,AAA_1,,,,1,F,,KH,JHV,,,20151111,A01,2013-06-13,2013-06-13,,,0,nanodrop,partial,230,,101,
-5769,ashipunova354276,2,AAA test 2,AAA_2 Dataset  descr,,bacteria,Bacterial V4-V5 Suite,v4v5,AAA_AAA_Bv4v5,AAA_2,,,,1,F,,KH,JHV,,,20151111,cho,2013-06-13,2013-06-13,,,1,nanodrop,partial,230,,101,

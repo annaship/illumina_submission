@@ -40,7 +40,7 @@
   $all_csv_run_info = array();
   foreach ($csv_data as $csv_data_row)
   {
-    $csv_metadata[]     = slice_arr_by_field_name($csv_headers_needed,          $csv_field_names, $csv_data_row);
+  	$csv_metadata[]     = slice_arr_by_field_name($csv_headers_needed,          $csv_field_names, $csv_data_row);
     $all_csv_run_info[] = slice_arr_by_field_name($csv_headers_run_info_needed, $csv_field_names, $csv_data_row);
   }
   
