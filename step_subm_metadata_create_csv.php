@@ -54,7 +54,10 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 $is_created = array();
 
 $_SESSION["run_info"]["lanes"] = array_unique($lanes);
+// print_blue_out_message('$_SESSION', $_SESSION);
+
 $lane_dom_names 		       = create_lane_dom_names($_SESSION["csv_content"]);
+
 foreach ($lane_dom_names as $lane_dom_name)
 {
   array_unshift($data_all_dom[$lane_dom_name], $table_headers); 

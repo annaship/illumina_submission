@@ -70,8 +70,7 @@
         <select name="project_<?php echo $row_num;?>" id="form_project_<?php echo $row_num;?>">
       
        <?php
-       		array_unshift($project , '');
-        
+       		array_unshift($project , '');        
 			print_options($project, $selected_project);        
         ?>  
         </select></td>
