@@ -264,7 +264,8 @@ function get_contact_id($contact_full, $connection)
   }
   else
   {
-    $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
+  	print_red_message("There is now such contact information in the database");
+//     $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
   }
   return $contact_id;
 }

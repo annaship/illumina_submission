@@ -17,7 +17,7 @@ else
 }
 
 $contact_id = get_contact_id($contact_full, $connection);
-print_blue_out_message('$contact_id', $contact_id);
+
 if (!($contact_id > 0)) 
 {
 	print_red_message("There is no such contact information in our database. 

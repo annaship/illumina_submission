@@ -19,6 +19,7 @@
            <?php 
 //            <option selected="selected" value="Post, Anton">Post, Anton</option>
 //              print_options(array_values($domains_array), $selected_domain);
+             array_unshift($domains_array , '');
              print_options($domains_array, $selected_domain);
            ?>
           </select>                
@@ -34,12 +35,15 @@
       //   TODO: how to chose if 2 the same name?
 //          $selected_contact_name = "Anderson, Rika";
 // 		print_blue_out_message('$_POST', $_POST);
+         array_unshift($contact , '');
          if (!isset($selected_contact_name) or $selected_contact_name == "")
          {
-           $contact_full_selected = $_POST['project_form_contact'];
-           $vamps_name = array_search($contact_full_selected, $contact_full);
-           $selected_contact_name = $contact[$vamps_name];
+//            $contact_full_selected = $_POST['project_form_contact'];
+//            $vamps_name = array_search($contact_full_selected, $contact_full);
+//            $selected_contact_name = $contact[$vamps_name];
+         	$selected_contact_name == "";
          }
+          
          print_options($contact, $selected_contact_name);
           
         ?>
@@ -56,6 +60,7 @@
         <select name="adaptor_<?php echo $row_num;?>" id="form_adaptor_<?php echo $row_num;?>">
       
        <?php
+       	array_unshift($adaptors , '');        
        	print_options($adaptors, $selected_adaptor);
         
 //   		 print_options(array_values($adaptors), $selected_adaptor);    
@@ -65,6 +70,8 @@
         <select name="project_<?php echo $row_num;?>" id="form_project_<?php echo $row_num;?>">
       
        <?php
+       		array_unshift($project , '');
+        
 			print_options($project, $selected_project);        
         ?>  
         </select></td>
