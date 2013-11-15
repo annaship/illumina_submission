@@ -226,17 +226,14 @@ function get_one_value($query, $db_name, $connection)
     return $row;
 }
 
-function contact_id_query($db_name, $connection, $contact, $email, $institution)
-{
-	print_green_message("HERE: $contact, $email, $institution");
-	$query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
+function contact_id_query($db_name, $connection, $first_name, $last_name, $email, $institution)
+{	
+	$contact = $first_name . " " . $last_name;	 
+	$query   = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
 	  institution = \"" . $institution. "\" AND
 	  contact = \"" . $contact. "\"";
-
-	print_blue_out_message('$query', $query);
 	
-	$row = get_one_value($query, $db_name, $connection);	
-	print_blue_out_message('$row', $row);
+	$row 	 = get_one_value($query, $db_name, $connection);	
 	return $row;
 }
 
@@ -258,16 +255,9 @@ function get_contact_id($contact_full, $connection)
 //     $db_name = "test";    
   }
   $vamps_name = array_search($post_res, $contact_full);
-  $contact    = $first_name . " " . $last_name;
-  $row = contact_id_query($db_name, $connection, $contact, $email, $institution);
-//   $query = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
-//   institution = \"" . $institution. "\" AND
-//   vamps_name = \"" . $vamps_name. "\" AND
-//   first_name like \"" . $first_name. "%\" AND
-//   last_name = \"" . $last_name. "\"";
+  $row = contact_id_query($db_name, $connection, $first_name, $last_name, $email, $institution);
 
 //   $row = get_one_value($query, $db_name, $connection);
-  print_blue_out_message('HERE in get_contact_id!!! $row', $row);
   if (isset($row[key($row)]))
   {
     $contact_id = $row[key($row)];
@@ -276,8 +266,6 @@ function get_contact_id($contact_full, $connection)
   {
     $contact_id = add_new_contact($post_res, $vamps_name, $connection, $db_name);
   }
-  print_blue_out_message('$vamps_name', $vamps_name);
-  print_blue_out_message('$contact_id', $contact_id);
   return $contact_id;
 }
 
@@ -769,17 +757,12 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  elseif ($table_name == "project")
 	  {
 	//   	TODO: move to a function
-	  	print_blue_out_message('$data_array', $data_array);
-	  	$contact_query = "SELECT contact_id from " . $db_name . ".contact WHERE contact_name = \"" . $data_array["contact_name"] . "\"";
-	  	print_blue_out_message('$contact_query', $contact_query);
-	  	$row = get_one_value($contact_query, $db_name, $connection);
-	  	print_blue_out_message('$row', $row);
+// 	  	print_blue_out_message('HERE5 from add_new_data: $data_array', $data_array);
+	  	$row = contact_id_query($db_name, $connection, $first_name, $last_name, $email, $institution);
 	  	
 	  	if (isset($row[key($row)]))
 	  	{
-	  		$contact_id = $row[key($row)];
-	  		print_blue_message("\$contact_id = $contact_id");
-	  		 
+	  		$contact_id = $row[key($row)];	  		 
 	  	}
 	  	else 
 	  	{
@@ -801,9 +784,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 	  	}
 	  	
 	  	$project_query = "SELECT project_id from " . $db_name . ".project WHERE project = \"" . $data_array["project"] . "\"";
-	  	print_blue_message("\$project_query = $project_query");
 	  	$row = get_one_value($project_query, $db_name, $connection);  	 	 
-	  	print_blue_out_message('$row', $row);
 	  	
 	  	if (isset($row[key($row)]))
 	  	{  		
