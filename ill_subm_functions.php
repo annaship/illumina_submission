@@ -1197,7 +1197,9 @@ function customError($errno, $errstr)
 }
 
 function create_csv_file($csv_data, $file_name) {
-  //set error handler
+	print_blue_out_message('FROM create_csv_file $csv_data', $csv_data);
+	print_blue_out_message('FROM create_csv_file $file_name', $file_name);
+	//set error handler
   set_error_handler("customError", E_USER_ERROR);
 //   set_error_handler("E_ALL");
   $fp = fopen($file_name, 'w') or trigger_error("Can't open $file_name: ", E_USER_ERROR);
@@ -1208,6 +1210,8 @@ function create_csv_file($csv_data, $file_name) {
   }
   fclose($fp);
   chmod($file_name, 0664);
+  print_blue_out_message('FROM create_csv_file $$fp', $fp);
+  
   return $fp;
 }
 

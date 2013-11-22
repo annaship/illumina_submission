@@ -64,7 +64,10 @@ foreach ($lane_dom_names as $lane_dom_name)
   
   $csv_name  = create_csv_name($rundate, $lane_dom_name);
   $file_name = $path_to_csv  . $rundate . "/" . $csv_name;  
+  print_blue_out_message('$data_all_dom', $data_all_dom);
+  print_blue_out_message('$file_name', $file_name);
   $is_created[$file_name] = create_csv_file($data_all_dom[$lane_dom_name], $file_name);
+  print_blue_out_message('$is_created', $is_created);
 }
 
 if (check_var($is_created)) {
