@@ -59,7 +59,7 @@
   	$insert_metadata_query1 = "UPDATE IGNORE " . $db_name . ".vamps_submissions
 	 SET
 	    temp_project		= \"" . trim($combined_metadata_row["temp_project"]) . "\",
-// 	    title				= \"" . trim($combined_metadata_row["project_title"]) . "\",
+ 	    title				= \"" . trim($combined_metadata_row["project_title"]) . "\",
 	    project_description	= \"" . trim($combined_metadata_row["project_description"]) . "\",
 	    funding				= \"" . trim($combined_metadata_row["funding"]) . "\",
 	    vamps_auth_id		= \"" . trim($combined_metadata_row["vamps_auth_id"]) . "\",	    		
