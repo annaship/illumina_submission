@@ -584,7 +584,7 @@ function run_query($query, $table_name, $connection)
   if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
   {
 	    $res = $connection->query($query);
-	    $data_id = $local_mysqli->insert_id;
+	    $data_id = $local_mysqli_env454->insert_id;
 	    print_insert_message_by_id($table_name, $data_id);
   }
   else
