@@ -19,10 +19,10 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	$selected_project_description = $selected_funding = "";
 
 // $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A", "Eukarya (E)" => "E", "Fungi (F)" => "F");
-$domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A");
+$domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A", "Eukarya (E)" => "E", "Fungi ()" => "");
 //               $domain_wo_abbr = array("Bacteria" => "B", "Archaea" => "A", "Eukarya" => "E", "Fungi" => "F");
 
-$domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea");
+$domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea", "Fungal" => "ITS1");
     
 $arr_fields_headers = array("domain", "lane", "contact_name", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
     "tubelabel", "barcode", "amp_operator");
