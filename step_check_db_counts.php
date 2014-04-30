@@ -38,6 +38,7 @@
 	if (isset($_POST) && !empty($_POST))
 	{
 		
+		print_blue_out_message("from check db: \$_POST", $_POST);
 		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
 			
 		foreach ($suite_names as $suite_name_row)

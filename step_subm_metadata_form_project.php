@@ -35,7 +35,7 @@ _
 
   <select name="dna_region" id="form_dna_region">
   <?php 
-    $dna_regions = array("v6", "v4v5");
+    $dna_regions = array("v6", "v4v5", "its1");
     foreach ($dna_regions as $dna_region)
     {
       if ($selected_dna_region == $dna_region)

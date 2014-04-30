@@ -110,7 +110,7 @@ else
        {
          $selected_overlap = "complete";
        }
-       elseif ($selected_dna_region == "v4v5") {
+       elseif ($selected_dna_region == "v4v5" or $selected_dna_region == "its1") {
          $selected_overlap = "partial";
        }
        print_options($overlaps, $selected_overlap);    

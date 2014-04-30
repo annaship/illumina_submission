@@ -1074,11 +1074,12 @@ function get_field_names($results) {
 
 function get_machine_name($selected_dna_region_base)
 { 
+  $selected_dna_region_base = strtolower($selected_dna_region_base);
   if ($selected_dna_region_base == "v6")
   {
     $machine_name = "hs";
   }
-  elseif ($selected_dna_region_base == "v4v5")
+  elseif ($selected_dna_region_base == "v4v5" or $selected_dna_region_base == "its1")
   {
     $machine_name = "ms";
   }
