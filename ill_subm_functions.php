@@ -879,16 +879,21 @@ function get_id($data_array, $table_name, $db_name, $connection)
   return $res_id;
 }
 
+function make_primer_domain($dna_region, $domain)
+{
+	$primer_domain = ucfirst($domain) . "l";
+	
+	if (strtolower($domain) == "eukarya" and strtolower($dna_region) == "its1")
+	{
+		$primer_domain = "Fungal";
+	}
+	return $primer_domain;
+}
+
 function get_primer_suite_name($dna_region, $domain) 
 {
-  $dna_region = preg_replace("/v(\d)v(\d)/i", "V$1-V$2", $dna_region);
-  $primer_domain = ucfirst($domain) . "l";
-  
-  if (strtolower($domain) == "eukarya" and strtolower($dna_region) == "its1")
-  {
-  	$primer_domain = "Fungal";
-  }
-  
+  $dna_region    = preg_replace("/v(\d)v(\d)/i", "V$1-V$2", $dna_region);
+  $primer_domain = make_primer_domain($dna_region, $domain);
   $suite_name    = $primer_domain . " " . $dna_region . " Suite";
   
   return $suite_name;
