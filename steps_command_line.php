@@ -44,10 +44,10 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 		$do_perfect = "False";
 	}
+	
 	// 2) there is ini file
 	if (isset ($_POST["choose_run_m_process"]) && $_POST["choose_run_m_process"] == 1)
 	{
-// 		print_blue_message("HERE1");
 		/*
 		 * POST:
 		* UUU -Array ( [form_name] => choose_run_m_form [find_rundate] => 20130322 [find_machine] => hiseq [find_lane] => 4 [add] => Submit [choose_run_m_process] => 1 ) --

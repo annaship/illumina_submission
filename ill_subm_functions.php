@@ -881,9 +881,14 @@ function get_id($data_array, $table_name, $db_name, $connection)
 
 function get_primer_suite_name($dna_region, $domain) 
 {
-	
   $dna_region = preg_replace("/v(\d)v(\d)/i", "V$1-V$2", $dna_region);
   $primer_domain = ucfirst($domain) . "l";
+  
+  if (strtolower($domain) == "eukarya" and strtolower($dna_region) == "its1")
+  {
+  	$primer_domain = "Fungal";
+  }
+  
   $suite_name    = $primer_domain . " " . $dna_region . " Suite";
   
   return $suite_name;
@@ -1312,8 +1317,7 @@ function get_val_from_arr($array, $field_name)
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
 // 	print_blue_message($domain);
-// 	print_blue_message($dna_region);
-	
+print_blue_out_message('$data_arr from get_primer_suite_name_from_db:', $data_arr);	
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$db_name = "test_env454";
@@ -1357,7 +1361,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		run = \"" . $rundate . "\"
 	 		AND lane = " . $lane . "			
 				";
-
+		print_blue_out_message('$query1 = ', $query);
 		$suite_names[] = get_one_value($query, $db_name, $connection);
 	}
 	return $suite_names;
