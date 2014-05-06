@@ -1566,7 +1566,48 @@ function get_gast_command_name($lane_dom_name, $machine_name)
 	return $gast_command_name;
 }
 
+// from http://stackoverflow.com/questions/834303/startswith-and-endswith-functions-in-php
+function starts_with($haystack, $needle)
+{
+	return $needle === "" || strpos($haystack, $needle) === 0;
+}
 
+function ends_with($haystack, $needle)
+{
+	return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
+}
+
+// $combined_metadata_row["run_key"]
+function check_run_key($raw_run_key)
+{
+	$clean_run_key = "";
+	if (starts_with($raw_run_key, "N") )
+	{
+		$clean_run_key = str_replace("NNNN", "", $raw_run_key);
+	}
+	else
+	{
+		$clean_run_key = $raw_run_key;
+	}
+	return $clean_run_key;
+}
+
+function make_lane_dom($combined_metadata_row)
+{
+	$lane_dom      = "";
+	$domain_letter = "";
+	if ($combined_metadata_row["domain"] == "ITS1")
+	{
+		$domain_letter = "E";
+	}
+	else 
+	{
+		$domain_letter = $combined_metadata_row["domain"][0];
+		
+	}
+	$lane_dom  = $combined_metadata_row["lane"] . "_" . $domain_letter;
+	return $lane_dom;
+}
 
 
 function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps, $dna_regions) 
