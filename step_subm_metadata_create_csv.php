@@ -44,7 +44,7 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 	$lanes[]    = $combined_metadata_row["lane"];
 	$result_arr["run_key"] = "NNNN" . $combined_metadata_row["run_key"]; 
 	$data_all[] = $result_arr;
-	$lane_dom  = $combined_metadata_row["lane"] . "_" . $combined_metadata_row["domain"][0];
+	$lane_dom = make_lane_dom($combined_metadata_row);
 	$data_all_dom[$lane_dom][] = $result_arr;
 }
 
