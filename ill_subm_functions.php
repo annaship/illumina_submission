@@ -1089,7 +1089,7 @@ function get_machine_name($selected_dna_region_base)
   {
     $machine_name = "hs";
   }
-  elseif ($selected_dna_region_base == "v4v5" or $selected_dna_region_base == "its1")
+  elseif ($selected_dna_region_base == "v4v5" or strtolower($selected_dna_region_base) == "its1")
   {
     $machine_name = "ms";
   }

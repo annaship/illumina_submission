@@ -7,7 +7,7 @@
 	include_once("ill_subm_menu.php");
 ?>
        
-      <h1>Filtering partial (v4v5 and its1) merged. Maximum number of mismatches allowed in the overlapped region is 3.</h1>
+      <h1>Filtering partial (v4v5 and ITS1) merged. Maximum number of mismatches allowed in the overlapped region is 3.</h1>
 <?php 
 
 	include_once("steps_command_line.php");
