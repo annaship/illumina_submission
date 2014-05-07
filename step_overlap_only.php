@@ -15,7 +15,7 @@
 	
 	switch ($machine_name) {
 		case "hs":
-			server_message("grendel");
+			server_message("cluster");
 			break;
 		case "ms":
 			server_message("domino or minnie");

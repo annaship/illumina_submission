@@ -15,7 +15,7 @@
 
 	echo "<div id=\"command_line_print\">";
 	
-	server_message("grendel");
+	server_message("cluster");
 	
 	foreach ($lane_dom_names as $lane_dom_name)
 	{

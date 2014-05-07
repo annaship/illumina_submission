@@ -1454,9 +1454,9 @@ function add_env454_mysql_call($query) {
 
 function server_message($server_name)
 {
-	if ($server_name == "grendel")
+	if ($server_name == "cluster")
 	{
-		$server_name = "<strong>grendel</strong>";
+		$server_name = "a <strong>cluster</strong>";
 	}
 	elseif ($server_name == "any")
 	{

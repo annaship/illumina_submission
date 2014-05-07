@@ -22,8 +22,8 @@
 // print_out($_POST);
 // print_blue_message("\$_SERVER");
 // print_out($_SERVER);
-// print_blue_message("\$_SESSION[run_info_valid]");
-// print_out($_SESSION["run_info_valid"]);
+// print_blue_message("\$_SESSION");
+// print_out($_SESSION);
 
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
@@ -97,9 +97,10 @@ else
   }
 	  
   if (isset($submission_tubes_info_by_id) && !empty($submission_tubes_info_by_id))
-  {
+  {  	 
+  	$combined_metadata = combine_metadata($_SESSION, $contact_full, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps, $dna_regions);
+//   	print_blue_out_message('03) metadata_csv_show_table: $combined_metadata', $combined_metadata);
   	 
-  	$combined_metadata = combine_metadata($_SESSION, $contact_full, $domains_array, $adaptors_full, $submission_tubes_info_by_id, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps, $dna_regions);  	 
   }
   
   //3) show table

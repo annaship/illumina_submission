@@ -12,7 +12,7 @@
 	
 	include_once("steps_command_line.php");
 	
-	server_message("grendel");
+	server_message("cluster");
 	include_once("steps_command_line_print.php");
 
 	print "<br/>";

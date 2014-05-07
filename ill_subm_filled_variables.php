@@ -197,6 +197,7 @@ JOIN " . $db_name . ".illumina_index USING(illumina_index_id)
 JOIN " . $db_name . ".illumina_run_key USING(illumina_run_key_id)
 JOIN " . $db_name . ".dna_region USING(dna_region_id)
 ";
+
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
   $res_adaptor = $connection->query($query);
@@ -278,10 +279,9 @@ if (isset($_SESSION["run_info"]))
 	}
 	if (isset($_SESSION["run_info"]["dna_region_0"]))
 	{
-		print_blue_out_message('$_SESSION["run_info"]["dna_region_0"]', $_SESSION["run_info"]["dna_region_0"]);
+// 		print_blue_out_message('$_SESSION["run_info"]["dna_region_0"]', $_SESSION["run_info"]["dna_region_0"]);
 		
 		$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
-		print_blue_out_message('$machine_name', $machine_name);
 		$pat_to_csv_root = "";
 		if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 		{
