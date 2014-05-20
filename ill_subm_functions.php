@@ -1391,13 +1391,11 @@ function get_lane_or_domain($data, $field_name)
 	{
 		$data = "E";
 	}
-	print_blue_out_message('FRROM get_lane_or_domain, $data', $data);
 	return $data;
 }
 
 function create_lane_dom_names($session_or_posr_content)
 {
-	print_blue_out_message('111 $session_or_posr_content', $session_or_posr_content);
 	// 	NOT uniqued arrays!
 	$lane_dom_names = array();
 	foreach ($session_or_posr_content as $session_or_posr_content_arr)
