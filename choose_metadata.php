@@ -11,7 +11,7 @@
 // print "<br/>";
 ?>
 <?php
-// print_out($_SERVER["SCRIPT_NAME"]);
+// print_red_message("From ". $_SERVER["PHP_SELF"] . "; choose_metadata");
 if(!isset($_SESSION)) {
   session_start();
 }
@@ -27,6 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["choose_run_m_process"]
 	$selected_domain  = $_POST["find_domain"];
 	$selected_lane    = $_POST["find_lane"];
 	$domain_letter    = $selected_domain[0];
+	if ($selected_domain == "ITS1")
+	{
+		$domain_letter = "E";
+	}
 	
 	$path_to_csv    = "/xraid2-2/g454/run_new_pipeline/illumina/" . $selected_machine . "_info/";
 	$path_to_ini    = $path_to_csv  . $selected_rundate . "/" . $selected_rundate . "_" . $selected_lane . "_" . $domain_letter . "_run_info.ini";
