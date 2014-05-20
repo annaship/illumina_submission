@@ -1387,6 +1387,10 @@ function get_lane_or_domain($data, $field_name)
 		print_red_message("Sorry, there is no $field_name information in the csv file.");
 		exit;
 	}
+	if ($data == "I")
+	{
+		$data = "E";
+	}
 	print_blue_out_message('FRROM get_lane_or_domain, $data', $data);
 	return $data;
 }
