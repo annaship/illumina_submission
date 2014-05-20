@@ -90,7 +90,7 @@ if ($machine_name == "ms")
 {
 	$do_perfect = "False";
 }
-$lane_dom_names 		 = create_lane_dom_names($_SESSION["csv_content"]);
+$lane_dom_names = create_lane_dom_names($_SESSION["csv_content"]);
 if (isset($_POST) && !empty($_POST)) {
 	$lane_dom_names = create_lane_dom_names(array($_POST));
 }

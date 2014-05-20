@@ -38,7 +38,7 @@
 
 		foreach ($lane_dom_names as $lane_dom_name)
 		{			
-			
+			print_blue_out_message('$lane_dom_names', $lane_dom_names);
 			$csv_name      = create_csv_name($rundate, $lane_dom_name);				
 			$csv_file_name =  $path_to_csv  . $rundate . "/" . $csv_name;
 			
