@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://vampsdev.mbl.edu/" />
+<link rel="selenium.base" href="http://localhost/~ashipunova/" />
 <title>temp</title>
 </head>
 <body>
@@ -13,12 +13,7 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/illumina_submission/step_overlap.php</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_1.csv -s illumina_files -l debug -p illumina -r 20120315 -ft fastq -i /xraid2-2/sequencing/Illumina/20120315hs/ -cp True -lane_name &quot;lane_1&quot; -do_perfect False</td>
+	<td>/~ashipunova/illumina_submission/</td>
 	<td></td>
 </tr>
 <tr>
@@ -29,7 +24,7 @@
 <tr>
 	<td>type</td>
 	<td>id=csv</td>
-	<td>/Users/ashipunova/BPC/illumina_submission_site/illumina_submission/selenium_tests/RUNDATE_20120315.csv</td>
+	<td>/Users/ashipunova/BPC/today/illumiona_submission_mix/lmurphy_591707_VAMPS_submission_edited.csv</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -37,18 +32,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=form_lane_0</td>
-	<td>3</td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
-	<td>id=form_update_from_csv</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>/xraid2-2/g454/run_new_pipeline/illumina/hiseq_info/20120315/metadata_20120315_1.csv was created</td>
+	<td>id=run_info_form_add</td>
 	<td></td>
 </tr>
 

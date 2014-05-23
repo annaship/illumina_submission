@@ -1,5 +1,5 @@
 <?php
-// phpinfo();
+//phpinfo();
 
 session_start();
 $_SESSION['cur_user'] = get_current_user();

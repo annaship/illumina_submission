@@ -1322,7 +1322,7 @@ function get_val_from_arr($array, $field_name)
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
 // 	print_blue_message($domain);
-print_blue_out_message('$data_arr from get_primer_suite_name_from_db:', $data_arr);	
+// print_blue_out_message('$data_arr from get_primer_suite_name_from_db:', $data_arr);  
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$db_name = "test_env454";
@@ -1691,7 +1691,6 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		}
 		$combined_metadata[$num]["project_description"]	= $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["project_description"];
 		$combined_metadata[$num]["project_id"]       	= get_id($combined_metadata[$num], "project", $db_name, $connection);
-// 		print_blue_out_message('$combined_metadata', $combined_metadata);
 		
 		$combined_metadata[$num]["read_length"] 	  	= $session["run_info"]["read_length"];
 		if (validate_rundate($session["run_info"]["rundate"]))
@@ -1719,6 +1718,8 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 		$combined_metadata[$num] = populate_key_ind($combined_metadata[$num], $adaptors_full, $selected_dna_region_base, $db_name, $connection);
 		$num += 1;
 	}
+// 	print_blue_out_message('FROM function: $combined_metadata', $combined_metadata);
+	
 	
 	return $combined_metadata;
 }
