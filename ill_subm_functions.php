@@ -1443,8 +1443,8 @@ function get_overlap_script_name($machine_name)
 			$overlap_script_name = "run_perfect_overlap_clust.sh";
 			break;
 		case "ms":
-// 			$overlap_script_name = "run_partial_overlap_clust.sh";
-			$overlap_script_name = "run_partial_overlap_no_clust.sh";
+			$overlap_script_name = "run_partial_overlap_clust.sh";
+// 			$overlap_script_name = "run_partial_overlap_no_clust.sh";
 			break;
 		default:
 			echo "Please provide a machine name";

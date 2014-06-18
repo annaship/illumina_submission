@@ -18,7 +18,8 @@
 			server_message("cluster");
 			break;
 		case "ms":
-			server_message("domino or minnie");
+// 			server_message("domino or minnie");
+			server_message("cluster");
 			break;
 		default:
 			echo "Please provide a machine name";
