@@ -19,6 +19,10 @@
 	
 	include("steps_command_line_print.php");
 	
+	echo "<br/>
+		  <br/>			
+			";
+	
 	echo "<h3>Overlap, filter and unique reads in already demultiplexed files</h3>";
 	
 	$pipeline_command = "illumina_files";
