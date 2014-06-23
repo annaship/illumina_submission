@@ -33,7 +33,7 @@
 	<p>
 		Afterwards you can check the percent of "Unknown" taxa by using:	
 	</p>
-    <br/>
+<!--     <br/> -->
 <?php 
 // 	foreach ($lanes as $lane_num)
 // 	{

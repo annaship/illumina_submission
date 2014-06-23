@@ -446,23 +446,6 @@ td .text_inp {
 	margin-bottom: 20px;
 }
 
-h3 
-{
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	margin-right: 0.5em;
-	font-size: 1.17em;
-}
-
-h4 
-{
-	font-weight: normal;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	margin-right: 0.5em;
-	font-size: 1em;
-}
-
 .down_list
 {
 	padding-top: 10px;
@@ -613,7 +596,7 @@ table#submission_metadata-fields tr.repeated_row td {
 
 #command_line_print
 {
-	padding-top: 40px;
+	padding-top: 0.5em;
 }
 
 h1, h2, h3 {
@@ -622,11 +605,25 @@ h1, h2, h3 {
      text-align: center;
 */
 }
-/* h3 {
-    font-size: large;
-    font-weight: normal;
-} */
+
 
 h2 {
 	text-align: center;
+}
+
+h3 
+{
+	margin-top: 2em;
+	margin-bottom: 0em;
+/* 	margin-right: 0.5em; */
+/* 	font-size: 1.17em; */
+}
+
+h4 
+{
+	font-weight: normal;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-right: 0.5em;
+	font-size: 1em;
 }

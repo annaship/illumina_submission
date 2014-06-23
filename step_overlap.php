@@ -9,11 +9,22 @@
 	include_once("ill_subm_menu.php");
 // print_blue_message("From ". $_SERVER["PHP_SELF"] . "; step_overlap");
 	echo "<h2>Demultiplex and overlap reads</h2>";
-	$pipeline_command = "illumina_files";
-	
 	include_once("steps_command_line.php");
+	
+	echo "<h3>Demultiplex Illumina files by index/run_key/lane</h3>";
+
+	$pipeline_command = "illumina_files_demultiplex_only";
+		
 	server_message("any");
-	include_once("steps_command_line_print.php");
+	
+	include("steps_command_line_print.php");
+	
+	echo "<h3>Overlap, filter and unique reads in already demultiplexed files</h3>";
+	
+	$pipeline_command = "illumina_files";
+		
+	server_message("cluster");
+	include("steps_command_line_print.php");
 
 // 	if (check_var($csv_path_error) == 1)
 // 	{
