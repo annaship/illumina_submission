@@ -1616,7 +1616,7 @@ function make_lane_dom($combined_metadata_row)
 
 function db_problem_domain_dna_region($domain, $dna_region)
 {
-	print_red_message("Problems with domain and dna_region or they are not choosen yet: domain = $domain; dna_region = $dna_region");	
+	print_red_message("Problems with domain and dna_region or a run is not choosen yet: domain = \"$domain\"; dna_region = \"$dna_region\".");	
 }
 
 
