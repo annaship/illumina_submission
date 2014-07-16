@@ -38,7 +38,7 @@
 	if (isset($_POST) && !empty($_POST))
 	{
 		
-		print_blue_out_message("from check db: \$_POST", $_POST);
+// 		print_blue_out_message("from check db: \$_POST", $_POST);
 		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
 			
 		foreach ($suite_names as $suite_name_row)
@@ -66,7 +66,7 @@
 	}
 	else 
 	{
-		print_red_message("Problems with domain and dna_region: domain = $domain; dna_region = $dna_region");
+		db_problem_domain_dna_region($domain, $dna_region);
 	}
 	
 	$messages = array();

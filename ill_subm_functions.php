@@ -1366,7 +1366,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		run = \"" . $rundate . "\"
 	 		AND lane = " . $lane . "			
 				";
-		print_blue_out_message('$query1 = ', $query);
+// 		print_blue_out_message('$query1 = ', $query);
 		$suite_names[] = get_one_value($query, $db_name, $connection);
 	}
 	return $suite_names;
@@ -1464,7 +1464,8 @@ function server_message($server_name)
 	}
 	elseif ($server_name == "any")
 	{
-		$server_name = "any server";
+// 		$server_name = "any server";
+		$server_name = "any <strong>not</strong> cluster";
 	}
 	else
 	{
@@ -1611,6 +1612,11 @@ function make_lane_dom($combined_metadata_row)
 	}
 	$lane_dom  = $combined_metadata_row["lane"] . "_" . $domain_letter;
 	return $lane_dom;
+}
+
+function db_problem_domain_dna_region($domain, $dna_region)
+{
+	print_red_message("Problems with domain and dna_region or they are not choosen yet: domain = $domain; dna_region = $dna_region");	
 }
 
 

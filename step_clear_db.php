@@ -7,7 +7,7 @@
       <h1>Illumina files processing</h1>
 <?php 
 	include_once("ill_subm_menu.php");
-	print_blue_message("From ". $_SERVER["PHP_SELF"]);
+// 	print_blue_message("From ". $_SERVER["PHP_SELF"]);
 // 	print_blue_message("\$machine_name = $machine_name");
 	echo "<h2>Remove old data from db</h2>";
 		
@@ -65,7 +65,7 @@
 	}
 	else 
 	{
-		print_red_message("Problems with domain and dna_region: domain = $domain; dna_region = $dna_region");
+		db_problem_domain_dna_region($domain, $dna_region);
 	}
 	
 	$lanes_uniq = array_unique($lanes);
