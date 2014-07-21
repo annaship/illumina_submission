@@ -36,7 +36,7 @@
 		
 	if (isset($_POST) && !empty($_POST))
 	{
-		print_green_message("HERE1");
+    // print_green_message("HERE1");
 		
 		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
 			
