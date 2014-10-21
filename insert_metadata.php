@@ -105,39 +105,39 @@
 // 	1) create copy of the line,
 // 	2) update the old one
 // 	$res = "";
-	$backup_subm_metadata_query1 = "";
-	$backup_subm_metadata_query1 = "CREATE TEMPORARY TABLE " . $db_name . ".tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
-  	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
-			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\";
-		UPDATE " . $db_name . ".tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
-		UPDATE " . $db_name . ".tmptable_1 SET id = 0;				
-		INSERT IGNORE INTO " . $db_name . ".vamps_submissions SELECT * FROM " . $db_name . ".tmptable_1 LIMIT 1;
-		DROP TEMPORARY TABLE IF EXISTS " . $db_name . ".tmptable_1;
-	";
-	$backup_subm_metadata_query2 = "";
-	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE " . $db_name . ".tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions_tubes
-		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
-			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\";
-		UPDATE " . $db_name . ".tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
-		UPDATE " . $db_name . ".tmptable_1 SET id = 0;
-		INSERT IGNORE INTO " . $db_name . ".vamps_submissions_tubes SELECT * FROM " . $db_name . ".tmptable_1 LIMIT 1;
-		DROP TEMPORARY TABLE IF EXISTS " . $db_name . ".tmptable_1;
-	";
+// 	$backup_subm_metadata_query1 = "";
+// 	$backup_subm_metadata_query1 = "CREATE TEMPORARY TABLE " . $db_name . ".tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions
+//   	    WHERE submit_code	= \"" . $combined_metadata_row["submit_code"] . "\"
+// 			AND id 			= \"" . $combined_metadata_row["vamps_submissions_id"] . "\";
+// 		UPDATE " . $db_name . ".tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
+// 		UPDATE " . $db_name . ".tmptable_1 SET id = 0;				
+// 		INSERT IGNORE INTO " . $db_name . ".vamps_submissions SELECT * FROM " . $db_name . ".tmptable_1 LIMIT 1;
+// 		DROP TEMPORARY TABLE IF EXISTS " . $db_name . ".tmptable_1;
+// 	";
+// 	$backup_subm_metadata_query2 = "";
+// 	$backup_subm_metadata_query2 = "CREATE TEMPORARY TABLE " . $db_name . ".tmptable_1 SELECT * FROM " . $db_name . ".vamps_submissions_tubes
+// 		WHERE submit_code = \"" . $combined_metadata_row["submit_code"] . "\"
+// 			AND id = \"" . $combined_metadata_row["submissions_tubes_id"] . "\";
+// 		UPDATE " . $db_name . ".tmptable_1 SET submit_code = CONCAT(submit_code, \"_backup_\", \"" . date("Ymdhis") . "\");
+// 		UPDATE " . $db_name . ".tmptable_1 SET id = 0;
+// 		INSERT IGNORE INTO " . $db_name . ".vamps_submissions_tubes SELECT * FROM " . $db_name . ".tmptable_1 LIMIT 1;
+// 		DROP TEMPORARY TABLE IF EXISTS " . $db_name . ".tmptable_1;
+// 	";
 	
-	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
+// 	array_push($all_backup_metadata_queries, $backup_subm_metadata_query1, $backup_subm_metadata_query2);
 
   }
   
-  $all_backup_metadata_queries_u = array_unique($all_backup_metadata_queries);
+//   $all_backup_metadata_queries_u = array_unique($all_backup_metadata_queries);
   $all_insert_metadata_queries_u = array_unique($all_insert_metadata_queries);
 //   print_blue_out_message('$$all_insert_metadata_queries_u = ', $all_insert_metadata_queries_u);
   
-  foreach ($all_backup_metadata_queries_u as $all_backup_metadata_query)
-  {
-//   	print_blue_out_message('$all_backup_metadata_query = ', $all_backup_metadata_query);
-  	run_multi_query($all_backup_metadata_query, $connection);
-;
-  }
+//   foreach ($all_backup_metadata_queries_u as $all_backup_metadata_query)
+//   {
+// //   	print_blue_out_message('$all_backup_metadata_query = ', $all_backup_metadata_query);
+//   	run_multi_query($all_backup_metadata_query, $connection);
+// ;
+//   }
   foreach ($all_insert_metadata_queries_u as $all_insert_metadata_query)
   {
 //   	print_blue_out_message('1) $all_insert_metadata_query', $all_insert_metadata_query);
