@@ -11,10 +11,12 @@
        or 
 	FROM vamps.vamps_submissions
 
+2) User information is from env454, all new PIs should be (manually as an extra precaution) added from vampsdb
+
 3) Code 
     The code for illumina submission is on vampsdev: /usr/local/www/vampsdev/docs/illumina_submission and on github: annaship/illumina_submission.git
         
-    *) index.php starts differently for localhost and vampsdev, another. For localhost ill_subm_index_local.php is used.      
+    *) index.php starts differently for localhost and vampsdev. For localhost ill_subm_index_local.php is used.      
     *) vamps theme (images, left menu etc) included by ill_subm_beginning.php, ill_subm_end.php, left_menu.php
     * common and repeated includes are ill_subm_functions.php, ill_subm_filled_variables.php, ill_subm_menu.php
     *) ill_subm_beginning.php includes header, db connections and the array of queries for the drop-down menu.
