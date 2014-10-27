@@ -119,6 +119,10 @@ foreach ($arr_fields_to_show as $field_name) {
    ?>
     </select></td>
   </tr>
+  <tr>
+	<td></td><td class="message">Please contact Anya or Andy if the PI name is not in the list.</td>
+  </tr>
+  
 
 </tbody></table>
 </fieldset>
