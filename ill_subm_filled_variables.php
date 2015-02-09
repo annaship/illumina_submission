@@ -22,7 +22,7 @@ if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 $domain_w_abbr = array("Bacteria (B)" => "B", "Archaea (A)" => "A", "Eukarya (E)" => "E", "Fungi ()" => "");
 //               $domain_wo_abbr = array("Bacteria" => "B", "Archaea" => "A", "Eukarya" => "E", "Fungi" => "F");
 
-$domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea", "Fungal" => "ITS1");
+$domains_array = array("Bacterial" => "Bacteria", "Archaeal" => "Archaea", "Eukaryal" => "Eukarya", "Fungal" => "ITS1");
     
 $arr_fields_headers = array("domain", "lane", "contact_name", "run_key", "barcode_index", "adaptor", "project", "dataset", "dataset_description", "env_source_name",
     "tubelabel", "barcode", "amp_operator");
@@ -40,7 +40,7 @@ $submission_metadata_form_fields = array("domain"=> "required", "lane"=> "requir
 
 $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "required",  "read_length" => "required");
 // ---
-$dna_regions = array("v6", "v4v5", "ITS1");
+$dna_regions = array("v6", "v4v5", "v4", "ITS1");
 // ---
 // TODO: check what's needed after db change
 $need_names = array("user", "last_name", "first_name", "email", "institution", "temp_project", "title",

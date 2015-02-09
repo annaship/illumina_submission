@@ -1,5 +1,5 @@
 0) Troubleshouting
-  a) If an input csv file is longer then 20 lines and no output csv is created without any error messages, increase max_input_vars = 3000 (/usr/local/www/vamps/docs/illumina_submission/.htaccess)
+  a) If an input csv file is longer then 20 lines and no output csv is created without any error messages, increase max_input_vars = 5000 (/usr/local/www/vamps/docs/illumina_submission/.htaccess)
   
 1) Sql connection
     a)
@@ -254,3 +254,13 @@ step_upload_subm_metadata.php: -- step_subm_metadata_csv_show_table.php
 step_upload_subm_metadata.php: -- step_subm_metadata_form_submission_metadata_validation.php 
 step_upload_subm_metadata.php: -- ill_subm_end.php 
 
+4) To run on local
+ *) copy from vamps to test_vamps
+ vamps_vamps_auth
+ vamps_vamps_submissions
+ vamps_vamps_submissions_tubes
+ *) copy all primer and adapter info from env454 to test_env454
+ mysqldump -h newbpcdb2 -u ashipunova env454 contact dataset dna_region env_sample_source illumina_adaptor illumina_adaptor_ref illumina_index illumina_run_key primer primer_suite primer_suite_primer_view project ref_primer_suite_primer run run_info run_info_ill run_key > to_test_env454.sql
+ 
+ mysql -u ... -p test_env454 <to_test_env454.sql
+ 

@@ -73,6 +73,7 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
               $selected_dataset				= $metadata_row["dataset"];
               $selected_dataset_description	= $metadata_row["dataset_description"];
               $selected_domain				= $metadata_row["domain"];
+//               print_blue_out_message('region? $metadata_row = ', $metadata_row);
               if (strtolower($selected_domain) == "eukarya")
 		      {
 		      	$selected_domain = "ITS1";

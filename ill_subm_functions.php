@@ -1374,7 +1374,6 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 
 function creat_dir_if_not_existst($dir_name)
 {
-
 	mkdir($dir_name);
 	umask(0002);
 	chmod($dir_name, 02775);
