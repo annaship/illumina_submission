@@ -1082,14 +1082,16 @@ function get_field_names($results) {
   return $field_names;
 }
 
-function get_machine_name($selected_dna_region_base)
+function get_machine_name($selected_dna_region_base, $dna_regions_hiseq, $dna_regions_miseq)
 { 
   $selected_dna_region_base = strtolower($selected_dna_region_base);
-  if ($selected_dna_region_base == "v6")
+  
+  if (in_array($selected_dna_region_base, $dna_regions_hiseq) )
   {
     $machine_name = "hs";
   }
-  elseif ($selected_dna_region_base == "v4v5" or strtolower($selected_dna_region_base) == "its1")
+//   elseif ($selected_dna_region_base == "v4v5" or strtolower($selected_dna_region_base) == "its1")
+  elseif (in_array($selected_dna_region_base, $dna_regions_miseq))
   {
     $machine_name = "ms";
   }

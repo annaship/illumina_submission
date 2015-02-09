@@ -22,6 +22,7 @@ foreach (array_unique($lane_dom_names) as $lane_dom_name)
 // 	print_blue_message("FROM insert_run_info");
 	
 // 		$lane_name 			= $lane . "_" . $domain_letter;
+	
 		$dir_name 			= $path_to_csv  . $rundate;
 		$ini_file_name      = $rundate . "_" . $lane_dom_name . "_run_info.ini";
 		$run_info_file_name = $dir_name . "/" . $ini_file_name;
