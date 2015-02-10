@@ -1085,7 +1085,6 @@ function get_field_names($results) {
 function get_machine_name($selected_dna_region_base, $dna_regions_hiseq, $dna_regions_miseq)
 { 
   $selected_dna_region_base = strtolower($selected_dna_region_base);
-  
   if (in_array($selected_dna_region_base, $dna_regions_hiseq) )
   {
     $machine_name = "hs";

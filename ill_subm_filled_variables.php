@@ -40,8 +40,8 @@ $submission_metadata_form_fields = array("domain"=> "required", "lane"=> "requir
 
 $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "required",  "read_length" => "required");
 // ---
-$dna_regions = array("v6", "v4v5", "v4", "ITS1");
-$dna_regions_miseq = array("v4v5", "v4", "ITS1");
+$dna_regions = array("v6", "v4v5", "v4", "its1");
+$dna_regions_miseq = array("v4v5", "v4", "its1");
 $dna_regions_hiseq = array("v6");
 // ---
 // TODO: check what's needed after db change
