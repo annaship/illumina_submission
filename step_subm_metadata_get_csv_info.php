@@ -64,7 +64,7 @@
    $_SESSION["vamps_submissions_arr"] = $vamps_submissions_arr;
    $_SESSION["csv_content"]           = $csv_metadata;
     
-    $run_info_results = make_run_info_results($all_csv_run_info);
+    $run_info_results = make_run_info_results($all_csv_run_info, $dna_regions_hiseq, $dna_regions_miseq);
    
   $_SESSION["run_info"] = $run_info_results;
 //   print_blue_message("FROM subm_get_csv");

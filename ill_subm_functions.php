@@ -1146,10 +1146,10 @@ function get_domain_from_csv_data($csv_domain, $domains_array)
   return $domain;
 }
 
-function make_path_to_raw_data($selected_rundate, $selected_dna_region_base)
+function make_path_to_raw_data($selected_rundate, $selected_dna_region_base, $dna_regions_hiseq, $dna_regions_miseq)
 {
   
-  $machine_name = get_machine_name($selected_dna_region_base);
+  $machine_name = get_machine_name($selected_dna_region_base, $dna_regions_hiseq, $dna_regions_miseq);
   $selected_path_to_raw_data =  $selected_rundate . $machine_name . "/";
   return $selected_path_to_raw_data;
 }
@@ -1291,7 +1291,7 @@ function add_zero($adaptor) {
 
 }
 
-function make_run_info_results($run_info)
+function make_run_info_results($run_info, $dna_regions_hiseq, $dna_regions_miseq)
 {
 	foreach ($run_info as $csv_run_info_row)
 	{
@@ -1303,7 +1303,7 @@ function make_run_info_results($run_info)
 				"read_length"	   => $csv_run_info_row["read_length"],
 				"rundate"          => $csv_run_info_row["rundate"],
 				"seq_operator"	   => $csv_run_info_row["op_seq"],
-				"path_to_raw_data" => make_path_to_raw_data($csv_run_info_row["rundate"], $csv_run_info_row["dna_region"])
+				"path_to_raw_data" => make_path_to_raw_data($csv_run_info_row["rundate"], $csv_run_info_row["dna_region"], $dna_regions_hiseq, $dna_regions_miseq)
 		);
 	}
 	return $run_info_results;

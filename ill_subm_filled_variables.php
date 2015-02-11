@@ -281,7 +281,7 @@ if (isset($_SESSION["run_info"]))
 	}
 	if (isset($_SESSION["run_info"]["dna_region_0"]))
 	{
-// 		print_blue_out_message('$_SESSION["run_info"]["dna_region_0"]', $_SESSION["run_info"]["dna_region_0"]);
+// 		print_blue_out_message('from var: $_SESSION["run_info"]["dna_region_0"]', $_SESSION["run_info"]["dna_region_0"]);
 		
 		$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"], $dna_regions_hiseq, $dna_regions_miseq);
 		$pat_to_csv_root = "";

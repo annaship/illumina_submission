@@ -21,7 +21,7 @@ $selected_read_length  = $_POST["read_length"];
 
 if (!isset($_POST["path_to_raw_data"]) or $_POST["path_to_raw_data"] == "")
 {
-  $selected_path_to_raw_data = make_path_to_raw_data($selected_rundate, $selected_dna_region_base);
+  $selected_path_to_raw_data = make_path_to_raw_data($selected_rundate, $selected_dna_region_base, $dna_regions_hiseq, $dna_regions_miseq);
 }
 else
 {

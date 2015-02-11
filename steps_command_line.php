@@ -38,6 +38,7 @@ if  ($_SERVER["REQUEST_METHOD"] == "POST")
 	$lane_name     = $_POST["find_lane"];
 	$lanes 		   = array($lane_name);
 	$machine_name  = array_search($_POST["find_machine"], $machine_names);
+	
 	$csv_name      = create_csv_name($rundate, $lane_name);
 	$domains 	   = array($domain);
 	if ($machine_name == "ms")
@@ -80,7 +81,7 @@ elseif (check_var($_SESSION["run_info"]))
 	$dom_arr_uniq  = array_unique($domains);
 	$domain        = $dom_arr_uniq[0];
 	$rundate       = $_SESSION["run_info"]["rundate"];
-	$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"]);
+	$machine_name  = get_machine_name($_SESSION["run_info"]["dna_region_0"], $dna_regions_hiseq, $dna_regions_miseq);	
 	$raw_path      = "/xraid2-2/sequencing/Illumina/" . $_SESSION["run_info"]["path_to_raw_data"];
 	$lanes         = $_SESSION["run_info"]["lanes"];
 }
