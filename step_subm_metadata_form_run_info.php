@@ -90,6 +90,7 @@ else
   <td>
   <select name="dna_region_0" id="form_dna_region_0">
    <?php 
+    $selected_dna_region_base = strtolower($selected_dna_region_base);
    	if (!check_var($selected_dna_region_base))
    	{ 
    		$selected_dna_region_base = "";
