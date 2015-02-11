@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/~ashipunova/" />
+<title>full_new_test_on_vampsdev</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">full_new_test_on_vampsdev</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>illumina_submission/index.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Upload Submission Metadata</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=csv</td>
+	<td>/Users/ashipunova/BPC/illumina_submission/selenium_tests/SUBMITCODE_test_new_ms.csv</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=Submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=run_info_form_add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Something is wrong with the Primer Suite name: &quot;Bacterial v4v5l v4v5 Suite&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotText</td>
+	<td>Something is wrong with the Primer Suite name: &quot;Archaeal v4v5l v4v5 Suite&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_lane_0</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>BacteriaArchaea</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_0</td>
+	<td>TACGC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_4</td>
+	<td>ACTGC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_dataset_1</td>
+	<td>Olin_TC_BES_T</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>There is no data for: &quot;funding&quot;, &quot;project_description&quot;, &quot;env_source_name&quot;. Probably the metadata were not properly submitted via Project Submission on VAMPS.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_dataset_description_1</td>
+	<td>Archaea removal experiment</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_tubelabel_2</td>
+	<td>Olin_TC_BES_U</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_amp_operator_2</td>
+	<td>BS</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=run_infoForm_path to raw data</td>
+	<td>20141202ms/</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=run_infoForm_rundate</td>
+	<td>20141202</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_update_from_csv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.green_message</td>
+	<td>../illumina_submission_site_local_add/miseq_info/20141202/metadata_20141202_1_B.csv was created</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_0</td>
+	<td>TACGC</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_run_key_1</td>
+	<td>CGACG</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_0</td>
+	<td>ATCACG</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_barcode_index_1</td>
+	<td>CGATGT</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=form_dataset_0</td>
+	<td>Olin_SCH_0_Bv4v5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=form_update_selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Overlap Analyzing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=p</td>
+	<td>This command line(s) can be run on any not cluster:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.message</td>
+	<td>Please check if the path to raw data exists: /xraid2-2/sequencing/Illumina/20141202ms/</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please check if the path to raw data exists: /xraid2-2/sequencing/Illumina/20141202ms/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_files -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_files -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please check if the path to raw data exists: /xraid2-2/sequencing/Illumina/20141202ms/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_files -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Afterwards you can check the overlap percentage by using</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/reads_overlap/; take_ms_stats.py; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Chimera checking</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>This command line(s) can be run on a cluster:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=strong</td>
+	<td>cluster</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_chimera_only -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_chimera_only -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/chimera/; chimera_stats.py; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_chimera_only -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Afterwards you can run the following command(s) to get chimera checking statistics.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Chimera checking</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Gast</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Gast</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>This command line(s) can be run on a cluster:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/reads_overlap/; run_gast_ill_nonchim.sh; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Afterwards you can check the percent of &quot;Unknown&quot; taxa by using:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/reads_overlap/; percent10_gast_unknowns.sh; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Run_info upload</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Run info upload to db</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s env454run_info_upload -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s env454run_info_upload -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please check if the path to raw data exists: /xraid2-2/sequencing/Illumina/20141202ms/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Data upload</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Data upload to db</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=p</td>
+	<td>This command line(s) can be run on any not cluster:</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s env454upload -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please check if the path to raw data exists: /xraid2-2/sequencing/Illumina/20141202ms/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=demultiplex</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=p</td>
+	<td>This command line(s) can be run on any not cluster:</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please check if the path to raw data exists: /xraid2-2/sequencing/Illumina/20141202ms/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_files_demultiplex_only -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Demultiplex Illumina files by index/run_key/lane</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=overlap</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Overlap reads in already demultiplexed files</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>This command line(s) can be run on a cluster:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=strong</td>
+	<td>cluster</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/; run_partial_overlap_clust.sh; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Afterwards you can check the overlap percentage by using</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/reads_overlap/; take_ms_stats.py; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=overlap</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=filtering mismatch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='content']/h1[2]</td>
+	<td>Filtering partial (Ev4, v4v5 and ITS1) merged. Maximum number of mismatches allowed in the overlapped region is 3.</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>This command line(s) can be run on a cluster:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=strong</td>
+	<td>cluster</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/reads_overlap/; run_mismatch_filter.sh; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=uniqueing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Uniqueing fasta files</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>This command line(s) can be run on a cluster:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=strong</td>
+	<td>cluster</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/reads_overlap/; run_unique_fa.sh; date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=chimera checking</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Chimera checking</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>This command line(s) can be run on a cluster:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=strong</td>
+	<td>cluster</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please check if the path to raw data exists: /xraid2-2/sequencing/Illumina/20141202ms/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=clear db</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Remove old data from db</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='command_line_print']/div[2]</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V4-V5 Suite&quot; AND run = &quot;20141202&quot; AND lane = &quot;1&quot;;'</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='command_line_print']/div[3]</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V4-V5 Suite&quot; AND run = &quot;20141202&quot; AND lane = &quot;1&quot;;'</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='command_line_print']/div[4]</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM sequence_uniq_info_ill USING sequence_uniq_info_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id is NULL; DELETE FROM sequence_ill USING sequence_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id IS NULL; '</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=check counts in fa files</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Check counts in fasta files</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.green_message</td>
+	<td>exact:cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/reads_overlap/; grep '&gt;' *_MERGED-MAX-MISMATCH-3.unique.nonchimeric.fa | wc -l; date</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=check counts in db</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Check counts in db</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Check counts in db</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.green_message</td>
+	<td>exact:mysql -h newbpcdb2 env454 -e 'SELECT count(*) FROM sequence_pdr_info_ill JOIN run_info_ill USING(run_info_ill_id) JOIN run USING(run_id) JOIN primer_suite USING(primer_suite_id) JOIN sequence_uniq_info_ill USING(sequence_ill_id) WHERE primer_suite = &quot;Bacterial V4-V5 Suite&quot; AND run = &quot;20141202&quot; AND lane = &quot;1&quot;'</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=gzip all</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h2</td>
+	<td>Gzip all files</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=p</td>
+	<td>This command line(s) can be run on any not cluster:</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>exact:cd /xraid2-2/g454/run_new_pipeline/illumina/20141202/lane_1_B/analysis/; time gzip -r *</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>cd /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202; time python /bioware/linux/seqinfo/bin/python_pipeline/py_mbl_sequencing_pipeline/pipeline-ui.py -csv /xraid2-2/g454/run_new_pipeline/illumina/miseq_info/20141202/metadata_20141202_1_B.csv -s illumina_chimera_only -l debug -p illumina -r 20141202 -ft fastq -i /xraid2-2/sequencing/Illumina/20141202ms/ -cp True -lane_name lane_1_B -do_perfect False</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
