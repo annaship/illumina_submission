@@ -52,13 +52,13 @@
 	}
 	elseif (isset($dna_region) && isset($domain)) 
 	{
-		print_green_message("HERE2: $dna_region, $domain");
+// 		print_green_message("HERE2: $dna_region, $domain");
 		$suite_name = get_primer_suite_name($dna_region, $domain);
 		
 // 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);	 
 	}
 	elseif (isset($_SESSION[run_info]) && !empty($_SESSION[run_info]) && isset($_SESSION[run_info][dna_region_0])) {
-		print_green_message("HERE3");
+// 		print_green_message("HERE3");
 		
 		$dna_region = $_SESSION[run_info][dna_region_0];
 		$suite_name = get_primer_suite_name($dna_region, $domain);

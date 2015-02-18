@@ -571,7 +571,7 @@ function run_query_and_get_all($query, $connection)
 		{
 			$vamps_submission_tubes_info[] = $row;
 		}
-	}
+	}	
 	return $vamps_submission_tubes_info;	
 }
 
@@ -1323,7 +1323,7 @@ function get_val_from_arr($array, $field_name)
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
 // 	print_blue_message($domain);
-// print_blue_out_message('$data_arr from get_primer_suite_name_from_db:', $data_arr);  
+// print_blue_out_message('FUNC: $data_arr from get_primer_suite_name_from_db:', $data_arr);  
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$db_name = "test_env454";
@@ -1337,11 +1337,13 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	$rundate     = "";
 	$lanes	     = array();
 	$suite_names = array();
+	$suite_name_lane_domain = array();
 	
 	if (isset($data_arr["find_rundate"]) && isset($data_arr["find_lane"]))
 	{
 		$rundate = $data_arr["find_rundate"];
 		$lanes 	 = array($data_arr["find_lane"]);
+		$domain  = $data_arr["find_domain"]; 
 	}
 	elseif (isset($data_arr["rundate"]) && isset($data_arr["lane"]))
 	{
@@ -1352,7 +1354,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	{
 		$rundate = $data_arr["rundate"];
 		$lanes 	 = $data_arr["lanes"];
-		
+		$domain  = $data_arr["domain"];		
 	}
 	
 	foreach ($lanes as $lane)
@@ -1367,11 +1369,40 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		run = \"" . $rundate . "\"
 	 		AND lane = " . $lane . "			
 				";
-// 		print_blue_out_message('$query1 = ', $query);
-		$suite_names[] = get_one_value($query, $db_name, $connection);
+// 		print_blue_out_message('FUNC1: $domain = ', $domain);
+		$first3let = substr($domain, 0, 4); 
+				
+// 		print_blue_out_message('FUNC1: $first3let = ', $first3let);
+		// 		$suite_names[] = get_one_value($query, $db_name, $connection);
+		$suite_names[] = run_query_and_get_all($query, $connection);		
 	}
-	return $suite_names;
+	
+	foreach ($suite_names as $arr)
+	{
+		foreach ($arr as $p_suite)
+		{
+			if (startsWith($p_suite[primer_suite], $first3let))
+			{
+				$suite_name_lane_domain[$lane][$domain] = $p_suite;
+				$suite_name = $p_suite[primer_suite];
+			}
+		}
+	}
+	
+// 	print_blue_out_message('$suite_name', $suite_name);
+// 	print_blue_out_message('$suite_name_lane_domain', $suite_name_lane_domain);
+	return $suite_name_lane_domain;
 }
+
+function startsWith($haystack, $needle) {
+	// search backwards starting from haystack length characters from the end
+	return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+}
+function endsWith($haystack, $needle) {
+	// search forward starting from end minus needle length characters
+	return $needle === "" || strpos($haystack, $needle, strlen($haystack) - strlen($needle)) !== FALSE;
+}
+
 
 function creat_dir_if_not_existst($dir_name)
 {

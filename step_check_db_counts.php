@@ -41,8 +41,9 @@
 // 		print_blue_out_message("from check db: \$_POST", $_POST);
 		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
 			
-		foreach ($suite_names as $suite_name_row)
+		foreach ($suite_names as $arr)
 		{
+			foreach ($arr as $suite_name_row)
 			$primer_suites[] = $suite_name_row["primer_suite"];
 				
 		}
