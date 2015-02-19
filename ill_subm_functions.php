@@ -1370,21 +1370,24 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		AND lane = " . $lane . "			
 				";
 // 		print_blue_out_message('FUNC1: $domain = ', $domain);
-		$first3let = substr($domain, 0, 4); 
+		$first4let = substr($domain, 0, 4); 
 				
-// 		print_blue_out_message('FUNC1: $first3let = ', $first3let);
+// 		print_blue_out_message('FUNC1: $query = ', $query);
+// 		print_blue_out_message('FUNC1: $first4let = ', $first4let);
 		// 		$suite_names[] = get_one_value($query, $db_name, $connection);
 		$suite_names[] = run_query_and_get_all($query, $connection);		
 	}
-	
+		
 	foreach ($suite_names as $arr)
 	{
 		foreach ($arr as $p_suite)
 		{
-			if (startsWith($p_suite[primer_suite], $first3let))
+// 			print_blue_out_message('FUNC1: $p_suite = ', $p_suite);
+				
+			if ((startsWith($p_suite[primer_suite], $first4let)) || strtolower($domain) == strtolower("its1"))
 			{
 				$suite_name_lane_domain[$lane][$domain] = $p_suite;
-				$suite_name = $p_suite[primer_suite];
+// 				$suite_name = $p_suite[primer_suite];
 			}
 		}
 	}
