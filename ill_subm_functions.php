@@ -567,10 +567,27 @@ function run_query_and_get_all($query, $connection)
 	{
 		$results = mysql_query($query, $connection) or die("SELECT Error: $query. $results: ".mysql_error());
 		$subm_field_names = get_field_names($results);
+		$i = 0;
 		while($row = mysql_fetch_row($results))
 		{
-			$vamps_submission_tubes_info[] = $row;
+			$i += 1;
+			$vamps_submission_tubes_info_interm[] = $row;
 		}
+		foreach ($vamps_submission_tubes_info_interm as $row)
+		{
+			foreach ($row as $p_suite_region)
+			{
+				print_blue_out_message('$p_suite_region', $p_suite_region);
+			}
+		}
+// 		$subm_field_names
+		
+// 		UUU -Array ( [0] => primer_suite [1] => dna_region ) --
+		
+// 		$vamps_submission_tubes_info
+		
+// 		UUU -Array ( [0] => Array ( [0] => Fungal ITS1 Suite [1] => ITS1 ) [1] => Array ( [0] => Bacterial V4-V5 Suite [1] => v4v5 ) ) --
+		
 	}	
 		print_blue_out_message('$subm_field_names', $subm_field_names);
 	print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
