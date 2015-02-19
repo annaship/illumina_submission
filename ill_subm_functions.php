@@ -572,7 +572,8 @@ function run_query_and_get_all($query, $connection)
 			$vamps_submission_tubes_info[] = $row;
 		}
 	}	
-		print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
+		print_blue_out_message('$subm_field_names', $subm_field_names);
+	print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
 	return $vamps_submission_tubes_info;	
 }
 
