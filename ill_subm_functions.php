@@ -1412,8 +1412,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 			print_blue_out_message('FUNC2: $first4let = ', $first4let);
 			print_blue_out_message('$p_suite[primer_suite] = ', $p_suite[primer_suite]);
 			print_blue_out_message('FUNC3: $$domain = ', $domain);
-				
-				$suite_name_lane_domain[$lane][$domain] = $p_suite;
+				$suite_name_lane_domain[$lane][$first4let] = $p_suite;
 // 				$suite_name = $p_suite[primer_suite];
 			}
 		}
