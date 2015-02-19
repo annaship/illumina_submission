@@ -73,6 +73,10 @@
 	$messages = array();
 	foreach ($suite_lanes_rundate as $suite_lanes_rundate_one)
 	{
+		if ($suite_lanes_rundate_one["suite_name"] == "")
+		{
+			print_red_message("Please check if the domain and lane are correct - there is no such Primer suite.");
+		}
 		$seq_check_query = "SELECT count(*) FROM sequence_pdr_info_ill 			
 			JOIN run_info_ill USING(run_info_ill_id) 			
 			JOIN run USING(run_id) 			
