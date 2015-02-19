@@ -566,13 +566,13 @@ function run_query_and_get_all($query, $connection)
 	else
 	{
 		$results = mysql_query($query, $connection) or die("SELECT Error: $query. $results: ".mysql_error());
-		print_blue_out_message('$results', $results);
 		$subm_field_names = get_field_names($results);
 		while($row = mysql_fetch_row($results))
 		{
 			$vamps_submission_tubes_info[] = $row;
 		}
 	}	
+		print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
 	return $vamps_submission_tubes_info;	
 }
 
