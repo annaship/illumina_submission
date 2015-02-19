@@ -77,25 +77,28 @@
 		{
 			print_red_message("Please check if the domain and lane are correct - there is no such Primer suite.");
 		}
-		$seq_check_query = "SELECT count(*) FROM sequence_pdr_info_ill 			
-			JOIN run_info_ill USING(run_info_ill_id) 			
-			JOIN run USING(run_id) 			
-			JOIN primer_suite USING(primer_suite_id) 
-      JOIN sequence_uniq_info_ill USING(sequence_ill_id)
-			WHERE primer_suite = \"" . 
-		$suite_lanes_rundate_one["suite_name"] . "\" AND run = \"" . $suite_lanes_rundate_one["rundate"] . "\" AND lane = \"" . $suite_lanes_rundate_one["lane"] . "\"";
-
-		/*
-		 SELECT count(*) from run_info_ill
-		JOIN project USING(project_id)
-		JOIN dataset USING(dataset_id)
-		JOIN run USING(run_id)
-		JOIN primer_suite USING(primer_suite_id)
-		WHERE primer_suite = 'Bacterial V6 Suite'
-		AND run = '20130322'  and lane = '1';
-		*/
-		$messages[] = add_env454_mysql_call($seq_check_query);
-// 		print_blue_message($seq_check);
+		else 
+		{		
+			$seq_check_query = "SELECT count(*) FROM sequence_pdr_info_ill 			
+				JOIN run_info_ill USING(run_info_ill_id) 			
+				JOIN run USING(run_id) 			
+				JOIN primer_suite USING(primer_suite_id) 
+	      JOIN sequence_uniq_info_ill USING(sequence_ill_id)
+				WHERE primer_suite = \"" . 
+			$suite_lanes_rundate_one["suite_name"] . "\" AND run = \"" . $suite_lanes_rundate_one["rundate"] . "\" AND lane = \"" . $suite_lanes_rundate_one["lane"] . "\"";
+	
+			/*
+			 SELECT count(*) from run_info_ill
+			JOIN project USING(project_id)
+			JOIN dataset USING(dataset_id)
+			JOIN run USING(run_id)
+			JOIN primer_suite USING(primer_suite_id)
+			WHERE primer_suite = 'Bacterial V6 Suite'
+			AND run = '20130322'  and lane = '1';
+			*/
+			$messages[] = add_env454_mysql_call($seq_check_query);
+	// 		print_blue_message($seq_check);
+		}
 	}	
 	
 	foreach (array_unique($messages) as $message)
