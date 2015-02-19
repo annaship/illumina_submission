@@ -575,11 +575,11 @@ function run_query_and_get_all($query, $connection)
 		}
 		foreach ($vamps_submission_tubes_info_interm as $row)
 		{
-			foreach ($row as $p_suite_region)
-			{
-				print_blue_out_message('$p_suite_region', $p_suite_region);
-			}
+			$result_arr[$subm_field_names[0]] = $row[0];
+			$result_arr[$subm_field_names[1]] = $row[1];
 		}
+		print_blue_out_message('$result_arr', $result_arr);
+		$vamps_submission_tubes_info_interm[] = $result_arr;
 // 		$subm_field_names
 		
 // 		UUU -Array ( [0] => primer_suite [1] => dna_region ) --
@@ -589,7 +589,7 @@ function run_query_and_get_all($query, $connection)
 // 		UUU -Array ( [0] => Array ( [0] => Fungal ITS1 Suite [1] => ITS1 ) [1] => Array ( [0] => Bacterial V4-V5 Suite [1] => v4v5 ) ) --
 		
 	}	
-		print_blue_out_message('$subm_field_names', $subm_field_names);
+	print_blue_out_message('$subm_field_names', $subm_field_names);
 	print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
 	return $vamps_submission_tubes_info;	
 }
