@@ -567,14 +567,13 @@ function run_query_and_get_all($query, $connection)
 	{
 		$results = mysql_query($query, $connection) or die("SELECT Error: $query. $results: ".mysql_error());
 		$subm_field_names = get_field_names($results);
-		$i = 0;
 		while($row = mysql_fetch_row($results))
 		{
 			$vamps_submission_tubes_info_interm[] = $row;
-			print_blue_out_message('$row1', $row);
+// 			print_blue_out_message('$row1', $row);
 			$result_arr[$subm_field_names[0]] = $row[0];
 			$result_arr[$subm_field_names[1]] = $row[1];
-			print_blue_out_message('$result_arr', $result_arr);
+// 			print_blue_out_message('$result_arr', $result_arr);
 					
 			$vamps_submission_tubes_info[] = $result_arr;
 		}
@@ -594,8 +593,8 @@ function run_query_and_get_all($query, $connection)
 // 		UUU -Array ( [0] => Array ( [0] => Fungal ITS1 Suite [1] => ITS1 ) [1] => Array ( [0] => Bacterial V4-V5 Suite [1] => v4v5 ) ) --
 		
 	}	
-	print_blue_out_message('$subm_field_names', $subm_field_names);
-	print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
+// 	print_blue_out_message('$subm_field_names', $subm_field_names);
+// 	print_blue_out_message('$vamps_submission_tubes_info', $vamps_submission_tubes_info);
 	return $vamps_submission_tubes_info;	
 }
 
@@ -1347,7 +1346,7 @@ function get_val_from_arr($array, $field_name)
 function get_primer_suite_name_from_db($data_arr, $connection)
 {
 // 	print_blue_message($domain);
-// print_blue_out_message('FUNC: $data_arr from get_primer_suite_name_from_db:', $data_arr);  
+print_blue_out_message('FUNC: $data_arr from get_primer_suite_name_from_db:', $data_arr);  
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 	{
 		$db_name = "test_env454";
@@ -1393,11 +1392,11 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		run = \"" . $rundate . "\"
 	 		AND lane = " . $lane . "			
 				";
-// 		print_blue_out_message('FUNC1: $domain = ', $domain);
+		print_blue_out_message('FUNC1: $domain = ', $domain);
 		$first4let = substr($domain, 0, 4); 
 				
-// 		print_blue_out_message('FUNC1: $query = ', $query);
-// 		print_blue_out_message('FUNC1: $first4let = ', $first4let);
+		print_blue_out_message('FUNC1: $query = ', $query);
+		print_blue_out_message('FUNC1: $first4let = ', $first4let);
 		// 		$suite_names[] = get_one_value($query, $db_name, $connection);
 		$suite_names[] = run_query_and_get_all($query, $connection);		
 	}
@@ -1406,7 +1405,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	{
 		foreach ($arr as $p_suite)
 		{
-// 			print_blue_out_message('FUNC1: $p_suite = ', $p_suite);
+			print_blue_out_message('FUNC1: $p_suite = ', $p_suite);
 				
 			if ((startsWith($p_suite[primer_suite], $first4let)) || strtolower($domain) == strtolower("its1"))
 			{
@@ -1417,7 +1416,7 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	}
 	
 // 	print_blue_out_message('$suite_name', $suite_name);
-// 	print_blue_out_message('$suite_name_lane_domain', $suite_name_lane_domain);
+	print_blue_out_message('$suite_name_lane_domain', $suite_name_lane_domain);
 	return $suite_name_lane_domain;
 }
 
