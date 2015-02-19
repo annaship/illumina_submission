@@ -570,20 +570,21 @@ function run_query_and_get_all($query, $connection)
 		$i = 0;
 		while($row = mysql_fetch_row($results))
 		{
-			$i += 1;
 			$vamps_submission_tubes_info_interm[] = $row;
 			print_blue_out_message('$row1', $row);
-				
-		}
-		foreach ($vamps_submission_tubes_info_interm as $row)
-		{
-			print_blue_out_message('$row', $row);
-				
 			$result_arr[$subm_field_names[0]] = $row[0];
 			$result_arr[$subm_field_names[1]] = $row[1];
 			print_blue_out_message('$result_arr', $result_arr);
+					
+			$vamps_submission_tubes_info[] = $result_arr;
 		}
-			$vamps_submission_tubes_info_interm[] = $result_arr;
+// 		foreach ($vamps_submission_tubes_info_interm as $row)
+// 		{
+// 			print_blue_out_message('$row', $row);
+				
+// 			print_blue_out_message('$result_arr', $result_arr);
+// 		}
+// 			$vamps_submission_tubes_info_interm[] = $result_arr;
 		// 		$subm_field_names
 		
 // 		UUU -Array ( [0] => primer_suite [1] => dna_region ) --
