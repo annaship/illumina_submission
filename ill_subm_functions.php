@@ -575,11 +575,13 @@ function run_query_and_get_all($query, $connection)
 		}
 		foreach ($vamps_submission_tubes_info_interm as $row)
 		{
+			print_blue_out_message('$row', $row);
+				
 			$result_arr[$subm_field_names[0]] = $row[0];
 			$result_arr[$subm_field_names[1]] = $row[1];
+			$vamps_submission_tubes_info_interm[] = $result_arr;
+			print_blue_out_message('$result_arr', $result_arr);
 		}
-		print_blue_out_message('$result_arr', $result_arr);
-		$vamps_submission_tubes_info_interm[] = $result_arr;
 // 		$subm_field_names
 		
 // 		UUU -Array ( [0] => primer_suite [1] => dna_region ) --
