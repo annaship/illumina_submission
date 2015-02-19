@@ -1405,11 +1405,14 @@ print_blue_out_message('FUNC: $data_arr from get_primer_suite_name_from_db:', $d
 	{
 		foreach ($arr as $p_suite)
 		{
-			print_blue_out_message('FUNC2: $p_suite = ', $p_suite);
-			print_blue_out_message('FUNC2: $first4let = ', $first4let);
 				
 			if ((startsWith($p_suite[primer_suite], $first4let)) || strtolower($domain) == strtolower("its1"))
 			{
+			print_blue_out_message('FUNC2: $p_suite = ', $p_suite);
+			print_blue_out_message('FUNC2: $first4let = ', $first4let);
+			print_blue_out_message('startsWith($p_suite[primer_suite], $first4let = ', $p_suite[primer_suite]);
+			print_blue_out_message('FUNC2: $$domain = ', $domain);
+				
 				$suite_name_lane_domain[$lane][$domain] = $p_suite;
 // 				$suite_name = $p_suite[primer_suite];
 			}
