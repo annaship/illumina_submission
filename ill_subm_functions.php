@@ -1392,9 +1392,10 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 	 		run = \"" . $rundate . "\"
 	 		AND lane = " . $lane . "			
 				";
-// 		print_blue_out_message('FUNC1: $domain = ', $domain);
+		print_blue_out_message('FUNC1: $domain = ', $domain);
 		$first4let = substr($domain, 0, 4); 
-				
+		print_blue_out_message('FUNC2: $first4let = ', $first4let);
+		
 // 		print_blue_out_message('FUNC1: $query = ', $query);
 // 		print_blue_out_message('FUNC1: $first4let = ', $first4let);
 		// 		$suite_names[] = get_one_value($query, $db_name, $connection);
@@ -1408,11 +1409,9 @@ function get_primer_suite_name_from_db($data_arr, $connection)
 				
 			if ((startsWith($p_suite[primer_suite], $first4let)) || strtolower($domain) == strtolower("its1"))
 			{
-			print_blue_out_message('FUNC1: $p_suite = ', $p_suite);
-			print_blue_out_message('FUNC2: $first4let = ', $first4let);
+			print_blue_out_message('FUNC3: $p_suite = ', $p_suite);
 			print_blue_out_message('$p_suite[primer_suite] = ', $p_suite[primer_suite]);
-			print_blue_out_message('FUNC3: $$domain = ', $domain);
-				$suite_name_lane_domain[$lane][$first4let] = $p_suite;
+				$suite_name_lane_domain[$lane][$p_suite["dna_region"]] = $p_suite;
 // 				$suite_name = $p_suite[primer_suite];
 			}
 		}
