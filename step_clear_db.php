@@ -81,7 +81,7 @@
 		db_problem_domain_dna_region($domain, $dna_region);
 	}
 	
-	print_green_message("RES: \$domain = $domain; \$dna_region = $dna_region, \$suite_name = $suite_name");
+// 	print_green_message("RES: \$domain = $domain; \$dna_region = $dna_region, \$suite_name = $suite_name");
 	
 	$lanes_uniq = array_unique($lanes);
 	$query_del_sequence_pdr_info_ill = $query_del_run_info_ill = ""; 
