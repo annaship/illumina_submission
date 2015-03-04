@@ -36,37 +36,52 @@
 		
 	if (isset($_POST) && !empty($_POST))
 	{
-    // print_green_message("HERE1");
+//     	print_blue_out_message('$_POST', $_POST);
 		
 		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
-			
+// 		print_blue_out_message('$suite_names', $suite_names);
+		
 		$primer_suites = array();
-		foreach ($suite_names as $suite_name_row)
+		
+		foreach ($suite_names as $suite_name_arr)
 		{
-			$primer_suites[] = $suite_name_row["primer_suite"];
+// 			print_blue_out_message('$$suite_name_arr', $suite_name_arr);
+// 			print_blue_out_message('$dna_region', $dna_region);
 				
+			foreach ($suite_name_arr as $suite_name_row)
+			{
+// 				print_blue_out_message('$suite_name_row', $suite_name_row);
+// 				print_blue_out_message('$suite_name_row["primer_suite"]', $suite_name_row["primer_suite"]);
+				$primer_suites[] = $suite_name_row["primer_suite"];
+			}
 		}
-		 $suite_name_arr = array_unique($primer_suites);
-		 $suite_name = $suite_name_arr[0];
+		 $suite_name_arr_u = array_unique($primer_suites);
+		 $suite_name = $suite_name_arr_u[0];
 		 	
 	}
 	elseif (isset($dna_region) && isset($domain)) 
 	{
-// 		print_green_message("HERE2: $dna_region, $domain");
+		print_green_message('isset($dna_region) && isset($domain)');
+		
+		print_green_message("HERE2: $dna_region, $domain");
 		$suite_name = get_primer_suite_name($dna_region, $domain);
 		
 // 			$suite_names = get_primer_suite_name_from_db($_SESSION["run_info"], $connection);	 
 	}
 	elseif (isset($_SESSION[run_info]) && !empty($_SESSION[run_info]) && isset($_SESSION[run_info][dna_region_0])) {
-// 		print_green_message("HERE3");
+		print_green_message("run_info and dna_region_0: $_SESSION[run_info]");
 		
 		$dna_region = $_SESSION[run_info][dna_region_0];
 		$suite_name = get_primer_suite_name($dna_region, $domain);
 	}
 	else 
 	{
+		print_green_message("else: \$domain = $domain; \$dna_region = $dna_region");
+		
 		db_problem_domain_dna_region($domain, $dna_region);
 	}
+	
+	print_green_message("RES: \$domain = $domain; \$dna_region = $dna_region, \$suite_name = $suite_name");
 	
 	$lanes_uniq = array_unique($lanes);
 	$query_del_sequence_pdr_info_ill = $query_del_run_info_ill = ""; 
