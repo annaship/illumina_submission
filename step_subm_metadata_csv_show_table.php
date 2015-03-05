@@ -13,15 +13,15 @@
 
 if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 {
-	$connection = $local_mysqli_env454;
-	$db_name = "test_env454";
+  $connection = $local_mysqli_env454;
+  $db_name = "test_env454";
 }
 else
 {
-	$connection = $newbpc2_connection;
-	$db_name    = "env454";
-	//     $connection = $vampsdev_connection;
-	//     $db_name    = "test";
+  $connection = $newbpc2_connection;
+  $db_name    = "env454";
+  //     $connection = $vampsdev_connection;
+  //     $db_name    = "test";
 }
 
 ?>
@@ -59,31 +59,42 @@ UUU -Array ( [jreveillaud556288] => Array ( [id] => 515 [submit_code] => jreveil
 [institution] => MBL [temp_project] => JCR_SP [title] => sponge microbiome 
 [project_description] => Microbial diversity within sponge species Hexadella sp [environment] => host associated [env_source_id] => 30 
 [funding] => [num_of_tubes] => 6 [date_initial] => 2012-03-13 [date_updated] => 2012-03-13 [locked] => 1 ) ) --
-*/		  $row_num = 0;
-//           print_blue_out_message('3) metadata_csv_show_table: $combined_metadata', $combined_metadata);
+*/      $row_num = 0;
+          // print_blue_out_message('3) metadata_csv_show_table: $combined_metadata', $combined_metadata);
 
           foreach ($combined_metadata as $metadata_row) {
-	
-              $selected_adaptor				= $metadata_row["adaptor"];
-              $selected_amp_operator		= $metadata_row["amp_operator"];
-              $selected_barcode				= $metadata_row["barcode"];
-              $selected_barcode_index		= $metadata_row["barcode_index"];
-              $selected_user   			    = $metadata_row["user"];              
-              $selected_contact_name		= $metadata_row["contact_name"];
-              $selected_dataset				= $metadata_row["dataset"];
-              $selected_dataset_description	= $metadata_row["dataset_description"];
-              $selected_domain				= $metadata_row["domain"];
+  
+              $selected_adaptor          = $metadata_row["adaptor"];
+              $selected_amp_operator     = $metadata_row["amp_operator"];
+              $selected_barcode          = $metadata_row["barcode"];
+              $selected_barcode_index    = $metadata_row["barcode_index"];
+              if (isset($metadata_row["user"]) && !empty($metadata_row["user"]))
+              {
+                $selected_user           = $metadata_row["user"];       
+              }
+              elseif (isset($metadata_row["data_owner"]) && !empty($metadata_row["data_owner"]))
+              {
+                $selected_user           = $metadata_row["data_owner"];       
+              }
+              else
+              {
+                print_red_message("There is a problem with a vamps username / data owner.");
+              }        
+              $selected_contact_name     = $metadata_row["contact_name"];
+              $selected_dataset          = $metadata_row["dataset"];
+              $selected_dataset_description  = $metadata_row["dataset_description"];
+              $selected_domain           = $metadata_row["domain"];
               if (strtolower($selected_domain) == "eukarya" and strtolower($metadata_row["dna_region"] == "its1"))
-		      {
-		      	$selected_domain = "ITS1";
-		      }		 
-              $selected_env_source_name		= $metadata_row["env_source_name"];
-              $selected_funding				= $metadata_row["funding"];
-              $selected_lane				= $metadata_row["lane"];
-              $selected_project				= $metadata_row["project"];
-              $selected_project_description	= $metadata_row["project_description"];
-			  $selected_run_key				= $metadata_row["run_key"];              
-              $selected_tubelabel			= $metadata_row["tubelabel"];
+          {
+            $selected_domain = "ITS1";
+          }     
+              $selected_env_source_name    = $metadata_row["env_source_name"];
+              $selected_funding        = $metadata_row["funding"];
+              $selected_lane        = $metadata_row["lane"];
+              $selected_project        = $metadata_row["project"];
+              $selected_project_description  = $metadata_row["project_description"];
+        $selected_run_key        = $metadata_row["run_key"];              
+              $selected_tubelabel      = $metadata_row["tubelabel"];
               include 'step_subm_metadata_form_metadata_table_rows.php';
 //            dinamically add row number to any field name
               $row_num++;
