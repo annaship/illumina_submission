@@ -16,7 +16,7 @@
 <table class="fields" id="choose_run_m_form_choose_run_m-fields"><tbody>
 
 <tr class="fields">
-  <td class="fields" ><label for="choose_run_m_form_choose_run_m">Run date</label>
+  <td class="fields"><label for="choose_run_m_form_choose_run_m">Run date</label>
   </td>
   <td>
 	<select name="find_rundate" id="form_find_rundate">
