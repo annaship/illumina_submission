@@ -1,15 +1,26 @@
 <?php 
-function print_options($array_name, $selected_val)
+function print_options($array_name, $selected_val, $to_show = "val_only")
 {
-  foreach ($array_name as $val)
+	print_blue_out_message('$array_name = ', $array_name);
+	print_blue_out_message('$to_show = ', $to_show);
+	
+	foreach ($array_name as $key => $val)
   {
-    if ($selected_val == $val)
+  	if ($to_show == "val_only")
+  	{
+  		$options = $val;
+  	}
+  	else
+  	{
+  		$options = $key.' - '.$val;
+  	}
+  	if ($selected_val == $val)
     {
-      echo '<option value="'.$val.'" selected="selected">'.$val.'</option>';
+      echo '<option value="'.$val.'" selected="selected">'.$options.'</option>';
     }
     else 
     {
-      echo '<option value="'.$val.'">'.$val.'</option>';
+      echo '<option value="'.$val.'">'.$options.'</option>';
     }
   }
 }

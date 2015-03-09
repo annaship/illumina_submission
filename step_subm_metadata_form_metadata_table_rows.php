@@ -82,7 +82,7 @@
         <select name="env_source_name_<?php echo $row_num;?>" id="form_env_source_name_<?php echo $row_num;?>">
       
        <?php 
-         print_options($env_source_names, $selected_env_source_name);        
+         print_options($env_source_names, $selected_env_source_name, "key_val");        
          ?>  
         </select></td>
         
