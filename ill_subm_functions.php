@@ -1,9 +1,6 @@
 <?php 
 function print_options($array_name, $selected_val, $to_show = "val_only")
 {
-	print_blue_out_message('$array_name = ', $array_name);
-	print_blue_out_message('$to_show = ', $to_show);
-	
 	foreach ($array_name as $key => $val)
   {
   	if ($to_show == "val_only")
