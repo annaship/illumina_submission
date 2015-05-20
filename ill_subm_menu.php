@@ -29,6 +29,7 @@
     <li><a href="step_check_db_counts.php">check counts in db</a></li>
     <li><a href="step_gzip_all.php">gzip all</a></li>
     <li><a href="step_gunzip_all.php">gunzip all</a></li>
+    <li><a href="help.php">help</a></li>
     </ul>  
   </li>      
   </ul> 

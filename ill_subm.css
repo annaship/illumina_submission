@@ -558,7 +558,7 @@ table#submission_metadata-fields tr.repeated_row td {
 }
 
 .message {
-    color:#C00000; font-weight: bold;
+    color: red; font-weight: bold;
 }
 
 .green_message {
@@ -626,4 +626,17 @@ h4
 	margin-bottom: 0.5em;
 	margin-right: 0.5em;
 	font-size: 1em;
+}
+
+ol.help_list
+{
+	padding-top: 10px;
+   /* padding-bottom: 10px;	 */
+}
+
+ol.help_list li
+{
+	margin-left: 1em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
 }
