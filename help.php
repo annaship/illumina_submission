@@ -26,7 +26,7 @@
 </ul>
 </li>
 
-<li> <span class="emph">Is cluster done?</span>
+<li><span class="emph">Is cluster done?</span>
 <ul>
 	<li>To check if cluster is done you can use
 	<span class="green_message">check_cluster.py</span></li>
@@ -35,6 +35,24 @@
 </ul>
 </li>
 
+<li><span class="emph">Some useful things:</span>
+  <ul>
+    <li><span class="green_message">mail_done</span> is an alias in my <span class="green_message">.bash_profile</span> (a file in my home directory, notice the dot in the name), add this <span class="emph">one</span> line changing the email to yours and keep all quotes exactly like this:<br/>
+    alias mail_done='echo "The `echo $STY` screen on `hostname` is done with its job." | mail -s "screen on `hostname`" ashipunova@mbl.edu'
+    </li>
+    <li>to keep your screen log automatically running add <span class="green_message">.screenrc</span> file (notice the dot) to your home directory and then call screen only from here. In the file:<br/>
+      shell -${SHELL}<br/>
+      defscrollback 10000<br/>
+      deflog on<br/>
+      logtstamp on<br/>
+      screen -t "set_screen" 1 bash -l<br/>
+      autodetach on
+    </li>
+    <li><span class="green_message">screen -R</span><br/>
+    will open an existing screen or a new one or a list of screens, depending on what you have opened already.  
+    </li>
+  </ul>
+</li>
 
 </ol> 
 		
