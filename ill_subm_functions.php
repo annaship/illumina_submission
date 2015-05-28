@@ -789,7 +789,12 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     elseif ($table_name == "project")
     {
   //     TODO: move to a function
-//       print_blue_out_message('HERE5 from add_new_data: $data_array', $data_array);
+      print_blue_out_message('HERE5 from add_new_data: $data_array', $data_array);
+	  print_blue_out_message('$db_name', $db_name);
+	  print_blue_out_message('$$connection', $connection);
+	  print_blue_out_message('$$first_name', $first_name);
+	  print_blue_out_message('$$last_name', $last_name);
+	  print_blue_out_message('$$email', $email);
       $row = contact_id_query($db_name, $connection, $first_name, $last_name, $email, $institution);
       
       if (isset($row[key($row)]))
