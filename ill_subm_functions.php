@@ -240,6 +240,7 @@ function contact_id_query($db_name, $connection, $first_name, $last_name, $email
   $query   = "SELECT contact_id FROM " . $db_name . ".contact WHERE email = \"" . $email. "\" AND
     institution = \"" . $institution. "\" AND
     contact = \"" . $contact. "\"";
+//    print_blue_out_message('CCC contact_id_query: $query', $query);
   
   $row    = get_one_value($query, $db_name, $connection);  
   return $row;
