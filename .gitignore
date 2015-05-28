@@ -3,6 +3,7 @@
 archive/*
 .htaccess
 ill_subm_conn_local.php
+vamps_config.php
 
 # Eclipse
 .buildpath
