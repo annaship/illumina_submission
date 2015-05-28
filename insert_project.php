@@ -42,11 +42,15 @@ if (check_var($project_errors) == 0)
 //   {
   	
 	$new_project_id = run_query($project_query, "project", $connection);  
-    
 //   }
 
   $project = get_all_projects($connection, $db_name);
   $selected_project = $project_name;
   $selected_domain  = $_POST['domain'];  
 }
+if ($new_project_id > 0)
+{
+	print_green_message("Project \"$project_name\" was successfully submitted.");
+}	
+
 ?>
