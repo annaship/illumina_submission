@@ -48,8 +48,13 @@
           
         ?>
         </select></td>
-      
-        <td>NNNN<input class="text_inp wide"           type="text" name="run_key_<?php echo $row_num;?>"       
+        <?php 
+        if (isset($selected_has_ns) and $selected_has_ns == "Has NNNN in run_key")
+        {
+        	$nnnn = "NNNN";
+        }
+        ?>
+        <td><!-- NNNN --><?php echo $nnnn;?><input class="text_inp wide"           type="text" name="run_key_<?php echo $row_num;?>"       
         id="form_run_key_<?php echo $row_num;?>"        
         value="<?php echo $selected_run_key ?>"/></td>
         <td><input class="text_inp size_barcode_index" type="text" name="barcode_index_<?php echo $row_num;?>" 

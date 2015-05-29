@@ -126,6 +126,25 @@ else
     }
     ?></td>
   </tr>
+  
+<tr class="fields">
+<td class="fields" align="left"><label for="run_infoForm_has_ns">has_Ns</label></td>
+<td>
+<select name="has_ns" id="form_has_ns">
+ <?php 
+    $selected_has_ns = "Has NNNN in run_key";
+    print_options($has_nss, $selected_has_ns);    
+  ?>
+    <option value="None"></option>
+  </select>
+  </td>
+  <td class="message"><?php 
+  if (isset($run_info_errors["has_ns"]))
+  {
+  	echo $run_info_errors["has_ns"];
+  }
+  ?></td>
+</tr>
 
   <?php 
 

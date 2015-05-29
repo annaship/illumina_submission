@@ -43,6 +43,7 @@ $run_info_form_fields = array("seq_operator" => "required", "insert_size" => "re
 $dna_regions = array("v6", "v4v5", "v4", "its1");
 $dna_regions_miseq = array("v4v5", "v4", "its1");
 $dna_regions_hiseq = array("v6");
+$has_nss = array("Has NNNN in run_key", "Does not have NNNN in run_key");
 // ---
 // TODO: check what's needed after db change
 $need_names = array("user", "last_name", "first_name", "email", "institution", "temp_project", "title",

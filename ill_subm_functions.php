@@ -742,6 +742,9 @@ function add_new_dataset($dataset_name, $dataset_description, $db_name)
 
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
+	print_blue_out_message('add_new_data: $data_array', $data_array);
+	print_blue_out_message('add_new_data: $table_name', $table_name);
+	
   $data_id = 0;
   foreach ( $data_array as $key => $value ) 
   {
@@ -771,7 +774,7 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
     {
        
       $query = "INSERT IGNORE INTO " . $db_name . "." . $table_name .
-      " ($table_name) VALUES (\"NNNN". $$table_name . "\")";
+      " ($table_name) VALUES (\"". $nnnn . $$table_name . "\")";
     }  
     elseif ($table_name == "run")
     {
@@ -867,11 +870,11 @@ function add_new_data ($data_array, $table_name, $db_name, $connection)
 
 function get_id($data_array, $table_name, $db_name, $connection) 
 {
-  
+
   $res_id = 0;
   if ($table_name == "run_key")
   {
-    $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"NNNN" . $data_array[$table_name] . "\"";    
+    $query = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " LIKE \"%" . $data_array[$table_name] . "\"";    
   }
   elseif ($table_name == "run")
   {
@@ -892,7 +895,7 @@ function get_id($data_array, $table_name, $db_name, $connection)
   
 //     print_blue_out_message('debug_backtrace()', debug_backtrace());
   
-//   print_blue_out_message('$query', $query);
+//   print_blue_out_message('get_id: $query', $query);
 //   print_blue_out_message('$db_name', $db_name);
 //   print_blue_out_message('$connection', $connection);
   $row = get_one_value($query, $db_name, $connection);
@@ -1564,8 +1567,9 @@ function populate_key_ind($arr_name, $adaptors_full, $dna_region, $db_name, $con
   $arr_name["barcode_index"] = $key_ind["illumina_index"];
   $arr_name["run_key"]       = $key_ind["illumina_run_key"];
   $arr_name["run_key_id"]    = get_id($arr_name, "run_key", $db_name, $connection);
-  $arr_name["file_prefix"]   = $key_ind["illumina_index"] . "_NNNN" . $key_ind["illumina_run_key"] . "_" . $arr_name["lane"];
+  $arr_name["file_prefix"]   = $key_ind["illumina_index"] . "_" . $arr_name["nnnn"] . $key_ind["illumina_run_key"] . "_" . $arr_name["lane"];
   return $arr_name;
+
 }
 
 function to_underscore($my_string) {
@@ -1643,19 +1647,19 @@ function ends_with($haystack, $needle)
 }
 
 // $combined_metadata_row["run_key"]
-function check_run_key($raw_run_key)
-{
-  $clean_run_key = "";
-  if (starts_with($raw_run_key, "N") )
-  {
-    $clean_run_key = str_replace("NNNN", "", $raw_run_key);
-  }
-  else
-  {
-    $clean_run_key = $raw_run_key;
-  }
-  return $clean_run_key;
-}
+// function check_run_key($raw_run_key)
+// {
+//   $clean_run_key = "";
+//   if (starts_with($raw_run_key, "N") )
+//   {
+//     $clean_run_key = str_replace("NNNN", "", $raw_run_key);
+//   }
+//   else
+//   {
+//     $clean_run_key = $raw_run_key;
+//   }
+//   return $clean_run_key;
+// }
 
 function make_lane_dom($combined_metadata_row)
 {
@@ -1679,6 +1683,17 @@ function db_problem_domain_dna_region($domain, $dna_region)
   print_red_message("Problems with domain and dna_region or a run is not choosen yet: domain = \"$domain\"; dna_region = \"$dna_region\".");  
 }
 
+function get_has_ns($has_ns)
+{
+	if (isset($has_ns) and $has_ns == "Has NNNN in run_key")
+	{
+		return "NNNN";
+	}
+	else 
+	{
+		return "";
+	}
+}
 
 function combine_metadata($session, $contact_full, $domains_array, $adaptors_full, $vamps_submissions_tubes_arr, $env_source_names, $db_name_env454, $connection_env454, $db_name_vamps, $connection_vamps, $dna_regions) 
 {
@@ -1699,6 +1714,10 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 //   print_blue_message("\$POST: ");
 //   print_out($_POST);
 //   print_blue_out_message('$session["csv_content"]', $session["csv_content"]);
+
+  print_blue_out_message('$_POST["has_ns"]', $_POST["has_ns"]);
+  $nnnn = get_has_ns($_POST["has_ns"]);
+  print_blue_out_message('$_POST["has_ns"]: $nnnn', $nnnn);
   
   foreach ($session["csv_content"] as $csv_metadata_row) {
     $vamps_username = $csv_metadata_row["user"];    
@@ -1745,6 +1764,7 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
     $combined_metadata[$num]["last_name"]           = $user_info_arr[0];
     $combined_metadata[$num]["locked"]              = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["locked"];
     $combined_metadata[$num]["num_of_tubes"]        = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["num_of_tubes"];
+    $combined_metadata[$num]["nnnn"]        = $nnnn;
     $combined_metadata[$num]["op_empcr"]      = $csv_metadata_row["op_empcr"];
     $combined_metadata[$num]["overlap"]         = $session["run_info"]["overlap"];
     $combined_metadata[$num]["primer_suite"]       = get_primer_suite_name($combined_metadata[$num]["dna_region"], $combined_metadata[$num]["domain"]);
