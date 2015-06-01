@@ -5,11 +5,12 @@ include_once("ill_subm_filled_variables.php");
 include_once("ill_subm_functions.php");
 
 // print_out($_SESSION["run_info"]["lanes"]);
+$nnnn = get_has_ns($_SESSION["run_info"]["has_ns"]);
 
 $metadata_errors     = array();
 $metadata_errors_all = array();
 $result_metadata_arr_checked = $selected_metadata_arr = array();
-$result_metadata_arr = separate_metadata($_POST, $arr_fields_headers);
+$result_metadata_arr = separate_metadata($_POST, $arr_fields_headers, $nnnn);
 
 // remove array #0 == check_submission
 if (sizeof($result_metadata_arr) > 1 && isset($_POST["submission_metadata_process"]) && ($_POST["submission_metadata_process"] == 1))
