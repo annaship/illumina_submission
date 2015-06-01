@@ -512,7 +512,7 @@ function separate_metadata($metadata, $arr_fields_headers, $nnnn)
       }
     }    
   }
-  print_blue_out_message('separate_metadata: result_metadata_arr', $result_metadata_arr);
+//   print_blue_out_message('separate_metadata: result_metadata_arr', $result_metadata_arr);
   return $result_metadata_arr;
 }
 
@@ -1690,7 +1690,6 @@ function db_problem_domain_dna_region($domain, $dna_region)
 
 function get_has_ns($has_ns)
 {
-	print_blue_out_message('get_has_ns($has_ns)', $has_ns);
 	if (isset($has_ns) and $has_ns == "Has NNNN in run_key")
 	{
 		return "NNNN";
@@ -1713,17 +1712,17 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
 //   print_out($adaptors_full);
   
 //     print_blue_message("FROM combine_metadata function");
-  print_blue_message("\$session: ");
-  print_out($session);
+//   print_blue_message("\$session: ");
+//   print_out($session);
 //   print_blue_message("\$vamps_submissions_tubes_arr: ");
 //   print_out($vamps_submissions_tubes_arr);
 //   print_blue_message("\$POST: ");
 //   print_out($_POST);
 //   print_blue_out_message('$session["csv_content"]', $session["csv_content"]);
 
-  print_blue_out_message('$session["run_info"]["has_ns"]', $session["run_info"]["has_ns"]);
+//   print_blue_out_message('$session["run_info"]["has_ns"]', $session["run_info"]["has_ns"]);
   $nnnn = get_has_ns($session["run_info"]["has_ns"]);
-  print_blue_out_message('$session["run_info"]["has_ns"]: $nnnn', $nnnn);
+//   print_blue_out_message('$session["run_info"]["has_ns"]: $nnnn', $nnnn);
   
   foreach ($session["csv_content"] as $csv_metadata_row) {
     $vamps_username = $csv_metadata_row["user"];    

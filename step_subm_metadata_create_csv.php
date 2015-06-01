@@ -12,9 +12,9 @@ $lanes = $domains = array();
  * 
  */
 //print csv file
-print_blue_message("\$result_metadata_arr");
-print_out($result_metadata_arr);
-print_out($_SESSION['run_info']);
+// print_blue_message("\$result_metadata_arr");
+// print_out($result_metadata_arr);
+// print_out($_SESSION['run_info']);
 
 // TODO: create array data_all (metadata + run_key) for csv
 // take headers from correct metadata
@@ -36,7 +36,7 @@ foreach ($combined_metadata as $row_num => $combined_metadata_row)
 // 	print_blue_message("\$combined_metadata_row = ");
 // 	print_out($combined_metadata_row);
 // 	print "<br/>";
-	print_blue_out_message('step_subm_metadata_create_csv: $combined_metadata_row', $combined_metadata_row);
+// 	print_blue_out_message('step_subm_metadata_create_csv: $combined_metadata_row', $combined_metadata_row);
 	
 	
 	$result_arr = array_intersect_key($combined_metadata_row, $table_headers_arr);
