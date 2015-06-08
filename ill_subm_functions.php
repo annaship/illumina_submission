@@ -747,9 +747,6 @@ function add_new_dataset($dataset_name, $dataset_description, $db_name)
 
 function add_new_data ($data_array, $table_name, $db_name, $connection) 
 {
-	print_blue_out_message('add_new_data: $data_array', $data_array);
-	print_blue_out_message('add_new_data: $table_name', $table_name);
-	
   $data_id = 0;
   foreach ( $data_array as $key => $value ) 
   {
