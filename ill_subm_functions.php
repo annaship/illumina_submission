@@ -726,7 +726,7 @@ function add_new_dataset($dataset_name, $dataset_description, $db_name)
   if (!valid_dataset($dataset_name))
   {
     print_red_message("dataset: " . $dataset_name . " is not valid");
-    print_red_message("Only word characters (letter, number, underscore) are allowed");
+    print_red_message("Only word characters (letter, number, underscore) are allowed and the length should be at least 3 characters");
     exit;    
   }
   elseif (validate($dataset_description) !=  1)
