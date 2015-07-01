@@ -16,6 +16,7 @@
   <li><a href="step_run_info_upload.php">Run_info upload</a></li>
   <li><a href="step_data_upload.php">Data upload</a></li>
   <li><a href="step_gzip_all.php">gzip all</a></li>
+  <li><a href="help.php">help</a></li>  
   <li><a href="#here">Separate steps</a>
   <ul class="nav first"> 
     <li><a href="step_demultiplex.php">demultiplex</a></li>
