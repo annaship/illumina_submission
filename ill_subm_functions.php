@@ -1745,7 +1745,7 @@ function combine_metadata($session, $contact_full, $domains_array, $adaptors_ful
     $combined_metadata[$num]["dataset_id"]         = get_id($combined_metadata[$num], "dataset", $db_name, $connection);
     $combined_metadata[$num]["date_initial"]       = $session["vamps_submissions_arr"][$csv_metadata_row["submit_code"]]["date_initial"];
     $combined_metadata[$num]["date_updated"]       = date("Y-m-d");
-    $combined_metadata[$num]["dna_region"]         = $csv_metadata_row["dna_region"];
+    $combined_metadata[$num]["dna_region"]         = strtolower($csv_metadata_row["dna_region"]);
 //     $session["run_info"]["dna_region_0"];
     $combined_metadata[$num]["dna_region_id"]      = get_id($session["run_info"], "dna_region_0", $db_name, $connection);
     $combined_metadata[$num]["domain"]             = $csv_metadata_row["domain"];
