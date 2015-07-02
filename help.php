@@ -20,7 +20,7 @@
 
 <li><span class="emph">If you are processing NextSeq:</span>
 <ul>
-	<li>If your raw file names start with 'IDX' instead of an actual index run <span class="green_message">rename_idx_index.sh</span> to rename the files.</li>
+	<li>If your raw file names start with 'IDX' instead of an actual index run <span class="green_message">rename_idx_index.sh</span> to rename the files. Run it in the directory with the raw files on any server.</li>
 	<li>Choose "Does not have NNNN in run_key (NextSeq)" for "has_Ns" when create a csv.</li>
 	<li>Choose "hiseq" for "Machine name".</li>
 	<li>If you are looking for your csv file it is in hiseq_info/rundate for now.</li>
