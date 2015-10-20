@@ -1,5 +1,7 @@
 <?php 
 // print_blue_message("From ". $_SERVER["PHP_SELF"] . "; upload_subm_metadata_form_run_info");
+// print_blue_message("\$_POST");
+// print_out($_POST);
 
 // print "\$run_info_results: ";
 // print_out($run_info_results);
@@ -132,7 +134,14 @@ else
 <td>
 <select name="has_ns" id="form_has_ns">
  <?php 
-    $selected_has_ns = "Has NNNN in run_key";
+	 if (isset($run_info_results["rundate"]))
+	 {
+	 	$selected_has_ns = $run_info_results["has_ns"];
+	 }
+	 else
+	 {
+    	$selected_has_ns = "Has NNNN in run_key";
+	 }
     print_options($has_nss, $selected_has_ns);    
   ?>
     <option value="None"></option>
