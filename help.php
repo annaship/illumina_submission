@@ -45,6 +45,30 @@
 </ul>
 </li>
 
+<li><span class="emph">Are you done with processing the data?</span>
+<ul>
+	<li>
+	  <!-- If data are ready to be uploaded to VAMPS ("VAMPS update" as an opposite to update data to our inner env454 database) -->
+    <p>
+    When the data are processed, please send an email notification to vamps@mbl.edu with the subject line: "New data are ready".<br/>
+    The body of the email should contain:<br/>
+    <ul>
+    	<li>
+      the date of the run,
+      </li>
+    	<li>
+      projects included in the run
+      </li>
+    	<li>
+      and any users requiring access to each project.
+      </li>
+    Remember, BPC users automatically have access to all projects, other users are provided access to non-public data on a project by project basis.
+    </p>
+    </ul>    
+	</li>
+</ul>
+</li>
+
 <li><span class="emph">Some useful things:</span>
   <ul>
     <li><span class="green_message">mail_done</span> is an alias in my <span class="green_message">.bash_profile</span> (a file in my home directory, notice the dot in the name), add this <span class="emph">one</span> line changing the email to yours and keep all quotes exactly like this:<br/>
