@@ -21,6 +21,9 @@
 <?php 
 	$suite_name         = "";
 	$suite_lanes_rundate = array();
+	
+// 	print_blue_out_message("from check db: \$_SESSION", $_SESSION);
+	
 		
 	if (isset($_SESSION['is_local']) && !empty($_SESSION['is_local']))
 		
@@ -40,21 +43,29 @@
 		
 // 		print_blue_out_message("from check db: \$_POST", $_POST);
 		$suite_names = get_primer_suite_name_from_db($_POST, $connection);
-			
+		
+		$n = 0;
 		foreach ($suite_names as $arr)
 		{
 			foreach ($arr as $suite_name_row)
-			$primer_suites[] = $suite_name_row["primer_suite"];
+			{
+				$primer_suites[][] = $suite_name_row["primer_suite"];
+			}
 				
 		}
-		$suite_name_arr = array_unique($primer_suites);
-		$suite_name = $suite_name_arr[0];
-		$suite_lanes_rundate[$i]["suite_name"] = $suite_name;
-		$suite_lanes_rundate[$i]["lane"]       = $_POST["find_lane"];
-		$suite_lanes_rundate[$i]["rundate"]    = $_POST["find_rundate"];		
-		$i++;
+		
+		foreach ($primer_suites as $primer_suite)
+		{
+			$suite_name_arr = array_unique($primer_suite);
+			$suite_name = $suite_name_arr[0];
+			$suite_lanes_rundate[$i]["suite_name"] = $suite_name;
+			$suite_lanes_rundate[$i]["lane"]       = $_POST["find_lane"];
+			$suite_lanes_rundate[$i]["rundate"]    = $_POST["find_rundate"];
+			$i++;
+		}
 	}
 	elseif (isset($_SESSION["csv_content"]) && !empty($_SESSION["csv_content"])) {
+// 		print_blue_out_message("from check db: \$_SESSION[\"csv_content\"]", $_SESSION["csv_content"]);
 		
 		foreach ($_SESSION["csv_content"] as $csv_arr)
 		{
@@ -69,6 +80,9 @@
 	{
 		db_problem_domain_dna_region($domain, $dna_region);
 	}
+	
+// 	print_blue_out_message("from check db: \$suite_lanes_rundate", $suite_lanes_rundate);
+	
 	
 	$messages = array();
 	foreach ($suite_lanes_rundate as $suite_lanes_rundate_one)
