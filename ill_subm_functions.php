@@ -1626,14 +1626,8 @@ function get_vamps_auth_id($vamps_username, $db_name, $connection)
 function get_gast_command_name($lane_dom_name, $machine_name)
 {
   $lane_domain_arr  = preg_split("/_/", $lane_dom_name);
-  if ($lane_domain_arr[1] == "A" && $machine_name == "ms")
-  {
-    $gast_command_name = "run_gast_ill_nonchim_v4v5a.sh";
-  }
-  else 
-  {
-    $gast_command_name = "run_gast_ill_nonchim.sh";    
-  }
+//   print_blue_out_message('$lane_domain_arr', $lane_domain_arr);
+  $gast_command_name = "run_gast_ill_nonchim_sge.sh";
   return $gast_command_name;
 }
 
