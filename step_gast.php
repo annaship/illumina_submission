@@ -46,7 +46,7 @@
 	{
 		$check_gast_unknowns = "percent10_gast_unknowns.sh";
 		$command_line_gast_check = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" .
-									$lane_dom_name . "/analysis/reads_overlap/; " . $check_gast_unknowns . "; date";
+									$lane_dom_name . "/analysis/gast/; " . $check_gast_unknowns . "; date";
 		print_green_message($command_line_gast_check);	
 	}	
 ?>
