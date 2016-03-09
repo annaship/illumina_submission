@@ -16,7 +16,7 @@
 </ul>
 </li>
 
-<li><span class="emph">If you try to upload data to the database and got a "<span class="message">There is 0 sequences in filename = ...</span>" message in your terminal:</span>
+<li><span class="emph">If you try to upload data to the database and got a "<span class="message">There are 0 sequences in filename = ...</span>" message in your terminal:</span>
 <ul>
 	<li>Check why the file(s) is empty. That could happen because the previous step haven't finished or because there is an error somewhere (check previous steps and files with the same beginning). If that's only one file and you know that there was just a few sequences to begin with (*_STATS will help) then gzip the files with 0 sequences and the script will ignore them.</li>
 </ul>
