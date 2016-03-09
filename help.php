@@ -16,7 +16,11 @@
 </ul>
 </li>
 
-
+<li><span class="emph">If you try to upload data to the database and got a "<span class="message">There is 0 sequences in filename = ...</span>" message in your terminal:</span>
+<ul>
+	<li>Check why the file(s) is empty. That could happen because the previous step haven't finished or because there is an error somewhere (check previous steps and files with the same beginning). If that's only one file and you know that there was just a few sequences to begin with (*_STATS will help) then gzip the files with 0 sequences and the script will ignore them.</li>
+</ul>
+</li>
 
 <li><span class="emph">If you are processing NextSeq:</span>
 <ul>
@@ -36,9 +40,9 @@
 </ul>
 </li>
 
-<li><span class="emph">Is cluster done?</span>
+<li><span class="emph">Is the cluster done?</span>
 <ul>
-	<li>To check if cluster is done you can use
+	<li>To check if a cluster is done you can use
 	<span class="green_message">check_cluster.py</span></li>
 	<li>You also can combine it with <span class="green_message">mail_done</span>, so you'll get an email when there are no more processes with your username are running on the cluster.
 	</li>
