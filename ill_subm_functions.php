@@ -936,6 +936,7 @@ function get_primer_suite_name($dna_region, $domain)
 }
 
 function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
+	print_red_message("ATTENTION!");
   $res_id = 0;
   $table_name = "primer_suite";  
   $suite_name = get_primer_suite_name($dna_region, $domain);
