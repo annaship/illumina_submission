@@ -936,12 +936,10 @@ function get_primer_suite_name($dna_region, $domain)
 }
 
 function get_primer_suite_id($dna_region, $domain, $db_name, $connection) {
-	print_red_message("ATTENTION!");
   $res_id = 0;
   $table_name = "primer_suite";  
   $suite_name = get_primer_suite_name($dna_region, $domain);
   $query      = "SELECT " . $table_name . "_id from " . $db_name . "." . $table_name . " where " . $table_name . " = \"" . $suite_name . "\"";
-  print_blue_out_message('$query = ', $query);
   $row        = get_one_value($query, $db_name, $connection);
   if (isset($row[key($row)]))
   {
