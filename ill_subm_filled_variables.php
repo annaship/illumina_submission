@@ -272,7 +272,7 @@ $vamps_submission_info_show = array();
 $vamps_submission_info_show = make_arr_by_key_field_name($subm_field_names, $vamps_submission_info, $need_names, "submit_code");
 
 // -------
-$machine_names = array("ms" => "miseq", "hs" => "hiseq");
+$machine_names = array("ms" => "miseq", "hs" => "hiseq", "ns" => "nextseq");
 
 if (isset($_SESSION["run_info"]))
 {
