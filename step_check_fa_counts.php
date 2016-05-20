@@ -20,7 +20,8 @@
 	$file_ext = "";
 	if ($machine_name == "hs")
 	{
-		$file_ext = "*-PERFECT_reads.fa.unique";
+// 		$file_ext = "*-PERFECT_reads.fa.unique";
+		$file_ext = "*REMOVED.unique";
 	}
 	else 
 	{
