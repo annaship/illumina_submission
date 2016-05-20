@@ -3,10 +3,10 @@
 // print_blue_message("\$_POST");
 // print_out($_POST);
 
-print "\$run_info_results: ";
-print_out($run_info_results);
-print "\$_SESSION[run_info]: ";
-print_out($_SESSION["run_info"]);
+// print "\$run_info_results: ";
+// print_out($run_info_results);
+// print "\$_SESSION[run_info]: ";
+// print_out($_SESSION["run_info"]);
 
 if (!isset($run_info_errors))
 {
@@ -46,7 +46,7 @@ else
 {
 	$selected_path_to_raw_data = "";
 }
-// Hi Anna - I made this change cuz Joe was having trouble with the submission
+// Hi Anna - I made this change cuz Joe was having rouble with the submission
 // form. The dna_region was saved but not recalled  2013-05-02; Andy
 if (isset($run_info_results["dna_region_0"]))
 {
@@ -55,15 +55,6 @@ if (isset($run_info_results["dna_region_0"]))
 else 
 {
 	$selected_dna_region_base = "";  # this will make the combo revert to 'v6'
-}
-
-if (isset($run_info_results["machine"]))
-{
-	$machine_name = $run_info_results["machine"];
-}
-else
-{
-	$machine_name = "";
 }
 
 // if (!isset($selected_dna_region_base))
@@ -112,21 +103,6 @@ else
     </td>
   </tr>
   
-  <tr class="fields">
-  <td class="fields" align="left"><label for="run_infoForm_dna_region">Illumina machine</label></td>
-  <td>
-  <select name="illumina_name" id="form_illumina_name">
-   <?php 
-    $machine_name = strtolower($machine_name);
-   	if (!check_var($machine_name))
-   	{ 
-   		$machine_name = "";
-   	}
-   		print_options($machine_names, $machine_name);
-    ?>
-    </select>
-    </td>
-  </tr>
   
   <tr class="fields">
   <td class="fields" align="left"><label for="run_infoForm_overlap">overlap</label></td>
