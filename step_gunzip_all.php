@@ -19,7 +19,7 @@
 	foreach ($lane_dom_names as $lane_dom_name)
 	{
     	$command_line_gunzip = "cd /xraid2-2/g454/run_new_pipeline/illumina/" . $rundate . "/lane_" . 
-        					$lane_dom_name . "/analysis/; time gunzip *.gz";
+        					$lane_dom_name . "/analysis/; time gunzip -r *.gz";
         print_green_message($command_line_gunzip);        
 	}
 	echo "</div>";

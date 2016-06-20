@@ -8,6 +8,7 @@
 <?php 
 	include_once("ill_subm_menu.php");
 	echo "<h2>Chimera checking</h2>";
+	echo "<h3>No need for chimera checking for one region reads</h3>";
 	$pipeline_command = "illumina_chimera_only";
 	
 	include_once("steps_command_line.php");
