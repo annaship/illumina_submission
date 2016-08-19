@@ -93,9 +93,7 @@
   JOIN project using(project_id) 
   JOIN dataset using(dataset_id) 
   JOIN run using(run_id) 
-  JOIN primer_suite using(primer_suite_id) 
-  WHERE primer_suite = \"" . $suite_name . "\" 
-  AND run = \"" . $rundate . "\" 
+  WHERE run = \"" . $rundate . "\" 
   AND lane = \"" . $lane_name . "\";"; 
 		
 		$query_del_run_info_ill = "DELETE 
@@ -104,9 +102,7 @@
   JOIN project using(project_id)    
   JOIN dataset using(dataset_id)    
   JOIN run using(run_id)   
-  JOIN primer_suite using(primer_suite_id)   
-  WHERE primer_suite = \"" . $suite_name . "\"    
-  AND run = \"" . $rundate . "\"   
+  WHERE run = \"" . $rundate . "\"   
   AND lane = \"" . $lane_name . "\";";
 
 		/*
