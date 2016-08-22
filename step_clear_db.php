@@ -122,24 +122,27 @@
 	foreach (array_unique($messages) as $message)
 	{
 		print_green_message($message);
-		
+		echo "<br/>";
+    
 	}
 	
-  // $query_clean_rest1 = "DELETE FROM sequence_uniq_info_ill 
-  //   USING sequence_uniq_info_ill 
-  //   LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) 
-  //   WHERE sequence_pdr_info_ill_id is NULL;"
-  // 
-  // $query_clean_rest2 = "DELETE FROM sequence_ill 
-  //   USING sequence_ill 
-  //   LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) 
-  //   WHERE sequence_pdr_info_ill_id IS NULL;
-  //      ";
-  //   if ($query_del_sequence_pdr_info_ill != "" AND $query_del_run_info_ill != "")
-  //   {
-  //    print_green_message(add_env454_mysql_call($query_clean_rest1));
-  //    print_green_message(add_env454_mysql_call($query_clean_rest2));
-  //   }
+  $query_clean_rest1 = "DELETE FROM sequence_uniq_info_ill 
+    USING sequence_uniq_info_ill 
+    LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) 
+    WHERE sequence_pdr_info_ill_id is NULL;";
+  
+  $query_clean_rest2 = "DELETE FROM sequence_ill 
+    USING sequence_ill 
+    LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) 
+    WHERE sequence_pdr_info_ill_id IS NULL;";
+    
+    if ($query_del_sequence_pdr_info_ill != "" AND $query_del_run_info_ill != "")
+    {
+      
+     print_green_message(add_env454_mysql_call($query_clean_rest1));
+     echo "<br/>";
+     print_green_message(add_env454_mysql_call($query_clean_rest2));
+    }
 	
 ?>
 </div>
