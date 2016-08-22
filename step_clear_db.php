@@ -99,6 +99,7 @@
         JOIN project using(project_id) 
         JOIN dataset using(dataset_id) 
         JOIN run using(run_id)
+        JOIN primer_suite using(primer_suite_id) 
 				WHERE primer_suite = \"" . 
 			$suite_lanes_rundate_one["suite_name"] . "\" AND run = \"" . $suite_lanes_rundate_one["rundate"] . "\" AND lane = \"" . $suite_lanes_rundate_one["lane"] . "\"";
 
@@ -110,6 +111,7 @@
       JOIN project using(project_id)    
       JOIN dataset using(dataset_id)    
       JOIN run using(run_id)   
+      JOIN primer_suite using(primer_suite_id) 
 			WHERE primer_suite = \"" . 
 			$suite_lanes_rundate_one["suite_name"] . "\" AND run = \"" . $suite_lanes_rundate_one["rundate"] . "\" AND lane = \"" . $suite_lanes_rundate_one["lane"] . "\"";
 
