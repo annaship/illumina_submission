@@ -1,4 +1,6 @@
 <?php 
+ini_set('memory_limit', '-1');
+
 function print_options($array_name, $selected_val, $to_show = "val_only")
 {
 	foreach ($array_name as $key => $val)
