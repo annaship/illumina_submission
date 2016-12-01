@@ -1439,10 +1439,10 @@ function endsWith($haystack, $needle) {
 
 function creat_dir_if_not_existst($dir_name)
 {
-  print_blue_out_message('$dir_name', $dir_name);
-  // mkdir($dir_name);
-  // umask(0002);
-  // chmod($dir_name, 02775);
+  // print_blue_out_message('$dir_name', $dir_name);
+  mkdir($dir_name);
+  umask(0002);
+  chmod($dir_name, 02775);
 }
 
 function get_lane_or_domain($data, $field_name)
