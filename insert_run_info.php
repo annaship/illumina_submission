@@ -26,10 +26,7 @@ foreach (array_unique($lane_dom_names) as $lane_dom_name)
 		$dir_name 			= $path_to_csv  . $rundate;
 		$ini_file_name      = $rundate . "_" . $lane_dom_name . "_run_info.ini";
 		$run_info_file_name = $dir_name . "/" . $ini_file_name;
-    
-    print_blue_out_message('!is_dir($dir_name)', !is_dir($dir_name));
-    print_blue_out_message('$run_info_file_name', $run_info_file_name);
-    
+        
 		if (!is_dir($dir_name)) {
 			creat_dir_if_not_existst($dir_name);
 		}
