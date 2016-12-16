@@ -640,3 +640,10 @@ ol.help_list li
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
 }
+
+#redirect_notice, a#redirect_notice
+{
+ 	text-align: center;
+ 	font-size:  large;
+  background: yellow;
+}
