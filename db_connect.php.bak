@@ -20,20 +20,20 @@ $vampsprod_connection_w = mysql_connect($hostname, $username_w, $password_w) or 
 
 // $db_vamps = mysql_select_db('vamps', $vampsdev_connection);
 
-$hostname_n = $config['databases']['bpcdb1']['host']; 
-$database_n = $config['databases']['bpcdb1']['name']; 
-$port_n     = $config['databases']['bpcdb1']['port'];
-$username_n = $config['databases']['bpcdb1']['users']['readonly']['username'];
-$password_n = $config['databases']['bpcdb1']['users']['readonly']['password'];
+$hostname_n = $config['databases']['newbpcdb2']['host']; 
+$database_n = $config['databases']['newbpcdb2']['name']; 
+$port_n     = $config['databases']['newbpcdb2']['port'];
+$username_n = $config['databases']['newbpcdb2']['users']['readonly']['username'];
+$password_n = $config['databases']['newbpcdb2']['users']['readonly']['password'];
 $newbpc2_connection_r = mysql_connect($hostname_n, $username_n, $password_n) or die("Not connected with $hostname_n: " . mysql_error());
 // print_blue_out_message('$newbpc2_connection_r', $newbpc2_connection_r);
 
 // env454 read and write
-$hostname_nw = $config['databases']['bpcdb1']['host'];
-$database_nw = $config['databases']['bpcdb1']['name'];
-$port_nw     = $config['databases']['bpcdb1']['port'];
-$username_nw = $config['databases']['bpcdb1']['users']['readwrite']['username']; #vampsdev_rw
-$password_nw = $config['databases']['bpcdb1']['users']['readwrite']['password'];
+$hostname_nw = $config['databases']['newbpcdb2']['host'];
+$database_nw = $config['databases']['newbpcdb2']['name'];
+$port_nw     = $config['databases']['newbpcdb2']['port'];
+$username_nw = $config['databases']['newbpcdb2']['users']['readwrite']['username']; #vampsdev_rw
+$password_nw = $config['databases']['newbpcdb2']['users']['readwrite']['password'];
 $newbpc2_connection = mysql_connect($hostname_nw, $username_nw, $password_nw) or die("Not connected with $hostname_nw: " . mysql_error());
 // print_blue_out_message('$newbpc2_connection rw', $newbpc2_connection);
 // development
@@ -60,5 +60,5 @@ $vampsdev_connection = mysql_connect($hostname_d, $username_d, $password_d) or d
 
 // echo $newbpc2_mysqli->host_info . "<br/>from DB_CONNECT";
 // print_out($config['databases']['vamps_production']);
-// print_out($config['databases']['bpcdb1']);
+// print_out($config['databases']['newbpcdb2']);
 ?>

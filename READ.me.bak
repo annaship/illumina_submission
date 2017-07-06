@@ -262,7 +262,7 @@ step_upload_subm_metadata.php: -- ill_subm_end.php
  mysqldump -h vampsdb -u ashipunova vamps vamps_auth vamps_submissions vamps_submissions_tubes > to_test_test_vamps.sql
  
  *) copy all primer and adapter info from env454 to test_env454
- mysqldump -h bpcdb1 -u ashipunova env454 contact dataset dna_region env_sample_source illumina_adaptor illumina_adaptor_ref illumina_index illumina_run_key primer primer_suite primer_suite_primer_view project ref_primer_suite_primer run run_info run_info_ill run_key > to_test_env454.sql
+ mysqldump -h newbpcdb2 -u ashipunova env454 contact dataset dna_region env_sample_source illumina_adaptor illumina_adaptor_ref illumina_index illumina_run_key primer primer_suite primer_suite_primer_view project ref_primer_suite_primer run run_info run_info_ill run_key > to_test_env454.sql
  
  mysql -u ... -p test_env454 <to_test_env454.sql
  

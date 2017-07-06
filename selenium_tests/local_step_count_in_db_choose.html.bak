@@ -48,7 +48,7 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>exact:mysql -h bpcdb1 env454 -e 'select count(*) from sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V6 Suite&quot; AND run = &quot;20130322&quot; AND lane = &quot;1&quot;'</td>
+	<td>exact:mysql -h newbpcdb2 env454 -e 'select count(*) from sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Bacterial V6 Suite&quot; AND run = &quot;20130322&quot; AND lane = &quot;1&quot;'</td>
 	<td></td>
 </tr>
 </tbody></table>

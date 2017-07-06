@@ -14,11 +14,11 @@ $vampsprod_connection = mysql_connect($hostname, $username_v, $password_v) or di
 
 // $db_vamps = mysql_select_db('vamps', $vampsdev_connection);
 
-$hostname_n = $config['databases']['newbpcdb2']['host']; 
-$database_n = $config['databases']['newbpcdb2']['name']; 
-$port_n     = $config['databases']['newbpcdb2']['port'];
-$username_n = $config['databases']['newbpcdb2']['users']['readonly']['username'];
-$password_n = $config['databases']['newbpcdb2']['users']['readonly']['password'];
+$hostname_n = $config['databases']['bpcdb1']['host']; 
+$database_n = $config['databases']['bpcdb1']['name']; 
+$port_n     = $config['databases']['bpcdb1']['port'];
+$username_n = $config['databases']['bpcdb1']['users']['readonly']['username'];
+$password_n = $config['databases']['bpcdb1']['users']['readonly']['password'];
 $newbpc2_connection = mysql_connect($hostname_n, $username_n, $password_n) or die('Not connected: ' . mysql_error());
 
 // $db_env454 = mysql_select_db('env454', $newbpc2_connection);

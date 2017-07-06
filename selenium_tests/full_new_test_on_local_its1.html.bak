@@ -454,17 +454,17 @@
 <tr>
 	<td>verifyText</td>
 	<td>//div[@id='command_line_print']/div[2]</td>
-	<td>mysql -h bpcdb1 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Fungal its1 Suite&quot; AND run = &quot;20130815&quot; AND lane = &quot;1&quot;;'</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE from sequence_pdr_info_ill USING sequence_pdr_info_ill JOIN run_info_ill using(run_info_ill_id) JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Fungal its1 Suite&quot; AND run = &quot;20130815&quot; AND lane = &quot;1&quot;;'</td>
 </tr>
 <tr>
 	<td>verifyText</td>
 	<td>//div[@id='command_line_print']/div[3]</td>
-	<td>mysql -h bpcdb1 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Fungal its1 Suite&quot; AND run = &quot;20130815&quot; AND lane = &quot;1&quot;;'</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM run_info_ill USING run_info_ill JOIN project using(project_id) JOIN dataset using(dataset_id) JOIN run using(run_id) JOIN primer_suite using(primer_suite_id) WHERE primer_suite = &quot;Fungal its1 Suite&quot; AND run = &quot;20130815&quot; AND lane = &quot;1&quot;;'</td>
 </tr>
 <tr>
 	<td>verifyText</td>
 	<td>//div[@id='command_line_print']/div[4]</td>
-	<td>mysql -h bpcdb1 env454 -e 'DELETE FROM sequence_uniq_info_ill USING sequence_uniq_info_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id is NULL; DELETE FROM sequence_ill USING sequence_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id IS NULL; '</td>
+	<td>mysql -h newbpcdb2 env454 -e 'DELETE FROM sequence_uniq_info_ill USING sequence_uniq_info_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id is NULL; DELETE FROM sequence_ill USING sequence_ill LEFT JOIN sequence_pdr_info_ill USING(sequence_ill_id) WHERE sequence_pdr_info_ill_id IS NULL; '</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -499,7 +499,7 @@
 <tr>
 	<td>verifyText</td>
 	<td>css=div.green_message</td>
-	<td>exact:mysql -h bpcdb1 env454 -e 'SELECT count(*) FROM sequence_pdr_info_ill JOIN run_info_ill USING(run_info_ill_id) JOIN run USING(run_id) JOIN primer_suite USING(primer_suite_id) JOIN sequence_uniq_info_ill USING(sequence_ill_id) WHERE primer_suite = &quot;Fungal ITS1 Suite&quot; AND run = &quot;20130815&quot; AND lane = &quot;1&quot;'</td>
+	<td>exact:mysql -h newbpcdb2 env454 -e 'SELECT count(*) FROM sequence_pdr_info_ill JOIN run_info_ill USING(run_info_ill_id) JOIN run USING(run_id) JOIN primer_suite USING(primer_suite_id) JOIN sequence_uniq_info_ill USING(sequence_ill_id) WHERE primer_suite = &quot;Fungal ITS1 Suite&quot; AND run = &quot;20130815&quot; AND lane = &quot;1&quot;'</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>

@@ -1518,7 +1518,7 @@ function get_overlap_script_name($machine_name)
 }
 
 function add_env454_mysql_call($query) {
-  return "mysql -h bpcdb1 env454 -e '" . $query . "'";
+  return "mysql -h newbpcdb2 env454 -e '" . $query . "'";
 }
 
 function server_message($server_name)
